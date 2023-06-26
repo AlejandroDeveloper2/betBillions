@@ -17,18 +17,18 @@ const LinkVariant = styled(Link)`
   width: 100%;
   text-align: center;
   @media (min-width: 768px) {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 `;
 
 const FormContainer = styled.div`
   width: 100%;
   background-color: var(--white);
-  padding: 3rem 2rem;
+  padding: 3rem 2.5rem;
   border-top-right-radius: 3rem;
   border-top-left-radius: 3rem;
   @media (min-width: 768px) {
-    width: 20rem;
+    width: 30rem;
     border-radius: 1rem;
   }
 `;

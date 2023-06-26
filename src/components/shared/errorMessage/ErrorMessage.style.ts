@@ -11,7 +11,7 @@ const ErrorMessageContainer = styled.div`
   span {
     color: var(--white);
     text-align: center;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     font-weight: medium;
   }
 `;

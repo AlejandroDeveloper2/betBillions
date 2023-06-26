@@ -14,7 +14,7 @@ const InputContainer = styled.div`
   }
 
   @media (min-width: 768px) {
-    padding: 0.5rem 0.5rem;
+    padding: 1rem 2rem;
   }
 `;
 
@@ -34,9 +34,9 @@ const Input = styled.input`
     font-size: 1rem;
   }
   @media (min-width: 768px) {
-    font-size: 0.7rem;
+    font-size: 1rem;
     &::placeholder {
-      font-size: 0.7rem;
+      font-size: 1rem;
     }
   }
 `;

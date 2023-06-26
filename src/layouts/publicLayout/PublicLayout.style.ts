@@ -12,10 +12,16 @@ const Container = styled.main`
   flex-direction: column;
   padding-top: 5rem;
   align-items: center;
-  overflow: hidden;
+  overflow-x: hidden;
   justify-content: space-between;
 
   @media (min-width: 768px) {
+    justify-content: center;
+    gap: 5rem;
+    padding-bottom: 4rem;
+  }
+
+  @media (min-width: 1000px) {
     flex-direction: row;
     padding: 0 5rem;
     justify-content: center;
@@ -37,10 +43,6 @@ const WelcomeText = styled.h1`
   text-transform: uppercase;
   text-align: center;
   font-size: 1.2rem;
-
-  @media (min-width: 768px) {
-    font-size: 1rem;
-  }
 `;
 
 export { Container, WelcomeText, Presentation };

@@ -21,9 +21,9 @@ const Button = styled.button<ButtonStyleProps>`
     opacity: 0.5;
   }
   @media (min-width: 768px) {
-    padding: 0.5rem 1rem;
+    padding: 1.2rem 1.5rem;
     span {
-      font-size: 0.7rem;
+      font-size: 1.2rem;
     }
   }
 `;

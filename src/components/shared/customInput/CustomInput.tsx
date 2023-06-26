@@ -16,7 +16,7 @@ const DefaultInput = (props: CustomInputProps) => {
 
   return (
     <InputContainer>
-      <Icon color="var(--dark-gray)" style={{ fontSize: "1.2rem" }} />
+      <Icon color="var(--dark-gray)" style={{ fontSize: "1.3rem" }} />
       <Input type={inputType} placeholder={placeholder} {...register(name)} />
       <PassIcon />
     </InputContainer>

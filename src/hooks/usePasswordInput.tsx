@@ -21,13 +21,13 @@ const usePasswordInput = (type: "text" | "password" | "number") => {
       const IconPass = isPasswordVisible ? (
         <AiFillEyeInvisible
           color="var(--dark-gray)"
-          style={{ fontSize: "1.2rem", cursor: "pointer" }}
+          style={{ fontSize: "1.3rem", cursor: "pointer" }}
           onClick={togglePassVisibility}
         />
       ) : (
         <AiFillEye
           color="var(--dark-gray)"
-          style={{ fontSize: "1.2rem", cursor: "pointer" }}
+          style={{ fontSize: "1.3rem", cursor: "pointer" }}
           onClick={togglePassVisibility}
         />
       );
