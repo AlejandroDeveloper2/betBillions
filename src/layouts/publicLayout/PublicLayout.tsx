@@ -18,7 +18,7 @@ const PublicLayout = (): JSX.Element => {
   return (
     <Container>
       <Presentation>
-        <WelcomeText>welcome</WelcomeText>
+        <WelcomeText>Bienvenido</WelcomeText>
         <Animate>
           <Image
             source={Logo}

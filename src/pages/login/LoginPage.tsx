@@ -33,13 +33,13 @@ const LoginPage = (): JSX.Element => {
   return (
     <FormContainer>
       <CustomForm
-        formTitle="welcome back"
+        formTitle="bienvenido"
         handleSubmit={handleSubmit}
         action={login}
       >
         <DefaultInput
           type="text"
-          placeholder="username"
+          placeholder="Nombre de usuario"
           label={null}
           Icon={MdOutlinePersonOutline}
           register={register}
@@ -50,7 +50,7 @@ const LoginPage = (): JSX.Element => {
         ) : null}
         <DefaultInput
           type="password"
-          placeholder="password"
+          placeholder="Contraseña"
           label={null}
           Icon={MdHttps}
           register={register}
@@ -60,19 +60,19 @@ const LoginPage = (): JSX.Element => {
           <ErrorMessage message={errors.password.message} />
         ) : null}
         <Links>
-          <LinkVariant to="/">Remember password</LinkVariant>
-          <LinkVariant to="/">Forgot password</LinkVariant>
+          <LinkVariant to="/">Recordar contraseña</LinkVariant>
+          <LinkVariant to="/">¿Olvido contraseña?</LinkVariant>
         </Links>
         <DefaultSubmit
           style={{
             bg: "var(--bg-secondary-color)",
             fontColor: "var(--white)",
           }}
-          title="Log in"
-          label="Login"
+          title="Ingresar"
+          label="Iniciar sesión"
         />
         <Links>
-          <LinkVariant to="/">Don't have an account? Sign Up</LinkVariant>
+          <LinkVariant to="/">¿No tienes una cuenta? Registrarse</LinkVariant>
         </Links>
       </CustomForm>
     </FormContainer>
