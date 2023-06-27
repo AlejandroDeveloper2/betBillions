@@ -6,6 +6,7 @@ const Links = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 2;
 `;
 
 const LinkVariant = styled(Link)`
@@ -27,9 +28,53 @@ const FormContainer = styled.div`
   padding: 3rem 2.5rem;
   border-top-right-radius: 3rem;
   border-top-left-radius: 3rem;
+  position: relative;
   @media (min-width: 768px) {
     width: 30rem;
     border-radius: 1rem;
+    padding: 6rem 2.5rem;
+  }
+  &::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: -1rem;
+    right: -1rem;
+    background-color: var(--white);
+    opacity: 0.6;
+    z-index: 1;
+    @media (min-width: 768px) {
+      border-radius: 1rem;
+    }
+    border-top-right-radius: 3rem;
+    border-top-left-radius: 3rem;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: scale(1.05);
+  }
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--white);
+    opacity: 0.4;
+    z-index: 0;
+    @media (min-width: 768px) {
+      border-radius: 1rem;
+    }
+    border-top-right-radius: 3rem;
+    border-top-left-radius: 3rem;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: scale(1.1);
   }
 `;
 

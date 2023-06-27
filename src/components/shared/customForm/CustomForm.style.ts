@@ -7,7 +7,6 @@ const Form = styled.form`
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  z-index: 0;
 `;
 
 const FormTitle = styled.h1`
@@ -16,6 +15,7 @@ const FormTitle = styled.h1`
   text-transform: capitalize;
   text-align: center;
   font-size: 1.5rem;
+  z-index: 2;
   @media (min-width: 768px) {
     font-size: 2.5rem;
   }
@@ -28,6 +28,7 @@ const FormBody = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  z-index: 2;
 `;
 
 export { Form, FormTitle, FormBody };

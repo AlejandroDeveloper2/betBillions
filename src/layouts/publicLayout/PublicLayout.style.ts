@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
+import { DesktopBg, MobileBg } from "../../assets";
+
 const Container = styled.main`
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
-    var(--bg-primary-color) 45%,
-    var(--bg-violet) 100%
-  );
-  background-color: var(--bg-primary-color);
+  background-image: url(${MobileBg});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   padding-top: 5rem;
   align-items: center;
   overflow-x: hidden;
   justify-content: space-between;
+  gap: 2rem;
 
   @media (min-width: 768px) {
     justify-content: center;
@@ -26,6 +28,7 @@ const Container = styled.main`
     padding: 0 5rem;
     justify-content: center;
     gap: 6rem;
+    background-image: url(${DesktopBg});
   }
 `;
 
@@ -45,4 +48,21 @@ const WelcomeText = styled.h1`
   font-size: 1.2rem;
 `;
 
-export { Container, WelcomeText, Presentation };
+const Animate = styled.figure`
+  animation-name: bounce;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+  }
+`;
+
+export { Container, WelcomeText, Presentation, Animate };

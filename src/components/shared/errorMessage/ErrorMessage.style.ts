@@ -8,6 +8,7 @@ const ErrorMessageContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 0.5rem;
+  z-index: 2;
   span {
     color: var(--white);
     text-align: center;

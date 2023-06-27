@@ -4,7 +4,12 @@ import { Outlet } from "react-router-dom";
 import { Image } from "../../components";
 
 /* Styles */
-import { Container, WelcomeText, Presentation } from "./PublicLayout.style";
+import {
+  Container,
+  WelcomeText,
+  Presentation,
+  Animate,
+} from "./PublicLayout.style";
 
 /*Assets */
 import { Logo } from "../../assets";
@@ -14,11 +19,13 @@ const PublicLayout = (): JSX.Element => {
     <Container>
       <Presentation>
         <WelcomeText>welcome</WelcomeText>
-        <Image
-          source={Logo}
-          alt="Bet billions logo"
-          dimensions={{ width: 300, height: 150 }}
-        />
+        <Animate>
+          <Image
+            source={Logo}
+            alt="Bet billions logo"
+            dimensions={{ width: 300, height: 150 }}
+          />
+        </Animate>
       </Presentation>
       <Outlet />
     </Container>
