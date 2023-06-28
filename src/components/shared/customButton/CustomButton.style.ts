@@ -12,6 +12,7 @@ const Button = styled.button<ButtonStyleProps>`
   align-items: center;
   cursor: pointer;
   border: none;
+  transition: all ease 0.5s;
   span {
     color: ${(props: ButtonStyleProps) => props.color};
     font-size: 1rem;

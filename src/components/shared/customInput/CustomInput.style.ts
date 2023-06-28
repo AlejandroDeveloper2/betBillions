@@ -9,6 +9,7 @@ const InputContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   border: none;
+  transition: all ease 0.5s;
   &:hover {
     box-shadow: 0 0 0.3rem var(--bg-secondary-color);
   }

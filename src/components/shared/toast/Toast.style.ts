@@ -16,6 +16,7 @@ const ToastContainer = styled.div<ToastStyleProps>`
     text-align: center;
     text-transform: capitalize;
   }
+  transition: all ease 0.5s;
   display: inline-flex;
   justify-content: center;
   align-items: center;

@@ -9,6 +9,7 @@ const ErrorMessageContainer = styled.div`
   align-items: center;
   border-radius: 0.5rem;
   z-index: 2;
+  transition: all ease 0.5s;
   span {
     color: var(--white);
     text-align: center;
