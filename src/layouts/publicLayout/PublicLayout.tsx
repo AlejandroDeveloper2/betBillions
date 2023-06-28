@@ -19,7 +19,7 @@ const PublicLayout = (): JSX.Element => {
     <Container>
       <Presentation>
         <WelcomeText>Bienvenido</WelcomeText>
-        <Animate>
+        <Animate className="animate_bounce">
           <Image
             source={Logo}
             alt="Bet billions logo"
