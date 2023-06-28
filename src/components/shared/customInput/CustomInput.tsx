@@ -10,14 +10,19 @@ import {
 import { usePasswordInput } from "../../../hooks";
 
 const DefaultInput = (props: CustomInputProps) => {
-  const { type, placeholder, name, Icon, register } = props;
+  const { type, placeholder, name, disabled, Icon, register } = props;
   const { getPasswordVisibility, PassIcon } = usePasswordInput(type);
   const inputType = getPasswordVisibility();
 
   return (
     <InputContainer>
       <Icon color="var(--dark-gray)" style={{ fontSize: "1.3rem" }} />
-      <Input type={inputType} placeholder={placeholder} {...register(name)} />
+      <Input
+        type={inputType}
+        placeholder={placeholder}
+        {...register(name)}
+        disabled={disabled}
+      />
       <PassIcon />
     </InputContainer>
   );
@@ -32,5 +37,11 @@ const InputWithLabel = (props: CustomInputProps): JSX.Element => {
     </InputContainerLabel>
   );
 };
+
+// const Checkbox = (props: CustomInputProps):JSX.Element =>{
+//   return (
+
+//   )
+// }
 
 export { DefaultInput, InputWithLabel };

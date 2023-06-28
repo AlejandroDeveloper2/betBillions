@@ -6,7 +6,7 @@ const Container = styled.main`
   width: 100vw;
   height: 100vh;
   background-image: url(${MobileBg});
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;

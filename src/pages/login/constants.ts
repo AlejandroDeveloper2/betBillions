@@ -10,8 +10,8 @@ const DEFAULTVALUES: LoginFormValues = {
 const schema = yup
   .object()
   .shape({
-    username: yup.string().required("Username field is required!"),
-    password: yup.string().required("Password field is required!"),
+    username: yup.string().required("el nombre de usuario es obligatorio!"),
+    password: yup.string().required("la contraseña es obligatoria!"),
   })
   .required();
 

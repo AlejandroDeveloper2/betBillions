@@ -4,7 +4,7 @@ import { ButtonStyleProps } from "../../../types";
 
 const Button = styled.button<ButtonStyleProps>`
   width: 100%;
-  padding: 1rem 1.2rem;
+  height: 5rem;
   border-radius: 4rem;
   background-color: ${(props: ButtonStyleProps) => props.background};
   display: flex;
@@ -14,7 +14,7 @@ const Button = styled.button<ButtonStyleProps>`
   border: none;
   span {
     color: ${(props: ButtonStyleProps) => props.color};
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 800;
   }
   &:hover {

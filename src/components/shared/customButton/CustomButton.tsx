@@ -1,5 +1,10 @@
 /*Functions */
-import { CustomButtonProps } from "../../../types/componentTypes";
+import {
+  CustomButtonProps,
+  LoadingButtonProps,
+} from "../../../types/componentTypes";
+
+import { Loading } from "../..";
 
 /*Styles */
 import { Button } from "./CustomButton.style";
@@ -34,4 +39,15 @@ const DefaultSubmit = (props: CustomButtonProps): JSX.Element => {
   );
 };
 
-export { DefaultButton, DefaultSubmit };
+const LoadingButton = (props: LoadingButtonProps): JSX.Element => {
+  const { message, style } = props;
+  const { bg, fontColor } = style;
+
+  return (
+    <Button type="button" background={bg} color={fontColor} disabled>
+      <Loading message={message} textColor={fontColor} />
+    </Button>
+  );
+};
+
+export { DefaultButton, DefaultSubmit, LoadingButton };

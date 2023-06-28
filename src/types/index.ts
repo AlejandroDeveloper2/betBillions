@@ -1,10 +1,36 @@
 export type {
   ImageProps,
   CustomFormProps,
+  FormType,
   CustomInputProps,
   ErrorMessageProps,
+  ToastProps,
+  LoadingProps,
+  LoadingButtonProps,
 } from "./componentTypes";
 
-export type { LoginFormValues } from "./formTypes";
+export { ToastTypes } from "./componentTypes";
 
-export type { ButtonStyleProps } from "./styledComponentsTypes";
+export type {
+  LoginFormValues,
+  RegisterFormValues,
+  RecoverPassFormValues,
+} from "./formTypes";
+
+export type {
+  ButtonStyleProps,
+  ToastStyleProps,
+  LoadingStyleProps,
+  ContainerFormStyleProps,
+} from "./styledComponentsTypes";
+
+export type {
+  AuthStatus,
+  ApiName,
+  ServerResponse,
+  LoginServerResponse,
+  MessageConfig,
+  UserAuth,
+} from "./dataTypes";
+
+export type { ProviderProps, AuthContextType } from "./contextTypes";
