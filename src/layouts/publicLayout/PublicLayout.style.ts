@@ -49,7 +49,7 @@ const WelcomeText = styled.h1`
 `;
 
 const Animate = styled.figure`
-  /* animation-name: bounce;
+  animation-name: bounce;
   animation-duration: 3s;
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
@@ -62,7 +62,7 @@ const Animate = styled.figure`
     50% {
       transform: translateY(10px);
     }
-  } */
+  }
 `;
 
 export { Container, WelcomeText, Presentation, Animate };
