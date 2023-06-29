@@ -7,6 +7,7 @@ import {
   RecoverPassFormValues,
   RegisterFormValues,
   ServerResponse,
+  UpdatePassFormValues,
 } from "../types";
 
 class UserAuthentication {
@@ -57,6 +58,26 @@ class UserAuthentication {
       const { data } = await axiosClient.post<ServerResponse>(
         "/auth/recover",
         userRequestData
+      );
+      response = data;
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+    return response;
+  }
+
+  public async updatePassword(
+    userNewPassword: UpdatePassFormValues,
+    token: string
+  ): Promise<ServerResponse> {
+    let response: ServerResponse | null = null;
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      const { data } = await axiosClient.patch<ServerResponse>(
+        `/auth/passwordChange/${token}`,
+        userNewPassword
       );
       response = data;
     } catch (_e: unknown) {

@@ -6,7 +6,7 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  gap: 4rem;
 `;
 
 const FormTitle = styled.h1`
@@ -27,7 +27,7 @@ const FormBody = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   z-index: 2;
 `;
 

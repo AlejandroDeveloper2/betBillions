@@ -4,7 +4,7 @@ import { ButtonStyleProps } from "../../../types";
 
 const Button = styled.button<ButtonStyleProps>`
   width: 100%;
-  height: 5rem;
+  height: 4rem;
   border-radius: 4rem;
   background-color: ${(props: ButtonStyleProps) => props.background};
   display: flex;
@@ -17,6 +17,7 @@ const Button = styled.button<ButtonStyleProps>`
     color: ${(props: ButtonStyleProps) => props.color};
     font-size: 1rem;
     font-weight: 800;
+    text-transform: uppercase;
   }
   &:hover {
     opacity: 0.5;

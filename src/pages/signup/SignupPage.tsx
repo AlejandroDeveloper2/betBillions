@@ -61,7 +61,7 @@ const SignupPage = (): JSX.Element => {
 
   return (
     <>
-      <FormContainer width={45}>
+      <FormContainer width={50}>
         <CustomForm
           formTitle="Crear cuenta"
           config={{
@@ -133,18 +133,33 @@ const SignupPage = (): JSX.Element => {
                 <ErrorMessage message={errors.confirmPassword.message} />
               ) : null}
             </FormRow>
+            <FormRow>
+              <DefaultInput
+                type="text"
+                placeholder="Correo electronico"
+                label={null}
+                Icon={MdAlternateEmail}
+                register={register}
+                name="email"
+              />
+              {errors.email ? (
+                <ErrorMessage message={errors.email.message} />
+              ) : null}
+            </FormRow>
+            <FormRow>
+              <DefaultInput
+                type="text"
+                placeholder="Confirmar Correo electronico"
+                label={null}
+                Icon={MdAlternateEmail}
+                register={register}
+                name="confirmEmail"
+              />
+              {errors.confirmEmail ? (
+                <ErrorMessage message={errors.confirmEmail.message} />
+              ) : null}
+            </FormRow>
           </FormGrid>
-          <DefaultInput
-            type="text"
-            placeholder="Correo electronico"
-            label={null}
-            Icon={MdAlternateEmail}
-            register={register}
-            name="email"
-          />
-          {errors.email ? (
-            <ErrorMessage message={errors.email.message} />
-          ) : null}
           <DefaultInput
             type="text"
             placeholder="Link de invitación"

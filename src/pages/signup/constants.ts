@@ -11,6 +11,7 @@ const getDefaultValues = (location: Location): RegisterFormValues => {
     password: "",
     confirmPassword: "",
     email: "",
+    confirmEmail: "",
     invitationLink,
     fullName: "",
   };
@@ -49,6 +50,11 @@ const schema = yup
       .string()
       .required("El correo es obligatorio!")
       .email("Correo invalido!"),
+    confirmEmail: yup
+      .string()
+      .required("Confirma tu correo!")
+      .email("Correo invalido!")
+      .oneOf([yup.ref("email")], "Los correos no coinciden!"),
     invitationLink: yup.string(),
     fullName: yup.string().required("El nombre completo es obligatorio!"),
   })

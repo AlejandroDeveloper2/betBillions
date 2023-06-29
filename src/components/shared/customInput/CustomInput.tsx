@@ -38,10 +38,4 @@ const InputWithLabel = (props: CustomInputProps): JSX.Element => {
   );
 };
 
-// const Checkbox = (props: CustomInputProps):JSX.Element =>{
-//   return (
-
-//   )
-// }
-
 export { DefaultInput, InputWithLabel };

@@ -15,6 +15,7 @@ export type {
   LoginFormValues,
   RegisterFormValues,
   RecoverPassFormValues,
+  UpdatePassFormValues,
 } from "./formTypes";
 
 export type {

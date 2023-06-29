@@ -1,5 +1,6 @@
 import { useState, createContext, useMemo, useCallback } from "react";
 import { decodeToken } from "react-jwt";
+import { useLocation } from "react-router-dom";
 
 import {
   AuthContextType,
@@ -10,6 +11,7 @@ import {
   RecoverPassFormValues,
   RegisterFormValues,
   ToastTypes,
+  UpdatePassFormValues,
   UserAuth,
 } from "../types";
 
@@ -23,6 +25,7 @@ const authService = new UserAuthentication();
 const AuthProvider = ({ children }: ProviderProps) => {
   const [authStatus, setAuthStatus] = useState<AuthStatus>("not-authenticated");
   const [userAuth, setUserAuth] = useState<UserAuth | null>(null);
+  const location = useLocation();
 
   const login = useCallback(
     async (
@@ -110,6 +113,32 @@ const AuthProvider = ({ children }: ProviderProps) => {
     []
   );
 
+  const changeUserPassword = useCallback(
+    async (
+      userNewPassword: UpdatePassFormValues,
+      config: MessageConfig
+    ): Promise<void> => {
+      const { loadingConfig, toastConfig } = config;
+      const token = location.pathname.split("/")[2];
+      try {
+        loadingConfig.setMessage("Actualizando clave...");
+        loadingConfig.activeLoading();
+        const res = await authService.updatePassword(userNewPassword, token);
+        toastConfig.showToast();
+        toastConfig.configToast(res.typeStatus, res.message);
+        loadingConfig.inactiveLoading();
+      } catch (error: unknown) {
+        const errorMessage = (error as Error).message;
+        toastConfig.showToast();
+        toastConfig.configToast(ToastTypes.error, errorMessage);
+      } finally {
+        toastConfig.hideToast(3000);
+        loadingConfig.inactiveLoading();
+      }
+    },
+    [location.pathname]
+  );
+
   const value = useMemo(
     () => ({
       authStatus,
@@ -118,8 +147,16 @@ const AuthProvider = ({ children }: ProviderProps) => {
       logout,
       createUserAccount,
       recoverPassword,
+      changeUserPassword,
     }),
-    [authStatus, userAuth, login, createUserAccount, recoverPassword]
+    [
+      authStatus,
+      userAuth,
+      login,
+      createUserAccount,
+      recoverPassword,
+      changeUserPassword,
+    ]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

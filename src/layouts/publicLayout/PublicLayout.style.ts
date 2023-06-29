@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-import { DesktopBg, MobileBg } from "../../assets";
+import { DesktopBg } from "../../assets";
 
 const Container = styled.main`
   width: 100vw;
   height: 100vh;
-  background-image: url(${MobileBg});
+  background-image: url(${DesktopBg});
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -38,6 +38,10 @@ const Presentation = styled.aside`
   gap: 3rem;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: 768px) {
+    gap: 5rem;
+  }
 `;
 
 const WelcomeText = styled.h1`
@@ -45,7 +49,8 @@ const WelcomeText = styled.h1`
   font-weight: normal;
   text-transform: uppercase;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  letter-spacing: 10px;
 `;
 
 const Animate = styled.figure`

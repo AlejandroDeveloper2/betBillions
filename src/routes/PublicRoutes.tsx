@@ -4,7 +4,12 @@ import { Routes, Route } from "react-router-dom";
 import { PublicLayout } from "../layouts";
 
 /* Pages */
-import { LoginPage, SignupPage, RecoverPassword } from "../pages";
+import {
+  LoginPage,
+  SignupPage,
+  RecoverPassword,
+  UpdatePassword,
+} from "../pages";
 
 const PublicRoutes = (): JSX.Element => {
   return (
@@ -14,6 +19,7 @@ const PublicRoutes = (): JSX.Element => {
         <Route path="/createAccount/:userName" element={<SignupPage />} />
         <Route path="/createAccount" element={<SignupPage />} />
         <Route path="/recoverPassword" element={<RecoverPassword />} />
+        <Route path="/updatePassword/:token" element={<UpdatePassword />} />
       </Route>
     </Routes>
   );

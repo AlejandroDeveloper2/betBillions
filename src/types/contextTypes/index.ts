@@ -4,6 +4,7 @@ import {
   MessageConfig,
   RecoverPassFormValues,
   RegisterFormValues,
+  UpdatePassFormValues,
   UserAuth,
 } from "..";
 
@@ -25,6 +26,10 @@ interface AuthContextType {
   ) => Promise<void>;
   recoverPassword: (
     userRequestData: RecoverPassFormValues,
+    config: MessageConfig
+  ) => Promise<void>;
+  changeUserPassword: (
+    userNewPassword: UpdatePassFormValues,
     config: MessageConfig
   ) => Promise<void>;
 }

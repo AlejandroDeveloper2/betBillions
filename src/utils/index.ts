@@ -5,9 +5,14 @@ import { FormType } from "../types";
 
 class ValuesForm {
   public setFormValues(formType: FormType, data: any) {
-    let newFormData: any | null = null;
+    const newFormData = { ...data };
     if (formType === "register") {
-      newFormData = { ...data };
+      delete newFormData?.confirmPassword;
+      delete newFormData?.confirmEmail;
+      return newFormData;
+    }
+
+    if (formType === "updatePass") {
       delete newFormData?.confirmPassword;
       return newFormData;
     }

@@ -6,6 +6,7 @@ interface LoginFormValues {
 interface RegisterFormValues {
   username: string;
   email: string;
+  confirmEmail: string;
   fullName: string;
   password: string;
   confirmPassword: string;
@@ -16,4 +17,14 @@ interface RecoverPassFormValues {
   email: string;
 }
 
-export type { LoginFormValues, RegisterFormValues, RecoverPassFormValues };
+interface UpdatePassFormValues {
+  password: string;
+  confirmPassword: string;
+}
+
+export type {
+  LoginFormValues,
+  RegisterFormValues,
+  RecoverPassFormValues,
+  UpdatePassFormValues,
+};

@@ -7,6 +7,7 @@ import {
   MessageConfig,
   RecoverPassFormValues,
   RegisterFormValues,
+  UpdatePassFormValues,
 } from "..";
 
 type ImageProps = {
@@ -18,7 +19,7 @@ type ImageProps = {
   };
 };
 
-type FormType = "login" | "register";
+type FormType = "login" | "register" | "recoverPass" | "updatePass";
 
 type CustomFormProps = {
   children: JSX.Element | JSX.Element[] | any[];
@@ -26,7 +27,10 @@ type CustomFormProps = {
   config: MessageConfig;
   formType: FormType;
   handleSubmit: UseFormHandleSubmit<
-    RegisterFormValues | LoginFormValues | RecoverPassFormValues,
+    | RegisterFormValues
+    | LoginFormValues
+    | RecoverPassFormValues
+    | UpdatePassFormValues,
     undefined
   >;
   action: (data: any, config: MessageConfig) => Promise<void>;
@@ -38,7 +42,11 @@ type CustomInputProps = {
   label: string | null;
   Icon: IconType;
   register: UseFormRegister<
-    RegisterFormValues | LoginFormValues | RecoverPassFormValues | any
+    | RegisterFormValues
+    | LoginFormValues
+    | RecoverPassFormValues
+    | UpdatePassFormValues
+    | any
   >;
   name:
     | "password"
@@ -46,7 +54,8 @@ type CustomInputProps = {
     | "fullName"
     | "invitationLink"
     | "email"
-    | "confirmPassword";
+    | "confirmPassword"
+    | "confirmEmail";
   disabled?: boolean;
 };
 
