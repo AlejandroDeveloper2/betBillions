@@ -15,7 +15,7 @@
     }
 }
 .fadeAnimation{
-  animation-duration: 5s;
+  animation-duration: 8s;
   animation-timing-function: ease;
   animation-name: fadeOut;
 }
