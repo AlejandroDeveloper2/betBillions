@@ -98,4 +98,32 @@ const Spinner = styled.div<LoadingStyleProps>`
   }
 `;
 
-export { LoadingContainer, Spinner };
+const SpinnerVariant = styled.div<LoadingStyleProps>`
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: ${(props) => props.textcolor};
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+  div:nth-child(1) {
+    left: 8px;
+  }
+  div:nth-child(2) {
+    left: 8px;
+  }
+  div:nth-child(3) {
+    left: 32px;
+  }
+  div:nth-child(4) {
+    left: 56px;
+  }
+`;
+
+export { LoadingContainer, Spinner, SpinnerVariant };

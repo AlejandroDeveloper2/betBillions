@@ -1,7 +1,7 @@
 import { LoadingProps } from "../../../types";
 
 /*styles */
-import { LoadingContainer, Spinner } from "./Loading.style";
+import { LoadingContainer, Spinner, SpinnerVariant } from "./Loading.style";
 import "./animation.css";
 
 const Loading = ({ message, textColor }: LoadingProps): JSX.Element => {
@@ -22,4 +22,17 @@ const Loading = ({ message, textColor }: LoadingProps): JSX.Element => {
   );
 };
 
-export default Loading;
+const SpinnerScreen = ({ textColor }: LoadingProps): JSX.Element => {
+  return (
+    <LoadingContainer textcolor={textColor}>
+      <SpinnerVariant textcolor={textColor}>
+        <div className="spinnerVariantAnimation1"></div>
+        <div className="spinnerVariantAnimation2"></div>
+        <div className="spinnerVariantAnimation2"></div>
+        <div className="spinnerVariantAnimation3"></div>
+      </SpinnerVariant>
+    </LoadingContainer>
+  );
+};
+
+export { Loading, SpinnerScreen };

@@ -7,5 +7,5 @@ export { DefaultSubmit } from "./shared/customButton/CustomButton";
 export { LoadingButton } from "./shared/customButton/CustomButton";
 export { default as ErrorMessage } from "./shared/errorMessage/ErrorMessage";
 export { default as Toast } from "./shared/toast/Toast";
-export { default as Loading } from "./shared/loading/Loading";
+export { Loading, SpinnerScreen } from "./shared/loading/Loading";
 export { default as LoadingScreen } from "./shared/loadingScreen/LoadingScreen";
