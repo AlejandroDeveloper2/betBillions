@@ -1,0 +1,28 @@
+import styled from "styled-components";
+
+const Container = styled.main`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  @media (min-width: 1000px) {
+    flex-direction: row;
+  }
+`;
+
+const Panel = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: var(--white);
+  display: block;
+  padding: 1rem 2rem;
+  @media (min-width: 1000px) {
+    width: 85%;
+  }
+`;
+
+export { Container, Panel };

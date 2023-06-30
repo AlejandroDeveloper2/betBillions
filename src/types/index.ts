@@ -7,6 +7,7 @@ export type {
   ToastProps,
   LoadingProps,
   LoadingButtonProps,
+  MenuProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
@@ -23,6 +24,7 @@ export type {
   ToastStyleProps,
   LoadingStyleProps,
   ContainerFormStyleProps,
+  MenuItemStyleProps,
 } from "./styledComponentsTypes";
 
 export type {
@@ -33,6 +35,7 @@ export type {
   MessageConfig,
   ToastConfig,
   UserAuth,
+  MenuItem,
 } from "./dataTypes";
 
 export type { ProviderProps, AuthContextType } from "./contextTypes";

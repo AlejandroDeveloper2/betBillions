@@ -103,6 +103,10 @@ type LoadingButtonProps = {
   };
 };
 
+type MenuProps = {
+  children: JSX.Element | JSX.Element[];
+};
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -113,6 +117,7 @@ export type {
   ToastProps,
   LoadingProps,
   LoadingButtonProps,
+  MenuProps,
 };
 
 export { ToastTypes };

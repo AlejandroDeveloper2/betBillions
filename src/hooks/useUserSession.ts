@@ -29,7 +29,7 @@ const useUserSession = (config: ToastConfig, sessionTimer: number): void => {
     const interval = window.setInterval(() => {
       setSessionTimerCount((prev) => prev + 1);
       userSession.setSessionTime(sessionTimerCount);
-      if (sessionTimerCount === 2700) {
+      if (sessionTimerCount === 7200) {
         validateUserSession();
         setSessionTimerCount(0);
         userSession.removeSessionTime();

@@ -1,3 +1,5 @@
+import { IconType } from "react-icons";
+
 import { ToastTypes } from "..";
 
 type AuthStatus = "authenticated" | "not-authenticated" | "checking";
@@ -43,6 +45,14 @@ interface UserAuth {
   refLink: string;
 }
 
+interface MenuItem {
+  label: string;
+  icon: string | IconType;
+  title: string;
+  to: string;
+  onClick?: () => void;
+}
+
 export type {
   AuthStatus,
   ApiName,
@@ -51,4 +61,5 @@ export type {
   MessageConfig,
   ToastConfig,
   UserAuth,
+  MenuItem,
 };

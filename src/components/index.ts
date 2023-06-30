@@ -9,3 +9,4 @@ export { default as ErrorMessage } from "./shared/errorMessage/ErrorMessage";
 export { default as Toast } from "./shared/toast/Toast";
 export { Loading, SpinnerScreen } from "./shared/loading/Loading";
 export { default as LoadingScreen } from "./shared/loadingScreen/LoadingScreen";
+export { default as Menu } from "./shared/menu/Menu";

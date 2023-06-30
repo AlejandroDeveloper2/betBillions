@@ -15,9 +15,15 @@ interface ContainerFormStyleProps {
   width: number;
 }
 
+interface MenuItemStyleProps {
+  background: string;
+  color: string;
+}
+
 export type {
   ButtonStyleProps,
   ToastStyleProps,
   LoadingStyleProps,
   ContainerFormStyleProps,
+  MenuItemStyleProps,
 };
