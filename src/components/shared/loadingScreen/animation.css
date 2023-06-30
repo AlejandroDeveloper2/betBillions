@@ -14,3 +14,17 @@
       transform: rotate(360deg);
     }
 }
+.fadeAnimation{
+  animation-duration: 5s;
+  animation-timing-function: ease;
+  animation-name: fadeOut;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

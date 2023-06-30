@@ -15,7 +15,7 @@ const LoadingScreen = (): JSX.Element => {
   const { authStatus } = useAuthContext();
   return (
     <LoadingScreenContainer>
-      <Layer>
+      <Layer className="fadeAnimation">
         <LoadingBox>
           <figure className="logoAnimation">
             <Image

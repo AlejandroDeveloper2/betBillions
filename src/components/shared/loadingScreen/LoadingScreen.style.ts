@@ -22,17 +22,6 @@ const Layer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  animation-duration: 5s;
-  animation-timing-function: ease;
-  animation-name: fadeOut;
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
 `;
 
 const LoadingBox = styled.div`
