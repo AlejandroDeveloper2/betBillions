@@ -9,6 +9,7 @@ import {
   SignupPage,
   RecoverPassword,
   UpdatePassword,
+  ActivateAccount,
 } from "../pages";
 
 const PublicRoutes = (): JSX.Element => {
@@ -20,6 +21,7 @@ const PublicRoutes = (): JSX.Element => {
         <Route path="/createAccount" element={<SignupPage />} />
         <Route path="/recoverPassword" element={<RecoverPassword />} />
         <Route path="/updatePassword/:token" element={<UpdatePassword />} />
+        <Route path="/activateAccount/:token" element={<ActivateAccount />} />
       </Route>
     </Routes>
   );

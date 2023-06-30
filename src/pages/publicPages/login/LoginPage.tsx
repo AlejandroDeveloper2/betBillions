@@ -1,11 +1,12 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { MdAlternateEmail } from "react-icons/md";
+import { MdOutlinePersonOutline, MdHttps } from "react-icons/md";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useToast, useLoading, useAuthContext } from "../../hooks";
-import { RecoverPassFormValues } from "../../types";
 import { DEFAULTVALUES, schema } from "./constants";
+import { LoginFormValues } from "../../../types";
+import { useAuthContext, useLoading, useToast } from "../../../hooks";
 
+/*Components */
 import {
   CustomForm,
   DefaultInput,
@@ -13,24 +14,24 @@ import {
   ErrorMessage,
   LoadingButton,
   Toast,
-} from "../../components";
+} from "../../../components";
 
+/*styles*/
 import {
   FormContainer,
-  LinkVariant,
   Links,
-} from "../../styles/GlobalStyles.style";
+  LinkVariant,
+} from "../../../styles/GlobalStyles.style";
 
-const RecoverPassword = (): JSX.Element => {
+const LoginPage = (): JSX.Element => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RecoverPassFormValues>({
+  } = useForm<LoginFormValues>({
     defaultValues: DEFAULTVALUES,
     resolver: yupResolver(schema),
   });
-
   const {
     isToastVisible,
     toast,
@@ -48,13 +49,13 @@ const RecoverPassword = (): JSX.Element => {
     setMessage,
   } = useLoading();
 
-  const { recoverPassword } = useAuthContext();
+  const { login } = useAuthContext();
 
   return (
     <>
       <FormContainer width={30}>
         <CustomForm
-          formTitle="recuperar contraseña"
+          formTitle="bienvenido"
           config={{
             toastConfig: {
               showToast,
@@ -67,29 +68,44 @@ const RecoverPassword = (): JSX.Element => {
               setMessage,
             },
           }}
-          formType="recoverPass"
+          formType="login"
           handleSubmit={handleSubmit}
-          action={recoverPassword}
+          action={login}
         >
           <DefaultInput
             type="text"
             placeholder="Correo electronico"
             label={null}
-            Icon={MdAlternateEmail}
+            Icon={MdOutlinePersonOutline}
             register={register}
             name="email"
           />
           {errors.email ? (
             <ErrorMessage message={errors.email.message} />
           ) : null}
+          <DefaultInput
+            type="password"
+            placeholder="Contraseña"
+            label={null}
+            Icon={MdHttps}
+            register={register}
+            name="password"
+          />
+          {errors.password ? (
+            <ErrorMessage message={errors.password.message} />
+          ) : null}
+          <Links>
+            <LinkVariant to="/">Recordar contraseña</LinkVariant>
+            <LinkVariant to="/recoverPassword">¿Olvido contraseña?</LinkVariant>
+          </Links>
           {!isLoading ? (
             <DefaultSubmit
               style={{
                 bg: "var(--bg-secondary-color)",
                 fontColor: "var(--white)",
               }}
-              title="Enviar solicitud"
-              label="Recuperar contraseña"
+              title="Ingresar"
+              label="Iniciar sesión"
             />
           ) : (
             <LoadingButton
@@ -100,8 +116,11 @@ const RecoverPassword = (): JSX.Element => {
               }}
             />
           )}
+
           <Links>
-            <LinkVariant to="/">Regresar al inicio de sesión</LinkVariant>
+            <LinkVariant to="/createAccount">
+              ¿No tienes una cuenta? Registrarse
+            </LinkVariant>
           </Links>
         </CustomForm>
       </FormContainer>
@@ -114,4 +133,4 @@ const RecoverPassword = (): JSX.Element => {
   );
 };
 
-export default RecoverPassword;
+export default LoginPage;

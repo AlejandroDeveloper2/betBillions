@@ -9,8 +9,8 @@ import { AiOutlineLink } from "react-icons/ai";
 import { HiIdentification } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
 
-import { useToast, useLoading, useAuthContext } from "../../hooks";
-import { RegisterFormValues } from "../../types";
+import { useToast, useLoading, useAuthContext } from "../../../hooks";
+import { RegisterFormValues } from "../../../types";
 import { getDefaultValues, schema } from "./constants";
 
 import {
@@ -20,13 +20,13 @@ import {
   ErrorMessage,
   LoadingButton,
   Toast,
-} from "../../components";
+} from "../../../components";
 
 import {
   FormContainer,
   Links,
   LinkVariant,
-} from "../../styles/GlobalStyles.style";
+} from "../../../styles/GlobalStyles.style";
 import { FormGrid, FormRow } from "./SignupPage.style";
 
 const SignupPage = (): JSX.Element => {

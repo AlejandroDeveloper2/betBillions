@@ -31,6 +31,7 @@ export type {
   ServerResponse,
   LoginServerResponse,
   MessageConfig,
+  ToastConfig,
   UserAuth,
 } from "./dataTypes";
 

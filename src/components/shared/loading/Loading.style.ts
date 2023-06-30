@@ -25,7 +25,6 @@ const Spinner = styled.div<LoadingStyleProps>`
   width: 80px;
   height: 80px;
   div {
-    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     transform-origin: 40px 40px;
     &::after {
       content: " ";
@@ -95,14 +94,6 @@ const Spinner = styled.div<LoadingStyleProps>`
     &::after {
       top: 56px;
       left: 12px;
-    }
-  }
-  @keyframes lds-roller {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
     }
   }
 `;

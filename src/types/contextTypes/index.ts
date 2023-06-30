@@ -4,6 +4,7 @@ import {
   MessageConfig,
   RecoverPassFormValues,
   RegisterFormValues,
+  ToastConfig,
   UpdatePassFormValues,
   UserAuth,
 } from "..";
@@ -32,6 +33,8 @@ interface AuthContextType {
     userNewPassword: UpdatePassFormValues,
     config: MessageConfig
   ) => Promise<void>;
+  activateUserAccount: (config: MessageConfig) => Promise<void>;
+  validateUserAuth: (config: ToastConfig) => Promise<void>;
 }
 
 export type { AuthContextType, ProviderProps };

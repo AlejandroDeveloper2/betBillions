@@ -87,6 +87,42 @@ class UserAuthentication {
     }
     return response;
   }
+
+  public async activateUserAccount(token: string): Promise<ServerResponse> {
+    let response: ServerResponse | null = null;
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      const { data } = await axiosClient.get<ServerResponse>(
+        `/auth/activateAccount/${token}`
+      );
+      response = data;
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+    return response;
+  }
+
+  public async validateUserAuth(token: string): Promise<boolean> {
+    let response = false;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      const { data } = await axiosClient.get<boolean>("/auth/validate", config);
+      response = data;
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+    return response;
+  }
 }
 
 export { UserAuthentication };

@@ -1,10 +1,10 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { MdHttps } from "react-icons/md";
+import { MdAlternateEmail } from "react-icons/md";
 
-import { UpdatePassFormValues } from "../../types";
+import { useToast, useLoading, useAuthContext } from "../../../hooks";
+import { RecoverPassFormValues } from "../../../types";
 import { DEFAULTVALUES, schema } from "./constants";
-import { useAuthContext, useLoading, useToast } from "../../hooks";
 
 import {
   CustomForm,
@@ -13,20 +13,20 @@ import {
   ErrorMessage,
   LoadingButton,
   Toast,
-} from "../../components";
+} from "../../../components";
 
 import {
   FormContainer,
   LinkVariant,
   Links,
-} from "../../styles/GlobalStyles.style";
+} from "../../../styles/GlobalStyles.style";
 
-const UpdatePassword = (): JSX.Element => {
+const RecoverPassword = (): JSX.Element => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UpdatePassFormValues>({
+  } = useForm<RecoverPassFormValues>({
     defaultValues: DEFAULTVALUES,
     resolver: yupResolver(schema),
   });
@@ -48,13 +48,13 @@ const UpdatePassword = (): JSX.Element => {
     setMessage,
   } = useLoading();
 
-  const { changeUserPassword } = useAuthContext();
+  const { recoverPassword } = useAuthContext();
 
   return (
     <>
       <FormContainer width={30}>
         <CustomForm
-          formTitle="Actualizar contraseña"
+          formTitle="recuperar contraseña"
           config={{
             toastConfig: {
               showToast,
@@ -67,31 +67,20 @@ const UpdatePassword = (): JSX.Element => {
               setMessage,
             },
           }}
-          formType="updatePass"
+          formType="recoverPass"
           handleSubmit={handleSubmit}
-          action={changeUserPassword}
+          action={recoverPassword}
         >
           <DefaultInput
-            type="password"
-            placeholder="Nueva contraseña"
+            type="text"
+            placeholder="Correo electronico"
             label={null}
-            Icon={MdHttps}
+            Icon={MdAlternateEmail}
             register={register}
-            name="password"
+            name="email"
           />
-          {errors.password ? (
-            <ErrorMessage message={errors.password.message} />
-          ) : null}
-          <DefaultInput
-            type="password"
-            placeholder="Confirma tu contraseña"
-            label={null}
-            Icon={MdHttps}
-            register={register}
-            name="confirmPassword"
-          />
-          {errors.confirmPassword ? (
-            <ErrorMessage message={errors.confirmPassword.message} />
+          {errors.email ? (
+            <ErrorMessage message={errors.email.message} />
           ) : null}
           {!isLoading ? (
             <DefaultSubmit
@@ -99,8 +88,8 @@ const UpdatePassword = (): JSX.Element => {
                 bg: "var(--bg-secondary-color)",
                 fontColor: "var(--white)",
               }}
-              title="Cambiar contraseña"
-              label="Actualizar contraseña"
+              title="Enviar solicitud"
+              label="Recuperar contraseña"
             />
           ) : (
             <LoadingButton
@@ -125,4 +114,4 @@ const UpdatePassword = (): JSX.Element => {
   );
 };
 
-export default UpdatePassword;
+export default RecoverPassword;

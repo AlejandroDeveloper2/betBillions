@@ -53,21 +53,6 @@ const WelcomeText = styled.h1`
   letter-spacing: 10px;
 `;
 
-const Animate = styled.figure`
-  animation-name: bounce;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
-  @keyframes bounce {
-    0%,
-    100% {
-      transform: translateY(-10px);
-    }
-    50% {
-      transform: translateY(10px);
-    }
-  }
-`;
+const Animate = styled.figure``;
 
 export { Container, WelcomeText, Presentation, Animate };

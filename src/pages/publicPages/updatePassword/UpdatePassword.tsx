@@ -1,12 +1,11 @@
-import { useForm } from "react-hook-form";
-import { MdOutlinePersonOutline, MdHttps } from "react-icons/md";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { MdHttps } from "react-icons/md";
 
+import { UpdatePassFormValues } from "../../../types";
 import { DEFAULTVALUES, schema } from "./constants";
-import { LoginFormValues } from "../../types";
-import { useAuthContext, useLoading, useToast } from "../../hooks";
+import { useAuthContext, useLoading, useToast } from "../../../hooks";
 
-/*Components */
 import {
   CustomForm,
   DefaultInput,
@@ -14,24 +13,24 @@ import {
   ErrorMessage,
   LoadingButton,
   Toast,
-} from "../../components";
+} from "../../../components";
 
-/*styles*/
 import {
   FormContainer,
-  Links,
   LinkVariant,
-} from "../../styles/GlobalStyles.style";
+  Links,
+} from "../../../styles/GlobalStyles.style";
 
-const LoginPage = (): JSX.Element => {
+const UpdatePassword = (): JSX.Element => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormValues>({
+  } = useForm<UpdatePassFormValues>({
     defaultValues: DEFAULTVALUES,
     resolver: yupResolver(schema),
   });
+
   const {
     isToastVisible,
     toast,
@@ -49,13 +48,13 @@ const LoginPage = (): JSX.Element => {
     setMessage,
   } = useLoading();
 
-  const { login } = useAuthContext();
+  const { changeUserPassword } = useAuthContext();
 
   return (
     <>
       <FormContainer width={30}>
         <CustomForm
-          formTitle="bienvenido"
+          formTitle="Actualizar contraseña"
           config={{
             toastConfig: {
               showToast,
@@ -68,24 +67,13 @@ const LoginPage = (): JSX.Element => {
               setMessage,
             },
           }}
-          formType="login"
+          formType="updatePass"
           handleSubmit={handleSubmit}
-          action={login}
+          action={changeUserPassword}
         >
           <DefaultInput
-            type="text"
-            placeholder="Nombre de usuario"
-            label={null}
-            Icon={MdOutlinePersonOutline}
-            register={register}
-            name="username"
-          />
-          {errors.username ? (
-            <ErrorMessage message={errors.username.message} />
-          ) : null}
-          <DefaultInput
             type="password"
-            placeholder="Contraseña"
+            placeholder="Nueva contraseña"
             label={null}
             Icon={MdHttps}
             register={register}
@@ -94,18 +82,25 @@ const LoginPage = (): JSX.Element => {
           {errors.password ? (
             <ErrorMessage message={errors.password.message} />
           ) : null}
-          <Links>
-            <LinkVariant to="/">Recordar contraseña</LinkVariant>
-            <LinkVariant to="/recoverPassword">¿Olvido contraseña?</LinkVariant>
-          </Links>
+          <DefaultInput
+            type="password"
+            placeholder="Confirma tu contraseña"
+            label={null}
+            Icon={MdHttps}
+            register={register}
+            name="confirmPassword"
+          />
+          {errors.confirmPassword ? (
+            <ErrorMessage message={errors.confirmPassword.message} />
+          ) : null}
           {!isLoading ? (
             <DefaultSubmit
               style={{
                 bg: "var(--bg-secondary-color)",
                 fontColor: "var(--white)",
               }}
-              title="Ingresar"
-              label="Iniciar sesión"
+              title="Cambiar contraseña"
+              label="Actualizar contraseña"
             />
           ) : (
             <LoadingButton
@@ -116,11 +111,8 @@ const LoginPage = (): JSX.Element => {
               }}
             />
           )}
-
           <Links>
-            <LinkVariant to="/createAccount">
-              ¿No tienes una cuenta? Registrarse
-            </LinkVariant>
+            <LinkVariant to="/">Regresar al inicio de sesión</LinkVariant>
           </Links>
         </CustomForm>
       </FormContainer>
@@ -133,4 +125,4 @@ const LoginPage = (): JSX.Element => {
   );
 };
 
-export default LoginPage;
+export default UpdatePassword;
