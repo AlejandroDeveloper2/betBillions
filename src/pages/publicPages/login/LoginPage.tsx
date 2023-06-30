@@ -95,7 +95,6 @@ const LoginPage = (): JSX.Element => {
             <ErrorMessage message={errors.password.message} />
           ) : null}
           <Links>
-            <LinkVariant to="/">Recordar contraseña</LinkVariant>
             <LinkVariant to="/recoverPassword">¿Olvido contraseña?</LinkVariant>
           </Links>
           {!isLoading ? (
