@@ -23,7 +23,7 @@ const AppRouter = (): JSX.Element => {
         <>
           <Route path="/*" element={<PublicRoutes />} />
           <Route path="/userPanel" element={<Navigate to="/" />} />
-          <Route path="/userPanel/*" element={<Navigate to="/" />} />
+          {/* <Route path="/userPanel/*" element={<Navigate to="/" />} /> */}
         </>
       )}
     </Routes>
