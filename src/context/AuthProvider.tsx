@@ -10,7 +10,6 @@ import {
   ProviderProps,
   RecoverPassFormValues,
   RegisterFormValues,
-  ToastConfig,
   ToastTypes,
   UpdatePassFormValues,
   UserAuth,
@@ -19,6 +18,7 @@ import { TokenAuth, UserAuthState, UserSession } from "../utils";
 
 /*services*/
 import { UserAuthentication } from "../services/authentication.service";
+import { useToast } from "../hooks";
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
@@ -34,6 +34,8 @@ const AuthProvider = ({ children }: ProviderProps) => {
   const [userAuth, setUserAuth] = useState<UserAuth | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const { toast, configToast } = useToast();
 
   const login = useCallback(
     async (
@@ -174,47 +176,40 @@ const AuthProvider = ({ children }: ProviderProps) => {
     [location, navigate]
   );
 
-  const validateUserAuth = useCallback(
-    async (config: ToastConfig): Promise<void> => {
-      const { hideToast, showToast, configToast } = config;
-      const token = tokenAuth.getToken();
-      setAuthStatus("checking");
-      userAuthStateLS.setUserAuthState("checking");
-      try {
-        if (token) {
-          const res = await authService.validateUserAuth(token);
-          if (res) {
-            const userAuth = decodeToken<UserAuth>(token);
-            setAuthStatus("authenticated");
-            userAuthStateLS.setUserAuthState("authenticated");
-            setUserAuth(userAuth);
-          } else {
-            showToast();
-            configToast(
-              ToastTypes.warning,
-              "La sesión a caducado por favor loguese de nuevo!"
-            );
-            logout(3000);
-          }
+  const validateUserAuth = useCallback(async (): Promise<void> => {
+    const token = tokenAuth.getToken();
+    setAuthStatus("checking");
+    userAuthStateLS.setUserAuthState("checking");
+    try {
+      if (token) {
+        const res = await authService.validateUserAuth(token);
+        if (res) {
+          const userAuth = decodeToken<UserAuth>(token);
+          setAuthStatus("authenticated");
+          userAuthStateLS.setUserAuthState("authenticated");
+          setUserAuth(userAuth);
         } else {
-          setAuthStatus("not-authenticated");
-          userAuthStateLS.removeUserAuthState();
+          configToast(
+            ToastTypes.warning,
+            "La sesión a caducado por favor loguese de nuevo!"
+          );
+          logout(3000);
         }
-      } catch (error: unknown) {
-        const errorMessage = (error as Error).message;
-        showToast();
-        configToast(ToastTypes.error, errorMessage);
-      } finally {
-        hideToast(3000);
+      } else {
+        setAuthStatus("not-authenticated");
+        userAuthStateLS.removeUserAuthState();
       }
-    },
-    [logout]
-  );
+    } catch (error: unknown) {
+      const errorMessage = (error as Error).message;
+      configToast(ToastTypes.error, errorMessage);
+    }
+  }, [configToast, logout]);
 
   const value = useMemo(
     () => ({
       authStatus,
       userAuth,
+      sessionValidationMessage: toast.toastMessage,
       login,
       logout,
       createUserAccount,
@@ -226,6 +221,7 @@ const AuthProvider = ({ children }: ProviderProps) => {
     [
       authStatus,
       userAuth,
+      toast.toastMessage,
       login,
       logout,
       createUserAccount,

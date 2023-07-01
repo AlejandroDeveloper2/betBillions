@@ -107,6 +107,20 @@ type MenuProps = {
   children: JSX.Element | JSX.Element[];
 };
 
+interface LayoutProps {
+  toastSettings: {
+    isToastVisible: boolean;
+    toast: {
+      toastMessage: string | null;
+      toastType: ToastTypes | null;
+    };
+    getToastColor: () => string;
+    showToast: () => void;
+    hideToast: (delay?: number) => void;
+    configToast: (type: ToastTypes, message: string) => void;
+  };
+}
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -118,6 +132,7 @@ export type {
   LoadingProps,
   LoadingButtonProps,
   MenuProps,
+  LayoutProps,
 };
 
 export { ToastTypes };

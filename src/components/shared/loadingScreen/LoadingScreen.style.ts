@@ -40,6 +40,10 @@ const LoadingBox = styled.div`
     font-weight: medium;
     color: var(--white);
   }
+  p:last-of-type {
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
   padding: 5rem 0;
 `;
 

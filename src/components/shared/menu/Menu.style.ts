@@ -30,15 +30,17 @@ const UL = styled.ul`
     display: none;
   }
 
+  li:nth-child(10) {
+    display: none;
+  }
+
+  li:nth-child(11) {
+    display: none;
+  }
+
   @media (min-width: 768px) {
     gap: 0.2rem;
     li:nth-child(7) {
-      display: inline-block;
-    }
-    li:nth-child(8) {
-      display: inline-block;
-    }
-    li:nth-child(9) {
       display: inline-block;
     }
   }
@@ -58,11 +60,11 @@ const UL = styled.ul`
     border-radius: 0;
     padding: 3rem 2rem;
 
-    li:nth-child(6) {
-      margin-top: 5rem;
+    li:nth-child(8) {
+      margin-top: 4rem;
     }
-    li:nth-child(9) {
-      margin-top: 5rem;
+    li:nth-child(11) {
+      margin-top: 4rem;
     }
     li:nth-child(7) {
       display: inline-block;
@@ -73,8 +75,54 @@ const UL = styled.ul`
     li:nth-child(9) {
       display: inline-block;
     }
+    li:nth-child(10) {
+      display: inline-block;
+    }
+    li:nth-child(11) {
+      display: inline-block;
+    }
     img {
       display: block;
+    }
+  }
+`;
+
+const ULVariant = styled.ul`
+  width: 100%;
+  display: inline-flex;
+  background-color: transparent;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+
+  li:nth-child(5) {
+    a {
+      background-color: transparent;
+      width: auto;
+      margin-left: 1rem;
+      @media (min-width: 768px) {
+        float: right;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    justify-content: flex-end;
+
+    li:nth-child(1) {
+      display: none;
+    }
+    li:nth-child(2) {
+      display: none;
+    }
+
+    li:nth-child(3) {
+      display: none;
+    }
+
+    li:nth-child(4) {
+      display: none;
     }
   }
 `;
@@ -144,4 +192,20 @@ const LinkItem = styled(Link)<MenuItemStyleProps>`
   }
 `;
 
-export { UL, LI, LinkItem };
+const LinkItemVariant = styled(LinkItem)`
+  padding: 0.35rem;
+  gap: 0;
+  border-radius: 0.5rem;
+
+  @media (min-width: 1000px) {
+    border-radius: 0.5rem;
+    justify-content: center;
+    padding: 0.5rem;
+    img {
+      width: 70px;
+      height: 70px;
+    }
+  }
+`;
+
+export { UL, ULVariant, LI, LinkItem, LinkItemVariant };

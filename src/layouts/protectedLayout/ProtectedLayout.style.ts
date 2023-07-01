@@ -19,9 +19,15 @@ const Panel = styled.div`
   height: 100vh;
   background-color: var(--white);
   display: flex;
-  padding: 1rem 2rem;
-  justify-content: center;
+  padding: 0;
+  justify-content: start;
   align-items: center;
+  flex-direction: column-reverse;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
   @media (min-width: 1000px) {
     width: 85%;
   }

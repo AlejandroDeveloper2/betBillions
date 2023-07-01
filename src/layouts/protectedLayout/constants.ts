@@ -3,6 +3,7 @@ import { MdDashboard, MdGames } from "react-icons/md";
 import { IoLogOutSharp } from "react-icons/io5";
 import { GiWallet } from "react-icons/gi";
 import { BiSolidMessageDetail, BiSolidHelpCircle } from "react-icons/bi";
+import { AiOutlineTeam, AiOutlineTransaction } from "react-icons/ai";
 
 import { MenuItem } from "../../types";
 
@@ -12,6 +13,18 @@ const getMenuItems = (closeSession: () => void): MenuItem[] => [
     icon: MdDashboard,
     title: "Panel principal",
     to: "/userPanel",
+  },
+  {
+    label: "Mi equipo",
+    icon: AiOutlineTeam,
+    title: "Mi equipo de referidos",
+    to: "#",
+  },
+  {
+    label: "Transacciones",
+    icon: AiOutlineTransaction,
+    title: "Mis transacciones",
+    to: "#",
   },
   {
     label: "Billetera",

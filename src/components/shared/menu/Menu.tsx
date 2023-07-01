@@ -1,19 +1,20 @@
 import { useLocation } from "react-router-dom";
 
-import {
-  MenuProps,
-  MenuItem as MenuItemType,
-  MenuItemStyleProps,
-} from "../../../types";
+import { MenuProps, MenuItem as MenuItemType } from "../../../types";
+import { getActiveItem } from "../../../utils";
 
 import { Image } from "../..";
 
-import { LI, LinkItem, UL } from "./Menu.style";
+import { LI, LinkItem, LinkItemVariant, UL, ULVariant } from "./Menu.style";
 
 import { Logo } from "../../../assets";
 
 const Menu = ({ children }: MenuProps): JSX.Element => {
   return <MenuContainer>{children}</MenuContainer>;
+};
+
+const MenuSidebar = ({ children }: MenuProps): JSX.Element => {
+  return <MenuContainerSidebar>{children}</MenuContainerSidebar>;
 };
 
 const MenuContainer = ({ children }: MenuProps): JSX.Element => {
@@ -33,35 +34,55 @@ const MenuContainer = ({ children }: MenuProps): JSX.Element => {
   );
 };
 
+const MenuContainerSidebar = ({ children }: MenuProps): JSX.Element => {
+  return <ULVariant>{children}</ULVariant>;
+};
+
+const MenuSidebarItem = (props: MenuItemType): JSX.Element => {
+  const { icon: Icon, title, to, onClick } = props;
+  return (
+    <LI>
+      <LinkItemVariant
+        to={to}
+        title={title}
+        background="var(--bg-primary-color)"
+        color={"var(--white)"}
+        onClick={onClick}
+      >
+        {typeof Icon === "function" ? (
+          <Icon style={{ fontSize: 25, color: "var(--white)" }} />
+        ) : (
+          <Image
+            source={Icon}
+            alt={"Notification"}
+            dimensions={{
+              width: 50,
+              height: 50,
+            }}
+          />
+        )}
+      </LinkItemVariant>
+    </LI>
+  );
+};
+
 const MenuItem = (props: MenuItemType): JSX.Element => {
   const { label, icon: Icon, title, to, onClick } = props;
   const location = useLocation();
-
-  const getActiveItem = (): MenuItemStyleProps => {
-    const path = location.pathname;
-    if (path === to) {
-      return {
-        background: "var(--white)",
-        color: "var(--bg-secondary-color)",
-      };
-    }
-    return {
-      background: "transparent",
-      color: "var(--white)",
-    };
-  };
 
   return (
     <LI>
       <LinkItem
         to={to}
         title={title}
-        background={getActiveItem().background}
-        color={getActiveItem().color}
+        background={getActiveItem(location, to).background}
+        color={getActiveItem(location, to).color}
         onClick={onClick}
       >
         {typeof Icon === "function" ? (
-          <Icon style={{ fontSize: 30, color: getActiveItem().color }} />
+          <Icon
+            style={{ fontSize: 30, color: getActiveItem(location, to).color }}
+          />
         ) : (
           <Image
             source={Icon}
@@ -79,5 +100,6 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
 };
 
 Menu.Item = MenuItem;
+MenuSidebar.Item = MenuSidebarItem;
 
-export default Menu;
+export { Menu, MenuSidebar };

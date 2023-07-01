@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Location } from "react-router-dom";
 
-import { AuthStatus, FormType } from "../types";
+import { AuthStatus, FormType, MenuItemStyleProps } from "../types";
 
 class ValuesForm {
   public setFormValues(formType: FormType, data: any) {
@@ -89,4 +89,25 @@ const getInvitationLink = (location: Location): string | undefined => {
   return invitationLink;
 };
 
-export { ValuesForm, TokenAuth, UserSession, UserAuthState, getInvitationLink };
+const getActiveItem = (location: Location, to: string): MenuItemStyleProps => {
+  const path = location.pathname;
+  if (path === to) {
+    return {
+      background: "var(--white)",
+      color: "var(--bg-secondary-color)",
+    };
+  }
+  return {
+    background: "transparent",
+    color: "var(--white)",
+  };
+};
+
+export {
+  ValuesForm,
+  TokenAuth,
+  UserSession,
+  UserAuthState,
+  getInvitationLink,
+  getActiveItem,
+};

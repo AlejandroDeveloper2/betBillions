@@ -12,7 +12,8 @@ import "./animation.css";
 import { LogoTap } from "../../../assets";
 
 const LoadingScreen = (): JSX.Element => {
-  const { authStatus } = useAuthContext();
+  const { authStatus, sessionValidationMessage } = useAuthContext();
+
   return (
     <LoadingScreenContainer>
       <Layer className="fadeAnimation">
@@ -29,7 +30,10 @@ const LoadingScreen = (): JSX.Element => {
           ) : (
             <SpinnerScreen textColor="var(--white)" message={null} />
           )}
-          <p>Cargando...</p>
+          <p>
+            {authStatus === "checking" ? "Validando sesión..." : "Cargando..."}
+          </p>
+          <p>{sessionValidationMessage && sessionValidationMessage}</p>
         </LoadingBox>
       </Layer>
     </LoadingScreenContainer>

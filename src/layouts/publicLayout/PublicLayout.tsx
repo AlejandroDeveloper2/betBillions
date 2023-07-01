@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 
 /*Functions */
-import { useScreenLoader, useToast, useUserSession } from "../../hooks";
+import { useScreenLoader, useUserSession } from "../../hooks";
 
 /*Components */
-import { Image, LoadingScreen, Toast } from "../../components";
+import { Image, LoadingScreen } from "../../components";
 
 /* Styles */
 import {
@@ -19,15 +19,7 @@ import "./animation.css";
 import { Logo } from "../../assets";
 
 const PublicLayout = (): JSX.Element => {
-  const {
-    isToastVisible,
-    toast,
-    getToastColor,
-    showToast,
-    hideToast,
-    configToast,
-  } = useToast();
-  useUserSession({ showToast, hideToast, configToast }, 0);
+  useUserSession(0);
   const isScreenLoading = useScreenLoader();
 
   if (isScreenLoading) return <LoadingScreen />;
@@ -44,15 +36,6 @@ const PublicLayout = (): JSX.Element => {
         </Animate>
       </Presentation>
       <Outlet />
-      <Toast
-        type={toast.toastType}
-        message={toast.toastMessage}
-        toastConfig={{
-          isToastVisible,
-          getToastColor,
-          hideToast,
-        }}
-      />
     </Container>
   );
 };

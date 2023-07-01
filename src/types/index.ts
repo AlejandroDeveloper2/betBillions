@@ -8,6 +8,7 @@ export type {
   LoadingProps,
   LoadingButtonProps,
   MenuProps,
+  LayoutProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";

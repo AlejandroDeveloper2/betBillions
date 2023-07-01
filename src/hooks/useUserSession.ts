@@ -1,25 +1,19 @@
 import { useEffect, useCallback, useState } from "react";
 
 import { useAuthContext } from ".";
-import { ToastConfig } from "../types";
 import { UserSession } from "../utils";
 
 const userSession = new UserSession();
 
-const useUserSession = (config: ToastConfig, sessionTimer: number): void => {
-  const { showToast, hideToast, configToast } = config;
+const useUserSession = (sessionTimer: number): void => {
   const [sessionTimerCount, setSessionTimerCount] = useState<number>(
     userSession.getSessionTime()
   );
   const { validateUserAuth } = useAuthContext();
 
   const validateUserSession = useCallback((): void => {
-    validateUserAuth({
-      showToast,
-      hideToast,
-      configToast,
-    });
-  }, [configToast, hideToast, showToast, validateUserAuth]);
+    validateUserAuth();
+  }, [validateUserAuth]);
 
   useEffect(() => {
     if (sessionTimer === 0) {

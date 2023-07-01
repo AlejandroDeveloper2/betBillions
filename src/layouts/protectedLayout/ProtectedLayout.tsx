@@ -1,22 +1,14 @@
 import { Outlet } from "react-router-dom";
 
-import { useAuthContext, useToast, useUserSession } from "../../hooks";
+import { useAuthContext, useUserSession } from "../../hooks";
 import { getMenuItems } from "./constants";
 
-import { Menu, Toast } from "../../components";
+import { Sidebar, Menu } from "../../components";
 
 import { Container, Panel } from "./ProtectedLayout.style";
 
 const ProtectedLayout = (): JSX.Element => {
-  const {
-    isToastVisible,
-    toast,
-    getToastColor,
-    showToast,
-    hideToast,
-    configToast,
-  } = useToast();
-  useUserSession({ showToast, hideToast, configToast }, 1000);
+  useUserSession(1000);
   const { logout } = useAuthContext();
   const MENUITEMS = getMenuItems(logout);
 
@@ -29,16 +21,8 @@ const ProtectedLayout = (): JSX.Element => {
       </Menu>
       <Panel>
         <Outlet />
+        <Sidebar />
       </Panel>
-      <Toast
-        type={toast.toastType}
-        message={toast.toastMessage}
-        toastConfig={{
-          isToastVisible,
-          getToastColor,
-          hideToast,
-        }}
-      />
     </Container>
   );
 };
