@@ -18,8 +18,10 @@ const Panel = styled.div`
   width: 100%;
   height: 100vh;
   background-color: var(--white);
-  display: block;
+  display: flex;
   padding: 1rem 2rem;
+  justify-content: center;
+  align-items: center;
   @media (min-width: 1000px) {
     width: 85%;
   }

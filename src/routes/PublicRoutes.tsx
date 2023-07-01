@@ -10,6 +10,7 @@ import {
   RecoverPassword,
   UpdatePassword,
   ActivateAccount,
+  Page404,
 } from "../pages";
 
 const PublicRoutes = (): JSX.Element => {
@@ -22,6 +23,7 @@ const PublicRoutes = (): JSX.Element => {
         <Route path="/recoverPassword" element={<RecoverPassword />} />
         <Route path="/updatePassword/:token" element={<UpdatePassword />} />
         <Route path="/activateAccount/:token" element={<ActivateAccount />} />
+        <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>
   );

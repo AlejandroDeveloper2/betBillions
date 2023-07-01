@@ -7,3 +7,6 @@ export { default as ActivateAccount } from "./publicPages/activateAccount/Activa
 
 /* Protected pages */
 export { default as UserPanel } from "./protectedPages/userPages/userPanel/UserPanel";
+
+/*Error page */
+export { default as Page404 } from "./404Page/Page404";
