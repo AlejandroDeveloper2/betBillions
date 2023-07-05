@@ -15,7 +15,6 @@ const Container = styled.main`
   align-items: center;
   overflow-x: hidden;
   justify-content: space-between;
-  gap: 2rem;
 
   @media (min-width: 768px) {
     justify-content: center;
@@ -27,7 +26,7 @@ const Container = styled.main`
     flex-direction: row;
     padding: 0 5rem;
     justify-content: center;
-    gap: 6rem;
+    gap: 3rem;
     background-image: url(${DesktopBg});
   }
 `;
@@ -40,7 +39,7 @@ const Presentation = styled.aside`
   align-items: center;
 
   @media (min-width: 768px) {
-    gap: 5rem;
+    gap: 4rem;
   }
 `;
 

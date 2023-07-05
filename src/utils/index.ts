@@ -1,7 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Location } from "react-router-dom";
 
-import { AuthStatus, FormType, MenuItemStyleProps } from "../types";
+import {
+  AuthStatus,
+  FormType,
+  MenuItemStyleProps,
+  ToastConfig,
+  ToastTypes,
+} from "../types";
 
 class ValuesForm {
   public setFormValues(formType: FormType, data: any) {
@@ -103,6 +109,14 @@ const getActiveItem = (location: Location, to: string): MenuItemStyleProps => {
   };
 };
 
+const copyToClipBoard = (textToCopy: string, config: ToastConfig): void => {
+  const { showToast, hideToast, configToast } = config;
+  navigator.clipboard.writeText(textToCopy);
+  configToast(ToastTypes.success, "Texto copiado con exito!");
+  showToast();
+  hideToast(3000);
+};
+
 export {
   ValuesForm,
   TokenAuth,
@@ -110,4 +124,5 @@ export {
   UserAuthState,
   getInvitationLink,
   getActiveItem,
+  copyToClipBoard,
 };

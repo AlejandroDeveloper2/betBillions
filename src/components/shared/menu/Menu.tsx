@@ -20,15 +20,7 @@ const MenuSidebar = ({ children }: MenuProps): JSX.Element => {
 const MenuContainer = ({ children }: MenuProps): JSX.Element => {
   return (
     <UL>
-      <Image
-        source={Logo}
-        alt={"Logo"}
-        dimensions={{
-          width: 250,
-          height: 80,
-        }}
-      />
-
+      <Image source={Logo} alt={"Logo"} size={{ lg: 80, md: 100, sm: 80 }} />
       {children}
     </UL>
   );
@@ -45,20 +37,17 @@ const MenuSidebarItem = (props: MenuItemType): JSX.Element => {
       <LinkItemVariant
         to={to}
         title={title}
-        background="var(--bg-primary-color)"
+        background="transparent"
         color={"var(--white)"}
         onClick={onClick}
       >
         {typeof Icon === "function" ? (
-          <Icon style={{ fontSize: 25, color: "var(--white)" }} />
+          <Icon style={{ fontSize: 25, color: "var(--dark-gray)" }} />
         ) : (
           <Image
             source={Icon}
             alt={"Notification"}
-            dimensions={{
-              width: 50,
-              height: 50,
-            }}
+            size={{ lg: 60, md: 40, sm: 40 }}
           />
         )}
       </LinkItemVariant>
@@ -84,14 +73,7 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
             style={{ fontSize: 30, color: getActiveItem(location, to).color }}
           />
         ) : (
-          <Image
-            source={Icon}
-            alt={label}
-            dimensions={{
-              width: 25,
-              height: 25,
-            }}
-          />
+          <Image source={Icon} alt={label} size={{ lg: 50, md: 50, sm: 80 }} />
         )}
         <span>{label}</span>
       </LinkItem>

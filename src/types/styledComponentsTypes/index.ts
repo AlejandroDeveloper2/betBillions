@@ -1,6 +1,7 @@
 interface ButtonStyleProps {
   background: string;
   color: string;
+  width?: string;
 }
 
 interface ToastStyleProps extends ButtonStyleProps {
@@ -20,10 +21,26 @@ interface MenuItemStyleProps {
   color: string;
 }
 
+interface ImageStyledProps {
+  lg: {
+    width: number;
+    height: number;
+  };
+  md: {
+    width: number;
+    height: number;
+  };
+  sm: {
+    width: number;
+    height: number;
+  };
+}
+
 export type {
   ButtonStyleProps,
   ToastStyleProps,
   LoadingStyleProps,
   ContainerFormStyleProps,
   MenuItemStyleProps,
+  ImageStyledProps,
 };

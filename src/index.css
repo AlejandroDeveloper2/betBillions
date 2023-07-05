@@ -7,9 +7,11 @@
   --black:#000;
   --light-gray: #f6f6f6;
   --dark-gray:#121b21;
+  --gray:#e2dcdc;
   --pink:#be53df;
  --error: #e02e2e;
  --success: #19aa62;
+ --blue:#929ee4;
 }
 
 *{
@@ -22,4 +24,6 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-size:15px;
   display: block;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

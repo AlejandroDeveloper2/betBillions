@@ -35,14 +35,13 @@ interface MessageConfig {
   toastConfig: ToastConfig;
 }
 
-type RoleType = "ROLE_USER" | "ROLE_ADMIN";
+type RoleType = { authority: "ROLE_USER" | "ROLE_ADMIN" };
 
 interface UserAuth {
-  username: string;
+  sub: string;
   fullName: string;
-  status: boolean;
-  roles: RoleType;
-  refLink: string;
+  state: boolean;
+  roles: RoleType[];
 }
 
 interface MenuItem {
@@ -51,6 +50,21 @@ interface MenuItem {
   title: string;
   to: string;
   onClick?: () => void;
+}
+
+interface UserPanelData {
+  link: string;
+  balance: number;
+  awards: number;
+  reference: number;
+}
+
+interface WalletData {
+  red: string;
+  balance: number;
+  wallet: string | null;
+  state: boolean;
+  currency: string;
 }
 
 export type {
@@ -62,4 +76,6 @@ export type {
   ToastConfig,
   UserAuth,
   MenuItem,
+  UserPanelData,
+  WalletData,
 };

@@ -6,3 +6,5 @@ export { default as useScreenLoader } from "./useScreenLoader";
 
 /*Context hooks */
 export { default as useAuthContext } from "./useAuthContext";
+export { default as useUserProfileContext } from "./useUserProfileContext";
+export { default as useWalletContext } from "./useWalletContext";

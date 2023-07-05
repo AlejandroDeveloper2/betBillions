@@ -22,7 +22,7 @@ const LoadingScreen = (): JSX.Element => {
             <Image
               source={LogoTap}
               alt="Bet billions logo"
-              dimensions={{ width: 200, height: 200 }}
+              size={{ lg: 200, md: 100, sm: 80 }}
             />
           </figure>
           {authStatus === "checking" ? (

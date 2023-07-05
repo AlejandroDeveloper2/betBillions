@@ -1,6 +1,7 @@
 import { useState, createContext, useMemo, useCallback } from "react";
 import { decodeToken } from "react-jwt";
 import { useLocation, useNavigate } from "react-router-dom";
+import { UseFormReset } from "react-hook-form";
 
 import {
   AuthContextType,
@@ -31,7 +32,9 @@ const AuthProvider = ({ children }: ProviderProps) => {
   const [authStatus, setAuthStatus] = useState<AuthStatus>(
     userAuthStateLS.getUserAuthState()
   );
-  const [userAuth, setUserAuth] = useState<UserAuth | null>(null);
+  const [userAuth, setUserAuth] = useState<UserAuth | null>(
+    decodeToken<UserAuth>(localStorage.getItem("token") ?? "")
+  );
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -40,7 +43,8 @@ const AuthProvider = ({ children }: ProviderProps) => {
   const login = useCallback(
     async (
       userCredentials: LoginFormValues,
-      config: MessageConfig
+      config: MessageConfig,
+      reset: UseFormReset<LoginFormValues>
     ): Promise<void> => {
       const { loadingConfig, toastConfig } = config;
       try {
@@ -54,6 +58,7 @@ const AuthProvider = ({ children }: ProviderProps) => {
           setAuthStatus("authenticated");
           userAuthStateLS.setUserAuthState("authenticated");
         }
+        reset();
         toastConfig.configToast(res.typeStatus, res.message);
         toastConfig.showToast();
       } catch (error: unknown) {
@@ -81,7 +86,8 @@ const AuthProvider = ({ children }: ProviderProps) => {
   const createUserAccount = useCallback(
     async (
       userData: RegisterFormValues,
-      config: MessageConfig
+      config: MessageConfig,
+      reset: UseFormReset<RegisterFormValues>
     ): Promise<void> => {
       const { loadingConfig, toastConfig } = config;
       try {
@@ -90,6 +96,7 @@ const AuthProvider = ({ children }: ProviderProps) => {
         const res = await authService.registerUser(userData);
         toastConfig.showToast();
         toastConfig.configToast(res.typeStatus, res.message);
+        reset();
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
         toastConfig.showToast();
@@ -105,7 +112,8 @@ const AuthProvider = ({ children }: ProviderProps) => {
   const recoverPassword = useCallback(
     async (
       userRequestData: RecoverPassFormValues,
-      config: MessageConfig
+      config: MessageConfig,
+      reset: UseFormReset<RecoverPassFormValues>
     ): Promise<void> => {
       const { loadingConfig, toastConfig } = config;
       try {
@@ -114,6 +122,7 @@ const AuthProvider = ({ children }: ProviderProps) => {
         const res = await authService.sendRecoverPassRequest(userRequestData);
         toastConfig.showToast();
         toastConfig.configToast(res.typeStatus, res.message);
+        reset();
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
         toastConfig.showToast();
@@ -129,7 +138,8 @@ const AuthProvider = ({ children }: ProviderProps) => {
   const changeUserPassword = useCallback(
     async (
       userNewPassword: UpdatePassFormValues,
-      config: MessageConfig
+      config: MessageConfig,
+      reset: UseFormReset<UpdatePassFormValues>
     ): Promise<void> => {
       const { loadingConfig, toastConfig } = config;
       const token = tokenAuth.getUrlToken(location);
@@ -139,6 +149,7 @@ const AuthProvider = ({ children }: ProviderProps) => {
         const res = await authService.updatePassword(userNewPassword, token);
         toastConfig.showToast();
         toastConfig.configToast(res.typeStatus, res.message);
+        reset();
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
         toastConfig.showToast();

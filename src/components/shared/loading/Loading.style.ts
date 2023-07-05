@@ -33,7 +33,7 @@ const Spinner = styled.div<LoadingStyleProps>`
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: #fff;
+      background: ${(props) => props.textcolor};
       margin: -4px 0 0 -4px;
     }
   }

@@ -30,7 +30,7 @@ const getMenuItems = (closeSession: () => void): MenuItem[] => [
     label: "Billetera",
     icon: GiWallet,
     title: "Mi billetera",
-    to: "#",
+    to: "/userPanel/myWallet",
   },
   {
     label: "Sorteos",

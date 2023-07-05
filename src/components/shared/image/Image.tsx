@@ -4,15 +4,25 @@ import { ImageProps } from "../../../types";
 import { Image as ImageStyled } from "./Image.style";
 
 const Image = (props: ImageProps): JSX.Element => {
-  const { source, alt, dimensions } = props;
+  const { source, alt, size } = props;
 
   return (
     <ImageStyled
       src={source}
       alt={alt}
       loading="lazy"
-      width={dimensions.width}
-      height={dimensions.height}
+      lg={{
+        width: size.lg,
+        height: size.lg,
+      }}
+      md={{
+        width: size.md,
+        height: size.md,
+      }}
+      sm={{
+        width: size.sm,
+        height: size.sm,
+      }}
     />
   );
 };

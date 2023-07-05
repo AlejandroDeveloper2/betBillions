@@ -9,10 +9,13 @@ const Button = styled.button<ButtonStyleProps>`
   background-color: ${(props: ButtonStyleProps) => props.background};
   display: flex;
   justify-content: center;
+  overflow: hidden;
   align-items: center;
   cursor: pointer;
   border: none;
   transition: all ease 0.5s;
+  position: relative;
+  opacity: ${(props) => (props.disabled ? "0.6" : "1")};
   span {
     color: ${(props: ButtonStyleProps) => props.color};
     font-size: 1rem;
@@ -22,8 +25,10 @@ const Button = styled.button<ButtonStyleProps>`
   &:hover {
     opacity: 0.5;
   }
+
   @media (min-width: 768px) {
     padding: 1.2rem 1.5rem;
+    width: ${(props) => (props.width ? props.width : "100%")};
     span {
       font-size: 1.2rem;
     }

@@ -6,14 +6,15 @@ import { ValuesForm } from "../../../utils";
 import { Form, FormTitle, FormBody } from "./CustomForm.style";
 
 const CustomForm = (props: CustomFormProps): JSX.Element => {
-  const { children, formTitle, config, formType, handleSubmit, action } = props;
+  const { children, formTitle, config, formType, handleSubmit, action, reset } =
+    props;
   const valuesForm = new ValuesForm();
 
   return (
     <Form
       onSubmit={handleSubmit((data) => {
         const newData = valuesForm.setFormValues(formType, data);
-        action(newData, config);
+        action(newData, config, reset);
       })}
     >
       <FormTitle> {formTitle} </FormTitle>

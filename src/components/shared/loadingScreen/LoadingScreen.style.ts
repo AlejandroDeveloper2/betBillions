@@ -43,6 +43,7 @@ const LoadingBox = styled.div`
   p:last-of-type {
     font-size: 1.3rem;
     font-weight: bold;
+    margin-top: 1rem;
   }
   padding: 5rem 0;
 `;

@@ -24,6 +24,7 @@ import {
 const UpdatePassword = (): JSX.Element => {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<UpdatePassFormValues>({
@@ -70,6 +71,7 @@ const UpdatePassword = (): JSX.Element => {
           formType="updatePass"
           handleSubmit={handleSubmit}
           action={changeUserPassword}
+          reset={reset}
         >
           <DefaultInput
             type="password"

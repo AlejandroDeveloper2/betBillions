@@ -22,9 +22,21 @@ interface UpdatePassFormValues {
   confirmPassword: string;
 }
 
+interface WalletDepositFormValues {
+  walletType: string;
+  transaction: string;
+  urlTransaction: string;
+}
+
+interface WalletWithdrawFormValues {
+  wallet: string;
+}
+
 export type {
   LoginFormValues,
   RegisterFormValues,
   RecoverPassFormValues,
   UpdatePassFormValues,
+  WalletDepositFormValues,
+  WalletWithdrawFormValues,
 };

@@ -19,6 +19,7 @@ const UL = styled.ul`
   padding: 1rem 0.5rem;
   justify-content: center;
   gap: 1rem;
+  z-index: 10;
 
   li:nth-child(7) {
     display: none;
@@ -51,15 +52,14 @@ const UL = styled.ul`
   }
 
   @media (min-width: 1000px) {
+    left: 0;
     width: 15%;
     height: 100%;
     flex-direction: column;
     gap: 1rem;
     align-items: center;
-    position: relative;
     border-radius: 0;
     padding: 3rem 2rem;
-
     li:nth-child(8) {
       margin-top: 4rem;
     }
@@ -107,7 +107,7 @@ const ULVariant = styled.ul`
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1000px) {
     justify-content: flex-end;
 
     li:nth-child(1) {
@@ -159,9 +159,6 @@ const LinkItem = styled(Link)<MenuItemStyleProps>`
     display: none;
     transition: all 0.6s ease;
   }
-  img {
-    transform: scale(1);
-  }
   svg {
     transition: all 0.6s ease;
   }
@@ -201,10 +198,6 @@ const LinkItemVariant = styled(LinkItem)`
     border-radius: 0.5rem;
     justify-content: center;
     padding: 0.5rem;
-    img {
-      width: 70px;
-      height: 70px;
-    }
   }
 `;
 

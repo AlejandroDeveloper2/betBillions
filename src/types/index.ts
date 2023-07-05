@@ -3,12 +3,15 @@ export type {
   CustomFormProps,
   FormType,
   CustomInputProps,
+  CustomFileInputProps,
   ErrorMessageProps,
   ToastProps,
   LoadingProps,
   LoadingButtonProps,
   MenuProps,
-  LayoutProps,
+  AdCardProps,
+  IndicatorProps,
+  InvitationLinkProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
@@ -18,6 +21,8 @@ export type {
   RegisterFormValues,
   RecoverPassFormValues,
   UpdatePassFormValues,
+  WalletDepositFormValues,
+  WalletWithdrawFormValues,
 } from "./formTypes";
 
 export type {
@@ -26,6 +31,7 @@ export type {
   LoadingStyleProps,
   ContainerFormStyleProps,
   MenuItemStyleProps,
+  ImageStyledProps,
 } from "./styledComponentsTypes";
 
 export type {
@@ -37,6 +43,13 @@ export type {
   ToastConfig,
   UserAuth,
   MenuItem,
+  UserPanelData,
+  WalletData,
 } from "./dataTypes";
 
-export type { ProviderProps, AuthContextType } from "./contextTypes";
+export type {
+  ProviderProps,
+  AuthContextType,
+  UserProfileContextType,
+  WalletContextType,
+} from "./contextTypes";

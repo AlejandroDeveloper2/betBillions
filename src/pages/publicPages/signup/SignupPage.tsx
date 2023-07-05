@@ -33,6 +33,7 @@ const SignupPage = (): JSX.Element => {
   const location = useLocation();
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormValues>({
@@ -79,6 +80,7 @@ const SignupPage = (): JSX.Element => {
           formType="register"
           handleSubmit={handleSubmit}
           action={createUserAccount}
+          reset={reset}
         >
           <FormGrid>
             <FormRow>

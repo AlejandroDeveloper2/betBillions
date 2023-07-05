@@ -19,6 +19,32 @@ const InputContainer = styled.div`
   }
 `;
 
+const InputContainerVariant = styled(InputContainer)`
+  background-color: transparent;
+  &:hover {
+    box-shadow: none;
+  }
+  input {
+    color: var(--pink);
+    font-size: 1rem;
+    font-weight: bold;
+    &::placeholder {
+      color: var(--pink);
+      font-weight: bold;
+      font-size: 1rem;
+      opacity: 0.5;
+    }
+  }
+  @media (min-width: 768px) {
+    input {
+      font-size: 1.5rem;
+      &::placeholder {
+        font-size: 1.5rem;
+      }
+    }
+  }
+`;
+
 const Input = styled.input`
   width: 80%;
   height: auto;
@@ -42,6 +68,18 @@ const Input = styled.input`
   }
 `;
 
+const InputUploadFile = styled.input`
+  outline: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-height: 100%;
+  min-width: 100%;
+  opacity: 0;
+  cursor: pointer;
+  display: block;
+`;
+
 const Label = styled.label`
   color: var(--white);
   font-weight: medium;
@@ -59,4 +97,11 @@ const InputContainerLabel = styled.div`
   gap: 2rem;
 `;
 
-export { Input, InputContainer, Label, InputContainerLabel };
+export {
+  Input,
+  InputContainer,
+  Label,
+  InputContainerLabel,
+  InputContainerVariant,
+  InputUploadFile,
+};

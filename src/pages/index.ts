@@ -7,6 +7,9 @@ export { default as ActivateAccount } from "./publicPages/activateAccount/Activa
 
 /* Protected pages */
 export { default as UserPanel } from "./protectedPages/userPages/userPanel/UserPanel";
+export { default as MyWallet } from "./protectedPages/userPages/myWallet/MyWallet";
+export { default as MyWalletDeposit } from "./protectedPages/userPages/myWallet/MyWalletDeposit";
+export { default as MyWalletWithdraw } from "./protectedPages/userPages/myWallet/MyWalletWithdraw";
 
 /*Error page */
 export { default as Page404 } from "./404Page/Page404";

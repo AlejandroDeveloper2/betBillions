@@ -26,6 +26,7 @@ import {
 const LoginPage = (): JSX.Element => {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormValues>({
@@ -71,6 +72,7 @@ const LoginPage = (): JSX.Element => {
           formType="login"
           handleSubmit={handleSubmit}
           action={login}
+          reset={reset}
         >
           <DefaultInput
             type="text"

@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 
 /* Context */
-import { AuthProvider } from "./context";
+import { AuthProvider, UserProfileProvider, WalletProvider } from "./context";
 
 /* Routers */
 import AppRouter from "./routes/AppRouter";
@@ -9,9 +9,13 @@ import AppRouter from "./routes/AppRouter";
 function App(): JSX.Element {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <AppRouter />
-      </AuthProvider>
+      <WalletProvider>
+        <UserProfileProvider>
+          <AuthProvider>
+            <AppRouter />
+          </AuthProvider>
+        </UserProfileProvider>
+      </WalletProvider>
     </BrowserRouter>
   );
 }

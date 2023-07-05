@@ -1,25 +1,50 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { IconType } from "react-icons";
-import { UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
+import {
+  UseFormHandleSubmit,
+  UseFormRegister,
+  UseFormReset,
+} from "react-hook-form";
 
 import {
   LoginFormValues,
   MessageConfig,
   RecoverPassFormValues,
   RegisterFormValues,
+  ToastConfig,
   UpdatePassFormValues,
+  WalletDepositFormValues,
+  WalletWithdrawFormValues,
 } from "..";
+
+type InputName =
+  | "password"
+  | "username"
+  | "fullName"
+  | "invitationLink"
+  | "email"
+  | "confirmPassword"
+  | "confirmEmail"
+  | "transaction"
+  | "wallet";
 
 type ImageProps = {
   source: string;
   alt: string;
-  dimensions: {
-    width: number;
-    height: number;
+  size: {
+    lg: number;
+    md: number;
+    sm: number;
   };
 };
 
-type FormType = "login" | "register" | "recoverPass" | "updatePass";
+type FormType =
+  | "login"
+  | "register"
+  | "recoverPass"
+  | "updatePass"
+  | "walletDeposit"
+  | "walletWithdraw";
 
 type CustomFormProps = {
   children: JSX.Element | JSX.Element[] | any[];
@@ -30,10 +55,33 @@ type CustomFormProps = {
     | RegisterFormValues
     | LoginFormValues
     | RecoverPassFormValues
-    | UpdatePassFormValues,
+    | UpdatePassFormValues
+    | WalletDepositFormValues
+    | WalletWithdrawFormValues,
     undefined
   >;
-  action: (data: any, config: MessageConfig) => Promise<void>;
+  reset: UseFormReset<
+    | RegisterFormValues
+    | LoginFormValues
+    | RecoverPassFormValues
+    | UpdatePassFormValues
+    | WalletDepositFormValues
+    | WalletWithdrawFormValues
+    | any
+  >;
+  action: (
+    data: any,
+    config: MessageConfig,
+    reset: UseFormReset<
+      | RegisterFormValues
+      | LoginFormValues
+      | RecoverPassFormValues
+      | UpdatePassFormValues
+      | WalletDepositFormValues
+      | WalletWithdrawFormValues
+      | any
+    >
+  ) => Promise<void>;
 };
 
 type CustomInputProps = {
@@ -46,17 +94,18 @@ type CustomInputProps = {
     | LoginFormValues
     | RecoverPassFormValues
     | UpdatePassFormValues
+    | WalletDepositFormValues
+    | WalletWithdrawFormValues
     | any
   >;
-  name:
-    | "password"
-    | "username"
-    | "fullName"
-    | "invitationLink"
-    | "email"
-    | "confirmPassword"
-    | "confirmEmail";
+  name: InputName;
   disabled?: boolean;
+};
+
+type CustomFileInputProps = {
+  name: string;
+  disabled?: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 type CustomButtonProps = {
@@ -64,8 +113,10 @@ type CustomButtonProps = {
   style: {
     bg: string;
     fontColor: string;
+    width?: string;
   };
   title: string;
+  disabled?: boolean;
   children?: JSX.Element | JSX.Element[];
   onClick?: () => void;
 };
@@ -100,6 +151,7 @@ type LoadingButtonProps = {
   style: {
     bg: string;
     fontColor: string;
+    width?: string;
   };
 };
 
@@ -107,32 +159,35 @@ type MenuProps = {
   children: JSX.Element | JSX.Element[];
 };
 
-interface LayoutProps {
-  toastSettings: {
-    isToastVisible: boolean;
-    toast: {
-      toastMessage: string | null;
-      toastType: ToastTypes | null;
-    };
-    getToastColor: () => string;
-    showToast: () => void;
-    hideToast: (delay?: number) => void;
-    configToast: (type: ToastTypes, message: string) => void;
-  };
-}
+type AdCardProps = {
+  children: JSX.Element | JSX.Element[];
+  play?: boolean;
+};
+
+type IndicatorProps = {
+  children: JSX.Element | JSX.Element[];
+  width: string;
+};
+
+type InvitationLinkProps = {
+  toastConfig: ToastConfig;
+};
 
 export type {
   ImageProps,
   CustomFormProps,
   FormType,
   CustomInputProps,
+  CustomFileInputProps,
   CustomButtonProps,
   ErrorMessageProps,
   ToastProps,
   LoadingProps,
   LoadingButtonProps,
   MenuProps,
-  LayoutProps,
+  AdCardProps,
+  IndicatorProps,
+  InvitationLinkProps,
 };
 
 export { ToastTypes };

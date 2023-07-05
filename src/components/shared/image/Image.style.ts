@@ -1,10 +1,18 @@
 import styled from "styled-components";
 
-const Image = styled.img`
-  transform: scale(0.5);
+import { ImageStyledProps } from "../../../types";
+
+const Image = styled.img<ImageStyledProps>`
+  width: ${(props: ImageStyledProps) => props.sm}%;
+  height: ${(props: ImageStyledProps) => props.sm}%;
+  object-fit: contain;
   @media (min-width: 768px) {
-    transform: scale(1);
-    object-fit: fill;
+    width: ${(props: ImageStyledProps) => props.md}%;
+    height: ${(props: ImageStyledProps) => props.md}%;
+  }
+  @media (min-width: 1000px) {
+    width: ${(props: ImageStyledProps) => props.lg}%;
+    height: ${(props: ImageStyledProps) => props.lg}%;
   }
 `;
 

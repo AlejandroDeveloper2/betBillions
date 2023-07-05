@@ -24,6 +24,7 @@ import {
 const RecoverPassword = (): JSX.Element => {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<RecoverPassFormValues>({
@@ -70,6 +71,7 @@ const RecoverPassword = (): JSX.Element => {
           formType="recoverPass"
           handleSubmit={handleSubmit}
           action={recoverPassword}
+          reset={reset}
         >
           <DefaultInput
             type="text"
