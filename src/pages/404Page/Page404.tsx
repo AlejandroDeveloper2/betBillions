@@ -12,7 +12,7 @@ const Page404 = (): JSX.Element => {
         <Image
           source={PageNotFound}
           alt={"Page404"}
-          size={{ lg: 250, md: 200, sm: 150 }}
+          size={{ lg: 100, md: 100, sm: 100 }}
         />
       </Figure>
       <Title>Pagina no encontrada!</Title>

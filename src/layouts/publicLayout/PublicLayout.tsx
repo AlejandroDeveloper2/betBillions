@@ -31,7 +31,7 @@ const PublicLayout = (): JSX.Element => {
           <Image
             source={Logo}
             alt="Bet billions logo"
-            size={{ lg: 200, md: 100, sm: 80 }}
+            size={{ lg: 100, md: 80, sm: 80 }}
           />
         </Animate>
       </Presentation>

@@ -76,7 +76,7 @@ const UserPanel = (): JSX.Element => {
               <Image
                 source={Gift3dIcon}
                 alt={"Bet billions gifts"}
-                size={{ lg: 60, md: 40, sm: 80 }}
+                size={{ lg: 20, md: 40, sm: 40 }}
               />
             </IndicatorHead>
             {isLoading ? (
@@ -97,7 +97,7 @@ const UserPanel = (): JSX.Element => {
               <Image
                 source={Wallet3dIcon}
                 alt={"Bet billions wallet"}
-                size={{ lg: 60, md: 40, sm: 80 }}
+                size={{ lg: 20, md: 40, sm: 40 }}
               />
             </IndicatorHead>
             {isLoading ? (

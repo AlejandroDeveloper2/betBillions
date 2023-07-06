@@ -36,7 +36,7 @@ const LotteryDetails = (): JSX.Element => {
             <Image
               source={TrophyIcon}
               alt={"Bet billions wallet"}
-              size={{ lg: 60, md: 40, sm: 80 }}
+              size={{ lg: 10, md: 10, sm: 20 }}
             />
           </IndicatorHead>
           <IndicatorList>
@@ -53,7 +53,7 @@ const LotteryDetails = (): JSX.Element => {
             <Image
               source={Gift3dIcon}
               alt={"Team bet billions"}
-              size={{ lg: 80, md: 100, sm: 80 }}
+              size={{ lg: 10, md: 20, sm: 40 }}
             />
           </PromIndicator>
         </Indicator>

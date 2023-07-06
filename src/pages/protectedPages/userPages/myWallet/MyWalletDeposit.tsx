@@ -115,7 +115,7 @@ const MyWalletDeposit = (): JSX.Element => {
           <Image
             source={Wallet3dIcon}
             alt={"My Wallet bet billions"}
-            size={{ lg: 80, md: 80, sm: 80 }}
+            size={{ lg: 30, md: 20, sm: 20 }}
           />
         </PageHeader>
         <Indicator width="100%">
@@ -183,7 +183,7 @@ const MyWalletDeposit = (): JSX.Element => {
               <Image
                 source={Logo2}
                 alt={"Wallet qr betbillions"}
-                size={{ lg: 100, md: 80, sm: 80 }}
+                size={{ lg: 20, md: 30, sm: 50 }}
               />
             </WalletBody>
           </WalletCard>

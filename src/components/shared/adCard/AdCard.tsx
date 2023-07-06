@@ -23,14 +23,14 @@ const AdCard = (props: AdCardProps): JSX.Element => {
           <Image
             source={DateAlertFigure}
             alt={"Bet billions bingo date"}
-            size={{ lg: 70, md: 40, sm: 80 }}
+            size={{ lg: 40, md: 20, sm: 20 }}
           />
         </Figure>
         {play && <PlayLink to="/userPanel/lottery/details">Jugar</PlayLink>}
         <Image
           source={BingoFigure}
           alt={"Bet billions bingo"}
-          size={{ lg: 100, md: 100, sm: 80 }}
+          size={{ lg: 70, md: 100, sm: 80 }}
         />
       </Column>
     </CardContainer>

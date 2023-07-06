@@ -32,7 +32,7 @@ const InvitationLink = (props: InvitationLinkProps): JSX.Element => {
           <Image
             source={CopyLinkIcon}
             alt={"Copy link button"}
-            size={{ lg: 30, md: 30, sm: 20 }}
+            size={{ lg: 100, md: 100, sm: 60 }}
           />
         </DefaultButton>
       </LinkContent>

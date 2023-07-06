@@ -130,7 +130,7 @@ const MyWalletWithdraw = (): JSX.Element => {
           <Image
             source={Wallet3dIcon}
             alt={"My Wallet bet billions"}
-            size={{ lg: 80, md: 80, sm: 80 }}
+            size={{ lg: 30, md: 20, sm: 20 }}
           />
         </PageHeader>
         <Indicator width="100%">

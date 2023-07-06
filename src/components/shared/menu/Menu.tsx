@@ -47,7 +47,7 @@ const MenuSidebarItem = (props: MenuItemType): JSX.Element => {
           <Image
             source={Icon}
             alt={"Notification"}
-            size={{ lg: 60, md: 40, sm: 40 }}
+            size={{ lg: 30, md: 80, sm: 150 }}
           />
         )}
       </LinkItemVariant>
@@ -73,7 +73,11 @@ const MenuItem = (props: MenuItemType): JSX.Element => {
             style={{ fontSize: 30, color: getActiveItem(location, to).color }}
           />
         ) : (
-          <Image source={Icon} alt={label} size={{ lg: 50, md: 50, sm: 80 }} />
+          <Image
+            source={Icon}
+            alt={"Notification"}
+            size={{ lg: 30, md: 80, sm: 150 }}
+          />
         )}
         <span>{label}</span>
       </LinkItem>

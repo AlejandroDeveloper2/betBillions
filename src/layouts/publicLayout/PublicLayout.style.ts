@@ -41,6 +41,9 @@ const Presentation = styled.aside`
   @media (min-width: 768px) {
     gap: 4rem;
   }
+  @media (min-width: 1000px) {
+    width: 30%;
+  }
 `;
 
 const WelcomeText = styled.h1`

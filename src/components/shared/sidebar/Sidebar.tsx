@@ -57,7 +57,7 @@ const Sidebar = (props: SidebarProps): JSX.Element => {
           <Image
             source={Team3dIcon}
             alt={"Team bet billions"}
-            size={{ lg: 80, md: 100, sm: 80 }}
+            size={{ lg: 30, md: 30, sm: 30 }}
           />
         </TeamIndicator>
         <SocialMedia>
@@ -83,7 +83,7 @@ const SidebarDefault = (): JSX.Element => {
           <Image
             source={TrophyIcon}
             alt={"Winners bet billions"}
-            size={{ lg: 80, md: 80, sm: 80 }}
+            size={{ lg: 20, md: 10, sm: 10 }}
           />
           <WinnerListTitle>...</WinnerListTitle>
         </WinnerListHead>
@@ -110,7 +110,7 @@ const SidebarBalance = (): JSX.Element => {
           <Image
             source={Wallet3dIcon}
             alt={"Bet billions wallet"}
-            size={{ lg: 60, md: 40, sm: 80 }}
+            size={{ lg: 20, md: 10, sm: 20 }}
           />
         </IndicatorHead>
         <IndicatorValue>
@@ -124,7 +124,7 @@ const SidebarBalance = (): JSX.Element => {
           <Image
             source={TrophyIcon}
             alt={"Winners bet billions"}
-            size={{ lg: 80, md: 80, sm: 80 }}
+            size={{ lg: 20, md: 10, sm: 20 }}
           />
           <WinnerListTitle>...</WinnerListTitle>
         </WinnerListHead>
@@ -151,7 +151,7 @@ const SidebarGifts = (): JSX.Element => {
           <Image
             source={Wallet3dIcon}
             alt={"Bet billions wallet"}
-            size={{ lg: 60, md: 40, sm: 80 }}
+            size={{ lg: 20, md: 10, sm: 20 }}
           />
         </IndicatorHead>
         <IndicatorValue>
@@ -165,7 +165,7 @@ const SidebarGifts = (): JSX.Element => {
           <Image
             source={TrophyIcon}
             alt={"Bet billions wallet"}
-            size={{ lg: 60, md: 40, sm: 80 }}
+            size={{ lg: 20, md: 10, sm: 20 }}
           />
         </IndicatorHead>
         <IndicatorList>
@@ -182,7 +182,7 @@ const SidebarGifts = (): JSX.Element => {
           <Image
             source={Gift3dIcon}
             alt={"Team bet billions"}
-            size={{ lg: 80, md: 100, sm: 80 }}
+            size={{ lg: 20, md: 10, sm: 20 }}
           />
         </PromIndicator>
       </Indicator>

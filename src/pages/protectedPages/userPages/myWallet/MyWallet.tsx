@@ -54,7 +54,7 @@ const MyWallet = (): JSX.Element => {
           <Image
             source={Wallet3dIcon}
             alt={"My Wallet bet billions"}
-            size={{ lg: 80, md: 80, sm: 80 }}
+            size={{ lg: 30, md: 20, sm: 20 }}
           />
         </PageHeader>
         <Indicator width="100%">
@@ -83,7 +83,7 @@ const MyWallet = (): JSX.Element => {
               <Image
                 source={CopyLinkIcon}
                 alt={"Copy wallet address button"}
-                size={{ lg: 30, md: 30, sm: 30 }}
+                size={{ lg: 100, md: 100, sm: 40 }}
               />
             </DefaultButton>
             <WalletAddress>
@@ -94,12 +94,12 @@ const MyWallet = (): JSX.Element => {
             <Image
               source={WalletQr}
               alt={"Wallet qr betbillions"}
-              size={{ lg: 200, md: 200, sm: 150 }}
+              size={{ lg: 20, md: 30, sm: 50 }}
             />
             <Image
               source={Logo2}
               alt={"Bet billions logo"}
-              size={{ lg: 200, md: 100, sm: 80 }}
+              size={{ lg: 40, md: 50, sm: 60 }}
             />
           </WalletBody>
         </WalletCard>
