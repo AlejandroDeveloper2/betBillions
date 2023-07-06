@@ -24,7 +24,7 @@ const ToastContainer = styled.div<ToastStyleProps>`
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-  z-index: 10;
+  z-index: 30;
 `;
 
 export { ToastContainer };

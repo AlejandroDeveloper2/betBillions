@@ -40,7 +40,6 @@ import {
   WalletAddress,
   WalletBody,
   Text,
-  ToastsContainer,
 } from "./MyWallet.style";
 import {
   IndicatorHead,
@@ -211,7 +210,7 @@ const MyWalletWithdraw = (): JSX.Element => {
                   <Image
                     source={Gift3dIcon}
                     alt={"Bet billions gifts"}
-                    size={{ lg: 60, md: 60, sm: 80 }}
+                    size={{ lg: 20, md: 20, sm: 30 }}
                   />
                 </IndicatorHead>
                 {isLoading ? (
@@ -250,26 +249,25 @@ const MyWalletWithdraw = (): JSX.Element => {
         </CustomForm>
         <Footer />
       </MyWalletContainer>
-      <ToastsContainer>
-        <Toast
-          message={toast.toastMessage}
-          type={toast.toastType}
-          toastConfig={{
-            isToastVisible,
-            getToastColor,
-            hideToast,
-          }}
-        />
-        <Toast
-          message={toastconfig.toast.toastMessage}
-          type={toastconfig.toast.toastType}
-          toastConfig={{
-            isToastVisible: toastconfig.isToastVisible,
-            getToastColor: toastconfig.getToastColor,
-            hideToast: toastconfig.hideToast,
-          }}
-        />
-      </ToastsContainer>
+
+      <Toast
+        message={toast.toastMessage}
+        type={toast.toastType}
+        toastConfig={{
+          isToastVisible,
+          getToastColor,
+          hideToast,
+        }}
+      />
+      <Toast
+        message={toastconfig.toast.toastMessage}
+        type={toastconfig.toast.toastType}
+        toastConfig={{
+          isToastVisible: toastconfig.isToastVisible,
+          getToastColor: toastconfig.getToastColor,
+          hideToast: toastconfig.hideToast,
+        }}
+      />
     </>
   );
 };

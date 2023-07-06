@@ -140,6 +140,7 @@ const ToastsContainer = styled.div`
   gap: 0.5rem;
   justify-content: center;
   align-items: flex-start;
+  z-index: 30;
   div {
     position: relative;
   }
