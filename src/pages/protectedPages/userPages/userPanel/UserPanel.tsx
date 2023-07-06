@@ -15,17 +15,17 @@ import {
   Image,
   Toast,
   Loading,
+  SidebarDefault,
 } from "../../../../components";
 
+import { Datetext, PanelContainer } from "./UserPanel.style";
 import {
   CardAdTitle,
-  Datetext,
   IndicatorHead,
   IndicatorTitle,
   IndicatorValue,
   Indicators,
-  PanelContainer,
-} from "./UserPanel.style";
+} from "../../../../styles/GlobalStyles.style";
 
 import { Gift3dIcon, Wallet3dIcon } from "../../../../assets";
 
@@ -60,6 +60,7 @@ const UserPanel = (): JSX.Element => {
 
   return (
     <>
+      <SidebarDefault />
       <PanelContainer>
         <h1>
           Bienvenido <span>{userAuth ? userAuth.fullName : "Usuario"}</span>

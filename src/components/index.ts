@@ -14,7 +14,11 @@ export { default as Toast } from "./shared/toast/Toast";
 export { Loading, SpinnerScreen } from "./shared/loading/Loading";
 export { default as LoadingScreen } from "./shared/loadingScreen/LoadingScreen";
 export { Menu, MenuSidebar } from "./shared/menu/Menu";
-export { default as Sidebar } from "./shared/sidebar/Sidebar";
+export {
+  SidebarBalance,
+  SidebarGifts,
+  SidebarDefault,
+} from "./shared/sidebar/Sidebar";
 export { default as Footer } from "./shared/footer/Footer";
 export { default as AdCard } from "./shared/adCard/AdCard";
 export { default as Indicator } from "./shared/indicator/Indicator";

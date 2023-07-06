@@ -5,6 +5,8 @@ import { ProtectedLayout } from "../layouts";
 
 /* Pages */
 import {
+  LotteryDetails,
+  LotteryPage,
   MyWallet,
   MyWalletDeposit,
   MyWalletWithdraw,
@@ -26,6 +28,8 @@ const UserRoutes = (): JSX.Element => {
           path="/userPanel/myWallet/withdraw"
           element={<MyWalletWithdraw />}
         />
+        <Route path="/userPanel/lottery" element={<LotteryPage />} />
+        <Route path="/userPanel/lottery/details" element={<LotteryDetails />} />
         <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>

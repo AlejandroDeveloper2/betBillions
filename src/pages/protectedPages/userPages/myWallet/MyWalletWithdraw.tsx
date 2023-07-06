@@ -27,6 +27,7 @@ import {
   Loading,
   Toast,
   LoadingButton,
+  SidebarDefault,
 } from "../../../../components";
 
 import {
@@ -39,28 +40,31 @@ import {
   WalletAddress,
   WalletBody,
   Text,
+  ToastsContainer,
 } from "./MyWallet.style";
 import {
   IndicatorHead,
   IndicatorTitle,
   IndicatorValue,
-} from "../userPanel/UserPanel.style";
+} from "../../../../styles/GlobalStyles.style";
 
 import { Wallet3dIcon, Gift3dIcon } from "../../../../assets";
 
 const MyWalletWithdraw = (): JSX.Element => {
-  const { wallet, getUserWalletData, setUserWalletAddress } =
+  const { setUserWalletAddress, wallet, getUserWalletData } =
     useWalletContext();
+  const { userPanelData, getUserPanelData } = useUserProfileContext();
+
   const {
     register,
     reset,
+    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<WalletWithdrawFormValues>({
-    defaultValues: getWalletInfo(wallet ? wallet.wallet : ""),
+    defaultValues: getWalletInfo(),
     resolver: yupResolver(schema2),
   });
-  const { userPanelData } = useUserProfileContext();
 
   const {
     isToastVisible,
@@ -108,11 +112,18 @@ const MyWalletWithdraw = (): JSX.Element => {
   };
 
   useEffect(() => {
-    getUserWalletData(config);
+    getUserPanelData(config);
   }, []);
+
+  useEffect(() => {
+    getUserWalletData(config2).then(() => {
+      setValue("wallet", wallet.wallet ? wallet.wallet : "");
+    });
+  }, [wallet.wallet]);
 
   return (
     <>
+      <SidebarDefault />
       <MyWalletContainer>
         <PageHeader>
           <PageTitle>Retirar</PageTitle>
@@ -173,12 +184,12 @@ const MyWalletWithdraw = (): JSX.Element => {
                     width: "auto",
                   }}
                   title={
-                    wallet?.wallet
+                    wallet.wallet
                       ? "Editar direccion de billetera"
                       : "Registrar billetera"
                   }
                 >
-                  {wallet?.wallet ? (
+                  {wallet.wallet ? (
                     <MdModeEditOutline
                       style={{ fontSize: "2rem", fill: "var(--white)" }}
                     />
@@ -239,24 +250,26 @@ const MyWalletWithdraw = (): JSX.Element => {
         </CustomForm>
         <Footer />
       </MyWalletContainer>
-      <Toast
-        message={toast.toastMessage}
-        type={toast.toastType}
-        toastConfig={{
-          isToastVisible,
-          getToastColor,
-          hideToast,
-        }}
-      />
-      <Toast
-        message={toastconfig.toast.toastMessage}
-        type={toastconfig.toast.toastType}
-        toastConfig={{
-          isToastVisible: toastconfig.isToastVisible,
-          getToastColor: toastconfig.getToastColor,
-          hideToast: toastconfig.hideToast,
-        }}
-      />
+      <ToastsContainer>
+        <Toast
+          message={toast.toastMessage}
+          type={toast.toastType}
+          toastConfig={{
+            isToastVisible,
+            getToastColor,
+            hideToast,
+          }}
+        />
+        <Toast
+          message={toastconfig.toast.toastMessage}
+          type={toastconfig.toast.toastType}
+          toastConfig={{
+            isToastVisible: toastconfig.isToastVisible,
+            getToastColor: toastconfig.getToastColor,
+            hideToast: toastconfig.hideToast,
+          }}
+        />
+      </ToastsContainer>
     </>
   );
 };

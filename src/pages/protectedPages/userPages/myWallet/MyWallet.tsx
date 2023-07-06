@@ -10,6 +10,7 @@ import {
   Footer,
   Image,
   Indicator,
+  SidebarDefault,
   Toast,
 } from "../../../../components";
 
@@ -46,6 +47,7 @@ const MyWallet = (): JSX.Element => {
 
   return (
     <>
+      <SidebarDefault />
       <MyWalletContainer>
         <PageHeader>
           <PageTitle>Mi Billetera</PageTitle>

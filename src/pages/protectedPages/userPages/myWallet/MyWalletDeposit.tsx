@@ -20,6 +20,7 @@ import {
   Toast,
   InputFile,
   LoadingButton,
+  SidebarDefault,
 } from "../../../../components";
 
 import { Wallet3dIcon, Logo2 } from "../../../../assets";
@@ -107,6 +108,7 @@ const MyWalletDeposit = (): JSX.Element => {
 
   return (
     <>
+      <SidebarDefault />
       <MyWalletContainer>
         <PageHeader>
           <PageTitle>Mi Billetera</PageTitle>

@@ -50,4 +50,114 @@ const LinkVariant = styled(Link)`
   }
 `;
 
-export { FormContainer, Links, LinkVariant };
+const CardAdTitle = styled.h2`
+  font-size: 1.5rem;
+  color: var(--white);
+  text-align: center;
+  font-weight: bold;
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
+    text-align: left;
+  }
+`;
+
+const IndicatorTitle = styled(CardAdTitle)`
+  font-size: 1rem;
+  color: var(--dark-gray);
+  font-weight: 600;
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
+`;
+
+const IndicatorValue = styled(CardAdTitle)`
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--bg-secondary-color);
+  span {
+    font-size: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    font-size: 4rem;
+  }
+`;
+
+const Indicators = styled.section`
+  width: 100%;
+  display: inline-flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+
+const IndicatorList = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  justify-content: center;
+  p {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--bg-secondary-color);
+  }
+`;
+
+const IndicatorHead = styled.div`
+  width: 100%;
+  display: inline-flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+    flex-direction: row;
+  }
+`;
+
+const PromIndicator = styled.div`
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: var(--bg-secondary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: left;
+    color: var(--white);
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    span {
+      font-size: 1rem;
+      font-weight: normal;
+      text-align: center;
+    }
+  }
+`;
+
+export {
+  FormContainer,
+  Links,
+  LinkVariant,
+  CardAdTitle,
+  IndicatorTitle,
+  IndicatorValue,
+  Indicators,
+  IndicatorHead,
+  IndicatorList,
+  PromIndicator,
+};

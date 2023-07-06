@@ -52,7 +52,7 @@ interface UserProfileContextType {
 }
 
 interface WalletContextType {
-  wallet: WalletData | null;
+  wallet: WalletData;
   transactionVoucher: string;
   getUserWalletData: (config: MessageConfig) => Promise<void>;
   setUserWalletAddress: (

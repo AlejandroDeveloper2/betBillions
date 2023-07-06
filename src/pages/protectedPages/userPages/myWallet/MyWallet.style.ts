@@ -131,6 +131,20 @@ const InputRow = styled.div`
   }
 `;
 
+const ToastsContainer = styled.div`
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  div {
+    position: relative;
+  }
+`;
+
 export {
   MyWalletContainer,
   PageTitle,
@@ -142,4 +156,5 @@ export {
   WalletBody,
   WalletInputContainer,
   InputRow,
+  ToastsContainer,
 };

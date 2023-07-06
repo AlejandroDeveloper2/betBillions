@@ -13,10 +13,8 @@ const getTransactionWalletValues = (
   urlTransaction,
 });
 
-const getWalletInfo = (
-  walletAddress: string | null
-): WalletWithdrawFormValues => ({
-  wallet: walletAddress ? walletAddress : "",
+const getWalletInfo = (): WalletWithdrawFormValues => ({
+  wallet: "",
 });
 
 const schema = yup

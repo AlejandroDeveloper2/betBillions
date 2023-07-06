@@ -12,6 +12,7 @@ export type {
   AdCardProps,
   IndicatorProps,
   InvitationLinkProps,
+  SidebarProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";

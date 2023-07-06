@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { useAuthContext, useUserSession } from "../../hooks";
 import { getMenuItems } from "./constants";
 
-import { Sidebar, Menu } from "../../components";
+import { Menu } from "../../components";
 
 import { Container, Panel } from "./ProtectedLayout.style";
 
@@ -21,7 +21,6 @@ const ProtectedLayout = (): JSX.Element => {
       </Menu>
       <Panel>
         <Outlet />
-        <Sidebar />
       </Panel>
     </Container>
   );

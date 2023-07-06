@@ -36,7 +36,7 @@ const getMenuItems = (closeSession: () => void): MenuItem[] => [
     label: "Sorteos",
     icon: MdGames,
     title: "Ver sorteos disponibles",
-    to: "#",
+    to: "/userPanel/lottery",
   },
   {
     label: "Configuración",

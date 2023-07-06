@@ -5,11 +5,12 @@ const SidebarContainer = styled.aside`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 2.5rem;
+  gap: 1.5rem;
+  display: flex;
   @media (min-width: 1000px) {
     flex-direction: column;
     width: 20%;
-    gap: 3.5rem;
+    gap: 2rem;
     position: absolute;
     top: 0;
     right: 2rem;
@@ -26,6 +27,7 @@ const WinnersList = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 1rem;
 
   @media (min-width: 768px) {
     flex-direction: row;

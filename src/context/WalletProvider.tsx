@@ -21,7 +21,13 @@ const userWalletService = new UserWalletService();
 const tokenAuth = new TokenAuth();
 
 const WalletProvider = ({ children }: ProviderProps) => {
-  const [wallet, setWallet] = useState<WalletData | null>(null);
+  const [wallet, setWallet] = useState<WalletData>({
+    red: "",
+    balance: 0,
+    wallet: null,
+    state: false,
+    currency: "",
+  });
   const [transactionVoucher, setTransactionVoucher] = useState<string>("");
 
   const getUserWalletData = useCallback(

@@ -173,6 +173,10 @@ type InvitationLinkProps = {
   toastConfig: ToastConfig;
 };
 
+type SidebarProps = {
+  children?: JSX.Element | JSX.Element[] | any;
+};
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -188,6 +192,7 @@ export type {
   AdCardProps,
   IndicatorProps,
   InvitationLinkProps,
+  SidebarProps,
 };
 
 export { ToastTypes };

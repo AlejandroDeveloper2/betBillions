@@ -26,7 +26,7 @@ const AdCard = (props: AdCardProps): JSX.Element => {
             size={{ lg: 70, md: 40, sm: 80 }}
           />
         </Figure>
-        {play && <PlayLink to="#">Jugar</PlayLink>}
+        {play && <PlayLink to="/userPanel/lottery/details">Jugar</PlayLink>}
         <Image
           source={BingoFigure}
           alt={"Bet billions bingo"}

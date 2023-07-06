@@ -52,18 +52,6 @@ const PanelContainer = styled.div`
   }
 `;
 
-const CardAdTitle = styled.h2`
-  font-size: 1.5rem;
-  color: var(--white);
-  text-align: center;
-  font-weight: bold;
-
-  @media (min-width: 768px) {
-    font-size: 2rem;
-    text-align: left;
-  }
-`;
-
 const Datetext = styled.p`
   font-size: 1.7rem;
   color: var(--white);
@@ -75,59 +63,4 @@ const Datetext = styled.p`
   }
 `;
 
-const IndicatorTitle = styled(CardAdTitle)`
-  font-size: 1rem;
-  color: var(--dark-gray);
-  font-weight: 600;
-  @media (min-width: 768px) {
-    font-size: 1.5rem;
-  }
-`;
-
-const IndicatorValue = styled(CardAdTitle)`
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--bg-secondary-color);
-  span {
-    font-size: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    font-size: 4rem;
-  }
-`;
-
-const Indicators = styled.section`
-  width: 100%;
-  display: inline-flex;
-  gap: 2rem;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
-`;
-
-const IndicatorHead = styled.div`
-  width: 100%;
-  display: inline-flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  @media (min-width: 768px) {
-    justify-content: flex-start;
-    flex-direction: row;
-  }
-`;
-
-export {
-  PanelContainer,
-  CardAdTitle,
-  Datetext,
-  IndicatorTitle,
-  Indicators,
-  IndicatorHead,
-  IndicatorValue,
-};
+export { PanelContainer, Datetext };
