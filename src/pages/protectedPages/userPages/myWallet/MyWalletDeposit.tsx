@@ -108,8 +108,8 @@ const MyWalletDeposit = (): JSX.Element => {
 
   return (
     <>
-      <SidebarDefault />
       <MyWalletContainer>
+        <SidebarDefault />
         <PageHeader>
           <PageTitle>Mi Billetera</PageTitle>
           <Image

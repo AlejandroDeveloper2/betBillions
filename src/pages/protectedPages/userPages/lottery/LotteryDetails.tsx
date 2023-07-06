@@ -22,8 +22,8 @@ import {
 const LotteryDetails = (): JSX.Element => {
   return (
     <>
-      <SidebarBalance />
       <LotteryContainer>
+        <SidebarBalance />
         <h1>Sorteos</h1>
         <AdCard>
           <CardAdTitle>Juega y gana </CardAdTitle>

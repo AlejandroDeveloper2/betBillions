@@ -45,7 +45,7 @@ const LinkContent = styled.div`
   }
   /* border: 1px solid #000; */
   span {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     color: var(--bg-primary-color);
     font-weight: medium;
     text-align: center;

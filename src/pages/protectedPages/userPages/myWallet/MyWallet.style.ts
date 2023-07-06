@@ -6,7 +6,7 @@ const MyWalletContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-top: 2rem;
+  padding-top: 1rem;
   padding-bottom: 6rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;

@@ -60,8 +60,8 @@ const UserPanel = (): JSX.Element => {
 
   return (
     <>
-      <SidebarDefault />
       <PanelContainer>
+        <SidebarDefault />
         <h1>
           Bienvenido <span>{userAuth ? userAuth.fullName : "Usuario"}</span>
         </h1>

@@ -7,8 +7,8 @@ import { CardAdTitle } from "../../../../styles/GlobalStyles.style";
 const LotteryPage = (): JSX.Element => {
   return (
     <>
-      <SidebarBalance />
       <LotteryContainer>
+        <SidebarBalance />
         <h1>Sorteos</h1>
         <AdCard play>
           <CardAdTitle>Juega y gana </CardAdTitle>

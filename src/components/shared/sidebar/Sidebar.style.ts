@@ -5,7 +5,7 @@ const SidebarContainer = styled.aside`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 1.5rem;
+  gap: 1rem;
   display: flex;
   @media (min-width: 1000px) {
     flex-direction: column;

@@ -123,8 +123,8 @@ const MyWalletWithdraw = (): JSX.Element => {
 
   return (
     <>
-      <SidebarDefault />
       <MyWalletContainer>
+        <SidebarDefault />
         <PageHeader>
           <PageTitle>Retirar</PageTitle>
           <Image
