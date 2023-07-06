@@ -149,11 +149,11 @@ const LinkItem = styled(Link)<MenuItemStyleProps>`
   text-decoration: none;
   padding: 0.5rem;
   border-radius: 1rem;
-  background-color: ${(props) => props.background};
+  background-color: ${(props: MenuItemStyleProps) => props.background};
   transition: all 0.6s ease;
 
   span {
-    color: ${(props) => props.color};
+    color: ${(props: MenuItemStyleProps) => props.color};
     font-size: 1.2rem;
     font-weight: 600;
     display: none;
