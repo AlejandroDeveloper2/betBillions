@@ -15,7 +15,7 @@ import {
   UpdatePassFormValues,
   UserAuth,
 } from "../types";
-import { TokenAuth, UserAuthState, UserSession } from "../utils";
+import { TokenAuth, UserAuthState } from "../utils";
 
 /*services*/
 import { UserAuthentication } from "../services/authentication.service";
@@ -26,7 +26,6 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 const authService = new UserAuthentication();
 const tokenAuth = new TokenAuth();
 const userAuthStateLS = new UserAuthState();
-const userSessionLS = new UserSession();
 
 const AuthProvider = ({ children }: ProviderProps) => {
   const [authStatus, setAuthStatus] = useState<AuthStatus>(
@@ -79,7 +78,6 @@ const AuthProvider = ({ children }: ProviderProps) => {
       tokenAuth.removeToken();
       setAuthStatus("not-authenticated");
       userAuthStateLS.removeUserAuthState();
-      userSessionLS.removeSessionTime();
     }, delay);
   }, []);
 

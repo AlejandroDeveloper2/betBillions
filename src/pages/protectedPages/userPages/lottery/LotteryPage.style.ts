@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { RoundStyledProps } from "../../../../types";
 
 const LotteryContainer = styled.div`
   width: 100%;
@@ -28,7 +29,7 @@ const LotteryContainer = styled.div`
   }
 
   @media (min-width: 1000px) {
-    align-items: flex-start;
+    align-items: center;
     width: 70%;
     h1 {
       display: inline-block;
@@ -44,16 +45,14 @@ const LotteryContainer = styled.div`
 
 const IndicatorList = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   gap: 0.5rem;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  p {
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-align: center;
-    color: var(--bg-secondary-color);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
@@ -82,4 +81,43 @@ const PromIndicator = styled.div`
   }
 `;
 
-export { LotteryContainer, IndicatorList, PromIndicator };
+const RoundDatails = styled.div<RoundStyledProps>`
+  background-image: ${(props: RoundStyledProps) =>
+    props.roundKey < 5
+      ? "linear-gradient(to right, var(--green-two), var(--green))"
+      : "linear-gradient(to right, var(--bg-primary-color), var(--bg-secondary-color))"};
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
+  p {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    color: ${(props: RoundStyledProps) =>
+      props.roundKey < 5 ? "var(--dark-gray)" : "var(--white)"};
+  }
+  svg {
+    color: ${(props: RoundStyledProps) =>
+      props.roundKey < 5 ? "var(--dark-gray)" : "var(--white)"};
+  }
+  span {
+    font-size: 0.8rem;
+    font-weight: normal;
+    text-align: center;
+    color: ${(props: RoundStyledProps) =>
+      props.roundKey < 5 ? "var(--dark-gray)" : "var(--white)"};
+    small {
+      font-weight: bolder;
+      font-size: 1rem;
+    }
+  }
+  span:last-of-type {
+    font-size: 3rem;
+    color: var(--light-gray);
+  }
+`;
+
+export { LotteryContainer, IndicatorList, PromIndicator, RoundDatails };

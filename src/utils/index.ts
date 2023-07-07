@@ -49,25 +49,25 @@ class TokenAuth {
   }
 }
 
-class UserSession {
-  public getSessionTime(): number {
-    const seesionTime = window.parseInt(
-      window.localStorage.getItem("sessionTime") ?? "0"
-    );
-    return seesionTime;
-  }
+// class UserSession {
+//   public getSessionTime(): number {
+//     const seesionTime = window.parseInt(
+//       window.localStorage.getItem("sessionTime") ?? "0"
+//     );
+//     return seesionTime;
+//   }
 
-  public setSessionTime(minutes: number): void {
-    window.localStorage.setItem("sessionTime", JSON.stringify(minutes));
-  }
+//   public setSessionTime(minutes: number): void {
+//     window.localStorage.setItem("sessionTime", JSON.stringify(minutes));
+//   }
 
-  public removeSessionTime(): void {
-    const sessionTime = this.getSessionTime();
-    if (sessionTime) {
-      window.localStorage.removeItem("sessionTime");
-    }
-  }
-}
+//   public removeSessionTime(): void {
+//     const sessionTime = this.getSessionTime();
+//     if (sessionTime) {
+//       window.localStorage.removeItem("sessionTime");
+//     }
+//   }
+// }
 
 class UserAuthState {
   public getUserAuthState(): AuthStatus {
@@ -117,12 +117,23 @@ const copyToClipBoard = (textToCopy: string, config: ToastConfig): void => {
   hideToast(3000);
 };
 
+const formatDate = (date: string): string => {
+  const formattedDate = new Date(date).toLocaleString("es-ES", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  return formattedDate;
+};
+
 export {
   ValuesForm,
   TokenAuth,
-  UserSession,
+  // UserSession,
   UserAuthState,
   getInvitationLink,
   getActiveItem,
   copyToClipBoard,
+  formatDate,
 };

@@ -162,6 +162,7 @@ type MenuProps = {
 type AdCardProps = {
   children: JSX.Element | JSX.Element[];
   play?: boolean;
+  lotteryId: number;
 };
 
 type IndicatorProps = {
@@ -175,6 +176,16 @@ type InvitationLinkProps = {
 
 type SidebarProps = {
   children?: JSX.Element | JSX.Element[] | any;
+};
+
+type TableProps = {
+  children: JSX.Element | JSX.Element[] | any;
+  headers: string[];
+  columnsNumber: number;
+};
+
+type TableItemProps = {
+  value: string | number;
 };
 
 export type {
@@ -193,6 +204,8 @@ export type {
   IndicatorProps,
   InvitationLinkProps,
   SidebarProps,
+  TableProps,
+  TableItemProps,
 };
 
 export { ToastTypes };

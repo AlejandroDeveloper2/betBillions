@@ -1,15 +1,9 @@
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback } from "react";
 
 import { useAuthContext } from ".";
-import { UserSession } from "../utils";
-
-const userSession = new UserSession();
 
 const useUserSession = (sessionTimer: number): void => {
-  const [sessionTimerCount, setSessionTimerCount] = useState<number>(
-    userSession.getSessionTime()
-  );
-  const { validateUserAuth } = useAuthContext();
+  const { validateUserAuth, userAuth } = useAuthContext();
 
   const validateUserSession = useCallback((): void => {
     validateUserAuth();
@@ -21,18 +15,16 @@ const useUserSession = (sessionTimer: number): void => {
       return;
     }
     const interval = window.setInterval(() => {
-      setSessionTimerCount((prev) => prev + 1);
-      userSession.setSessionTime(sessionTimerCount);
-      if (sessionTimerCount === 7200) {
+      const currentDate = window.Math.floor(Date.now() / 1000);
+      const expirationDate = userAuth ? userAuth.exp : 0;
+      if (currentDate >= expirationDate) {
         validateUserSession();
-        setSessionTimerCount(0);
-        userSession.removeSessionTime();
       }
     }, sessionTimer);
     return () => {
       window.clearInterval(interval);
     };
-  }, [sessionTimer, sessionTimerCount, validateUserSession]);
+  }, [sessionTimer, validateUserSession]);
 };
 
 export default useUserSession;

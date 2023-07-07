@@ -90,7 +90,7 @@ const SidebarDefault = (): JSX.Element => {
         <WinnerInfo>
           <Info>
             <UserName>
-              shirley figueroa <span>5m ago</span>{" "}
+              Campeon32 <span>5m ago</span>{" "}
             </UserName>
             <p>Esto es muy real gracias betbillions</p>
           </Info>
@@ -131,7 +131,7 @@ const SidebarBalance = (): JSX.Element => {
         <WinnerInfo>
           <Info>
             <UserName>
-              shirley figueroa <span>5m ago</span>{" "}
+              Campeon32 <span>5m ago</span>{" "}
             </UserName>
             <p>Esto es muy real gracias betbillions</p>
           </Info>

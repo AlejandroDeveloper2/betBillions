@@ -28,6 +28,7 @@ const WinnersList = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -116,6 +117,7 @@ const SocialMedia = styled.div`
   display: flex;
   padding: 2rem 1.5rem;
   background-color: var(--light-gray);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 1rem;
   flex-direction: column;
   justify-content: center;

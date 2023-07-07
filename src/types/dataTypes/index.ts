@@ -42,6 +42,7 @@ interface UserAuth {
   fullName: string;
   state: boolean;
   roles: RoleType[];
+  exp: number;
 }
 
 interface MenuItem {
@@ -67,6 +68,28 @@ interface WalletData {
   currency: string;
 }
 
+interface LotteryListItem {
+  id: number;
+  key: string;
+  startDate: string;
+  numberOfRounds: number;
+  state: boolean;
+}
+
+interface LotteryDetail extends LotteryListItem {
+  rounds: LotteryRound[];
+}
+
+interface LotteryRound {
+  id: number;
+  idLottery: number | null;
+  typeGame: string;
+  numberRound: number;
+  award: number;
+  userWinner: string | null;
+  completed: boolean;
+}
+
 export type {
   AuthStatus,
   ApiName,
@@ -78,4 +101,7 @@ export type {
   MenuItem,
   UserPanelData,
   WalletData,
+  LotteryListItem,
+  LotteryDetail,
+  LotteryRound,
 };

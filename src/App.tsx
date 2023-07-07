@@ -1,7 +1,12 @@
 import { BrowserRouter } from "react-router-dom";
 
 /* Context */
-import { AuthProvider, UserProfileProvider, WalletProvider } from "./context";
+import {
+  AuthProvider,
+  UserProfileProvider,
+  WalletProvider,
+  LotteryProvider,
+} from "./context";
 
 /* Routers */
 import AppRouter from "./routes/AppRouter";
@@ -9,13 +14,15 @@ import AppRouter from "./routes/AppRouter";
 function App(): JSX.Element {
   return (
     <BrowserRouter>
-      <WalletProvider>
-        <UserProfileProvider>
-          <AuthProvider>
-            <AppRouter />
-          </AuthProvider>
-        </UserProfileProvider>
-      </WalletProvider>
+      <LotteryProvider>
+        <WalletProvider>
+          <UserProfileProvider>
+            <AuthProvider>
+              <AppRouter />
+            </AuthProvider>
+          </UserProfileProvider>
+        </WalletProvider>
+      </LotteryProvider>
     </BrowserRouter>
   );
 }

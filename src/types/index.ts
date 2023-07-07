@@ -13,6 +13,8 @@ export type {
   IndicatorProps,
   InvitationLinkProps,
   SidebarProps,
+  TableProps,
+  TableItemProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
@@ -33,6 +35,8 @@ export type {
   ContainerFormStyleProps,
   MenuItemStyleProps,
   ImageStyledProps,
+  TableStyledProps,
+  RoundStyledProps,
 } from "./styledComponentsTypes";
 
 export type {
@@ -46,6 +50,9 @@ export type {
   MenuItem,
   UserPanelData,
   WalletData,
+  LotteryListItem,
+  LotteryDetail,
+  LotteryRound,
 } from "./dataTypes";
 
 export type {
@@ -53,4 +60,5 @@ export type {
   AuthContextType,
   UserProfileContextType,
   WalletContextType,
+  LotteryContextType,
 } from "./contextTypes";

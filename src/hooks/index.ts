@@ -8,3 +8,4 @@ export { default as useScreenLoader } from "./useScreenLoader";
 export { default as useAuthContext } from "./useAuthContext";
 export { default as useUserProfileContext } from "./useUserProfileContext";
 export { default as useWalletContext } from "./useWalletContext";
+export { default as useLotteryContext } from "./useLotteryContext";

@@ -22,6 +22,7 @@ export {
 export { default as Footer } from "./shared/footer/Footer";
 export { default as AdCard } from "./shared/adCard/AdCard";
 export { default as Indicator } from "./shared/indicator/Indicator";
+export { default as Table } from "./shared/table/Table";
 
 /*home components */
 export { default as InvitationLink } from "./home/invitationLink/InvitationLink";

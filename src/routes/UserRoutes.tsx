@@ -11,6 +11,7 @@ import {
   MyWalletDeposit,
   MyWalletWithdraw,
   Page404,
+  Transactions,
   UserPanel,
 } from "../pages";
 
@@ -29,7 +30,11 @@ const UserRoutes = (): JSX.Element => {
           element={<MyWalletWithdraw />}
         />
         <Route path="/userPanel/lottery" element={<LotteryPage />} />
-        <Route path="/userPanel/lottery/details" element={<LotteryDetails />} />
+        <Route
+          path="/userPanel/lottery/details/:lotteryId"
+          element={<LotteryDetails />}
+        />
+        <Route path="/userPanel/transactions" element={<Transactions />} />
         <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>

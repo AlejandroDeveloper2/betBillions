@@ -36,6 +36,14 @@ interface ImageStyledProps {
   };
 }
 
+interface TableStyledProps {
+  columnsNumber: number;
+}
+
+interface RoundStyledProps {
+  roundKey: number;
+}
+
 export type {
   ButtonStyleProps,
   ToastStyleProps,
@@ -43,4 +51,6 @@ export type {
   ContainerFormStyleProps,
   MenuItemStyleProps,
   ImageStyledProps,
+  TableStyledProps,
+  RoundStyledProps,
 };

@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import {
   useAuthContext,
   useLoading,
+  useLotteryContext,
   useToast,
   useUserProfileContext,
 } from "../../../../hooks";
+import { formatDate } from "../../../../utils";
 
 import {
   AdCard,
@@ -32,6 +34,7 @@ import { Gift3dIcon, Wallet3dIcon } from "../../../../assets";
 const UserPanel = (): JSX.Element => {
   const { userAuth } = useAuthContext();
   const { userPanelData, getUserPanelData } = useUserProfileContext();
+  const { reffels, getAllBingoReffels } = useLotteryContext();
 
   const {
     isToastVisible,
@@ -58,6 +61,13 @@ const UserPanel = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    getAllBingoReffels({
+      toastConfig: { showToast, hideToast, configToast },
+      loadingConfig: { activeLoading, inactiveLoading, setMessage },
+    });
+  }, []);
+
   return (
     <>
       <PanelContainer>
@@ -65,10 +75,21 @@ const UserPanel = (): JSX.Element => {
         <h1>
           Bienvenido <span>{userAuth ? userAuth.fullName : "Usuario"}</span>
         </h1>
-        <AdCard play>
-          <CardAdTitle>Proximo sorteo</CardAdTitle>
-          <Datetext>Martes 28 de Julio de 2023</Datetext>
-        </AdCard>
+        {isLoading ? (
+          <Loading
+            message={loadingMessage}
+            textColor="var(--bg-secondary-color)"
+          />
+        ) : (
+          reffels
+            .filter((reffel) => reffel.state === true)
+            .map((reffel) => (
+              <AdCard key={reffel.id} play={reffel.state} lotteryId={reffel.id}>
+                <CardAdTitle>Proximo sorteo</CardAdTitle>
+                <Datetext>{formatDate(reffel.startDate)}</Datetext>
+              </AdCard>
+            ))
+        )}
         <Indicators>
           <Indicator width="100%">
             <IndicatorHead>

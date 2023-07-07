@@ -2,6 +2,8 @@ import { UseFormReset } from "react-hook-form";
 import {
   AuthStatus,
   LoginFormValues,
+  LotteryDetail,
+  LotteryListItem,
   MessageConfig,
   RecoverPassFormValues,
   RegisterFormValues,
@@ -70,9 +72,17 @@ interface WalletContextType {
   ) => Promise<void>;
 }
 
+interface LotteryContextType {
+  reffels: LotteryListItem[];
+  lotteryDetail: LotteryDetail | null;
+  getAllBingoReffels: (config: MessageConfig) => Promise<void>;
+  getBingoReffel: (lotteryId: number, config: MessageConfig) => Promise<void>;
+}
+
 export type {
   AuthContextType,
   ProviderProps,
   UserProfileContextType,
   WalletContextType,
+  LotteryContextType,
 };

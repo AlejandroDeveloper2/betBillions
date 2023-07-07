@@ -24,7 +24,7 @@ const getMenuItems = (closeSession: () => void): MenuItem[] => [
     label: "Transacciones",
     icon: AiOutlineTransaction,
     title: "Mis transacciones",
-    to: "#",
+    to: "/userPanel/transactions",
   },
   {
     label: "Billetera",
