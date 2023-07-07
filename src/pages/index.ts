@@ -13,6 +13,7 @@ export { default as MyWalletWithdraw } from "./protectedPages/userPages/myWallet
 export { default as LotteryPage } from "./protectedPages/userPages/lottery/LotteryPage";
 export { default as LotteryDetails } from "./protectedPages/userPages/lottery/LotteryDetails";
 export { default as Transactions } from "./protectedPages/userPages/transactions/Transactions";
+export { default as TeamPage } from "./protectedPages/userPages/team/TeamPage";
 
 /*Error page */
 export { default as Page404 } from "./404Page/Page404";

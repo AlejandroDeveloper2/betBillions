@@ -6,7 +6,6 @@ import {
   ProviderProps,
   ToastTypes,
   WalletContextType,
-  WalletData,
   WalletDepositFormValues,
   WalletWithdrawFormValues,
 } from "../types";
@@ -21,44 +20,7 @@ const userWalletService = new UserWalletService();
 const tokenAuth = new TokenAuth();
 
 const WalletProvider = ({ children }: ProviderProps) => {
-  const [wallet, setWallet] = useState<WalletData>({
-    red: "",
-    balance: 0,
-    wallet: null,
-    state: false,
-    currency: "",
-  });
   const [transactionVoucher, setTransactionVoucher] = useState<string>("");
-
-  const getUserWalletData = useCallback(
-    async (config: MessageConfig): Promise<void> => {
-      const { loadingConfig, toastConfig } = config;
-      const token = tokenAuth.getToken();
-      if (token) {
-        try {
-          loadingConfig.setMessage("Cargando wallet...");
-          loadingConfig.activeLoading();
-          const res = await userWalletService.getUserWalletData(token);
-          setWallet(res);
-          toastConfig.configToast(
-            res.wallet ? ToastTypes.success : ToastTypes.warning,
-            res.wallet
-              ? "Wallet cargada satisfactoriamente!"
-              : "No tienes una wallet registrada!"
-          );
-          toastConfig.showToast();
-        } catch (error: unknown) {
-          const errorMessage = (error as Error).message;
-          toastConfig.showToast();
-          toastConfig.configToast(ToastTypes.error, errorMessage);
-        } finally {
-          toastConfig.hideToast(3000);
-          loadingConfig.inactiveLoading();
-        }
-      }
-    },
-    []
-  );
 
   const setUserWalletAddress = useCallback(
     async (
@@ -158,17 +120,13 @@ const WalletProvider = ({ children }: ProviderProps) => {
 
   const value = useMemo(
     () => ({
-      wallet,
       transactionVoucher,
-      getUserWalletData,
       setUserWalletAddress,
       sendWalletDepositTransaction,
       uploadTransactionVoucher,
     }),
     [
-      wallet,
       transactionVoucher,
-      getUserWalletData,
       setUserWalletAddress,
       sendWalletDepositTransaction,
       uploadTransactionVoucher,

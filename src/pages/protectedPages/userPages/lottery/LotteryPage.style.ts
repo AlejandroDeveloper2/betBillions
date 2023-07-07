@@ -83,7 +83,7 @@ const PromIndicator = styled.div`
 
 const RoundDatails = styled.div<RoundStyledProps>`
   background-image: ${(props: RoundStyledProps) =>
-    props.roundKey < 5
+    props.roundkey < 5
       ? "linear-gradient(to right, var(--green-two), var(--green))"
       : "linear-gradient(to right, var(--bg-primary-color), var(--bg-secondary-color))"};
   padding: 2rem;
@@ -97,18 +97,18 @@ const RoundDatails = styled.div<RoundStyledProps>`
     font-weight: 700;
     text-align: center;
     color: ${(props: RoundStyledProps) =>
-      props.roundKey < 5 ? "var(--dark-gray)" : "var(--white)"};
+      props.roundkey < 5 ? "var(--dark-gray)" : "var(--white)"};
   }
   svg {
     color: ${(props: RoundStyledProps) =>
-      props.roundKey < 5 ? "var(--dark-gray)" : "var(--white)"};
+      props.roundkey < 5 ? "var(--dark-gray)" : "var(--white)"};
   }
   span {
     font-size: 0.8rem;
     font-weight: normal;
     text-align: center;
     color: ${(props: RoundStyledProps) =>
-      props.roundKey < 5 ? "var(--dark-gray)" : "var(--white)"};
+      props.roundkey < 5 ? "var(--dark-gray)" : "var(--white)"};
     small {
       font-weight: bolder;
       font-size: 1rem;

@@ -1,9 +1,6 @@
 import * as yup from "yup";
 
-import {
-  WalletDepositFormValues,
-  WalletWithdrawFormValues,
-} from "../../../../types";
+import { WalletDepositFormValues, WalletWithdrawFormValues } from "types";
 
 const getTransactionWalletValues = (
   urlTransaction: string
@@ -13,8 +10,8 @@ const getTransactionWalletValues = (
   urlTransaction,
 });
 
-const getWalletInfo = (): WalletWithdrawFormValues => ({
-  wallet: "",
+const getWalletInfo = (wallet: string): WalletWithdrawFormValues => ({
+  wallet,
 });
 
 const schema = yup

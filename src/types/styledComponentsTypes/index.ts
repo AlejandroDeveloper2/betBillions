@@ -37,11 +37,11 @@ interface ImageStyledProps {
 }
 
 interface TableStyledProps {
-  columnsNumber: number;
+  columnsnumber: number;
 }
 
 interface RoundStyledProps {
-  roundKey: number;
+  roundkey: number;
 }
 
 export type {

@@ -93,7 +93,7 @@ interface LotteryRound {
 interface UserTransaction {
   id: number;
   balance: number;
-  typeHistory: string;
+  typeHistory: "Shopping" | "Earnings" | "Transaction";
   state: boolean;
   createdAt: string;
 }
@@ -102,6 +102,20 @@ interface AdminTransaction extends UserTransaction {
   hash: string;
   currency: string;
   userId: number;
+}
+
+type HeaderType = {
+  Icon: IconType;
+  label: string;
+};
+
+interface Team {
+  id: number;
+  userName: string;
+  fullName: string;
+  dateRegistered: string;
+  phone?: string;
+  level: string;
 }
 
 export type {
@@ -120,4 +134,6 @@ export type {
   LotteryRound,
   UserTransaction,
   AdminTransaction,
+  HeaderType,
+  Team,
 };

@@ -10,7 +10,6 @@ import {
   UpdatePassFormValues,
   UserAuth,
   UserPanelData,
-  WalletData,
   WalletDepositFormValues,
   WalletWithdrawFormValues,
 } from "..";
@@ -50,13 +49,10 @@ interface AuthContextType {
 
 interface UserProfileContextType {
   userPanelData: UserPanelData | null;
-  getUserPanelData: (config: MessageConfig) => Promise<void>;
 }
 
 interface WalletContextType {
-  wallet: WalletData;
   transactionVoucher: string;
-  getUserWalletData: (config: MessageConfig) => Promise<void>;
   setUserWalletAddress: (
     walletData: WalletWithdrawFormValues,
     config: MessageConfig

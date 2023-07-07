@@ -16,6 +16,7 @@ export type {
   TableProps,
   TableItemProps,
   CustomButtonProps,
+  TableRowProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
@@ -56,6 +57,8 @@ export type {
   LotteryRound,
   UserTransaction,
   AdminTransaction,
+  HeaderType,
+  Team,
 } from "./dataTypes";
 
 export type {

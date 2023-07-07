@@ -98,7 +98,7 @@ const LotteryDetails = (): JSX.Element => {
               </IndicatorHead>
               <IndicatorList>
                 {lotteryDetail?.rounds.map((round, index) => (
-                  <RoundDatails key={index} roundKey={index}>
+                  <RoundDatails key={index} roundkey={index}>
                     <p>Ronda {index + 1}:</p>
                     <IoGiftSharp
                       style={{

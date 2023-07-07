@@ -18,7 +18,7 @@ const getMenuItems = (closeSession: () => void): MenuItem[] => [
     label: "Mi equipo",
     icon: AiOutlineTeam,
     title: "Mi equipo de referidos",
-    to: "#",
+    to: "/userPanel/myTeam",
   },
   {
     label: "Transacciones",

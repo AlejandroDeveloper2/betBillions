@@ -61,7 +61,7 @@ const LinkContent = styled.div`
     span {
       font-size: 1.2rem;
       margin-bottom: 1.3rem;
-      width: auto;
+      width: 70%;
     }
     button {
       margin-bottom: 1.3rem;

@@ -11,6 +11,7 @@ import {
   MyWalletDeposit,
   MyWalletWithdraw,
   Page404,
+  TeamPage,
   Transactions,
   UserPanel,
 } from "@pages/index";
@@ -35,6 +36,7 @@ const UserRoutes = (): JSX.Element => {
           element={<LotteryDetails />}
         />
         <Route path="/userPanel/transactions" element={<Transactions />} />
+        <Route path="/userPanel/myTeam" element={<TeamPage />} />
         <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>

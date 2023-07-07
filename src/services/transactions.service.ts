@@ -15,11 +15,10 @@ class TransactionsService {
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
       const { data } = await axiosClient.get<UserTransaction[]>(
-        "/transaction/list",
+        "/paymentHistory/list",
         config
       );
       response = data;
-      console.log(response);
     } catch (_e: unknown) {
       const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
         .message;

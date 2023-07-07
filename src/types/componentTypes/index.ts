@@ -7,6 +7,7 @@ import {
 } from "react-hook-form";
 
 import {
+  HeaderType,
   LoginFormValues,
   MessageConfig,
   RecoverPassFormValues,
@@ -180,12 +181,20 @@ type SidebarProps = {
 
 type TableProps = {
   children: JSX.Element | JSX.Element[] | any;
-  headers: string[];
+  headers: HeaderType[];
   columnsNumber: number;
+  title: string;
 };
 
 type TableItemProps = {
   value: string | number;
+  Icon: IconType;
+  label: string;
+};
+
+type TableRowProps = {
+  children: JSX.Element | JSX.Element[] | any;
+  columnsNumber: number;
 };
 
 export type {
@@ -206,6 +215,7 @@ export type {
   SidebarProps,
   TableProps,
   TableItemProps,
+  TableRowProps,
 };
 
 export { ToastTypes };

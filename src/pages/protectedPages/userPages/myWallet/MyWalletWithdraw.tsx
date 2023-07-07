@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
 import { MdModeEditOutline, MdOutlinePersonOutline } from "react-icons/md";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { IoMdAdd } from "react-icons/io";
@@ -10,10 +8,12 @@ import { MessageConfig, WalletWithdrawFormValues } from "types";
 import { getWalletInfo, schema2 } from "./constants";
 import {
   useLoading,
+  useRealTimeFecher,
   useToast,
-  useUserProfileContext,
   useWalletContext,
 } from "@hooks/index";
+import { UserProfileService } from "@services/userProfile.service";
+import { UserWalletService } from "@services/userWallet.service";
 
 import {
   Indicator,
@@ -50,54 +50,32 @@ import {
 import { Wallet3dIcon, Gift3dIcon } from "@assets/index";
 
 const MyWalletWithdraw = (): JSX.Element => {
-  const { setUserWalletAddress, wallet, getUserWalletData } =
-    useWalletContext();
-  const { userPanelData, getUserPanelData } = useUserProfileContext();
+  const userProfileService = new UserProfileService();
+  const userWalletService = new UserWalletService();
+  const { setUserWalletAddress } = useWalletContext();
+  const { data: userPanelData, isLoading: isLoadingUserData } =
+    useRealTimeFecher("/users/panel", userProfileService.getUserPanelData);
+  const { data: wallet, isLoading: isLoadingWallet } = useRealTimeFecher(
+    "/userWallet/wallet",
+    userWalletService.getUserWalletData
+  );
 
   const {
     register,
     reset,
-    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<WalletWithdrawFormValues>({
-    defaultValues: getWalletInfo(),
+    defaultValues: getWalletInfo(
+      wallet ? (wallet.wallet ? wallet.wallet : "") : ""
+    ),
     resolver: yupResolver(schema2),
   });
 
-  const {
-    isToastVisible,
-    toast,
-    showToast,
-    hideToast,
-    getToastColor,
-    configToast,
-  } = useToast();
   const toastconfig = useToast();
-
-  const {
-    isLoading,
-    loadingMessage,
-    activeLoading,
-    inactiveLoading,
-    setMessage,
-  } = useLoading();
   const loadingConfig = useLoading();
 
   const config: MessageConfig = {
-    toastConfig: {
-      showToast,
-      hideToast,
-      configToast,
-    },
-    loadingConfig: {
-      activeLoading,
-      inactiveLoading,
-      setMessage,
-    },
-  };
-
-  const config2: MessageConfig = {
     toastConfig: {
       showToast: toastconfig.showToast,
       hideToast: toastconfig.hideToast,
@@ -109,16 +87,6 @@ const MyWalletWithdraw = (): JSX.Element => {
       setMessage: loadingConfig.setMessage,
     },
   };
-
-  useEffect(() => {
-    getUserPanelData(config);
-  }, []);
-
-  useEffect(() => {
-    getUserWalletData(config2).then(() => {
-      setValue("wallet", wallet.wallet ? wallet.wallet : "");
-    });
-  }, [wallet.wallet]);
 
   return (
     <>
@@ -142,7 +110,7 @@ const MyWalletWithdraw = (): JSX.Element => {
         <CustomForm
           formTitle=""
           formType="walletWithdraw"
-          config={config2}
+          config={config}
           handleSubmit={handleSubmit}
           action={setUserWalletAddress}
           reset={reset}
@@ -150,9 +118,9 @@ const MyWalletWithdraw = (): JSX.Element => {
           <WalletCard>
             <WalletInputContainer>
               <InputRow>
-                {isLoading ? (
+                {isLoadingWallet ? (
                   <Loading
-                    message={loadingMessage}
+                    message="Cargando tu billetera..."
                     textColor="var(--bg-secondary-color)"
                   />
                 ) : (
@@ -183,12 +151,12 @@ const MyWalletWithdraw = (): JSX.Element => {
                     width: "auto",
                   }}
                   title={
-                    wallet.wallet
+                    wallet?.wallet
                       ? "Editar direccion de billetera"
                       : "Registrar billetera"
                   }
                 >
-                  {wallet.wallet ? (
+                  {wallet?.wallet ? (
                     <MdModeEditOutline
                       style={{ fontSize: "2rem", fill: "var(--white)" }}
                     />
@@ -213,9 +181,9 @@ const MyWalletWithdraw = (): JSX.Element => {
                     size={{ lg: 20, md: 20, sm: 30 }}
                   />
                 </IndicatorHead>
-                {isLoading ? (
+                {isLoadingUserData ? (
                   <Loading
-                    message={loadingMessage}
+                    message="Cargando premios disponibles..."
                     textColor="var(--bg-primary-color)"
                   />
                 ) : (
@@ -249,16 +217,6 @@ const MyWalletWithdraw = (): JSX.Element => {
         </CustomForm>
         <Footer />
       </MyWalletContainer>
-
-      <Toast
-        message={toast.toastMessage}
-        type={toast.toastType}
-        toastConfig={{
-          isToastVisible,
-          getToastColor,
-          hideToast,
-        }}
-      />
       <Toast
         message={toastconfig.toast.toastMessage}
         type={toastconfig.toast.toastType}
