@@ -1,4 +1,4 @@
-import { LoadingProps } from "../../../types";
+import { LoadingProps } from "types";
 
 /*styles */
 import { LoadingContainer, Spinner, SpinnerVariant } from "./Loading.style";

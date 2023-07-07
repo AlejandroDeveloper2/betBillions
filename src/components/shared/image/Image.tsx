@@ -1,4 +1,4 @@
-import { ImageProps } from "../../../types";
+import { ImageProps } from "types";
 
 /*styles */
 import { Image as ImageStyled } from "./Image.style";

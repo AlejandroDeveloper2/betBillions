@@ -3,8 +3,8 @@ import { MdOutlinePersonOutline, MdHttps } from "react-icons/md";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { DEFAULTVALUES, schema } from "./constants";
-import { LoginFormValues } from "../../../types";
-import { useAuthContext, useLoading, useToast } from "../../../hooks";
+import { LoginFormValues } from "types";
+import { useAuthContext, useLoading, useToast } from "@hooks/index";
 
 /*Components */
 import {
@@ -14,14 +14,10 @@ import {
   ErrorMessage,
   LoadingButton,
   Toast,
-} from "../../../components";
+} from "@components/index";
 
 /*styles*/
-import {
-  FormContainer,
-  Links,
-  LinkVariant,
-} from "../../../styles/GlobalStyles.style";
+import { FormContainer, Links, LinkVariant } from "@styles/GlobalStyles.style";
 
 const LoginPage = (): JSX.Element => {
   const {

@@ -3,9 +3,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import PublicRoutes from "./PublicRoutes";
 import ProtectedRoutes from "./ProtectedRoutes";
 
-import { useAuthContext } from "../hooks";
+import { useAuthContext } from "@hooks/index";
 
-import { LoadingScreen } from "../components";
+import { LoadingScreen } from "@components/index";
 
 const AppRouter = (): JSX.Element => {
   const { authStatus } = useAuthContext();

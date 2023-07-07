@@ -7,7 +7,7 @@ import {
   MenuItemStyleProps,
   ToastConfig,
   ToastTypes,
-} from "../types";
+} from "types";
 
 class ValuesForm {
   public setFormValues(formType: FormType, data: any) {
@@ -48,26 +48,6 @@ class TokenAuth {
     }
   }
 }
-
-// class UserSession {
-//   public getSessionTime(): number {
-//     const seesionTime = window.parseInt(
-//       window.localStorage.getItem("sessionTime") ?? "0"
-//     );
-//     return seesionTime;
-//   }
-
-//   public setSessionTime(minutes: number): void {
-//     window.localStorage.setItem("sessionTime", JSON.stringify(minutes));
-//   }
-
-//   public removeSessionTime(): void {
-//     const sessionTime = this.getSessionTime();
-//     if (sessionTime) {
-//       window.localStorage.removeItem("sessionTime");
-//     }
-//   }
-// }
 
 class UserAuthState {
   public getUserAuthState(): AuthStatus {

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import UserProfileContext from "../context/UserProfileProvider";
+import UserProfileContext from "@context/UserProfileProvider";
 
 const useUserProfileContext = () => {
   return useContext(UserProfileContext);

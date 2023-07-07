@@ -1,5 +1,4 @@
 import { useState, createContext, useMemo, useCallback } from "react";
-// import { useLocation, useNavigate } from "react-router-dom";
 
 import {
   MessageConfig,
@@ -8,10 +7,10 @@ import {
   UserProfileContextType,
   UserPanelData,
 } from "../types";
-import { TokenAuth } from "../utils";
+import { TokenAuth } from "@utils/index";
 
 /*services*/
-import { UserProfileService } from "../services/userProfile.service";
+import { UserProfileService } from "@services/userProfile.service";
 
 const UserProfileContext = createContext<UserProfileContextType>(
   {} as UserProfileContextType

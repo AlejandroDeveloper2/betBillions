@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 
-import getAxiosClient from "../config/axiosClient";
+import getAxiosClient from "@config/axiosClient";
 import {
   LoginFormValues,
   LoginServerResponse,
@@ -8,7 +8,7 @@ import {
   RegisterFormValues,
   ServerResponse,
   UpdatePassFormValues,
-} from "../types";
+} from "types";
 
 class UserAuthentication {
   public async authenticateUser(

@@ -1,8 +1,8 @@
-import { Image } from "../../components";
+import { Image } from "@components/index";
 
-import { PageNotFound } from "../../assets";
+import { PageNotFound } from "@assets/index";
 
-import { FormContainer } from "../../styles/GlobalStyles.style";
+import { FormContainer } from "@styles/GlobalStyles.style";
 import { Title, Figure } from "./Page404.style";
 
 const Page404 = (): JSX.Element => {

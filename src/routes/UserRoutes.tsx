@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 /* Layouts */
-import { ProtectedLayout } from "../layouts";
+import { ProtectedLayout } from "@layouts/index";
 
 /* Pages */
 import {
@@ -13,7 +13,7 @@ import {
   Page404,
   Transactions,
   UserPanel,
-} from "../pages";
+} from "@pages/index";
 
 const UserRoutes = (): JSX.Element => {
   return (

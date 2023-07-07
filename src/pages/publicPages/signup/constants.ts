@@ -1,8 +1,8 @@
 import * as yup from "yup";
 import { Location } from "react-router-dom";
 
-import { RegisterFormValues } from "../../../types";
-import { getInvitationLink } from "../../../utils";
+import { RegisterFormValues } from "types";
+import { getInvitationLink } from "@utils/index";
 
 const getDefaultValues = (location: Location): RegisterFormValues => {
   const invitationLink = getInvitationLink(location);

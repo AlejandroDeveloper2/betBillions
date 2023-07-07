@@ -6,7 +6,7 @@ import {
   UserProfileProvider,
   WalletProvider,
   LotteryProvider,
-} from "./context";
+} from "@context/index";
 
 /* Routers */
 import AppRouter from "./routes/AppRouter";

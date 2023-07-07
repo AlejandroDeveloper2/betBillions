@@ -1,4 +1,4 @@
-import { ErrorMessageProps } from "../../../types";
+import { ErrorMessageProps } from "types";
 
 /*styles */
 import { ErrorMessageContainer } from "./ErrorMessage.style";

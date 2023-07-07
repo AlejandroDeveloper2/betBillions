@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-import { useLoading, useLotteryContext, useToast } from "../../../../hooks";
-import { formatDate } from "../../../../utils";
+import { useLoading, useLotteryContext, useToast } from "@hooks/index";
+import { formatDate } from "@utils/index";
 
 import {
   AdCard,
@@ -9,11 +9,11 @@ import {
   Loading,
   SidebarBalance,
   Toast,
-} from "../../../../components";
+} from "@components/index";
 
 import { Datetext } from "../userPanel/UserPanel.style";
 import { LotteryContainer } from "./LotteryPage.style";
-import { CardAdTitle } from "../../../../styles/GlobalStyles.style";
+import { CardAdTitle } from "@styles/GlobalStyles.style";
 
 const LotteryPage = (): JSX.Element => {
   const { reffels, getAllBingoReffels } = useLotteryContext();

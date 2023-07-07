@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-import { LoginFormValues } from "../../../types";
+import { LoginFormValues } from "types";
 
 const DEFAULTVALUES: LoginFormValues = {
   email: "",

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { ContainerFormStyleProps } from "../types";
+import { ContainerFormStyleProps } from "types";
 
 const FormContainer = styled.div<ContainerFormStyleProps>`
   width: 100%;

@@ -6,14 +6,14 @@ import { IoMdAdd } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { MessageConfig, WalletWithdrawFormValues } from "../../../../types";
+import { MessageConfig, WalletWithdrawFormValues } from "types";
 import { getWalletInfo, schema2 } from "./constants";
 import {
   useLoading,
   useToast,
   useUserProfileContext,
   useWalletContext,
-} from "../../../../hooks";
+} from "@hooks/index";
 
 import {
   Indicator,
@@ -28,7 +28,7 @@ import {
   Toast,
   LoadingButton,
   SidebarDefault,
-} from "../../../../components";
+} from "@components/index";
 
 import {
   MyWalletContainer,
@@ -45,9 +45,9 @@ import {
   IndicatorHead,
   IndicatorTitle,
   IndicatorValue,
-} from "../../../../styles/GlobalStyles.style";
+} from "@styles/GlobalStyles.style";
 
-import { Wallet3dIcon, Gift3dIcon } from "../../../../assets";
+import { Wallet3dIcon, Gift3dIcon } from "@assets/index";
 
 const MyWalletWithdraw = (): JSX.Element => {
   const { setUserWalletAddress, wallet, getUserWalletData } =

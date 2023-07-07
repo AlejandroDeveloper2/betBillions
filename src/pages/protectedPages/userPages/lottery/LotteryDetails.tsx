@@ -3,8 +3,8 @@ import { useLocation } from "react-router-dom";
 import { TbCardboards } from "react-icons/tb";
 import { IoGiftSharp } from "react-icons/io5";
 
-import { useLoading, useLotteryContext, useToast } from "../../../../hooks";
-import { formatDate } from "../../../../utils";
+import { useLoading, useLotteryContext, useToast } from "@hooks/index";
+import { formatDate } from "@utils/index";
 
 import {
   AdCard,
@@ -15,8 +15,8 @@ import {
   Toast,
   Loading,
   DefaultButton,
-} from "../../../../components";
-import { TrophyIcon } from "../../../../assets";
+} from "@components/index";
+import { TrophyIcon } from "@assets/index";
 
 import { Datetext } from "../userPanel/UserPanel.style";
 import {
@@ -29,7 +29,7 @@ import {
   CardAdTitle,
   IndicatorHead,
   IndicatorTitle,
-} from "../../../../styles/GlobalStyles.style";
+} from "@styles/GlobalStyles.style";
 
 const LotteryDetails = (): JSX.Element => {
   const location = useLocation();

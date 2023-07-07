@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 
-import getAxiosClient from "../config/axiosClient";
-import { LotteryDetail, LotteryListItem, ServerResponse } from "../types";
+import getAxiosClient from "@config/axiosClient";
+import { LotteryDetail, LotteryListItem, ServerResponse } from "types";
 
 class LotteryService {
   public async getAllBingoReffels(token: string): Promise<LotteryListItem[]> {

@@ -10,10 +10,10 @@ import {
   WalletDepositFormValues,
   WalletWithdrawFormValues,
 } from "../types";
-import { TokenAuth } from "../utils";
+import { TokenAuth } from "@utils/index";
 
 /*services*/
-import { UserWalletService } from "../services/userWallet.service";
+import { UserWalletService } from "@services/userWallet.service";
 
 const WalletContext = createContext<WalletContextType>({} as WalletContextType);
 

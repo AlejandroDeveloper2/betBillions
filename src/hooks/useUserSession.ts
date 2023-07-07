@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from "react";
 
-import { useAuthContext } from ".";
+import { useAuthContext } from "@hooks/index";
 
 const useUserSession = (sessionTimer: number): void => {
   const { validateUserAuth, userAuth } = useAuthContext();

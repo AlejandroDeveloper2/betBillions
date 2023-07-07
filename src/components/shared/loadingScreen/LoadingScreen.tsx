@@ -1,6 +1,6 @@
-import { useAuthContext } from "../../../hooks";
+import { useAuthContext } from "@hooks/index";
 
-import { Loading, SpinnerScreen, Image } from "../..";
+import { Loading, SpinnerScreen, Image } from "@components/index";
 
 import {
   LoadingBox,
@@ -9,7 +9,7 @@ import {
 } from "./LoadingScreen.style";
 import "./animation.css";
 
-import { LogoTap } from "../../../assets";
+import { LogoTap } from "@assets/index";
 
 const LoadingScreen = (): JSX.Element => {
   const { authStatus, sessionValidationMessage } = useAuthContext();

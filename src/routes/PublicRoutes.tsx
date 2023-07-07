@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 /* Layouts */
-import { PublicLayout } from "../layouts";
+import { PublicLayout } from "@layouts/index";
 
 /* Pages */
 import {
@@ -11,7 +11,7 @@ import {
   UpdatePassword,
   ActivateAccount,
   Page404,
-} from "../pages";
+} from "@pages/index";
 
 const PublicRoutes = (): JSX.Element => {
   return (

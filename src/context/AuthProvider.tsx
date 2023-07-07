@@ -15,11 +15,11 @@ import {
   UpdatePassFormValues,
   UserAuth,
 } from "../types";
-import { TokenAuth, UserAuthState } from "../utils";
+import { TokenAuth, UserAuthState } from "@utils/index";
 
 /*services*/
-import { UserAuthentication } from "../services/authentication.service";
-import { useToast } from "../hooks";
+import { UserAuthentication } from "@services/authentication.service";
+import { useToast } from "@hooks/index";
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 

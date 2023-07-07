@@ -90,6 +90,20 @@ interface LotteryRound {
   completed: boolean;
 }
 
+interface UserTransaction {
+  id: number;
+  balance: number;
+  typeHistory: string;
+  state: boolean;
+  createdAt: string;
+}
+
+interface AdminTransaction extends UserTransaction {
+  hash: string;
+  currency: string;
+  userId: number;
+}
+
 export type {
   AuthStatus,
   ApiName,
@@ -104,4 +118,6 @@ export type {
   LotteryListItem,
   LotteryDetail,
   LotteryRound,
+  UserTransaction,
+  AdminTransaction,
 };

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import LotteryContext from "../context/LotteryProvider";
+import LotteryContext from "@context/LotteryProvider";
 
 const useLotteryContext = () => {
   return useContext(LotteryContext);

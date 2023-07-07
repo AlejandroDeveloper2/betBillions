@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { ToastTypes } from "../types";
+import { ToastTypes } from "types";
 
 const useToast = () => {
   const [isToastVisible, setIsToastVisible] = useState<boolean | string>(false);

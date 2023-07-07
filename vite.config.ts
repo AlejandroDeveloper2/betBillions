@@ -18,4 +18,20 @@ export default defineConfig({
       },
     }),
   ],
+  resolve: {
+    alias: [
+      { find: "@assets", replacement: "/src/assets" },
+      { find: "@components", replacement: "/src/components" },
+      { find: "@pages", replacement: "/src/pages" },
+      { find: "@hooks", replacement: "/src/hooks" },
+      { find: "@routes", replacement: "/src/routes" },
+      { find: "@utils", replacement: "/src/utils" },
+      { find: "types", replacement: "/src/types" },
+      { find: "@services", replacement: "/src/services" },
+      { find: "@context", replacement: "/src/context" },
+      { find: "@config", replacement: "/src/config" },
+      { find: "@layouts", replacement: "/src/layouts" },
+      { find: "@styles", replacement: "/src/styles" },
+    ],
+  },
 });

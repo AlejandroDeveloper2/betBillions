@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 
 /*Functions */
-import { useScreenLoader, useUserSession } from "../../hooks";
+import { useScreenLoader, useUserSession } from "@hooks/index";
 
 /*Components */
-import { Image, LoadingScreen } from "../../components";
+import { Image, LoadingScreen } from "@components/index";
 
 /* Styles */
 import {
@@ -16,7 +16,7 @@ import {
 import "./animation.css";
 
 /*Assets */
-import { Logo } from "../../assets";
+import { Logo } from "@assets/index";
 
 const PublicLayout = (): JSX.Element => {
   useUserSession(0);

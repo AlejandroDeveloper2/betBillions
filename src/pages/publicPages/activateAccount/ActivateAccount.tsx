@@ -1,7 +1,7 @@
-import { DefaultButton, LoadingButton, Toast } from "../../../components";
-import { useAuthContext, useLoading, useToast } from "../../../hooks";
+import { DefaultButton, LoadingButton, Toast } from "@components/index";
+import { useAuthContext, useLoading, useToast } from "@hooks/index";
 
-import { FormContainer } from "../../../styles/GlobalStyles.style";
+import { FormContainer } from "@styles/GlobalStyles.style";
 import { FormLayout, PageTitle } from "./ActivateAccount.style";
 
 const ActivateAccount = (): JSX.Element => {

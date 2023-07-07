@@ -5,7 +5,7 @@ import { GiWallet } from "react-icons/gi";
 import { BiSolidMessageDetail, BiSolidHelpCircle } from "react-icons/bi";
 import { AiOutlineTeam, AiOutlineTransaction } from "react-icons/ai";
 
-import { MenuItem } from "../../types";
+import { MenuItem } from "types";
 
 const getMenuItems = (closeSession: () => void): MenuItem[] => [
   {

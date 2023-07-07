@@ -1,12 +1,12 @@
 import { AxiosError } from "axios";
 
-import getAxiosClient from "../config/axiosClient";
+import getAxiosClient from "@config/axiosClient";
 import {
   ServerResponse,
   WalletData,
   WalletDepositFormValues,
   WalletWithdrawFormValues,
-} from "../types";
+} from "types";
 
 class UserWalletService {
   public async getUserWalletData(token: string): Promise<WalletData> {

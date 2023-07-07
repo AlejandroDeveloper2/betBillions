@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 
-import { useAuthContext, useUserSession } from "../../hooks";
+import { useAuthContext, useUserSession } from "@hooks/index";
 import { getMenuItems } from "./constants";
 
-import { Menu } from "../../components";
+import { Menu } from "@components/index";
 
 import { Container, Panel } from "./ProtectedLayout.style";
 

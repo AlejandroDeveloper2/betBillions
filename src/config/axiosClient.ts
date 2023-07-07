@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-import { ApiName } from "../types";
+import { ApiName } from "types";
 
 const getAxiosClient = (apiName: ApiName): AxiosInstance => {
   const axiosClient: AxiosInstance = axios.create({

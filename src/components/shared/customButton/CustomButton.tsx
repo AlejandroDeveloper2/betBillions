@@ -1,10 +1,7 @@
 /*Functions */
-import {
-  CustomButtonProps,
-  LoadingButtonProps,
-} from "../../../types/componentTypes";
+import { CustomButtonProps, LoadingButtonProps } from "types";
 
-import { Loading } from "../..";
+import { Loading } from "@components/index";
 
 /*Styles */
 import { Button } from "./CustomButton.style";

@@ -1,4 +1,4 @@
-import { TableItemProps, TableProps } from "../../../types";
+import { TableItemProps, TableProps } from "types";
 
 import {
   TableBody,

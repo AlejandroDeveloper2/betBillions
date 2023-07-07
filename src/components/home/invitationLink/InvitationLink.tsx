@@ -1,15 +1,20 @@
-import { useUserProfileContext } from "../../../hooks";
-import { copyToClipBoard } from "../../../utils";
-import { InvitationLinkProps } from "../../../types";
+import { useRealTimeFecher } from "@hooks/index";
+import { copyToClipBoard } from "@utils/index";
+import { InvitationLinkProps } from "types";
+import { UserProfileService } from "@services/userProfile.service";
 
-import { DefaultButton, Image } from "../..";
+import { DefaultButton, Image } from "@components/index";
 
-import { CopyLinkIcon } from "../../../assets";
+import { CopyLinkIcon } from "@assets/index";
 import { LinkContainer, LinkContent } from "./InvitationLink.style";
 
 const InvitationLink = (props: InvitationLinkProps): JSX.Element => {
   const { toastConfig } = props;
-  const { userPanelData } = useUserProfileContext();
+  const userProfileService = new UserProfileService();
+  const { data: userPanelData } = useRealTimeFecher(
+    "/users/panel",
+    userProfileService.getUserPanelData
+  );
 
   const invitationLink = userPanelData
     ? userPanelData.link

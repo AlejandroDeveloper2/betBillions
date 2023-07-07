@@ -1,13 +1,13 @@
 import { useLocation } from "react-router-dom";
 
-import { MenuProps, MenuItem as MenuItemType } from "../../../types";
-import { getActiveItem } from "../../../utils";
+import { MenuProps, MenuItem as MenuItemType } from "types";
+import { getActiveItem } from "@utils/index";
 
-import { Image } from "../..";
+import { Image } from "@components/index";
 
 import { LI, LinkItem, LinkItemVariant, UL, ULVariant } from "./Menu.style";
 
-import { Logo } from "../../../assets";
+import { Logo } from "@assets/index";
 
 const Menu = ({ children }: MenuProps): JSX.Element => {
   return <MenuContainer>{children}</MenuContainer>;

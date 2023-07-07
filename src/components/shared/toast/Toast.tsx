@@ -1,6 +1,6 @@
 import { FaXmark } from "react-icons/fa6";
 
-import { ToastProps } from "../../../types";
+import { ToastProps } from "types";
 
 /*styles */
 import { ToastContainer } from "./Toast.style";

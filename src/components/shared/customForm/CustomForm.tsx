@@ -1,6 +1,6 @@
 /* fuctions */
-import { CustomFormProps } from "../../../types";
-import { ValuesForm } from "../../../utils";
+import { CustomFormProps } from "types";
+import { ValuesForm } from "@utils/index";
 
 /* styles */
 import { Form, FormTitle, FormBody } from "./CustomForm.style";

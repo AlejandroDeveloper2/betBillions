@@ -2,9 +2,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { MdHttps } from "react-icons/md";
 
-import { UpdatePassFormValues } from "../../../types";
+import { UpdatePassFormValues } from "types";
 import { DEFAULTVALUES, schema } from "./constants";
-import { useAuthContext, useLoading, useToast } from "../../../hooks";
+import { useAuthContext, useLoading, useToast } from "@hooks/index";
 
 import {
   CustomForm,
@@ -13,13 +13,9 @@ import {
   ErrorMessage,
   LoadingButton,
   Toast,
-} from "../../../components";
+} from "@components/index";
 
-import {
-  FormContainer,
-  LinkVariant,
-  Links,
-} from "../../../styles/GlobalStyles.style";
+import { FormContainer, LinkVariant, Links } from "@styles/GlobalStyles.style";
 
 const UpdatePassword = (): JSX.Element => {
   const {

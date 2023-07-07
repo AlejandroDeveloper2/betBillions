@@ -8,10 +8,10 @@ import {
   LotteryListItem,
   LotteryDetail,
 } from "../types";
-import { TokenAuth } from "../utils";
+import { TokenAuth } from "@utils/index";
 
 /*services*/
-import { LotteryService } from "../services/lottery.service";
+import { LotteryService } from "@services/lottery.service";
 
 const LotteryContext = createContext<LotteryContextType>(
   {} as LotteryContextType

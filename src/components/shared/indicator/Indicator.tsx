@@ -1,4 +1,4 @@
-import { IndicatorProps } from "../../../types";
+import { IndicatorProps } from "types";
 
 import { IndicatorContainer } from "./Indicator.style";
 

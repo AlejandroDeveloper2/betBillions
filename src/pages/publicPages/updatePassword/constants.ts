@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-import { UpdatePassFormValues } from "../../../types";
+import { UpdatePassFormValues } from "types";
 
 const DEFAULTVALUES: UpdatePassFormValues = {
   password: "",

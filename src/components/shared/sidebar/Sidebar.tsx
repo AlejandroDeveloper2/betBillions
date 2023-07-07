@@ -1,17 +1,18 @@
 import { BsFacebook, BsYoutube, BsInstagram, BsTelegram } from "react-icons/bs";
 
-import { useAuthContext, useUserProfileContext } from "../../../hooks";
+import { useAuthContext, useRealTimeFecher } from "@hooks/index";
 import { getSidebarMenuItems } from "./constants";
-import { SidebarProps } from "../../../types";
+import { SidebarProps } from "types";
+import { UserProfileService } from "@services/userProfile.service";
 
-import { Image, Indicator, MenuSidebar } from "../..";
+import { Image, Indicator, MenuSidebar } from "@components/index";
 
 import {
   Gift3dIcon,
   Team3dIcon,
   TrophyIcon,
   Wallet3dIcon,
-} from "../../../assets";
+} from "@assets/index";
 
 import {
   Info,
@@ -32,12 +33,18 @@ import {
   IndicatorTitle,
   IndicatorValue,
   PromIndicator,
-} from "../../../styles/GlobalStyles.style";
+} from "@styles/GlobalStyles.style";
+
+const userProfileService = new UserProfileService();
 
 const Sidebar = (props: SidebarProps): JSX.Element => {
   const { children } = props;
   const { logout } = useAuthContext();
-  const { userPanelData } = useUserProfileContext();
+
+  const { data: userPanelData } = useRealTimeFecher(
+    "/users/panel",
+    userProfileService.getUserPanelData
+  );
   const SIDEBARMENUITEMS = getSidebarMenuItems(logout);
 
   return (
@@ -101,7 +108,10 @@ const SidebarDefault = (): JSX.Element => {
 };
 
 const SidebarBalance = (): JSX.Element => {
-  const { userPanelData } = useUserProfileContext();
+  const { data: userPanelData } = useRealTimeFecher(
+    "/users/panel",
+    userProfileService.getUserPanelData
+  );
   return (
     <Sidebar>
       <Indicator width="100%">
@@ -142,7 +152,11 @@ const SidebarBalance = (): JSX.Element => {
 };
 
 const SidebarGifts = (): JSX.Element => {
-  const { userPanelData } = useUserProfileContext();
+  const { data: userPanelData } = useRealTimeFecher(
+    "/users/panel",
+    userProfileService.getUserPanelData
+  );
+
   return (
     <Sidebar>
       <Indicator width="100%">

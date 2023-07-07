@@ -1,11 +1,11 @@
 import { AxiosError } from "axios";
 
 import getAxiosClient from "@config/axiosClient";
-import { ServerResponse, UserPanelData } from "types";
+import { ServerResponse, UserTransaction } from "types";
 
-class UserProfileService {
-  public async getUserPanelData(token: string): Promise<UserPanelData> {
-    let response: UserPanelData | null = null;
+class TransactionsService {
+  public async getUserTransactions(token: string): Promise<UserTransaction[]> {
+    let response: UserTransaction[] | null = null;
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -14,11 +14,12 @@ class UserProfileService {
     };
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
-      const { data } = await axiosClient.get<UserPanelData>(
-        "/users/panel",
+      const { data } = await axiosClient.get<UserTransaction[]>(
+        "/transaction/list",
         config
       );
       response = data;
+      console.log(response);
     } catch (_e: unknown) {
       const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
         .message;
@@ -28,4 +29,4 @@ class UserProfileService {
   }
 }
 
-export { UserProfileService };
+export { TransactionsService };

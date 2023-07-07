@@ -1,4 +1,4 @@
-import { CustomFileInputProps, CustomInputProps } from "../../../types";
+import { CustomFileInputProps, CustomInputProps } from "types";
 
 /*Styles */
 import {
@@ -9,7 +9,7 @@ import {
   InputContainerVariant,
   InputUploadFile,
 } from "./CustomInput.style";
-import { usePasswordInput } from "../../../hooks";
+import { usePasswordInput } from "@hooks/index";
 
 const DefaultInput = (props: CustomInputProps) => {
   const { type, placeholder, name, disabled, Icon, register } = props;

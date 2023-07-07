@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-import { RecoverPassFormValues } from "../../../types";
+import { RecoverPassFormValues } from "types";
 
 const DEFAULTVALUES: RecoverPassFormValues = {
   email: "",

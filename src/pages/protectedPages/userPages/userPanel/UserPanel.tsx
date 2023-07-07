@@ -1,13 +1,7 @@
-import { useEffect } from "react";
-
-import {
-  useAuthContext,
-  useLoading,
-  useLotteryContext,
-  useToast,
-  useUserProfileContext,
-} from "../../../../hooks";
-import { formatDate } from "../../../../utils";
+import { useAuthContext, useRealTimeFecher, useToast } from "@hooks/index";
+import { formatDate } from "@utils/index";
+import { UserProfileService } from "@services/userProfile.service";
+import { LotteryService } from "@services/lottery.service";
 
 import {
   AdCard,
@@ -18,7 +12,7 @@ import {
   Toast,
   Loading,
   SidebarDefault,
-} from "../../../../components";
+} from "@components/index";
 
 import { Datetext, PanelContainer } from "./UserPanel.style";
 import {
@@ -27,14 +21,21 @@ import {
   IndicatorTitle,
   IndicatorValue,
   Indicators,
-} from "../../../../styles/GlobalStyles.style";
+} from "@styles/GlobalStyles.style";
 
-import { Gift3dIcon, Wallet3dIcon } from "../../../../assets";
+import { Gift3dIcon, Wallet3dIcon } from "@assets/index";
+import { LotteryListItem } from "types";
 
 const UserPanel = (): JSX.Element => {
   const { userAuth } = useAuthContext();
-  const { userPanelData, getUserPanelData } = useUserProfileContext();
-  const { reffels, getAllBingoReffels } = useLotteryContext();
+  const userProfileService = new UserProfileService();
+  const lotteryService = new LotteryService();
+  const { data: userPanelData, isLoading: isLoadingUserData } =
+    useRealTimeFecher("/users/panel", userProfileService.getUserPanelData);
+
+  const { data: reffels, isLoading: isLoadingReffels } = useRealTimeFecher<
+    LotteryListItem[]
+  >("/lottery/list", lotteryService.getAllBingoReffels);
 
   const {
     isToastVisible,
@@ -45,29 +46,6 @@ const UserPanel = (): JSX.Element => {
     configToast,
   } = useToast();
 
-  const {
-    isLoading,
-    loadingMessage,
-    activeLoading,
-    inactiveLoading,
-    setMessage,
-  } = useLoading();
-
-  useEffect(() => {
-    getUserPanelData({
-      toastConfig: { showToast, hideToast, configToast },
-      loadingConfig: { activeLoading, inactiveLoading, setMessage },
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    getAllBingoReffels({
-      toastConfig: { showToast, hideToast, configToast },
-      loadingConfig: { activeLoading, inactiveLoading, setMessage },
-    });
-  }, []);
-
   return (
     <>
       <PanelContainer>
@@ -75,14 +53,14 @@ const UserPanel = (): JSX.Element => {
         <h1>
           Bienvenido <span>{userAuth ? userAuth.fullName : "Usuario"}</span>
         </h1>
-        {isLoading ? (
+        {isLoadingReffels ? (
           <Loading
-            message={loadingMessage}
+            message={"Cargando sorteo disponible..."}
             textColor="var(--bg-secondary-color)"
           />
         ) : (
           reffels
-            .filter((reffel) => reffel.state === true)
+            ?.filter((reffel) => reffel.state === true)
             .map((reffel) => (
               <AdCard key={reffel.id} play={reffel.state} lotteryId={reffel.id}>
                 <CardAdTitle>Proximo sorteo</CardAdTitle>
@@ -100,9 +78,9 @@ const UserPanel = (): JSX.Element => {
                 size={{ lg: 20, md: 40, sm: 40 }}
               />
             </IndicatorHead>
-            {isLoading ? (
+            {isLoadingUserData ? (
               <Loading
-                message={loadingMessage}
+                message="Cargando total de premios..."
                 textColor="var(--bg-primary-color)"
               />
             ) : (
@@ -121,9 +99,9 @@ const UserPanel = (): JSX.Element => {
                 size={{ lg: 20, md: 40, sm: 40 }}
               />
             </IndicatorHead>
-            {isLoading ? (
+            {isLoadingUserData ? (
               <Loading
-                message={loadingMessage}
+                message="Cargando balance..."
                 textColor="var(--bg-primary-color)"
               />
             ) : (
@@ -134,9 +112,9 @@ const UserPanel = (): JSX.Element => {
             )}
           </Indicator>
         </Indicators>
-        {isLoading ? (
+        {isLoadingUserData ? (
           <Loading
-            message={loadingMessage}
+            message="Cargando link de referido..."
             textColor="var(--bg-primary-color)"
           />
         ) : (

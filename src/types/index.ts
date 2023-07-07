@@ -15,6 +15,7 @@ export type {
   SidebarProps,
   TableProps,
   TableItemProps,
+  CustomButtonProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
@@ -53,6 +54,8 @@ export type {
   LotteryListItem,
   LotteryDetail,
   LotteryRound,
+  UserTransaction,
+  AdminTransaction,
 } from "./dataTypes";
 
 export type {

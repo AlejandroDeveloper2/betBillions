@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlinePaperClip } from "react-icons/ai";
 import { MdLocalAtm } from "react-icons/md";
 
-import { copyToClipBoard } from "../../../../utils";
-import { useToast } from "../../../../hooks";
+import { copyToClipBoard } from "@utils/index";
+import { useToast } from "@hooks/index";
 
 import {
   DefaultButton,
@@ -12,7 +12,7 @@ import {
   Indicator,
   SidebarDefault,
   Toast,
-} from "../../../../components";
+} from "@components/index";
 
 import {
   MyWalletContainer,
@@ -25,12 +25,7 @@ import {
   WalletCard,
 } from "./MyWallet.style";
 
-import {
-  CopyLinkIcon,
-  Logo2,
-  Wallet3dIcon,
-  WalletQr,
-} from "../../../../assets";
+import { CopyLinkIcon, Logo2, Wallet3dIcon, WalletQr } from "@assets/index";
 
 const MyWallet = (): JSX.Element => {
   const paymentWalletAddress = "TBpHGP33y66r74FqKypYY33nTqaxePEGRn";

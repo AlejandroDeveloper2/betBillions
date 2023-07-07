@@ -20,6 +20,7 @@ const TableBody = styled.div<TableStyledProps>`
   align-items: center;
   grid-gap: 1.5rem;
   padding: 1.5rem;
+  border-bottom: 1px solid var(--bg-secondary-color);
 `;
 
 const TableHeader = styled(TableBody)`

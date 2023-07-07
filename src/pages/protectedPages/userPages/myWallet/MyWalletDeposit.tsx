@@ -4,9 +4,9 @@ import { BsSendFill } from "react-icons/bs";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
-import { MessageConfig, WalletDepositFormValues } from "../../../../types";
+import { MessageConfig, WalletDepositFormValues } from "types";
 import { getTransactionWalletValues, schema } from "./constants";
-import { useLoading, useToast, useWalletContext } from "../../../../hooks";
+import { useLoading, useToast, useWalletContext } from "@hooks/index";
 
 import {
   Indicator,
@@ -21,9 +21,9 @@ import {
   InputFile,
   LoadingButton,
   SidebarDefault,
-} from "../../../../components";
+} from "@components/index";
 
-import { Wallet3dIcon, Logo2 } from "../../../../assets";
+import { Wallet3dIcon, Logo2 } from "@assets/index";
 
 import {
   MyWalletContainer,

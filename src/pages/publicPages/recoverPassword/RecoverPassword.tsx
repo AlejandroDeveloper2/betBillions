@@ -2,8 +2,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { MdAlternateEmail } from "react-icons/md";
 
-import { useToast, useLoading, useAuthContext } from "../../../hooks";
-import { RecoverPassFormValues } from "../../../types";
+import { useToast, useLoading, useAuthContext } from "@hooks/index";
+import { RecoverPassFormValues } from "types";
 import { DEFAULTVALUES, schema } from "./constants";
 
 import {
@@ -13,13 +13,9 @@ import {
   ErrorMessage,
   LoadingButton,
   Toast,
-} from "../../../components";
+} from "@components/index";
 
-import {
-  FormContainer,
-  LinkVariant,
-  Links,
-} from "../../../styles/GlobalStyles.style";
+import { FormContainer, LinkVariant, Links } from "@styles/GlobalStyles.style";
 
 const RecoverPassword = (): JSX.Element => {
   const {

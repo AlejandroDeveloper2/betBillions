@@ -2,8 +2,8 @@ import { IoMdSettings } from "react-icons/io";
 import { IoLogOutSharp } from "react-icons/io5";
 import { BiSolidMessageDetail, BiSolidHelpCircle } from "react-icons/bi";
 
-import { MenuItem } from "../../../types";
-import { Notification3DICon } from "../../../assets";
+import { MenuItem } from "types";
+import { Notification3DICon } from "@assets/index";
 
 const getSidebarMenuItems = (closeSession: () => void): MenuItem[] => [
   {

@@ -1,8 +1,8 @@
-import { AdCardProps } from "../../../types";
+import { AdCardProps } from "types";
 
-import { Image } from "../..";
+import { Image } from "@components/index";
 
-import { BingoFigure, DateAlertFigure } from "../../../assets";
+import { BingoFigure, DateAlertFigure } from "@assets/index";
 
 import {
   CardContainer,
