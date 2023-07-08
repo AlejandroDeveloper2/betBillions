@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const TransactionsContainer = styled.div`
+const PurchaseContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -15,7 +15,7 @@ const TransactionsContainer = styled.div`
 
   @media (min-width: 1000px) {
     align-items: flex-start;
-    width: 100%;
+    width: 70%;
     padding-bottom: 1rem;
   }
 `;
@@ -25,7 +25,6 @@ const PageTitle = styled.div`
   gap: 1rem;
   justify-content: center;
   align-items: center;
-  flex-direction: column-reverse;
   h1 {
     font-weight: bold;
     color: var(--bg-secondary-color);
@@ -33,7 +32,6 @@ const PageTitle = styled.div`
     font-size: 2rem;
   }
   @media (min-width: 1000px) {
-    flex-direction: row;
     h1 {
       display: inline-block;
       text-align: left;
@@ -42,12 +40,4 @@ const PageTitle = styled.div`
   }
 `;
 
-const DialogMessage = styled.p`
-  margin-top: 1rem;
-  font-size: 1.2rem;
-  font-weight: medium;
-  text-align: center;
-  color: var(--dark-gray);
-`;
-
-export { TransactionsContainer, PageTitle, DialogMessage };
+export { PurchaseContainer, PageTitle };

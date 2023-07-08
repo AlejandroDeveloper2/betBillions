@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { AiOutlinePaperClip } from "react-icons/ai";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { BsSendFill } from "react-icons/bs";
@@ -47,11 +49,10 @@ const MyWalletDeposit = (): JSX.Element => {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<WalletDepositFormValues>({
-    defaultValues: getTransactionWalletValues(
-      transactionVoucher !== "" ? transactionVoucher : ""
-    ),
+    defaultValues: getTransactionWalletValues(),
     resolver: yupResolver(schema),
   });
 
@@ -105,6 +106,10 @@ const MyWalletDeposit = (): JSX.Element => {
       setMessage: setMessageUrlTransition,
     },
   };
+
+  useEffect(() => {
+    setValue("urlTransaction", transactionVoucher);
+  }, [transactionVoucher]);
 
   return (
     <>

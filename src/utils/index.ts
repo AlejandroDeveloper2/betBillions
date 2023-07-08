@@ -22,6 +22,7 @@ class ValuesForm {
       delete newFormData?.confirmPassword;
       return newFormData;
     }
+
     return data;
   }
 }

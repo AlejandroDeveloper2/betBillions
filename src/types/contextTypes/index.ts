@@ -10,6 +10,7 @@ import {
   UpdatePassFormValues,
   UserAuth,
   UserPanelData,
+  ValidTransactionFormValues,
   WalletDepositFormValues,
   WalletWithdrawFormValues,
 } from "..";
@@ -75,10 +76,23 @@ interface LotteryContextType {
   getBingoReffel: (lotteryId: number, config: MessageConfig) => Promise<void>;
 }
 
+interface TransactionContextType {
+  validateTransaction: (
+    transactionData: ValidTransactionFormValues,
+    config: MessageConfig,
+    reset: UseFormReset<ValidTransactionFormValues>
+  ) => Promise<void>;
+  invalidateTransaction: (
+    transactionHash: string,
+    config: MessageConfig
+  ) => Promise<void>;
+}
+
 export type {
   AuthContextType,
   ProviderProps,
   UserProfileContextType,
   WalletContextType,
   LotteryContextType,
+  TransactionContextType,
 };

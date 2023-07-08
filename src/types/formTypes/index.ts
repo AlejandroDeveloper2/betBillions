@@ -32,6 +32,13 @@ interface WalletWithdrawFormValues {
   wallet: string;
 }
 
+interface ValidTransactionFormValues {
+  id: number;
+  transaction: string;
+  price: number;
+  confirmPrice: number;
+}
+
 export type {
   LoginFormValues,
   RegisterFormValues,
@@ -39,4 +46,5 @@ export type {
   UpdatePassFormValues,
   WalletDepositFormValues,
   WalletWithdrawFormValues,
+  ValidTransactionFormValues,
 };

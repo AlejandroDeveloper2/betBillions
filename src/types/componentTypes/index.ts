@@ -6,17 +6,7 @@ import {
   UseFormReset,
 } from "react-hook-form";
 
-import {
-  HeaderType,
-  LoginFormValues,
-  MessageConfig,
-  RecoverPassFormValues,
-  RegisterFormValues,
-  ToastConfig,
-  UpdatePassFormValues,
-  WalletDepositFormValues,
-  WalletWithdrawFormValues,
-} from "..";
+import { HeaderType, MessageConfig, ToastConfig } from "..";
 
 type InputName =
   | "password"
@@ -27,7 +17,9 @@ type InputName =
   | "confirmPassword"
   | "confirmEmail"
   | "transaction"
-  | "wallet";
+  | "wallet"
+  | "price"
+  | "confirmPrice";
 
 type ImageProps = {
   source: string;
@@ -45,43 +37,20 @@ type FormType =
   | "recoverPass"
   | "updatePass"
   | "walletDeposit"
-  | "walletWithdraw";
+  | "walletWithdraw"
+  | "TransactionValidation";
 
 type CustomFormProps = {
   children: JSX.Element | JSX.Element[] | any[];
   formTitle: string;
   config: MessageConfig;
   formType: FormType;
-  handleSubmit: UseFormHandleSubmit<
-    | RegisterFormValues
-    | LoginFormValues
-    | RecoverPassFormValues
-    | UpdatePassFormValues
-    | WalletDepositFormValues
-    | WalletWithdrawFormValues,
-    undefined
-  >;
-  reset: UseFormReset<
-    | RegisterFormValues
-    | LoginFormValues
-    | RecoverPassFormValues
-    | UpdatePassFormValues
-    | WalletDepositFormValues
-    | WalletWithdrawFormValues
-    | any
-  >;
+  handleSubmit: UseFormHandleSubmit<any, undefined>;
+  reset: UseFormReset<any>;
   action: (
     data: any,
     config: MessageConfig,
-    reset: UseFormReset<
-      | RegisterFormValues
-      | LoginFormValues
-      | RecoverPassFormValues
-      | UpdatePassFormValues
-      | WalletDepositFormValues
-      | WalletWithdrawFormValues
-      | any
-    >
+    reset: UseFormReset<any>
   ) => Promise<void>;
 };
 
@@ -90,15 +59,7 @@ type CustomInputProps = {
   placeholder: string;
   label: string | null;
   Icon: IconType;
-  register: UseFormRegister<
-    | RegisterFormValues
-    | LoginFormValues
-    | RecoverPassFormValues
-    | UpdatePassFormValues
-    | WalletDepositFormValues
-    | WalletWithdrawFormValues
-    | any
-  >;
+  register: UseFormRegister<any>;
   name: InputName;
   disabled?: boolean;
 };
@@ -202,6 +163,18 @@ type TableRowProps = {
   columnsNumber: number;
 };
 
+type ModalProps = {
+  isModalVisible: boolean;
+  children: JSX.Element | JSX.Element[] | any;
+};
+
+type ModalHeaderProps = {
+  title: string;
+  hideModal: () => void;
+};
+
+type ModalBodyProps = TableOptions;
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -222,6 +195,9 @@ export type {
   TableItemProps,
   TableRowProps,
   TableOptions,
+  ModalProps,
+  ModalHeaderProps,
+  ModalBodyProps,
 };
 
 export { ToastTypes };

@@ -81,7 +81,7 @@ const InputUploadFile = styled.input`
 `;
 
 const Label = styled.label`
-  color: var(--white);
+  color: var(--bg-secondary-color);
   font-weight: medium;
   text-transform: capitalize;
   text-align: left;
@@ -94,7 +94,7 @@ const InputContainerLabel = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  gap: 2rem;
+  gap: 1rem;
 `;
 
 export {

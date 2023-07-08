@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { TbCardboards } from "react-icons/tb";
 import { IoGiftSharp } from "react-icons/io5";
 
@@ -33,6 +33,7 @@ import {
 
 const LotteryDetails = (): JSX.Element => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { lotteryDetail, getBingoReffel } = useLotteryContext();
   const lotteryId = window.parseInt(location.pathname.split("/")[4]);
 
@@ -127,6 +128,7 @@ const LotteryDetails = (): JSX.Element => {
               }}
               title={"Seleccionar cartones de bingo"}
               label="Seleccionar tablas"
+              onClick={() => navigate("/userPanel/lottery/purchaseBingoBoard")}
             >
               <TbCardboards
                 style={{ color: "var(--white)", fontSize: 40, marginRight: 5 }}

@@ -45,6 +45,10 @@ interface RoundStyledProps {
   roundkey: number;
 }
 
+interface ModalStyledProps {
+  ismodalvisible: string;
+}
+
 export type {
   ButtonStyleProps,
   ToastStyleProps,
@@ -54,4 +58,5 @@ export type {
   ImageStyledProps,
   TableStyledProps,
   RoundStyledProps,
+  ModalStyledProps,
 };

@@ -18,6 +18,9 @@ export type {
   CustomButtonProps,
   TableRowProps,
   TableOptions,
+  ModalProps,
+  ModalHeaderProps,
+  ModalBodyProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
@@ -29,6 +32,7 @@ export type {
   UpdatePassFormValues,
   WalletDepositFormValues,
   WalletWithdrawFormValues,
+  ValidTransactionFormValues,
 } from "./formTypes";
 
 export type {
@@ -40,6 +44,7 @@ export type {
   ImageStyledProps,
   TableStyledProps,
   RoundStyledProps,
+  ModalStyledProps,
 } from "./styledComponentsTypes";
 
 export type {
@@ -68,4 +73,5 @@ export type {
   UserProfileContextType,
   WalletContextType,
   LotteryContextType,
+  TransactionContextType,
 } from "./contextTypes";

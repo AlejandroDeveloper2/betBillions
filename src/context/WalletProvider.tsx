@@ -69,6 +69,7 @@ const WalletProvider = ({ children }: ProviderProps) => {
             token
           );
           reset();
+          setTransactionVoucher("");
           toastConfig.configToast(res.typeStatus, res.message);
           toastConfig.showToast();
         } catch (error: unknown) {

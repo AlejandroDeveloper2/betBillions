@@ -6,6 +6,7 @@ import {
   UserProfileProvider,
   WalletProvider,
   LotteryProvider,
+  TransactionProvider,
 } from "@context/index";
 
 /* Routers */
@@ -14,15 +15,17 @@ import AppRouter from "./routes/AppRouter";
 function App(): JSX.Element {
   return (
     <BrowserRouter>
-      <LotteryProvider>
-        <WalletProvider>
-          <UserProfileProvider>
-            <AuthProvider>
-              <AppRouter />
-            </AuthProvider>
-          </UserProfileProvider>
-        </WalletProvider>
-      </LotteryProvider>
+      <TransactionProvider>
+        <LotteryProvider>
+          <WalletProvider>
+            <UserProfileProvider>
+              <AuthProvider>
+                <AppRouter />
+              </AuthProvider>
+            </UserProfileProvider>
+          </WalletProvider>
+        </LotteryProvider>
+      </TransactionProvider>
     </BrowserRouter>
   );
 }

@@ -11,6 +11,7 @@ import {
   MyWalletDeposit,
   MyWalletWithdraw,
   Page404,
+  PurchaseBingoBoard,
   TeamPage,
   Transactions,
   UserPanel,
@@ -37,6 +38,10 @@ const UserRoutes = (): JSX.Element => {
         />
         <Route path="/userPanel/transactions" element={<Transactions />} />
         <Route path="/userPanel/myTeam" element={<TeamPage />} />
+        <Route
+          path="/userPanel/lottery/purchaseBingoBoard"
+          element={<PurchaseBingoBoard />}
+        />
         <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>

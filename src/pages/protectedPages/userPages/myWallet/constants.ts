@@ -2,12 +2,10 @@ import * as yup from "yup";
 
 import { WalletDepositFormValues, WalletWithdrawFormValues } from "types";
 
-const getTransactionWalletValues = (
-  urlTransaction: string
-): WalletDepositFormValues => ({
+const getTransactionWalletValues = (): WalletDepositFormValues => ({
   walletType: "Trendo",
   transaction: "",
-  urlTransaction,
+  urlTransaction: "",
 });
 
 const getWalletInfo = (wallet: string): WalletWithdrawFormValues => ({
