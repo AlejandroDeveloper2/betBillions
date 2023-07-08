@@ -98,10 +98,19 @@ interface UserTransaction {
   createdAt: string;
 }
 
-interface AdminTransaction extends UserTransaction {
-  hash: string;
+interface AdminTransaction {
+  id: number;
+  walletType: string;
+  transaction: string;
+  price: number | null;
   currency: string;
-  userId: number;
+  urlTransaction: string;
+  userId: null | number;
+  stateTransaction: "Pending" | "Completed" | "Invalid";
+  state: boolean;
+  createdAt: string;
+  username: string;
+  email: string;
 }
 
 type HeaderType = {

@@ -115,7 +115,7 @@ const LoginPage = (): JSX.Element => {
           )}
 
           <Links>
-            <LinkVariant to="/createAccount">
+            <LinkVariant to="/createAccount/newAccount">
               ¿No tienes una cuenta? Registrarse
             </LinkVariant>
           </Links>

@@ -47,7 +47,7 @@ const TableBody = styled.div`
 const TableHeader = styled.div<TableStyledProps>`
   width: 100%;
   display: none;
-  padding: 1rem 0;
+  padding: 1rem 0.5rem;
   background-color: var(--bg-secondary-color);
   border-radius: 1rem;
   grid-gap: 1.5rem;
@@ -74,7 +74,7 @@ const TableHeadItem = styled.div`
   span {
     display: none;
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     text-align: center;
     text-transform: uppercase;
     color: var(--white);
@@ -92,6 +92,8 @@ const TableHeadItem = styled.div`
 
 const TableItem = styled(TableHeadItem)`
   justify-self: self-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   span:first-of-type {
     font-weight: bold;
   }
@@ -99,9 +101,10 @@ const TableItem = styled(TableHeadItem)`
     display: block;
     font-weight: 400;
     font-size: 1rem;
-    text-transform: capitalize;
+    text-transform: none;
     color: var(--dark-gray);
     text-align: left;
+    white-space: pre-wrap;
   }
   svg {
     color: var(--dark-gray);
@@ -168,6 +171,14 @@ const RowBar = styled.div`
   }
 `;
 
+const OptionsField = styled.div`
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
 export {
   TableContainer,
   TableHeader,
@@ -176,4 +187,5 @@ export {
   TableItem,
   TableRowContainer,
   RowBar,
+  OptionsField,
 };

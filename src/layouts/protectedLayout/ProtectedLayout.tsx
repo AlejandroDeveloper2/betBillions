@@ -9,8 +9,10 @@ import { Container, Panel } from "./ProtectedLayout.style";
 
 const ProtectedLayout = (): JSX.Element => {
   useUserSession(1000);
-  const { logout } = useAuthContext();
-  const MENUITEMS = getMenuItems(logout);
+  const { userAuth, logout } = useAuthContext();
+  const userRole = userAuth ? userAuth.roles[0].authority : "ROLE_USER";
+
+  const MENUITEMS = getMenuItems(logout, userRole);
 
   return (
     <Container>

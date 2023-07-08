@@ -115,6 +115,7 @@ type CustomButtonProps = {
     bg: string;
     fontColor: string;
     width?: string;
+    padding?: string;
   };
   title: string;
   disabled?: boolean;
@@ -192,6 +193,10 @@ type TableItemProps = {
   label: string;
 };
 
+type TableOptions = {
+  children?: JSX.Element | JSX.Element[] | any;
+};
+
 type TableRowProps = {
   children: JSX.Element | JSX.Element[] | any;
   columnsNumber: number;
@@ -216,6 +221,7 @@ export type {
   TableProps,
   TableItemProps,
   TableRowProps,
+  TableOptions,
 };
 
 export { ToastTypes };

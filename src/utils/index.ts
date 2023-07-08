@@ -68,10 +68,13 @@ class UserAuthState {
 }
 
 const getInvitationLink = (location: Location): string | undefined => {
-  const user = location.pathname.split("/")[2];
-  const invitationLink = user
-    ? `https://betbillions.com.co/${user}`
-    : undefined;
+  const user = location.pathname.split("/")[1];
+  const invitationLink =
+    location.pathname.split("/").length === 2
+      ? user
+        ? `https://betbillions.com.co/${user}`
+        : undefined
+      : undefined;
   return invitationLink;
 };
 
@@ -97,14 +100,20 @@ const copyToClipBoard = (textToCopy: string, config: ToastConfig): void => {
   hideToast(3000);
 };
 
-const formatDate = (date: string): string => {
+const formatDate = (
+  date: string,
+  format: "numeric" | "mixted" = "mixted"
+): string => {
   const formattedDate = new Date(date).toLocaleString("es-ES", {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
   });
-  return formattedDate;
+  const numericDate = new Date(date).toLocaleDateString();
+
+  if (format === "mixted") return formattedDate;
+  return numericDate;
 };
 
 export {

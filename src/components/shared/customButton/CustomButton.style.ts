@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { ButtonStyleProps } from "../../../types";
+import { ButtonStyleProps } from "types";
 
 const Button = styled.button<ButtonStyleProps>`
   width: 100%;
@@ -27,7 +27,9 @@ const Button = styled.button<ButtonStyleProps>`
   }
 
   @media (min-width: 768px) {
-    padding: 1.2rem 1.5rem;
+    height: ${(props) => (props.padding ? "auto" : "4rem")};
+    padding: ${(props: ButtonStyleProps) =>
+      props.padding ? props.padding : "1.2rem 1.5rem"};
     width: ${(props) => (props.width ? props.width : "100%")};
     span {
       font-size: 1.2rem;

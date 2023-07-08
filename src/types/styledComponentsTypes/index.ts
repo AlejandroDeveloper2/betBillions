@@ -2,6 +2,7 @@ interface ButtonStyleProps {
   background: string;
   color: string;
   width?: string;
+  padding?: string;
 }
 
 interface ToastStyleProps extends ButtonStyleProps {

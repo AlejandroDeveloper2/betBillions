@@ -17,6 +17,7 @@ export type {
   TableItemProps,
   CustomButtonProps,
   TableRowProps,
+  TableOptions,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";

@@ -4,7 +4,7 @@ import { MdAccountBalanceWallet, MdCategory } from "react-icons/md";
 import { BsFillCalendarDateFill } from "react-icons/bs";
 
 import { useRealTimeFecher } from "@hooks/index";
-import { tableHeaders } from "./contants";
+import { tableHeaders } from "./constants";
 import { formatDate } from "@utils/index";
 
 import { TransactionsService } from "@services/transactions.service";

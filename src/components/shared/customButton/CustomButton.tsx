@@ -8,7 +8,7 @@ import { Button } from "./CustomButton.style";
 
 const DefaultButton = (props: CustomButtonProps): JSX.Element => {
   const { label, title, onClick, style, disabled, children } = props;
-  const { bg, fontColor, width } = style;
+  const { bg, fontColor, width, padding } = style;
 
   return (
     <Button
@@ -18,6 +18,7 @@ const DefaultButton = (props: CustomButtonProps): JSX.Element => {
       title={title}
       onClick={onClick}
       width={width}
+      padding={padding}
       disabled={disabled !== undefined ? disabled : false}
     >
       {children}

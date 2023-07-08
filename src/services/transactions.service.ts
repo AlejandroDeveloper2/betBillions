@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 
 import getAxiosClient from "@config/axiosClient";
-import { ServerResponse, UserTransaction } from "types";
+import { AdminTransaction, ServerResponse, UserTransaction } from "types";
 
 class TransactionsService {
   public async getUserTransactions(token: string): Promise<UserTransaction[]> {
@@ -16,6 +16,31 @@ class TransactionsService {
       const axiosClient = getAxiosClient("betBillionsAPI");
       const { data } = await axiosClient.get<UserTransaction[]>(
         "/paymentHistory/list",
+        config
+      );
+      response = data;
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+    return response;
+  }
+
+  public async getAdminTransactions(
+    token: string
+  ): Promise<AdminTransaction[]> {
+    let response: AdminTransaction[] | null = null;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      const { data } = await axiosClient.get<AdminTransaction[]>(
+        "/transaction/list",
         config
       );
       response = data;

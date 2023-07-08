@@ -1,4 +1,4 @@
-import { TableItemProps, TableProps, TableRowProps } from "types";
+import { TableItemProps, TableOptions, TableProps, TableRowProps } from "types";
 
 import {
   TableBody,
@@ -8,6 +8,7 @@ import {
   TableItem,
   TableRowContainer,
   RowBar,
+  OptionsField,
 } from "./Table.style";
 
 const Table = (props: TableProps): JSX.Element => {
@@ -39,6 +40,10 @@ const TableBodyItem = (props: TableItemProps): JSX.Element => {
   );
 };
 
+const TableBodyOptions = ({ children }: TableOptions): JSX.Element => {
+  return <OptionsField>{children}</OptionsField>;
+};
+
 const TableRow = ({ children, columnsNumber }: TableRowProps): JSX.Element => {
   return (
     <TableRowContainer columnsnumber={columnsNumber}>
@@ -50,5 +55,6 @@ const TableRow = ({ children, columnsNumber }: TableRowProps): JSX.Element => {
 
 Table.Item = TableBodyItem;
 Table.Row = TableRow;
+Table.Options = TableBodyOptions;
 
 export default Table;
