@@ -1,6 +1,10 @@
 import { BsFacebook, BsYoutube, BsInstagram, BsTelegram } from "react-icons/bs";
 
-import { useAuthContext, useRealTimeFecher } from "@hooks/index";
+import {
+  useAuthContext,
+  useLotteryContext,
+  useRealTimeFecher,
+} from "@hooks/index";
 import { getSidebarMenuItems } from "./constants";
 import { SidebarProps } from "types";
 import { UserProfileService } from "@services/userProfile.service";
@@ -156,6 +160,7 @@ const SidebarGifts = (): JSX.Element => {
     "/users/panel",
     userProfileService.getUserPanelData
   );
+  const { lotteryDetail } = useLotteryContext();
 
   return (
     <Sidebar>
@@ -183,9 +188,11 @@ const SidebarGifts = (): JSX.Element => {
           />
         </IndicatorHead>
         <IndicatorList>
-          <p>1 juego 250 usd</p>
-          <p>2 juego 250 usd</p>
-          <p>3 juego 250 usd</p>
+          {lotteryDetail?.rounds.map((round, index) => (
+            <p key={round.id}>
+              {index + 1} juego {round.award} usd
+            </p>
+          ))}
         </IndicatorList>
         <PromIndicator>
           <h2>

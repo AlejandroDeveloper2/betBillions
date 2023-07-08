@@ -127,6 +127,21 @@ interface Team {
   level: string;
 }
 
+interface BingoBoard {
+  id: string;
+  key: string;
+  userId: number;
+  lotteryId: number;
+  card: BingoBall[];
+  round: number;
+  state: number;
+}
+
+interface BingoBall {
+  numbers: string;
+  state: boolean;
+}
+
 export type {
   AuthStatus,
   ApiName,
@@ -145,4 +160,6 @@ export type {
   AdminTransaction,
   HeaderType,
   Team,
+  BingoBoard,
+  BingoBall,
 };

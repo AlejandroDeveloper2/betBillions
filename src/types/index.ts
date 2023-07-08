@@ -65,6 +65,8 @@ export type {
   AdminTransaction,
   HeaderType,
   Team,
+  BingoBoard,
+  BingoBall,
 } from "./dataTypes";
 
 export type {
@@ -74,4 +76,5 @@ export type {
   WalletContextType,
   LotteryContextType,
   TransactionContextType,
+  ShoppingCartContextType,
 } from "./contextTypes";

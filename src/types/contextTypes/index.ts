@@ -1,12 +1,14 @@
 import { UseFormReset } from "react-hook-form";
 import {
   AuthStatus,
+  BingoBoard,
   LoginFormValues,
   LotteryDetail,
   LotteryListItem,
   MessageConfig,
   RecoverPassFormValues,
   RegisterFormValues,
+  ToastConfig,
   UpdatePassFormValues,
   UserAuth,
   UserPanelData,
@@ -72,8 +74,10 @@ interface WalletContextType {
 interface LotteryContextType {
   reffels: LotteryListItem[];
   lotteryDetail: LotteryDetail | null;
+  randomBingoBoards: BingoBoard[];
   getAllBingoReffels: (config: MessageConfig) => Promise<void>;
   getBingoReffel: (lotteryId: number, config: MessageConfig) => Promise<void>;
+  getRandomBingoBoards: () => Promise<void>;
 }
 
 interface TransactionContextType {
@@ -88,6 +92,14 @@ interface TransactionContextType {
   ) => Promise<void>;
 }
 
+interface ShoppingCartContextType {
+  bingoBoards: BingoBoard[];
+  totalToPay: number;
+  addBingoBoardToCart: (bingoBoard: BingoBoard, config: ToastConfig) => void;
+  removeBingoBoardFromCart: (bingoBoardId: string, config: ToastConfig) => void;
+  clearShoppingCart: () => void;
+}
+
 export type {
   AuthContextType,
   ProviderProps,
@@ -95,4 +107,5 @@ export type {
   WalletContextType,
   LotteryContextType,
   TransactionContextType,
+  ShoppingCartContextType,
 };

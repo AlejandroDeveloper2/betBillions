@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { WalletDepositFormValues, WalletWithdrawFormValues } from "types";
 
 const getTransactionWalletValues = (): WalletDepositFormValues => ({
-  walletType: "Trendo",
+  walletType: "TRC20",
   transaction: "",
   urlTransaction: "",
 });

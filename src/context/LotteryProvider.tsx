@@ -7,6 +7,7 @@ import {
   LotteryContextType,
   LotteryListItem,
   LotteryDetail,
+  BingoBoard,
 } from "../types";
 import { TokenAuth } from "@utils/index";
 
@@ -25,6 +26,7 @@ const LotteryProvider = ({ children }: ProviderProps) => {
   const [lotteryDetail, setLotteryDetail] = useState<LotteryDetail | null>(
     null
   );
+  const [randomBingoBoards, setRandomBingoBoards] = useState<BingoBoard[]>([]);
 
   const getAllBingoReffels = useCallback(
     async (config: MessageConfig): Promise<void> => {
@@ -82,14 +84,36 @@ const LotteryProvider = ({ children }: ProviderProps) => {
     []
   );
 
+  const getRandomBingoBoards = useCallback(async (): Promise<void> => {
+    const token = tokenAuth.getToken();
+    if (token) {
+      try {
+        const res = await lotteryService.getRandomBingoBoards(token);
+        setRandomBingoBoards(res);
+      } catch (error: unknown) {
+        const errorMessage = (error as Error).message;
+        console.log(errorMessage);
+      }
+    }
+  }, []);
+
   const value = useMemo(
     () => ({
       reffels,
       lotteryDetail,
+      randomBingoBoards,
       getAllBingoReffels,
       getBingoReffel,
+      getRandomBingoBoards,
     }),
-    [reffels, lotteryDetail, getAllBingoReffels, getBingoReffel]
+    [
+      reffels,
+      lotteryDetail,
+      randomBingoBoards,
+      getAllBingoReffels,
+      getBingoReffel,
+      getRandomBingoBoards,
+    ]
   );
 
   return (

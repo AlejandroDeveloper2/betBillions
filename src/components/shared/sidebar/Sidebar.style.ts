@@ -14,6 +14,7 @@ const SidebarContainer = styled.aside`
     position: absolute;
     top: 0;
     right: 2rem;
+    padding-bottom: 2rem;
   }
 `;
 

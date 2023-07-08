@@ -29,3 +29,7 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.slider{
+  width:100%;
+}
