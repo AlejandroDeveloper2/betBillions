@@ -34,19 +34,28 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
     bingoBoard: BingoBoard,
     config: ToastConfig
   ): void => {
-    const currentBingoCards: BingoBoard[] = [];
-    currentBingoCards.push(bingoBoard);
-    setBingoBoards(currentBingoCards);
-    setTotalToPay((prevState) => {
-      if (bingoBoards.length <= 5) {
-        return prevState + singleBoardPrice;
-      }
-      return prevState;
-    });
-    window.localStorage.setItem("cart", JSON.stringify(currentBingoCards));
-    config.configToast(ToastTypes.success, "Carton agregado!");
-    config.showToast();
-    config.hideToast(3000);
+    if (bingoBoards.length < 7) {
+      setBingoBoards([...bingoBoards, bingoBoard]);
+      setTotalToPay((prevState) => {
+        if (bingoBoards.length <= 5) {
+          return prevState + singleBoardPrice;
+        }
+        return prevState;
+      });
+      window.localStorage.setItem(
+        "cart",
+        JSON.stringify([...bingoBoards, bingoBoard])
+      );
+      config.configToast(ToastTypes.success, "Carton agregado!");
+      config.showToast();
+    } else {
+      config.configToast(
+        ToastTypes.warning,
+        "Solo puedes seleccionar maximo 7 cartones!"
+      );
+      config.showToast();
+    }
+    config.hideToast(4000);
   };
 
   const removeBingoBoardFromCart = (
