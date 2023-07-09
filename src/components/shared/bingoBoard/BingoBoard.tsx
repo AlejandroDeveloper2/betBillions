@@ -1,4 +1,4 @@
-import { BsFillCartPlusFill } from "react-icons/bs";
+import { BiPlus } from "react-icons/bi";
 
 import { BingoBoardProps } from "types";
 import { setColorBingoBalls } from "@utils/index";
@@ -12,27 +12,29 @@ import {
   BoardHead,
   BoardColumn,
   Ball,
+  NumberIndicator,
 } from "./BingoBard.style";
 import { Logo } from "@assets/index";
 
 const BingoBoard = (props: BingoBoardProps): JSX.Element => {
-  const { board, toastConfig } = props;
+  const { board, toastConfig, index } = props;
   const bingoStyledBalls = setColorBingoBalls(board);
   const { addBingoBoardToCart } = useShoppingCartContext();
 
   return (
     <BoardContainer>
+      <NumberIndicator>{index}</NumberIndicator>
       <DefaultButton
         style={{
-          bg: "var(--black)",
-          fontColor: "var(--white)",
-          width: "4rem",
+          bg: "var(--green)",
+          fontColor: "var(--dark-gray)",
+          width: "5rem",
           padding: "1rem 1rem",
         }}
         title={"Seleccionar cartón"}
         onClick={() => addBingoBoardToCart(board, toastConfig)}
       >
-        <BsFillCartPlusFill style={{ color: "var(--white)", fontSize: 20 }} />
+        <BiPlus style={{ color: "var(--dark-gray)", fontSize: 20 }} />
       </DefaultButton>
       <Image
         source={Logo}

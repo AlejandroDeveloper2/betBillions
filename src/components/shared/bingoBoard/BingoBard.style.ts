@@ -17,12 +17,11 @@ const BoardContainer = styled.div`
   background-repeat: no-repeat;
   padding: 1.2rem 0.5rem;
   position: relative;
+
   button {
     position: absolute;
     top: 0.5rem;
-    left: 0;
-    right: 0;
-    margin: auto;
+    right: 0.5rem;
   }
 `;
 
@@ -79,4 +78,28 @@ const BoardHead = styled.div`
   }
 `;
 
-export { BoardContainer, BoardBody, BoardHead, BoardColumn, Ball };
+const NumberIndicator = styled.span`
+  width: 2rem;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  background-color: var(--bg-secondary-color);
+  position: absolute;
+  color: var(--light-gray);
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: 1.2rem;
+  top: 0.5rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+`;
+
+export {
+  BoardContainer,
+  BoardBody,
+  BoardHead,
+  BoardColumn,
+  Ball,
+  NumberIndicator,
+};

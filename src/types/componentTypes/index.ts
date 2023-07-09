@@ -178,6 +178,7 @@ type ModalBodyProps = TableOptions;
 type BingoBoardProps = {
   board: BingoBoard;
   toastConfig: ToastConfig;
+  index: number;
 };
 
 export type {

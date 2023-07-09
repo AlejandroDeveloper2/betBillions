@@ -35,7 +35,7 @@ const Carousel = (): JSX.Element => {
     <>
       <CarouselContainer>
         <Slider {...settings} className="slider">
-          {randomBingoBoards.map((board) => (
+          {randomBingoBoards.map((board, index) => (
             <BingoBoard
               key={board.key}
               board={board}
@@ -44,6 +44,7 @@ const Carousel = (): JSX.Element => {
                 hideToast,
                 showToast,
               }}
+              index={index + 1}
             />
           ))}
         </Slider>
