@@ -21,6 +21,7 @@ export type {
   ModalProps,
   ModalHeaderProps,
   ModalBodyProps,
+  BingoBoardProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
@@ -45,6 +46,7 @@ export type {
   TableStyledProps,
   RoundStyledProps,
   ModalStyledProps,
+  BallStyledProps,
 } from "./styledComponentsTypes";
 
 export type {

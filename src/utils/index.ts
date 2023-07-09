@@ -3,6 +3,8 @@ import { Location } from "react-router-dom";
 
 import {
   AuthStatus,
+  BingoBall,
+  BingoBoard,
   FormType,
   MenuItemStyleProps,
   ToastConfig,
@@ -117,13 +119,26 @@ const formatDate = (
   return numericDate;
 };
 
+const setColorBingoBalls = (board: BingoBoard): BingoBall[] => {
+  const cardBalls = board.card.map((ball, index) => {
+    if (index === 0) {
+      return { ...ball, color: "var(--yellow)" };
+    }
+    if (index % 2 !== 0) {
+      return { ...ball, color: "var(--dark-gray)" };
+    }
+    return { ...ball, color: "var(--orange)" };
+  });
+  return cardBalls;
+};
+
 export {
   ValuesForm,
   TokenAuth,
-  // UserSession,
   UserAuthState,
   getInvitationLink,
   getActiveItem,
   copyToClipBoard,
   formatDate,
+  setColorBingoBalls,
 };

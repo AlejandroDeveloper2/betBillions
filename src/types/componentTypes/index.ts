@@ -6,7 +6,7 @@ import {
   UseFormReset,
 } from "react-hook-form";
 
-import { HeaderType, MessageConfig, ToastConfig } from "..";
+import { BingoBoard, HeaderType, MessageConfig, ToastConfig } from "..";
 
 type InputName =
   | "password"
@@ -175,6 +175,11 @@ type ModalHeaderProps = {
 
 type ModalBodyProps = TableOptions;
 
+type BingoBoardProps = {
+  board: BingoBoard;
+  toastConfig: ToastConfig;
+};
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -198,6 +203,7 @@ export type {
   ModalProps,
   ModalHeaderProps,
   ModalBodyProps,
+  BingoBoardProps,
 };
 
 export { ToastTypes };

@@ -140,6 +140,7 @@ interface BingoBoard {
 interface BingoBall {
   numbers: string;
   state: boolean;
+  color: string;
 }
 
 export type {

@@ -49,6 +49,10 @@ interface ModalStyledProps {
   ismodalvisible: string;
 }
 
+interface BallStyledProps {
+  color: string;
+}
+
 export type {
   ButtonStyleProps,
   ToastStyleProps,
@@ -59,4 +63,5 @@ export type {
   TableStyledProps,
   RoundStyledProps,
   ModalStyledProps,
+  BallStyledProps,
 };

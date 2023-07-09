@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import Slider from "react-slick";
 
-import { useLotteryContext } from "@hooks/index";
+import { useLotteryContext, useToast } from "@hooks/index";
 
-import { BingoBoard } from "@components/index";
+import { BingoBoard, Toast } from "@components/index";
 
 import { CarouselContainer, responsiveConfig } from "./Carousel.style";
 
@@ -18,19 +18,46 @@ const Carousel = (): JSX.Element => {
     responsive: responsiveConfig,
   };
   const { randomBingoBoards, getRandomBingoBoards } = useLotteryContext();
+  const {
+    isToastVisible,
+    getToastColor,
+    toast,
+    configToast,
+    hideToast,
+    showToast,
+  } = useToast();
 
   useEffect(() => {
     getRandomBingoBoards();
   }, []);
 
   return (
-    <CarouselContainer>
-      <Slider {...settings} className="slider">
-        {randomBingoBoards.map((board) => (
-          <BingoBoard key={board.id} />
-        ))}
-      </Slider>
-    </CarouselContainer>
+    <>
+      <CarouselContainer>
+        <Slider {...settings} className="slider">
+          {randomBingoBoards.map((board) => (
+            <BingoBoard
+              key={board.key}
+              board={board}
+              toastConfig={{
+                configToast,
+                hideToast,
+                showToast,
+              }}
+            />
+          ))}
+        </Slider>
+      </CarouselContainer>
+      <Toast
+        message={toast.toastMessage}
+        type={toast.toastType}
+        toastConfig={{
+          isToastVisible,
+          getToastColor,
+          hideToast,
+        }}
+      />
+    </>
   );
 };
 

@@ -34,17 +34,16 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
     bingoBoard: BingoBoard,
     config: ToastConfig
   ): void => {
-    setBingoBoards((prevState) => {
-      const newState = [...prevState, bingoBoard];
-      return newState;
-    });
+    const currentBingoCards: BingoBoard[] = [];
+    currentBingoCards.push(bingoBoard);
+    setBingoBoards(currentBingoCards);
     setTotalToPay((prevState) => {
       if (bingoBoards.length <= 5) {
         return prevState + singleBoardPrice;
       }
       return prevState;
     });
-    window.localStorage.setItem("cart", JSON.stringify(bingoBoards));
+    window.localStorage.setItem("cart", JSON.stringify(currentBingoCards));
     config.configToast(ToastTypes.success, "Carton agregado!");
     config.showToast();
     config.hideToast(3000);
