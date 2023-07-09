@@ -19,9 +19,18 @@ const BoardContainer = styled.div`
   position: relative;
 
   button {
+    width: 3rem;
+    height: 3rem;
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    button {
+      width: 5rem;
+      padding: 1rem;
+    }
   }
 `;
 

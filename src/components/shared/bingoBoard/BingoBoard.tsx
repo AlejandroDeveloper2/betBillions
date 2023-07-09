@@ -28,8 +28,6 @@ const BingoBoard = (props: BingoBoardProps): JSX.Element => {
         style={{
           bg: "var(--green)",
           fontColor: "var(--dark-gray)",
-          width: "5rem",
-          padding: "1rem 1rem",
         }}
         title={"Seleccionar cartón"}
         onClick={() => addBingoBoardToCart(board, toastConfig)}
@@ -41,8 +39,8 @@ const BingoBoard = (props: BingoBoardProps): JSX.Element => {
         alt={"Logo betBillions"}
         size={{
           lg: 40,
-          md: 30,
-          sm: 30,
+          md: 40,
+          sm: 40,
         }}
       />
       <BoardHead>

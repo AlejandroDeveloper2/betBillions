@@ -18,6 +18,9 @@ const PurchaseContainer = styled.div`
     width: 70%;
     padding-bottom: 1rem;
   }
+  button {
+    margin: 0 auto;
+  }
 `;
 
 const PageTitle = styled.div`
@@ -122,6 +125,17 @@ const Subtitle = styled.h2`
   }
 `;
 
+const P = styled.p`
+  font-size: 1rem;
+  color: var(--bg-secondary-color);
+  font-weight: 400;
+  text-align: center;
+  text-transform: none;
+  @media (min-width: 768px) {
+    text-align: left;
+  }
+`;
+
 export {
   PurchaseContainer,
   PageTitle,
@@ -130,4 +144,5 @@ export {
   PurchaseDetailsContainer,
   CartNumberIndicator,
   Subtitle,
+  P,
 };

@@ -59,7 +59,7 @@ const UL = styled.ul`
     gap: 1rem;
     align-items: center;
     border-radius: 0;
-    padding: 3rem 2rem;
+    padding: 3rem 1rem;
     li:nth-child(8) {
       margin-top: 4rem;
     }
@@ -84,6 +84,9 @@ const UL = styled.ul`
     img {
       display: block;
     }
+  }
+  @media (min-width: 1400px) {
+    padding: 3rem 2rem;
   }
 `;
 
@@ -182,10 +185,14 @@ const LinkItem = styled(Link)<MenuItemStyleProps>`
     width: 100%;
     border-radius: 4rem;
     justify-content: start;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1rem;
     span {
       display: block;
     }
+  }
+
+  @media (min-width: 1400px) {
+    padding: 0.5rem 1.5rem;
   }
 `;
 

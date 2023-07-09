@@ -1,6 +1,7 @@
 import { BsFillCartFill } from "react-icons/bs";
 import { AiFillEye } from "react-icons/ai";
 import { TbListDetails } from "react-icons/tb";
+import { BiSolidPurchaseTagAlt } from "react-icons/bi";
 
 import { useShoppingCartContext } from "@hooks/index";
 
@@ -20,6 +21,7 @@ import {
   PurchaseDetailsIndicator,
   CartNumberIndicator,
   Subtitle,
+  P,
 } from "./PurchaseBingoBoard.style";
 
 import { BingoBallsFigure } from "@assets/index";
@@ -82,7 +84,21 @@ const PurchaseBingoBoard = (): JSX.Element => {
         </PurchaseDetailsIndicator>
       </PurchaseDetailsContainer>
       <Subtitle>Selecciona tus cartones de bingo</Subtitle>
+      <P>Si compras más de 5 cartones solo pagas 5!</P>
       <Carousel />
+      <DefaultButton
+        style={{
+          bg: "var(--black)",
+          fontColor: "var(--white)",
+          width: "30rem",
+        }}
+        title={"Realizar Compra"}
+        label="Realizar compra"
+      >
+        <BiSolidPurchaseTagAlt
+          style={{ color: "var(--white)", fontSize: 30, marginRight: 5 }}
+        />
+      </DefaultButton>
       <Footer />
     </PurchaseContainer>
   );
