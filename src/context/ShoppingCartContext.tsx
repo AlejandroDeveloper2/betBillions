@@ -66,11 +66,11 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
       (bingoBoard) => bingoBoard.id !== bingoBoardId
     );
     setBingoBoards(filteredBingoBoards);
-    window.localStorage.setItem("cart", JSON.stringify(bingoBoards));
+    window.localStorage.setItem("cart", JSON.stringify(filteredBingoBoards));
     setTotalToPay((prevState) => prevState - singleBoardPrice);
-    config.configToast(ToastTypes.success, "Carton removido!");
+    config.configToast(ToastTypes.success, "Cartón removido!");
     config.showToast();
-    config.hideToast(3000);
+    config.hideToast(4000);
   };
 
   const clearShoppingCart = (): void => {

@@ -19,7 +19,7 @@ import { TokenAuth, UserAuthState } from "@utils/index";
 
 /*services*/
 import { UserAuthentication } from "@services/authentication.service";
-import { useToast } from "@hooks/index";
+import { useShoppingCartContext, useToast } from "@hooks/index";
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
@@ -38,6 +38,7 @@ const AuthProvider = ({ children }: ProviderProps) => {
   const navigate = useNavigate();
 
   const { toast, configToast } = useToast();
+  const { clearShoppingCart } = useShoppingCartContext();
 
   const login = useCallback(
     async (
@@ -78,6 +79,7 @@ const AuthProvider = ({ children }: ProviderProps) => {
       tokenAuth.removeToken();
       setAuthStatus("not-authenticated");
       userAuthStateLS.removeUserAuthState();
+      clearShoppingCart();
     }, delay);
   }, []);
 
