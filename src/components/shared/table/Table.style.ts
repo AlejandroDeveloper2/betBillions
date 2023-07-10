@@ -100,6 +100,7 @@ const TableItem = styled(TableHeadItem)`
   span:first-of-type {
     font-weight: bold;
   }
+  overflow: hidden;
   span {
     display: block;
     font-weight: 400;

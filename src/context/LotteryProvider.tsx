@@ -138,6 +138,7 @@ const LotteryProvider = ({ children }: ProviderProps) => {
           );
           toastConfig.configToast(res.typeStatus, res.message);
           toastConfig.showToast();
+          clearShoppingCart();
           navigate(`/userPanel/lottery/details/${idLottery}`);
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
@@ -146,7 +147,6 @@ const LotteryProvider = ({ children }: ProviderProps) => {
         } finally {
           toastConfig.hideToast(3000);
           loadingConfig.inactiveLoading();
-          clearShoppingCart();
         }
       }
     },

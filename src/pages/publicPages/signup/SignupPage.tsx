@@ -9,11 +9,17 @@ import { AiOutlineLink } from "react-icons/ai";
 import { HiIdentification } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
 
-import { useToast, useLoading, useAuthContext } from "@hooks/index";
+import {
+  useToast,
+  useLoading,
+  useAuthContext,
+  useCheckbox,
+} from "@hooks/index";
 import { RegisterFormValues } from "types";
 import { getDefaultValues, schema } from "./constants";
 
 import {
+  Checkbox,
   CustomForm,
   DefaultInput,
   DefaultSubmit,
@@ -55,6 +61,7 @@ const SignupPage = (): JSX.Element => {
   } = useLoading();
 
   const { createUserAccount } = useAuthContext();
+  const { isChecked, onChange } = useCheckbox();
 
   return (
     <>
@@ -157,6 +164,7 @@ const SignupPage = (): JSX.Element => {
                 <ErrorMessage message={errors.confirmEmail.message} />
               ) : null}
             </FormRow>
+            <Checkbox isChecked={isChecked} onChange={onChange} />
           </FormGrid>
           <DefaultInput
             type="text"

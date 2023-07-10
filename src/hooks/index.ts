@@ -5,6 +5,7 @@ export { default as useUserSession } from "./useUserSession";
 export { default as useScreenLoader } from "./useScreenLoader";
 export { default as useRealTimeFecher } from "./useRealTimeFecher";
 export { default as useModal } from "./useModal";
+export { default as useCheckbox } from "./useCheckbox";
 
 /*Context hooks */
 export { default as useAuthContext } from "./useAuthContext";

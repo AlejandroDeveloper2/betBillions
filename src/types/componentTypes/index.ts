@@ -185,6 +185,11 @@ type EmptyProps = {
   message: string;
 };
 
+type CheckboxProps = {
+  isChecked: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -210,6 +215,7 @@ export type {
   ModalBodyProps,
   BingoBoardProps,
   EmptyProps,
+  CheckboxProps,
 };
 
 export { ToastTypes };
