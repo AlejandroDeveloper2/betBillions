@@ -109,6 +109,51 @@ const LotteryDetails = (): JSX.Element => {
                   alt={"Bet billions wallet"}
                   size={{ lg: 10, md: 10, sm: 20 }}
                 />
+                {userBingoBoards.length === 0 ? (
+                  <DefaultButton
+                    style={{
+                      bg: "var(--black)",
+                      fontColor: "var(--white)",
+                      width: "30rem",
+                    }}
+                    title={"Seleccionar cartones de bingo"}
+                    label="Seleccionar tablas"
+                    onClick={() =>
+                      navigate(
+                        `/userPanel/lottery/purchaseBingoBoard/${lotteryId}`
+                      )
+                    }
+                  >
+                    <TbCardboards
+                      style={{
+                        color: "var(--white)",
+                        fontSize: 40,
+                        marginRight: 5,
+                      }}
+                    />
+                  </DefaultButton>
+                ) : (
+                  <DefaultButton
+                    style={{
+                      bg: "var(--black)",
+                      fontColor: "var(--white)",
+                      width: "30rem",
+                    }}
+                    title={"Ver mis cartones de bingo"}
+                    label="Ir al juego"
+                    onClick={() =>
+                      navigate(`/userPanel/lottery/gamePreview/${lotteryId}`)
+                    }
+                  >
+                    <AiFillPlayCircle
+                      style={{
+                        color: "var(--white)",
+                        fontSize: 40,
+                        marginRight: 5,
+                      }}
+                    />
+                  </DefaultButton>
+                )}
               </IndicatorHead>
               <IndicatorList>
                 {lotteryDetail?.rounds.map((round, index) => (
@@ -128,49 +173,6 @@ const LotteryDetails = (): JSX.Element => {
                 ))}
               </IndicatorList>
             </Indicator>
-            {userBingoBoards.length === 0 ? (
-              <DefaultButton
-                style={{
-                  bg: "var(--black)",
-                  fontColor: "var(--white)",
-                  width: "30rem",
-                }}
-                title={"Seleccionar cartones de bingo"}
-                label="Seleccionar tablas"
-                onClick={() =>
-                  navigate(`/userPanel/lottery/purchaseBingoBoard/${lotteryId}`)
-                }
-              >
-                <TbCardboards
-                  style={{
-                    color: "var(--white)",
-                    fontSize: 40,
-                    marginRight: 5,
-                  }}
-                />
-              </DefaultButton>
-            ) : (
-              <DefaultButton
-                style={{
-                  bg: "var(--black)",
-                  fontColor: "var(--white)",
-                  width: "30rem",
-                }}
-                title={"Ver mis cartones de bingo"}
-                label="Ir al juego"
-                onClick={() =>
-                  navigate(`/userPanel/lottery/gamePreview/${lotteryId}`)
-                }
-              >
-                <AiFillPlayCircle
-                  style={{
-                    color: "var(--white)",
-                    fontSize: 40,
-                    marginRight: 5,
-                  }}
-                />
-              </DefaultButton>
-            )}
           </>
         )}
         <Footer />

@@ -121,6 +121,9 @@ const IndicatorHead = styled.div`
   @media (min-width: 768px) {
     justify-content: flex-start;
     flex-direction: row;
+    button {
+      margin-left: calc(100% - 30rem);
+    }
   }
 `;
 
