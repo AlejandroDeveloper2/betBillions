@@ -19,6 +19,7 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
   const [bingoBoards, setBingoBoards] = useState<BingoBoard[]>(cartLS);
   const [totalToPay, setTotalToPay] = useState<number>(0);
   const [singleBoardPrice] = useState<number>(5);
+  // const [cardDuplicated, setCardDuplicated] = useState<boolean>(false);
 
   const getCart = (): void => {
     if (window.localStorage.getItem("cart")) {
@@ -35,6 +36,11 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
     config: ToastConfig
   ): void => {
     if (bingoBoards.length < 7) {
+      if (bingoBoards.includes(bingoBoard)) {
+        config.configToast(ToastTypes.error, "Ya seleccionaste este cartón!");
+        config.showToast();
+        return;
+      }
       setBingoBoards([...bingoBoards, bingoBoard]);
       setTotalToPay((prevState) => {
         if (bingoBoards.length <= 5) {
@@ -84,6 +90,12 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
   useEffect(() => {
     getCart();
   }, []);
+
+  // useEffect(()=>{
+  //   bingoBoards.forEach((card, i)=>{
+
+  //   })
+  // },[bingoBoards])
 
   const value = useMemo(
     () => ({

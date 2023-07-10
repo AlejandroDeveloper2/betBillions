@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { MdModeEditOutline, MdOutlinePersonOutline } from "react-icons/md";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { IoMdAdd } from "react-icons/io";
@@ -64,11 +65,10 @@ const MyWalletWithdraw = (): JSX.Element => {
     register,
     reset,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<WalletWithdrawFormValues>({
-    defaultValues: getWalletInfo(
-      wallet ? (wallet.wallet ? wallet.wallet : "") : ""
-    ),
+    defaultValues: getWalletInfo(),
     resolver: yupResolver(schema2),
   });
 
@@ -87,6 +87,10 @@ const MyWalletWithdraw = (): JSX.Element => {
       setMessage: loadingConfig.setMessage,
     },
   };
+
+  useEffect(() => {
+    setValue("wallet", wallet ? (wallet.wallet ? wallet.wallet : "") : "");
+  }, [wallet]);
 
   return (
     <>
