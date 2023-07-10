@@ -6,10 +6,9 @@ import {
   LoginFormValues,
   LotteryDetail,
   LotteryListItem,
-  MessageConfig,
   RecoverPassFormValues,
   RegisterFormValues,
-  ToastConfig,
+  ToastTypes,
   UpdatePassFormValues,
   UserAuth,
   UserPanelData,
@@ -25,29 +24,28 @@ interface ProviderProps {
 interface AuthContextType {
   authStatus: AuthStatus;
   userAuth: UserAuth | null;
-  sessionValidationMessage: string | null;
   login: (
     userCredentials: LoginFormValues,
-    config: MessageConfig,
+    config: LoadingConfig,
     reset: UseFormReset<LoginFormValues>
   ) => Promise<void>;
   logout: () => void;
   createUserAccount: (
     userData: RegisterFormValues,
-    config: MessageConfig,
+    config: LoadingConfig,
     reset: UseFormReset<RegisterFormValues>
   ) => Promise<void>;
   recoverPassword: (
     userRequestData: RecoverPassFormValues,
-    config: MessageConfig,
+    config: LoadingConfig,
     reset: UseFormReset<RecoverPassFormValues>
   ) => Promise<void>;
   changeUserPassword: (
     userNewPassword: UpdatePassFormValues,
-    config: MessageConfig,
+    config: LoadingConfig,
     reset: UseFormReset<UpdatePassFormValues>
   ) => Promise<void>;
-  activateUserAccount: (config: MessageConfig) => Promise<void>;
+  activateUserAccount: (config: LoadingConfig) => Promise<void>;
   validateUserAuth: () => Promise<void>;
 }
 
@@ -59,16 +57,16 @@ interface WalletContextType {
   transactionVoucher: string;
   setUserWalletAddress: (
     walletData: WalletWithdrawFormValues,
-    config: MessageConfig
+    config: LoadingConfig
   ) => Promise<void>;
   sendWalletDepositTransaction: (
     walletData: WalletDepositFormValues,
-    config: MessageConfig,
+    config: LoadingConfig,
     reset: UseFormReset<WalletDepositFormValues>
   ) => Promise<void>;
   uploadTransactionVoucher: (
     e: React.ChangeEvent<HTMLInputElement>,
-    config: MessageConfig
+    config: LoadingConfig
   ) => Promise<void>;
 }
 
@@ -77,13 +75,13 @@ interface LotteryContextType {
   lotteryDetail: LotteryDetail | null;
   randomBingoBoards: BingoBoard[];
   userBingoBoards: BingoBoard[];
-  getAllBingoReffels: (config: MessageConfig) => Promise<void>;
-  getBingoReffel: (lotteryId: number, config: MessageConfig) => Promise<void>;
+  getAllBingoReffels: (config: LoadingConfig) => Promise<void>;
+  getBingoReffel: (lotteryId: number, config: LoadingConfig) => Promise<void>;
   getRandomBingoBoards: () => Promise<void>;
   buyBingoBoards: (
     purchaseData: BingoBoard[],
     idLottery: number,
-    config: MessageConfig
+    config: LoadingConfig
   ) => Promise<void>;
   getPurchasedUserBingoBoards: (
     idLottery: number,
@@ -94,21 +92,33 @@ interface LotteryContextType {
 interface TransactionContextType {
   validateTransaction: (
     transactionData: ValidTransactionFormValues,
-    config: MessageConfig,
+    config: LoadingConfig,
     reset: UseFormReset<ValidTransactionFormValues>
   ) => Promise<void>;
   invalidateTransaction: (
     transactionHash: string,
-    config: MessageConfig
+    config: LoadingConfig
   ) => Promise<void>;
 }
 
 interface ShoppingCartContextType {
   bingoBoards: BingoBoard[];
   totalToPay: number;
-  addBingoBoardToCart: (bingoBoard: BingoBoard, config: ToastConfig) => void;
-  removeBingoBoardFromCart: (bingoBoardId: string, config: ToastConfig) => void;
+  addBingoBoardToCart: (bingoBoard: BingoBoard) => void;
+  removeBingoBoardFromCart: (bingoBoardId: string) => void;
   clearShoppingCart: () => void;
+}
+
+interface ToastContextType {
+  isToastVisible: boolean | string;
+  toast: {
+    toastMessage: string | null;
+    toastType: ToastTypes | null;
+  };
+  showToast: () => void;
+  hideToast: (delay?: number) => void;
+  getToastColor: () => string;
+  configToast: (type: ToastTypes, message: string) => void;
 }
 
 export type {
@@ -119,4 +129,5 @@ export type {
   LotteryContextType,
   TransactionContextType,
   ShoppingCartContextType,
+  ToastContextType,
 };

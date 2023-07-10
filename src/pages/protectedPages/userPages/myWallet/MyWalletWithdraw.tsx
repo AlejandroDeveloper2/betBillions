@@ -5,14 +5,9 @@ import { IoMdAdd } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { MessageConfig, WalletWithdrawFormValues } from "types";
+import { WalletWithdrawFormValues } from "types";
 import { getWalletInfo, schema2 } from "./constants";
-import {
-  useLoading,
-  useRealTimeFecher,
-  useToast,
-  useWalletContext,
-} from "@hooks/index";
+import { useLoading, useRealTimeFecher, useWalletContext } from "@hooks/index";
 import { UserProfileService } from "@services/userProfile.service";
 import { UserWalletService } from "@services/userWallet.service";
 
@@ -26,7 +21,6 @@ import {
   Footer,
   Image,
   Loading,
-  Toast,
   LoadingButton,
   SidebarDefault,
 } from "@components/index";
@@ -72,165 +66,148 @@ const MyWalletWithdraw = (): JSX.Element => {
     resolver: yupResolver(schema2),
   });
 
-  const toastconfig = useToast();
-  const loadingConfig = useLoading();
-
-  const config: MessageConfig = {
-    toastConfig: {
-      showToast: toastconfig.showToast,
-      hideToast: toastconfig.hideToast,
-      configToast: toastconfig.configToast,
-    },
-    loadingConfig: {
-      activeLoading: loadingConfig.activeLoading,
-      inactiveLoading: loadingConfig.inactiveLoading,
-      setMessage: loadingConfig.setMessage,
-    },
-  };
+  const {
+    isLoading,
+    loadingMessage,
+    activeLoading,
+    inactiveLoading,
+    setMessage,
+  } = useLoading();
 
   useEffect(() => {
     setValue("wallet", wallet ? (wallet.wallet ? wallet.wallet : "") : "");
   }, [wallet]);
 
   return (
-    <>
-      <MyWalletContainer>
-        <SidebarDefault />
-        <PageHeader>
-          <PageTitle>Retirar</PageTitle>
-          <Image
-            source={Wallet3dIcon}
-            alt={"My Wallet bet billions"}
-            size={{ lg: 30, md: 20, sm: 20 }}
-          />
-        </PageHeader>
-        <Indicator width="100%">
-          <Text>
-            <span>Felicitaciones</span>, ya falta poco para que recibas tu
-            premiacion, ingresa tu wallet y solicita tu retiro.
-          </Text>
-        </Indicator>
+    <MyWalletContainer>
+      <SidebarDefault />
+      <PageHeader>
+        <PageTitle>Retirar</PageTitle>
+        <Image
+          source={Wallet3dIcon}
+          alt={"My Wallet bet billions"}
+          size={{ lg: 30, md: 20, sm: 20 }}
+        />
+      </PageHeader>
+      <Indicator width="100%">
+        <Text>
+          <span>Felicitaciones</span>, ya falta poco para que recibas tu
+          premiacion, ingresa tu wallet y solicita tu retiro.
+        </Text>
+      </Indicator>
 
-        <CustomForm
-          formTitle=""
-          formType="walletWithdraw"
-          config={config}
-          handleSubmit={handleSubmit}
-          action={setUserWalletAddress}
-          reset={reset}
-        >
-          <WalletCard>
-            <WalletInputContainer>
-              <InputRow>
-                {isLoadingWallet ? (
-                  <Loading
-                    message="Cargando tu billetera..."
-                    textColor="var(--bg-secondary-color)"
-                  />
-                ) : (
-                  <InputVariant
-                    type="text"
-                    placeholder="Dirección de tu billetera aqui"
-                    label={null}
-                    Icon={MdOutlinePersonOutline}
-                    register={register}
-                    name="wallet"
-                  />
-                )}
-              </InputRow>
-              {loadingConfig.isLoading ? (
-                <LoadingButton
-                  message={loadingConfig.loadingMessage}
-                  style={{
-                    bg: "var(--black)",
-                    fontColor: "var(--white)",
-                    width: "auto",
-                  }}
+      <CustomForm
+        formTitle=""
+        formType="walletWithdraw"
+        config={{
+          activeLoading,
+          inactiveLoading,
+          setMessage,
+        }}
+        handleSubmit={handleSubmit}
+        action={setUserWalletAddress}
+        reset={reset}
+      >
+        <WalletCard>
+          <WalletInputContainer>
+            <InputRow>
+              {isLoadingWallet ? (
+                <Loading
+                  message="Cargando tu billetera..."
+                  textColor="var(--bg-secondary-color)"
                 />
               ) : (
-                <DefaultSubmit
-                  style={{
-                    bg: "var(--black)",
-                    fontColor: "var(--white)",
-                    width: "auto",
-                  }}
-                  title={
-                    wallet?.wallet
-                      ? "Editar direccion de billetera"
-                      : "Registrar billetera"
-                  }
-                >
-                  {wallet?.wallet ? (
-                    <MdModeEditOutline
-                      style={{ fontSize: "2rem", fill: "var(--white)" }}
-                    />
-                  ) : (
-                    <IoMdAdd
-                      style={{ fontSize: "2rem", fill: "var(--white)" }}
-                    />
-                  )}
-                </DefaultSubmit>
+                <InputVariant
+                  type="text"
+                  placeholder="Dirección de tu billetera aqui"
+                  label={null}
+                  Icon={MdOutlinePersonOutline}
+                  register={register}
+                  name="wallet"
+                />
               )}
-              <WalletAddress>
-                {""} <span>TRC20</span>
-              </WalletAddress>
-            </WalletInputContainer>
-            <WalletBody>
-              <Indicator width="30rem">
-                <IndicatorHead>
-                  <IndicatorTitle>Mis Premios</IndicatorTitle>
-                  <Image
-                    source={Gift3dIcon}
-                    alt={"Bet billions gifts"}
-                    size={{ lg: 20, md: 20, sm: 30 }}
-                  />
-                </IndicatorHead>
-                {isLoadingUserData ? (
-                  <Loading
-                    message="Cargando premios disponibles..."
-                    textColor="var(--bg-primary-color)"
+            </InputRow>
+            {isLoading ? (
+              <LoadingButton
+                message={loadingMessage}
+                style={{
+                  bg: "var(--black)",
+                  fontColor: "var(--white)",
+                  width: "auto",
+                }}
+              />
+            ) : (
+              <DefaultSubmit
+                style={{
+                  bg: "var(--black)",
+                  fontColor: "var(--white)",
+                  width: "auto",
+                }}
+                title={
+                  wallet?.wallet
+                    ? "Editar direccion de billetera"
+                    : "Registrar billetera"
+                }
+              >
+                {wallet?.wallet ? (
+                  <MdModeEditOutline
+                    style={{ fontSize: "2rem", fill: "var(--white)" }}
                   />
                 ) : (
-                  <IndicatorValue>
-                    ${userPanelData?.awards}
-                    <span>USD</span>
-                  </IndicatorValue>
+                  <IoMdAdd style={{ fontSize: "2rem", fill: "var(--white)" }} />
                 )}
-              </Indicator>
-            </WalletBody>
-          </WalletCard>
-          {errors.wallet ? (
-            <ErrorMessage message={errors.wallet.message} />
-          ) : null}
-          <DefaultButton
-            style={{
-              bg: "var(--bg-secondary-color)",
-              fontColor: "var(--white)",
-              width: "25rem",
-            }}
-            title={"Retirar fondos"}
-            label="Retirar"
-            onClick={() => console.log("Retirado")}
-            disabled={wallet?.wallet ? false : true}
-          >
-            <BiMoneyWithdraw
-              color="var(--white)"
-              style={{ fontSize: "1.6rem", marginRight: "0.5rem" }}
-            />
-          </DefaultButton>
-        </CustomForm>
-        <Footer />
-      </MyWalletContainer>
-      <Toast
-        message={toastconfig.toast.toastMessage}
-        type={toastconfig.toast.toastType}
-        toastConfig={{
-          isToastVisible: toastconfig.isToastVisible,
-          getToastColor: toastconfig.getToastColor,
-          hideToast: toastconfig.hideToast,
-        }}
-      />
-    </>
+              </DefaultSubmit>
+            )}
+            <WalletAddress>
+              {""} <span>TRC20</span>
+            </WalletAddress>
+          </WalletInputContainer>
+          <WalletBody>
+            <Indicator width="30rem">
+              <IndicatorHead>
+                <IndicatorTitle>Mis Premios</IndicatorTitle>
+                <Image
+                  source={Gift3dIcon}
+                  alt={"Bet billions gifts"}
+                  size={{ lg: 20, md: 20, sm: 30 }}
+                />
+              </IndicatorHead>
+              {isLoadingUserData ? (
+                <Loading
+                  message="Cargando premios disponibles..."
+                  textColor="var(--bg-primary-color)"
+                />
+              ) : (
+                <IndicatorValue>
+                  ${userPanelData?.awards}
+                  <span>USD</span>
+                </IndicatorValue>
+              )}
+            </Indicator>
+          </WalletBody>
+        </WalletCard>
+        {errors.wallet ? (
+          <ErrorMessage message={errors.wallet.message} />
+        ) : null}
+        <DefaultButton
+          style={{
+            bg: "var(--bg-secondary-color)",
+            fontColor: "var(--white)",
+            width: "25rem",
+          }}
+          title={"Retirar fondos"}
+          label="Retirar"
+          onClick={() => console.log("Retirado")}
+          disabled={wallet?.wallet ? false : true}
+        >
+          <BiMoneyWithdraw
+            color="var(--white)"
+            style={{ fontSize: "1.6rem", marginRight: "0.5rem" }}
+          />
+        </DefaultButton>
+      </CustomForm>
+      <Footer />
+    </MyWalletContainer>
   );
 };
 

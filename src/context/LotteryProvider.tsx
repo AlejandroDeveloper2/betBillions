@@ -2,7 +2,6 @@ import { useState, createContext, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
-  MessageConfig,
   ProviderProps,
   ToastTypes,
   LotteryContextType,
@@ -12,7 +11,7 @@ import {
   LoadingConfig,
 } from "types";
 import { TokenAuth } from "@utils/index";
-import { useShoppingCartContext } from "@hooks/index";
+import { useShoppingCartContext, useToastContext } from "@hooks/index";
 
 /*services*/
 import { LotteryService } from "@services/lottery.service";
@@ -32,30 +31,27 @@ const LotteryProvider = ({ children }: ProviderProps) => {
   const [randomBingoBoards, setRandomBingoBoards] = useState<BingoBoard[]>([]);
   const [userBingoBoards, setUserBingoBoards] = useState<BingoBoard[]>([]);
   const { clearShoppingCart } = useShoppingCartContext();
+  const { showToast, hideToast, configToast } = useToastContext();
   const navigate = useNavigate();
 
   const getAllBingoReffels = useCallback(
-    async (config: MessageConfig): Promise<void> => {
-      const { loadingConfig, toastConfig } = config;
+    async (config: LoadingConfig): Promise<void> => {
       const token = tokenAuth.getToken();
       if (token) {
         try {
-          loadingConfig.setMessage("Cargando sorteos...");
-          loadingConfig.activeLoading();
+          config.setMessage("Cargando sorteos...");
+          config.activeLoading();
           const res = await lotteryService.getAllBingoReffels(token);
           setReffels(res);
-          toastConfig.configToast(
-            ToastTypes.success,
-            "Sorteos cargados correctamente!"
-          );
-          toastConfig.showToast();
+          configToast(ToastTypes.success, "Sorteos cargados correctamente!");
+          showToast();
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          toastConfig.showToast();
-          toastConfig.configToast(ToastTypes.error, errorMessage);
+          showToast();
+          configToast(ToastTypes.error, errorMessage);
         } finally {
-          toastConfig.hideToast(3000);
-          loadingConfig.inactiveLoading();
+          hideToast(3000);
+          config.inactiveLoading();
         }
       }
     },
@@ -63,27 +59,23 @@ const LotteryProvider = ({ children }: ProviderProps) => {
   );
 
   const getBingoReffel = useCallback(
-    async (lotteryId: number, config: MessageConfig) => {
-      const { loadingConfig, toastConfig } = config;
+    async (lotteryId: number, config: LoadingConfig) => {
       const token = tokenAuth.getToken();
       if (token) {
         try {
-          loadingConfig.setMessage("Cargando información del sorteo...");
-          loadingConfig.activeLoading();
+          config.setMessage("Cargando información del sorteo...");
+          config.activeLoading();
           const res = await lotteryService.getBingoReffel(lotteryId, token);
           setLotteryDetail(res);
-          toastConfig.configToast(
-            ToastTypes.success,
-            "Información cargada correctamente!"
-          );
-          toastConfig.showToast();
+          configToast(ToastTypes.success, "Información cargada correctamente!");
+          showToast();
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          toastConfig.showToast();
-          toastConfig.configToast(ToastTypes.error, errorMessage);
+          showToast();
+          configToast(ToastTypes.error, errorMessage);
         } finally {
-          toastConfig.hideToast(3000);
-          loadingConfig.inactiveLoading();
+          hideToast(3000);
+          config.inactiveLoading();
         }
       }
     },
@@ -107,28 +99,27 @@ const LotteryProvider = ({ children }: ProviderProps) => {
     async (
       purchaseData: BingoBoard[],
       idLottery: number,
-      config: MessageConfig
+      config: LoadingConfig
     ): Promise<void> => {
-      const { loadingConfig, toastConfig } = config;
       const token = tokenAuth.getToken();
       if (token) {
         try {
-          loadingConfig.setMessage("Realizando compra...");
-          loadingConfig.activeLoading();
+          config.setMessage("Realizando compra...");
+          config.activeLoading();
           if (purchaseData.length === 0) {
-            toastConfig.configToast(
+            configToast(
               ToastTypes.warning,
               "No has seleccionado ningún cartón!"
             );
-            toastConfig.showToast();
+            showToast();
             return;
           }
           if (purchaseData.length === 5) {
-            toastConfig.configToast(
+            configToast(
               ToastTypes.warning,
               "Selecciona 2 cartones mas para aplicar a la promoción!"
             );
-            toastConfig.showToast();
+            showToast();
             return;
           }
           const res = await lotteryService.buyBingoBoards(
@@ -136,17 +127,17 @@ const LotteryProvider = ({ children }: ProviderProps) => {
             idLottery,
             token
           );
-          toastConfig.configToast(res.typeStatus, res.message);
-          toastConfig.showToast();
+          configToast(res.typeStatus, res.message);
+          showToast();
           clearShoppingCart();
           navigate(`/userPanel/lottery/details/${idLottery}`);
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          toastConfig.showToast();
-          toastConfig.configToast(ToastTypes.error, errorMessage);
+          showToast();
+          configToast(ToastTypes.error, errorMessage);
         } finally {
-          toastConfig.hideToast(3000);
-          loadingConfig.inactiveLoading();
+          hideToast(3000);
+          config.inactiveLoading();
         }
       }
     },
@@ -168,9 +159,11 @@ const LotteryProvider = ({ children }: ProviderProps) => {
           setUserBingoBoards(res);
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          console.log(errorMessage);
+          configToast(ToastTypes.error, errorMessage);
+          showToast();
         } finally {
           inactiveLoading();
+          hideToast(3000);
         }
       }
     },

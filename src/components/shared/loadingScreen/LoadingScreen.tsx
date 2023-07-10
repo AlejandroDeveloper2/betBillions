@@ -12,7 +12,7 @@ import "./animation.css";
 import { LogoTap } from "@assets/index";
 
 const LoadingScreen = (): JSX.Element => {
-  const { authStatus, sessionValidationMessage } = useAuthContext();
+  const { authStatus } = useAuthContext();
 
   return (
     <LoadingScreenContainer>
@@ -33,7 +33,6 @@ const LoadingScreen = (): JSX.Element => {
           <p>
             {authStatus === "checking" ? "Validando sesión..." : "Cargando..."}
           </p>
-          <p>{sessionValidationMessage && sessionValidationMessage}</p>
         </LoadingBox>
       </Layer>
     </LoadingScreenContainer>

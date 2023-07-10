@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, createContext, useMemo } from "react";
 
-import { ToastTypes } from "types";
+import { ProviderProps, ToastTypes, ToastContextType } from "types";
 
-const useToast = () => {
+const ToastContext = createContext<ToastContextType>({} as ToastContextType);
+
+const ToastProvider = ({ children }: ProviderProps) => {
   const [isToastVisible, setIsToastVisible] = useState<boolean | string>(false);
   const [toast, setToast] = useState<{
     toastMessage: string | null;
@@ -36,14 +38,22 @@ const useToast = () => {
     setToast({ toastMessage: message, toastType: type });
   };
 
-  return {
-    isToastVisible,
-    toast,
-    showToast,
-    hideToast,
-    getToastColor,
-    configToast,
-  };
+  const value = useMemo(
+    () => ({
+      isToastVisible,
+      toast,
+      showToast,
+      hideToast,
+      getToastColor,
+      configToast,
+    }),
+    [isToastVisible, toast, showToast, hideToast, getToastColor, configToast]
+  );
+
+  return (
+    <ToastContext.Provider value={value}>{children}</ToastContext.Provider>
+  );
 };
 
-export default useToast;
+export { ToastProvider };
+export default ToastContext;

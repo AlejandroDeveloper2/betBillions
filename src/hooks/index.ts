@@ -1,5 +1,4 @@
 export { default as usePasswordInput } from "./usePasswordInput";
-export { default as useToast } from "./useToast";
 export { default as useLoading } from "./useLoading";
 export { default as useUserSession } from "./useUserSession";
 export { default as useScreenLoader } from "./useScreenLoader";
@@ -14,3 +13,4 @@ export { default as useWalletContext } from "./useWalletContext";
 export { default as useLotteryContext } from "./useLotteryContext";
 export { default as useTransactionContext } from "./useTransactionContext";
 export { default as useShoppingCartContext } from "./useShoppingCartContext";
+export { default as useToastContext } from "./useToastContext";

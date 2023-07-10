@@ -16,7 +16,6 @@ import {
   useLoading,
   useModal,
   useRealTimeFecher,
-  useToast,
   useTransactionContext,
 } from "@hooks/index";
 import { TransactionsService } from "@services/transactions.service";
@@ -37,7 +36,6 @@ import {
   LoadingButton,
   Modal,
   Table,
-  Toast,
 } from "@components/index";
 
 import {
@@ -78,15 +76,6 @@ const TransactionsAdmin = (): JSX.Element => {
   });
 
   const {
-    isToastVisible,
-    toast,
-    showToast,
-    hideToast,
-    getToastColor,
-    configToast,
-  } = useToast();
-
-  const {
     isLoading: isLoadingForm,
     loadingMessage,
     activeLoading,
@@ -123,16 +112,9 @@ const TransactionsAdmin = (): JSX.Element => {
               label="Invalidar"
               onClick={() => {
                 invalidateTransaction(data ? data?.transaction : "", {
-                  toastConfig: {
-                    showToast,
-                    hideToast,
-                    configToast,
-                  },
-                  loadingConfig: {
-                    activeLoading,
-                    inactiveLoading,
-                    setMessage,
-                  },
+                  activeLoading,
+                  inactiveLoading,
+                  setMessage,
                 }).then(() => {
                   hideDialog();
                 });
@@ -153,16 +135,9 @@ const TransactionsAdmin = (): JSX.Element => {
             formTitle=""
             formType="TransactionValidation"
             config={{
-              toastConfig: {
-                showToast,
-                hideToast,
-                configToast,
-              },
-              loadingConfig: {
-                activeLoading,
-                inactiveLoading,
-                setMessage,
-              },
+              activeLoading,
+              inactiveLoading,
+              setMessage,
             }}
             handleSubmit={handleSubmit}
             action={validateTransaction}
@@ -360,15 +335,6 @@ const TransactionsAdmin = (): JSX.Element => {
         )}
         <Footer />
       </TransactionsContainer>
-      <Toast
-        message={toast.toastMessage}
-        type={toast.toastType}
-        toastConfig={{
-          isToastVisible,
-          getToastColor,
-          hideToast,
-        }}
-      />
     </>
   );
 };

@@ -2,14 +2,15 @@ import { useState, createContext, useMemo, useCallback } from "react";
 import { UseFormReset } from "react-hook-form";
 
 import {
-  MessageConfig,
+  LoadingConfig,
   ProviderProps,
   ToastTypes,
   WalletContextType,
   WalletDepositFormValues,
   WalletWithdrawFormValues,
-} from "../types";
+} from "types";
 import { TokenAuth } from "@utils/index";
+import { useToastContext } from "@hooks/index";
 
 /*services*/
 import { UserWalletService } from "@services/userWallet.service";
@@ -22,30 +23,31 @@ const tokenAuth = new TokenAuth();
 const WalletProvider = ({ children }: ProviderProps) => {
   const [transactionVoucher, setTransactionVoucher] = useState<string>("");
 
+  const { showToast, hideToast, configToast } = useToastContext();
+
   const setUserWalletAddress = useCallback(
     async (
       walletData: WalletWithdrawFormValues,
-      config: MessageConfig
+      config: LoadingConfig
     ): Promise<void> => {
-      const { loadingConfig, toastConfig } = config;
       const token = tokenAuth.getToken();
       if (token) {
         try {
-          loadingConfig.setMessage("");
-          loadingConfig.activeLoading();
+          config.setMessage("");
+          config.activeLoading();
           const res = await userWalletService.setUserWalletAddress(
             walletData,
             token
           );
-          toastConfig.configToast(res.typeStatus, res.message);
-          toastConfig.showToast();
+          configToast(res.typeStatus, res.message);
+          showToast();
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          toastConfig.showToast();
-          toastConfig.configToast(ToastTypes.error, errorMessage);
+          showToast();
+          configToast(ToastTypes.error, errorMessage);
         } finally {
-          toastConfig.hideToast(3000);
-          loadingConfig.inactiveLoading();
+          hideToast(3000);
+          config.inactiveLoading();
         }
       }
     },
@@ -55,30 +57,29 @@ const WalletProvider = ({ children }: ProviderProps) => {
   const sendWalletDepositTransaction = useCallback(
     async (
       walletData: WalletDepositFormValues,
-      config: MessageConfig,
+      config: LoadingConfig,
       reset: UseFormReset<WalletDepositFormValues>
     ): Promise<void> => {
-      const { loadingConfig, toastConfig } = config;
       const token = tokenAuth.getToken();
       if (token) {
         try {
-          loadingConfig.setMessage("Enviando solicitud de deposito..");
-          loadingConfig.activeLoading();
+          config.setMessage("Enviando solicitud de deposito..");
+          config.activeLoading();
           const res = await userWalletService.sendWalletDepositTransaction(
             walletData,
             token
           );
           reset();
           setTransactionVoucher("");
-          toastConfig.configToast(res.typeStatus, res.message);
-          toastConfig.showToast();
+          configToast(res.typeStatus, res.message);
+          showToast();
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          toastConfig.showToast();
-          toastConfig.configToast(ToastTypes.error, errorMessage);
+          showToast();
+          configToast(ToastTypes.error, errorMessage);
         } finally {
-          toastConfig.hideToast(3000);
-          loadingConfig.inactiveLoading();
+          hideToast(3000);
+          config.inactiveLoading();
         }
       }
     },
@@ -88,9 +89,8 @@ const WalletProvider = ({ children }: ProviderProps) => {
   const uploadTransactionVoucher = useCallback(
     async (
       e: React.ChangeEvent<HTMLInputElement>,
-      config: MessageConfig
+      config: LoadingConfig
     ): Promise<void> => {
-      const { loadingConfig, toastConfig } = config;
       const files = e.target.files;
       const formData = new FormData();
       if (files) {
@@ -98,22 +98,19 @@ const WalletProvider = ({ children }: ProviderProps) => {
         formData.append("upload_preset", "uploadTransactionVoucher");
       }
       try {
-        loadingConfig.setMessage("");
-        loadingConfig.activeLoading();
+        config.setMessage("");
+        config.activeLoading();
         const res = await userWalletService.uploadTransactionVoucher(formData);
         setTransactionVoucher(res);
-        toastConfig.configToast(
-          ToastTypes.success,
-          "Comprobante subido correctamente!"
-        );
-        toastConfig.showToast();
+        configToast(ToastTypes.success, "Comprobante subido correctamente!");
+        showToast();
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        toastConfig.showToast();
-        toastConfig.configToast(ToastTypes.error, errorMessage);
+        showToast();
+        configToast(ToastTypes.error, errorMessage);
       } finally {
-        toastConfig.hideToast(3000);
-        loadingConfig.inactiveLoading();
+        hideToast(3000);
+        config.inactiveLoading();
       }
     },
     []

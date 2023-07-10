@@ -6,8 +6,8 @@ import { UseFormReset } from "react-hook-form";
 import {
   AuthContextType,
   AuthStatus,
+  LoadingConfig,
   LoginFormValues,
-  MessageConfig,
   ProviderProps,
   RecoverPassFormValues,
   RegisterFormValues,
@@ -19,7 +19,7 @@ import { TokenAuth, UserAuthState } from "@utils/index";
 
 /*services*/
 import { UserAuthentication } from "@services/authentication.service";
-import { useShoppingCartContext, useToast } from "@hooks/index";
+import { useShoppingCartContext, useToastContext } from "@hooks/index";
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
@@ -36,20 +36,19 @@ const AuthProvider = ({ children }: ProviderProps) => {
   );
   const location = useLocation();
   const navigate = useNavigate();
+  const { showToast, hideToast, configToast } = useToastContext();
 
-  const { toast, configToast } = useToast();
   const { clearShoppingCart } = useShoppingCartContext();
 
   const login = useCallback(
     async (
       userCredentials: LoginFormValues,
-      config: MessageConfig,
+      config: LoadingConfig,
       reset: UseFormReset<LoginFormValues>
     ): Promise<void> => {
-      const { loadingConfig, toastConfig } = config;
       try {
-        loadingConfig.setMessage("Validando credenciales...");
-        loadingConfig.activeLoading();
+        config.setMessage("Validando credenciales...");
+        config.activeLoading();
         const res = await authService.authenticateUser(userCredentials);
         if (res.token) {
           const userAuth = decodeToken<UserAuth>(res.token);
@@ -59,15 +58,15 @@ const AuthProvider = ({ children }: ProviderProps) => {
           userAuthStateLS.setUserAuthState("authenticated");
         }
         reset();
-        toastConfig.configToast(res.typeStatus, res.message);
-        toastConfig.showToast();
+        configToast(res.typeStatus, res.message);
+        showToast();
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        toastConfig.showToast();
-        toastConfig.configToast(ToastTypes.error, errorMessage);
+        showToast();
+        configToast(ToastTypes.error, errorMessage);
       } finally {
-        toastConfig.hideToast(3000);
-        loadingConfig.inactiveLoading();
+        hideToast(3000);
+        config.inactiveLoading();
       }
     },
     []
@@ -86,24 +85,23 @@ const AuthProvider = ({ children }: ProviderProps) => {
   const createUserAccount = useCallback(
     async (
       userData: RegisterFormValues,
-      config: MessageConfig,
+      config: LoadingConfig,
       reset: UseFormReset<RegisterFormValues>
     ): Promise<void> => {
-      const { loadingConfig, toastConfig } = config;
       try {
-        loadingConfig.setMessage("Creando cuenta...");
-        loadingConfig.activeLoading();
+        config.setMessage("Creando cuenta...");
+        config.activeLoading();
         const res = await authService.registerUser(userData);
-        toastConfig.showToast();
-        toastConfig.configToast(res.typeStatus, res.message);
+        showToast();
+        configToast(res.typeStatus, res.message);
         reset();
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        toastConfig.showToast();
-        toastConfig.configToast(ToastTypes.error, errorMessage);
+        showToast();
+        configToast(ToastTypes.error, errorMessage);
       } finally {
-        toastConfig.hideToast(3000);
-        loadingConfig.inactiveLoading();
+        hideToast(3000);
+        config.inactiveLoading();
       }
     },
     []
@@ -112,24 +110,23 @@ const AuthProvider = ({ children }: ProviderProps) => {
   const recoverPassword = useCallback(
     async (
       userRequestData: RecoverPassFormValues,
-      config: MessageConfig,
+      config: LoadingConfig,
       reset: UseFormReset<RecoverPassFormValues>
     ): Promise<void> => {
-      const { loadingConfig, toastConfig } = config;
       try {
-        loadingConfig.setMessage("Enviando solicitud...");
-        loadingConfig.activeLoading();
+        config.setMessage("Enviando solicitud...");
+        config.activeLoading();
         const res = await authService.sendRecoverPassRequest(userRequestData);
-        toastConfig.showToast();
-        toastConfig.configToast(res.typeStatus, res.message);
+        showToast();
+        configToast(res.typeStatus, res.message);
         reset();
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        toastConfig.showToast();
-        toastConfig.configToast(ToastTypes.error, errorMessage);
+        showToast();
+        configToast(ToastTypes.error, errorMessage);
       } finally {
-        toastConfig.hideToast(3000);
-        loadingConfig.inactiveLoading();
+        hideToast(3000);
+        config.inactiveLoading();
       }
     },
     []
@@ -138,47 +135,45 @@ const AuthProvider = ({ children }: ProviderProps) => {
   const changeUserPassword = useCallback(
     async (
       userNewPassword: UpdatePassFormValues,
-      config: MessageConfig,
+      config: LoadingConfig,
       reset: UseFormReset<UpdatePassFormValues>
     ): Promise<void> => {
-      const { loadingConfig, toastConfig } = config;
       const token = tokenAuth.getUrlToken(location);
       try {
-        loadingConfig.setMessage("Actualizando clave...");
-        loadingConfig.activeLoading();
+        config.setMessage("Actualizando clave...");
+        config.activeLoading();
         const res = await authService.updatePassword(userNewPassword, token);
-        toastConfig.showToast();
-        toastConfig.configToast(res.typeStatus, res.message);
+        showToast();
+        configToast(res.typeStatus, res.message);
         reset();
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        toastConfig.showToast();
-        toastConfig.configToast(ToastTypes.error, errorMessage);
+        showToast();
+        configToast(ToastTypes.error, errorMessage);
       } finally {
-        toastConfig.hideToast(3000);
-        loadingConfig.inactiveLoading();
+        hideToast(3000);
+        config.inactiveLoading();
       }
     },
     [location]
   );
 
   const activateUserAccount = useCallback(
-    async (config: MessageConfig): Promise<void> => {
-      const { loadingConfig, toastConfig } = config;
+    async (config: LoadingConfig): Promise<void> => {
       const token = tokenAuth.getUrlToken(location);
       try {
-        loadingConfig.setMessage("Verificando cuenta...");
-        loadingConfig.activeLoading();
+        config.setMessage("Verificando cuenta...");
+        config.activeLoading();
         const res = await authService.activateUserAccount(token);
-        toastConfig.showToast();
-        toastConfig.configToast(res.typeStatus, res.message);
+        showToast();
+        configToast(res.typeStatus, res.message);
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        toastConfig.showToast();
-        toastConfig.configToast(ToastTypes.error, errorMessage);
+        showToast();
+        configToast(ToastTypes.error, errorMessage);
       } finally {
-        toastConfig.hideToast(3000);
-        loadingConfig.inactiveLoading();
+        hideToast(3000);
+        config.inactiveLoading();
         setTimeout(() => {
           navigate("/");
         }, 3000);
@@ -200,6 +195,7 @@ const AuthProvider = ({ children }: ProviderProps) => {
           userAuthStateLS.setUserAuthState("authenticated");
           setUserAuth(userAuth);
         } else {
+          showToast();
           configToast(
             ToastTypes.warning,
             "La sesión a caducado por favor loguese de nuevo!"
@@ -213,6 +209,9 @@ const AuthProvider = ({ children }: ProviderProps) => {
     } catch (error: unknown) {
       const errorMessage = (error as Error).message;
       configToast(ToastTypes.error, errorMessage);
+      showToast();
+    } finally {
+      hideToast(3000);
     }
   }, [configToast, logout]);
 
@@ -220,7 +219,6 @@ const AuthProvider = ({ children }: ProviderProps) => {
     () => ({
       authStatus,
       userAuth,
-      sessionValidationMessage: toast.toastMessage,
       login,
       logout,
       createUserAccount,
@@ -232,7 +230,6 @@ const AuthProvider = ({ children }: ProviderProps) => {
     [
       authStatus,
       userAuth,
-      toast.toastMessage,
       login,
       logout,
       createUserAccount,

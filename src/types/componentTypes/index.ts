@@ -6,7 +6,7 @@ import {
   UseFormReset,
 } from "react-hook-form";
 
-import { BingoBoard, HeaderType, MessageConfig, ToastConfig } from "..";
+import { BingoBoard, HeaderType, LoadingConfig } from "..";
 
 type InputName =
   | "password"
@@ -43,13 +43,13 @@ type FormType =
 type CustomFormProps = {
   children: JSX.Element | JSX.Element[] | any[];
   formTitle: string;
-  config: MessageConfig;
+  config: LoadingConfig;
   formType: FormType;
   handleSubmit: UseFormHandleSubmit<any, undefined>;
   reset: UseFormReset<any>;
   action: (
     data: any,
-    config: MessageConfig,
+    config: LoadingConfig,
     reset: UseFormReset<any>
   ) => Promise<void>;
 };
@@ -133,10 +133,6 @@ type IndicatorProps = {
   width: string;
 };
 
-type InvitationLinkProps = {
-  toastConfig: ToastConfig;
-};
-
 type SidebarProps = {
   children?: JSX.Element | JSX.Element[] | any;
 };
@@ -205,7 +201,6 @@ export type {
   MenuProps,
   AdCardProps,
   IndicatorProps,
-  InvitationLinkProps,
   SidebarProps,
   TableProps,
   TableItemProps,

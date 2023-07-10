@@ -1,17 +1,18 @@
 import { Outlet } from "react-router-dom";
 
-import { useAuthContext, useUserSession } from "@hooks/index";
+import { useAuthContext, useToastContext, useUserSession } from "@hooks/index";
 import { getMenuItems } from "./constants";
 
-import { Menu } from "@components/index";
+import { Menu, Toast } from "@components/index";
 
 import { Container, Panel } from "./ProtectedLayout.style";
 
 const ProtectedLayout = (): JSX.Element => {
   useUserSession(1000);
   const { userAuth, logout } = useAuthContext();
-  const userRole = userAuth ? userAuth.roles[0].authority : "ROLE_USER";
+  const { toast, isToastVisible, getToastColor, hideToast } = useToastContext();
 
+  const userRole = userAuth ? userAuth.roles[0].authority : "ROLE_USER";
   const MENUITEMS = getMenuItems(logout, userRole);
 
   return (
@@ -24,6 +25,15 @@ const ProtectedLayout = (): JSX.Element => {
       <Panel>
         <Outlet />
       </Panel>
+      <Toast
+        message={toast.toastMessage}
+        type={toast.toastType}
+        toastConfig={{
+          isToastVisible,
+          getToastColor,
+          hideToast,
+        }}
+      />
     </Container>
   );
 };

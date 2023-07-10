@@ -1,6 +1,5 @@
-import { useRealTimeFecher } from "@hooks/index";
+import { useRealTimeFecher, useToastContext } from "@hooks/index";
 import { copyToClipBoard } from "@utils/index";
-import { InvitationLinkProps } from "types";
 import { UserProfileService } from "@services/userProfile.service";
 
 import { DefaultButton, Image } from "@components/index";
@@ -8,13 +7,19 @@ import { DefaultButton, Image } from "@components/index";
 import { CopyLinkIcon } from "@assets/index";
 import { LinkContainer, LinkContent } from "./InvitationLink.style";
 
-const InvitationLink = (props: InvitationLinkProps): JSX.Element => {
-  const { toastConfig } = props;
+const InvitationLink = (): JSX.Element => {
   const userProfileService = new UserProfileService();
   const { data: userPanelData } = useRealTimeFecher(
     "/users/panel",
     userProfileService.getUserPanelData
   );
+  const { showToast, hideToast, configToast } = useToastContext();
+
+  const toastConfig = {
+    showToast,
+    hideToast,
+    configToast,
+  };
 
   const invitationLink = userPanelData
     ? userPanelData.link

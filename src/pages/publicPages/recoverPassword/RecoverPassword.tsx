@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { MdAlternateEmail } from "react-icons/md";
 
-import { useToast, useLoading, useAuthContext } from "@hooks/index";
+import { useLoading, useAuthContext } from "@hooks/index";
 import { RecoverPassFormValues } from "types";
 import { DEFAULTVALUES, schema } from "./constants";
 
@@ -12,7 +12,6 @@ import {
   DefaultSubmit,
   ErrorMessage,
   LoadingButton,
-  Toast,
 } from "@components/index";
 
 import { FormContainer, LinkVariant, Links } from "@styles/GlobalStyles.style";
@@ -29,15 +28,6 @@ const RecoverPassword = (): JSX.Element => {
   });
 
   const {
-    isToastVisible,
-    toast,
-    showToast,
-    hideToast,
-    getToastColor,
-    configToast,
-  } = useToast();
-
-  const {
     isLoading,
     loadingMessage,
     activeLoading,
@@ -48,67 +38,51 @@ const RecoverPassword = (): JSX.Element => {
   const { recoverPassword } = useAuthContext();
 
   return (
-    <>
-      <FormContainer width={30}>
-        <CustomForm
-          formTitle="recuperar contraseña"
-          config={{
-            toastConfig: {
-              showToast,
-              hideToast,
-              configToast,
-            },
-            loadingConfig: {
-              activeLoading,
-              inactiveLoading,
-              setMessage,
-            },
-          }}
-          formType="recoverPass"
-          handleSubmit={handleSubmit}
-          action={recoverPassword}
-          reset={reset}
-        >
-          <DefaultInput
-            type="text"
-            placeholder="Correo electronico"
-            label={null}
-            Icon={MdAlternateEmail}
-            register={register}
-            name="email"
+    <FormContainer width={30}>
+      <CustomForm
+        formTitle="recuperar contraseña"
+        config={{
+          activeLoading,
+          inactiveLoading,
+          setMessage,
+        }}
+        formType="recoverPass"
+        handleSubmit={handleSubmit}
+        action={recoverPassword}
+        reset={reset}
+      >
+        <DefaultInput
+          type="text"
+          placeholder="Correo electronico"
+          label={null}
+          Icon={MdAlternateEmail}
+          register={register}
+          name="email"
+        />
+        {errors.email ? <ErrorMessage message={errors.email.message} /> : null}
+        {!isLoading ? (
+          <DefaultSubmit
+            style={{
+              bg: "var(--bg-secondary-color)",
+              fontColor: "var(--white)",
+            }}
+            title="Enviar solicitud"
+            label="Recuperar contraseña"
           />
-          {errors.email ? (
-            <ErrorMessage message={errors.email.message} />
-          ) : null}
-          {!isLoading ? (
-            <DefaultSubmit
-              style={{
-                bg: "var(--bg-secondary-color)",
-                fontColor: "var(--white)",
-              }}
-              title="Enviar solicitud"
-              label="Recuperar contraseña"
-            />
-          ) : (
-            <LoadingButton
-              message={loadingMessage}
-              style={{
-                bg: "var(--bg-secondary-color)",
-                fontColor: "var(--white)",
-              }}
-            />
-          )}
-          <Links>
-            <LinkVariant to="/">Regresar al inicio de sesión</LinkVariant>
-          </Links>
-        </CustomForm>
-      </FormContainer>
-      <Toast
-        message={toast.toastMessage}
-        type={toast.toastType}
-        toastConfig={{ isToastVisible, getToastColor, hideToast }}
-      />
-    </>
+        ) : (
+          <LoadingButton
+            message={loadingMessage}
+            style={{
+              bg: "var(--bg-secondary-color)",
+              fontColor: "var(--white)",
+            }}
+          />
+        )}
+        <Links>
+          <LinkVariant to="/">Regresar al inicio de sesión</LinkVariant>
+        </Links>
+      </CustomForm>
+    </FormContainer>
   );
 };
 

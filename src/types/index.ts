@@ -11,7 +11,6 @@ export type {
   MenuProps,
   AdCardProps,
   IndicatorProps,
-  InvitationLinkProps,
   SidebarProps,
   TableProps,
   TableItemProps,
@@ -56,8 +55,6 @@ export type {
   ApiName,
   ServerResponse,
   LoginServerResponse,
-  MessageConfig,
-  ToastConfig,
   LoadingConfig,
   UserAuth,
   MenuItem,
@@ -82,4 +79,5 @@ export type {
   LotteryContextType,
   TransactionContextType,
   ShoppingCartContextType,
+  ToastContextType,
 } from "./contextTypes";

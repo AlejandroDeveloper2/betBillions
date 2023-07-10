@@ -5,8 +5,8 @@ import {
   ToastTypes,
   ShoppingCartContextType,
   BingoBoard,
-  ToastConfig,
-} from "../types";
+} from "types";
+import { useToastContext } from "@hooks/index";
 
 const ShoppingCartContext = createContext<ShoppingCartContextType>(
   {} as ShoppingCartContextType
@@ -19,6 +19,7 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
   const [bingoBoards, setBingoBoards] = useState<BingoBoard[]>(cartLS);
   const [totalToPay, setTotalToPay] = useState<number>(0);
   const [singleBoardPrice] = useState<number>(5);
+  const { showToast, hideToast, configToast } = useToastContext();
 
   const getCart = (): void => {
     if (window.localStorage.getItem("cart")) {
@@ -30,14 +31,11 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
     }
   };
 
-  const addBingoBoardToCart = (
-    bingoBoard: BingoBoard,
-    config: ToastConfig
-  ): void => {
+  const addBingoBoardToCart = (bingoBoard: BingoBoard): void => {
     if (bingoBoards.length < 7) {
       if (bingoBoards.includes(bingoBoard)) {
-        config.configToast(ToastTypes.error, "Ya seleccionaste este cartón!");
-        config.showToast();
+        configToast(ToastTypes.error, "Ya seleccionaste este cartón!");
+        showToast();
         return;
       }
       setBingoBoards([...bingoBoards, bingoBoard]);
@@ -51,31 +49,28 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
         "cart",
         JSON.stringify([...bingoBoards, bingoBoard])
       );
-      config.configToast(ToastTypes.success, "Carton agregado!");
-      config.showToast();
+      configToast(ToastTypes.success, "Carton agregado!");
+      showToast();
     } else {
-      config.configToast(
+      configToast(
         ToastTypes.warning,
         "Solo puedes seleccionar maximo 7 cartones!"
       );
-      config.showToast();
+      showToast();
     }
-    config.hideToast(4000);
+    hideToast(4000);
   };
 
-  const removeBingoBoardFromCart = (
-    bingoBoardId: string,
-    config: ToastConfig
-  ): void => {
+  const removeBingoBoardFromCart = (bingoBoardId: string): void => {
     const filteredBingoBoards = bingoBoards.filter(
       (bingoBoard) => bingoBoard.key !== bingoBoardId
     );
     setBingoBoards(filteredBingoBoards);
     window.localStorage.setItem("cart", JSON.stringify(filteredBingoBoards));
     setTotalToPay((prevState) => prevState - singleBoardPrice);
-    config.configToast(ToastTypes.success, "Cartón removido!");
-    config.showToast();
-    config.hideToast(4000);
+    configToast(ToastTypes.success, "Cartón removido!");
+    showToast();
+    hideToast(4000);
   };
 
   const clearShoppingCart = (): void => {

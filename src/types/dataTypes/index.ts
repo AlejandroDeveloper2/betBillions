@@ -24,17 +24,6 @@ interface LoadingConfig {
   setMessage: (message: string) => void;
 }
 
-interface ToastConfig {
-  showToast: () => void;
-  hideToast: (delay?: number) => void;
-  configToast: (type: ToastTypes, message: string) => void;
-}
-
-interface MessageConfig {
-  loadingConfig: LoadingConfig;
-  toastConfig: ToastConfig;
-}
-
 type RoleType = { authority: "ROLE_USER" | "ROLE_ADMIN" };
 
 interface UserAuth {
@@ -148,8 +137,6 @@ export type {
   ApiName,
   ServerResponse,
   LoginServerResponse,
-  MessageConfig,
-  ToastConfig,
   LoadingConfig,
   UserAuth,
   MenuItem,

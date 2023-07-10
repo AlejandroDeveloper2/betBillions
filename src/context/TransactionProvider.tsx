@@ -2,13 +2,14 @@ import { createContext, useMemo, useCallback } from "react";
 import { UseFormReset } from "react-hook-form";
 
 import {
-  MessageConfig,
+  LoadingConfig,
   ProviderProps,
   ToastTypes,
   TransactionContextType,
   ValidTransactionFormValues,
 } from "types";
 import { TokenAuth } from "@utils/index";
+import { useToastContext } from "@hooks/index";
 
 /*services*/
 import { TransactionsService } from "@services/transactions.service";
@@ -21,32 +22,33 @@ const transactionsService = new TransactionsService();
 const tokenAuth = new TokenAuth();
 
 const TransactionProvider = ({ children }: ProviderProps) => {
+  const { showToast, hideToast, configToast } = useToastContext();
+
   const validateTransaction = useCallback(
     async (
       transactionData: ValidTransactionFormValues,
-      config: MessageConfig,
+      config: LoadingConfig,
       reset: UseFormReset<ValidTransactionFormValues>
     ): Promise<void> => {
       const token = tokenAuth.getToken();
-      const { loadingConfig, toastConfig } = config;
       if (token) {
         try {
-          loadingConfig.setMessage("Validando transacción...");
-          loadingConfig.activeLoading();
+          config.setMessage("Validando transacción...");
+          config.activeLoading();
           const res = await transactionsService.validateTransaction(
             transactionData,
             token
           );
-          toastConfig.showToast();
-          toastConfig.configToast(res.typeStatus, res.message);
+          showToast();
+          configToast(res.typeStatus, res.message);
           reset();
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          toastConfig.showToast();
-          toastConfig.configToast(ToastTypes.error, errorMessage);
+          showToast();
+          configToast(ToastTypes.error, errorMessage);
         } finally {
-          toastConfig.hideToast(3000);
-          loadingConfig.inactiveLoading();
+          hideToast(3000);
+          config.inactiveLoading();
         }
       }
     },
@@ -54,26 +56,25 @@ const TransactionProvider = ({ children }: ProviderProps) => {
   );
 
   const invalidateTransaction = useCallback(
-    async (transactionHash: string, config: MessageConfig): Promise<void> => {
+    async (transactionHash: string, config: LoadingConfig): Promise<void> => {
       const token = tokenAuth.getToken();
-      const { loadingConfig, toastConfig } = config;
       if (token) {
         try {
-          loadingConfig.setMessage("Invalidando transacción...");
-          loadingConfig.activeLoading();
+          config.setMessage("Invalidando transacción...");
+          config.activeLoading();
           const res = await transactionsService.invalidateTransaction(
             transactionHash,
             token
           );
-          toastConfig.showToast();
-          toastConfig.configToast(res.typeStatus, res.message);
+          showToast();
+          configToast(res.typeStatus, res.message);
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          toastConfig.showToast();
-          toastConfig.configToast(ToastTypes.error, errorMessage);
+          showToast();
+          configToast(ToastTypes.error, errorMessage);
         } finally {
-          toastConfig.hideToast(3000);
-          loadingConfig.inactiveLoading();
+          hideToast(3000);
+          config.inactiveLoading();
         }
       }
     },
