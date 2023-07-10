@@ -138,7 +138,7 @@ const PurchaseBingoBoard = (): JSX.Element => {
             }}
             title={"Realizar Compra"}
             label="Realizar compra"
-            onClick={() =>
+            onClick={() => {
               buyBingoBoards(bingoBoards, lotteryId, {
                 toastConfig: {
                   showToast,
@@ -150,8 +150,9 @@ const PurchaseBingoBoard = (): JSX.Element => {
                   inactiveLoading,
                   setMessage,
                 },
-              })
-            }
+              });
+              navigate(`/userPanel/lottery/details/${lotteryId}`);
+            }}
           >
             <BiSolidPurchaseTagAlt
               style={{ color: "var(--white)", fontSize: 30, marginRight: 5 }}

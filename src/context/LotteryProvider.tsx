@@ -121,6 +121,14 @@ const LotteryProvider = ({ children }: ProviderProps) => {
             toastConfig.showToast();
             return;
           }
+          if (purchaseData.length === 5) {
+            toastConfig.configToast(
+              ToastTypes.warning,
+              "Selecciona 2 cartones mas para aplicar a la promoción!"
+            );
+            toastConfig.showToast();
+            return;
+          }
           const res = await lotteryService.buyBingoBoards(
             purchaseData,
             idLottery,
