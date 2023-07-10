@@ -17,6 +17,7 @@ import {
   Table,
   Loading,
   Footer,
+  Empty,
 } from "@components/index";
 
 import { TransactionsContainer, PageTitle } from "./Transactions.style";
@@ -77,37 +78,45 @@ const Transactions = (): JSX.Element => {
           columnsNumber={5}
           title="Listado de transacciones"
         >
-          {userTransactions?.map((transaction) => (
-            <Table.Row key={transaction.id} columnsNumber={5}>
-              <Table.Item value={transaction.id} Icon={FaHashtag} label="Id" />
-              <Table.Item
-                value={`${transaction.balance} USD`}
-                Icon={MdAccountBalanceWallet}
-                label="Balance"
-              />
-              <Table.Item
-                value={
-                  transaction.typeHistory === "Earnings"
-                    ? "Premios"
-                    : transaction.typeHistory === "Shopping"
-                    ? "Compras"
-                    : "Transacciones"
-                }
-                Icon={MdCategory}
-                label="Tipo"
-              />
-              <Table.Item
-                value={transaction.state ? "Completada" : "Pendiente"}
-                Icon={GrStatusDisabledSmall}
-                label="Estado"
-              />
-              <Table.Item
-                value={formatDate(transaction.createdAt)}
-                Icon={BsFillCalendarDateFill}
-                label="Fecha"
-              />
-            </Table.Row>
-          ))}
+          {userTransactions?.length === 0 ? (
+            <Empty message="No tienes transaciones aún" />
+          ) : (
+            userTransactions?.map((transaction) => (
+              <Table.Row key={transaction.id} columnsNumber={5}>
+                <Table.Item
+                  value={transaction.id}
+                  Icon={FaHashtag}
+                  label="Id"
+                />
+                <Table.Item
+                  value={`${transaction.balance} USD`}
+                  Icon={MdAccountBalanceWallet}
+                  label="Balance"
+                />
+                <Table.Item
+                  value={
+                    transaction.typeHistory === "Earnings"
+                      ? "Premios"
+                      : transaction.typeHistory === "Shopping"
+                      ? "Compras"
+                      : "Transacciones"
+                  }
+                  Icon={MdCategory}
+                  label="Tipo"
+                />
+                <Table.Item
+                  value={transaction.state ? "Completada" : "Pendiente"}
+                  Icon={GrStatusDisabledSmall}
+                  label="Estado"
+                />
+                <Table.Item
+                  value={formatDate(transaction.createdAt)}
+                  Icon={BsFillCalendarDateFill}
+                  label="Fecha"
+                />
+              </Table.Row>
+            ))
+          )}
         </Table>
       )}
       <Footer />

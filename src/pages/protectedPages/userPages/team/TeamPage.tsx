@@ -14,6 +14,7 @@ import {
   Loading,
   Table,
   SidebarDefault,
+  Empty,
 } from "@components/index";
 
 import { PageTitle, TeamPageContainer } from "./TeamPage.style";
@@ -48,31 +49,35 @@ const TeamPage = (): JSX.Element => {
           columnsNumber={5}
           title="Mi red de referidos"
         >
-          {userTeam?.map((referral) => (
-            <Table.Row key={referral.id} columnsNumber={5}>
-              <Table.Item value={referral.id} Icon={FaHashtag} label="Id" />
-              <Table.Item
-                value={referral.userName}
-                Icon={BiSolidUser}
-                label="Usuario"
-              />
-              <Table.Item
-                value={referral.fullName}
-                Icon={PiIdentificationBadgeFill}
-                label="Nombre"
-              />
-              <Table.Item
-                value={formatDate(referral.dateRegistered)}
-                Icon={BsFillCalendarDateFill}
-                label="Registro"
-              />
-              <Table.Item
-                value={referral.level}
-                Icon={FaLevelUpAlt}
-                label="Nivel"
-              />
-            </Table.Row>
-          ))}
+          {userTeam?.length === 0 ? (
+            <Empty message="¡No tienes referidos aún!" />
+          ) : (
+            userTeam?.map((referral) => (
+              <Table.Row key={referral.id} columnsNumber={5}>
+                <Table.Item value={referral.id} Icon={FaHashtag} label="Id" />
+                <Table.Item
+                  value={referral.userName}
+                  Icon={BiSolidUser}
+                  label="Usuario"
+                />
+                <Table.Item
+                  value={referral.fullName}
+                  Icon={PiIdentificationBadgeFill}
+                  label="Nombre"
+                />
+                <Table.Item
+                  value={formatDate(referral.dateRegistered)}
+                  Icon={BsFillCalendarDateFill}
+                  label="Registro"
+                />
+                <Table.Item
+                  value={referral.level}
+                  Icon={FaLevelUpAlt}
+                  label="Nivel"
+                />
+              </Table.Row>
+            ))
+          )}
         </Table>
       )}
       <Footer />

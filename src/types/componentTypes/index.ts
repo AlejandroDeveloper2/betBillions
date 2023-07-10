@@ -181,6 +181,10 @@ type BingoBoardProps = {
   children?: JSX.Element | JSX.Element[] | any;
 };
 
+type EmptyProps = {
+  message: string;
+};
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -205,6 +209,7 @@ export type {
   ModalHeaderProps,
   ModalBodyProps,
   BingoBoardProps,
+  EmptyProps,
 };
 
 export { ToastTypes };

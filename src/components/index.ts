@@ -30,6 +30,7 @@ export {
   UserBingoCardsCarousel,
 } from "./shared/carousel/Carousel";
 export { default as BingoBoard } from "./shared/bingoBoard/BingoBoard";
+export { default as Empty } from "./shared/empty/Empty";
 
 /*home components */
 export { default as InvitationLink } from "./home/invitationLink/InvitationLink";

@@ -28,6 +28,7 @@ import {
   CustomForm,
   DefaultButton,
   DefaultSubmit,
+  Empty,
   ErrorMessage,
   Footer,
   Image,
@@ -253,102 +254,108 @@ const TransactionsAdmin = (): JSX.Element => {
             columnsNumber={9}
             title="Listado de transacciones"
           >
-            {transactions?.map((transaction) => (
-              <Table.Row key={transaction.id} columnsNumber={9}>
-                <Table.Item
-                  value={transaction.walletType}
-                  Icon={GiWallet}
-                  label="Billetera"
-                />
-                <Table.Item
-                  value={transaction.transaction}
-                  Icon={FaBarcode}
-                  label="Hash"
-                />
-                <Table.Item
-                  value={transaction.price ? transaction.price : 0}
-                  Icon={RiPriceTag3Fill}
-                  label="Precio"
-                />
-                <Table.Item
-                  value={transaction.currency}
-                  Icon={BsCurrencyExchange}
-                  label="Moneda"
-                />
-                <Table.Item
-                  value={
-                    transaction.stateTransaction === "Completed"
-                      ? "Completada"
-                      : transaction.stateTransaction === "Pending"
-                      ? "Pendiente"
-                      : "Invalidada"
-                  }
-                  Icon={GrStatusDisabledSmall}
-                  label="Estado"
-                />
-                <Table.Item
-                  value={formatDate(transaction.createdAt, "numeric")}
-                  Icon={BsFillCalendarDateFill}
-                  label="Registro"
-                />
-                <Table.Item
-                  value={transaction.username}
-                  Icon={FaUserAlt}
-                  label="Usuario"
-                />
-                <Table.Item
-                  value={transaction.email}
-                  Icon={MdAlternateEmail}
-                  label="Correo"
-                />
-                <Table.Options>
-                  <DefaultButton
-                    style={{
-                      bg: "var(--blue)",
-                      fontColor: "var(--white)",
-                      width: "auto",
-                      padding: "0.3rem 0.2rem",
-                    }}
-                    title={"Ver mas detalles"}
-                    onClick={() => showDetailModal(transaction)}
-                  >
-                    <AiFillEye
-                      style={{ color: "var(--white)", fontSize: 20 }}
-                    />
-                  </DefaultButton>
-                  <DefaultButton
-                    style={{
-                      bg: "var(--success)",
-                      fontColor: "var(--white)",
-                      width: "auto",
-                      padding: "0.3rem 0.2rem",
-                    }}
-                    title={"Validar transacción"}
-                    onClick={() => {
-                      showModal();
-                      setValue("id", transaction.id);
-                      setValue("transaction", transaction.transaction);
-                    }}
-                  >
-                    <AiOutlineCheck
-                      style={{ color: "var(--white)", fontSize: 20 }}
-                    />
-                  </DefaultButton>
-                  <DefaultButton
-                    style={{
-                      bg: "var(--error)",
-                      fontColor: "var(--white)",
-                      width: "auto",
-                      padding: "0.3rem 0.2rem",
-                    }}
-                    title={"Invalidar transacción"}
-                    onClick={() => showDialog(transaction)}
-                  >
-                    <HiXMark style={{ color: "var(--white)", fontSize: 20 }} />
-                  </DefaultButton>
-                </Table.Options>
-              </Table.Row>
-            ))}
+            {transactions?.length === 0 ? (
+              <Empty message="¡No hay transacciones aún!" />
+            ) : (
+              transactions?.map((transaction) => (
+                <Table.Row key={transaction.id} columnsNumber={9}>
+                  <Table.Item
+                    value={transaction.walletType}
+                    Icon={GiWallet}
+                    label="Billetera"
+                  />
+                  <Table.Item
+                    value={transaction.transaction}
+                    Icon={FaBarcode}
+                    label="Hash"
+                  />
+                  <Table.Item
+                    value={transaction.price ? transaction.price : 0}
+                    Icon={RiPriceTag3Fill}
+                    label="Precio"
+                  />
+                  <Table.Item
+                    value={transaction.currency}
+                    Icon={BsCurrencyExchange}
+                    label="Moneda"
+                  />
+                  <Table.Item
+                    value={
+                      transaction.stateTransaction === "Completed"
+                        ? "Completada"
+                        : transaction.stateTransaction === "Pending"
+                        ? "Pendiente"
+                        : "Invalidada"
+                    }
+                    Icon={GrStatusDisabledSmall}
+                    label="Estado"
+                  />
+                  <Table.Item
+                    value={formatDate(transaction.createdAt, "numeric")}
+                    Icon={BsFillCalendarDateFill}
+                    label="Registro"
+                  />
+                  <Table.Item
+                    value={transaction.username}
+                    Icon={FaUserAlt}
+                    label="Usuario"
+                  />
+                  <Table.Item
+                    value={transaction.email}
+                    Icon={MdAlternateEmail}
+                    label="Correo"
+                  />
+                  <Table.Options>
+                    <DefaultButton
+                      style={{
+                        bg: "var(--blue)",
+                        fontColor: "var(--white)",
+                        width: "auto",
+                        padding: "0.3rem 0.2rem",
+                      }}
+                      title={"Ver mas detalles"}
+                      onClick={() => showDetailModal(transaction)}
+                    >
+                      <AiFillEye
+                        style={{ color: "var(--white)", fontSize: 20 }}
+                      />
+                    </DefaultButton>
+                    <DefaultButton
+                      style={{
+                        bg: "var(--success)",
+                        fontColor: "var(--white)",
+                        width: "auto",
+                        padding: "0.3rem 0.2rem",
+                      }}
+                      title={"Validar transacción"}
+                      onClick={() => {
+                        showModal();
+                        setValue("id", transaction.id);
+                        setValue("transaction", transaction.transaction);
+                      }}
+                    >
+                      <AiOutlineCheck
+                        style={{ color: "var(--white)", fontSize: 20 }}
+                      />
+                    </DefaultButton>
+                    <DefaultButton
+                      style={{
+                        bg: "var(--error)",
+                        fontColor: "var(--white)",
+                        width: "auto",
+                        padding: "0.3rem 0.2rem",
+                      }}
+                      title={"Invalidar transacción"}
+                      onClick={() => showDialog(transaction)}
+                    >
+                      <HiXMark
+                        style={{ color: "var(--white)", fontSize: 20 }}
+                      />
+                    </DefaultButton>
+                  </Table.Options>
+                </Table.Row>
+              ))
+            )}
           </Table>
         )}
         <Footer />

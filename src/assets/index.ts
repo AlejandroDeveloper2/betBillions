@@ -8,6 +8,7 @@ export { default as LinkBackgound } from "./images/link-background.png";
 export { default as WalletQr } from "./images/wallet-qr.png";
 export { default as Logo2 } from "./images/betBillions-logo-2.png";
 export { default as EmptyCart } from "./images/cart-empty.png";
+export { default as NoDataEmpty } from "./images/no-data-empty.png";
 
 /* Custom Icons  */
 export { default as Notification3DICon } from "./icons/notification3d-icon.png";

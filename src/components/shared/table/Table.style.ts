@@ -91,9 +91,12 @@ const TableHeadItem = styled.div`
 `;
 
 const TableItem = styled(TableHeadItem)`
+  width: 100%;
   justify-self: self-start;
   justify-content: flex-start;
   flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
   span:first-of-type {
     font-weight: bold;
   }
@@ -114,6 +117,7 @@ const TableItem = styled(TableHeadItem)`
 
   @media (min-width: 1000px) {
     justify-self: center;
+    justify-content: center;
     span:first-of-type {
       display: none;
     }

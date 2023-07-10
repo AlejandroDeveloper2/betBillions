@@ -22,6 +22,7 @@ export type {
   ModalHeaderProps,
   ModalBodyProps,
   BingoBoardProps,
+  EmptyProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
