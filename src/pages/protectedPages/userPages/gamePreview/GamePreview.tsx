@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import { AiFillPlayCircle } from "react-icons/ai";
+import { BiArrowBack } from "react-icons/bi";
 
 import {
   DefaultButton,
@@ -12,6 +14,9 @@ import { GamePreviewContainer, PageTitle, Subtitle } from "./GamePreview.style";
 import { BingoFigure } from "@assets/index";
 
 const GamePreview = (): JSX.Element => {
+  const navigate = useNavigate();
+  const lotteryId = window.parseInt(location.pathname.split("/")[4]);
+
   return (
     <GamePreviewContainer>
       <SidebarBalance />
@@ -26,6 +31,24 @@ const GamePreview = (): JSX.Element => {
             sm: 20,
           }}
         />
+        <DefaultButton
+          style={{
+            bg: "var(--bg-secondary-color)",
+            fontColor: "var(--white)",
+            width: "20rem",
+          }}
+          title={"Volver al detalle del sorteo"}
+          label="Volver"
+          onClick={() => navigate(`/userPanel/lottery/details/${lotteryId}`)}
+        >
+          <BiArrowBack
+            style={{
+              color: "var(--white)",
+              fontSize: 40,
+              marginRight: 5,
+            }}
+          />
+        </DefaultButton>
       </PageTitle>
       <Subtitle>Mis cartones de bingo</Subtitle>
       <UserBingoCardsCarousel />
@@ -37,6 +60,7 @@ const GamePreview = (): JSX.Element => {
         }}
         title={"Jugar bingo"}
         label="Empezar a jugar"
+        disabled
       >
         <AiFillPlayCircle
           style={{

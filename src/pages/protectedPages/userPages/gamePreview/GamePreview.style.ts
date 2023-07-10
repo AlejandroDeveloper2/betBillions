@@ -29,6 +29,7 @@ const PageTitle = styled.div`
   gap: 1rem;
   justify-content: flex-start;
   align-items: center;
+  flex-direction: column;
   h1 {
     font-weight: bold;
     color: var(--bg-secondary-color);
@@ -36,6 +37,7 @@ const PageTitle = styled.div`
     font-size: 2rem;
   }
   @media (min-width: 1000px) {
+    flex-direction: row;
     h1 {
       display: inline-block;
       text-align: left;
