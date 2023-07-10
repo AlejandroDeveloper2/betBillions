@@ -15,6 +15,7 @@ export { default as LotteryDetails } from "./protectedPages/userPages/lottery/Lo
 export { default as Transactions } from "./protectedPages/userPages/transactions/Transactions";
 export { default as TeamPage } from "./protectedPages/userPages/team/TeamPage";
 export { default as PurchaseBingoBoard } from "./protectedPages/userPages/purchaseBingoBoard/PurchaseBingoBoard";
+export { default as PurchaseBingoDetails } from "./protectedPages/userPages/purchaseBingoBoard/PurchaseBingoDetails";
 
 /* Protected admin pages*/
 export { default as TransactionsAdmin } from "./protectedPages/adminPages/transactionsAdmin/TransactionsAdmin";

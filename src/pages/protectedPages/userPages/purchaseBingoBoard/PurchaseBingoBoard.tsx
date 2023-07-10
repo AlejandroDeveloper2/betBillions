@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { BsFillCartFill } from "react-icons/bs";
 import { AiFillEye } from "react-icons/ai";
 import { TbListDetails } from "react-icons/tb";
@@ -37,6 +37,7 @@ import { BingoBallsFigure } from "@assets/index";
 const PurchaseBingoBoard = (): JSX.Element => {
   const { totalToPay, bingoBoards } = useShoppingCartContext();
   const { buyBingoBoards } = useLotteryContext();
+  const navigate = useNavigate();
   const location = useLocation();
   const lotteryId = window.parseInt(location.pathname.split("/")[4]);
 
@@ -88,6 +89,9 @@ const PurchaseBingoBoard = (): JSX.Element => {
               }}
               title={"Ver carrito de compras"}
               label="Ver carrito"
+              onClick={() =>
+                navigate(`/userPanel/lottery/purchaseBingoDetails/${lotteryId}`)
+              }
             >
               <AiFillEye
                 style={{

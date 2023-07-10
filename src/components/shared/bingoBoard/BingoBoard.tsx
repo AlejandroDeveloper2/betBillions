@@ -1,10 +1,7 @@
-import { BiPlus } from "react-icons/bi";
-
 import { BingoBoardProps } from "types";
 import { setColorBingoBalls } from "@utils/index";
-import { useShoppingCartContext } from "@hooks/index";
 
-import { DefaultButton, Image } from "@components/index";
+import { Image } from "@components/index";
 
 import {
   BoardBody,
@@ -17,23 +14,13 @@ import {
 import { Logo } from "@assets/index";
 
 const BingoBoard = (props: BingoBoardProps): JSX.Element => {
-  const { board, toastConfig, index } = props;
+  const { board, index, children } = props;
   const bingoStyledBalls = setColorBingoBalls(board);
-  const { addBingoBoardToCart } = useShoppingCartContext();
 
   return (
     <BoardContainer>
       <NumberIndicator>{index}</NumberIndicator>
-      <DefaultButton
-        style={{
-          bg: "var(--green)",
-          fontColor: "var(--dark-gray)",
-        }}
-        title={"Seleccionar cartón"}
-        onClick={() => addBingoBoardToCart(board, toastConfig)}
-      >
-        <BiPlus style={{ color: "var(--dark-gray)", fontSize: 20 }} />
-      </DefaultButton>
+      {children}
       <Image
         source={Logo}
         alt={"Logo betBillions"}

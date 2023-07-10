@@ -136,6 +136,15 @@ const P = styled.p`
   }
 `;
 
+const Options = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+`;
+
 export {
   PurchaseContainer,
   PageTitle,
@@ -145,4 +154,5 @@ export {
   CartNumberIndicator,
   Subtitle,
   P,
+  Options,
 };

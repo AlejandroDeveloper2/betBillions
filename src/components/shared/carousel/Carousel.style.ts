@@ -7,6 +7,21 @@ const CarouselContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const EmptyContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+`;
+
+const P = styled.p`
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--bg-secondary-color);
+  text-align: center;
+`;
 
 const responsiveConfig = [
   {
@@ -57,4 +72,4 @@ const responsiveConfig = [
   },
 ];
 
-export { CarouselContainer, responsiveConfig };
+export { CarouselContainer, responsiveConfig, P, EmptyContainer };

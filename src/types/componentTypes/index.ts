@@ -177,8 +177,8 @@ type ModalBodyProps = TableOptions;
 
 type BingoBoardProps = {
   board: BingoBoard;
-  toastConfig: ToastConfig;
   index: number;
+  children?: JSX.Element | JSX.Element[] | any;
 };
 
 export type {

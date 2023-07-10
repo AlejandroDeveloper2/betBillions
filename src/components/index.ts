@@ -24,7 +24,7 @@ export { default as AdCard } from "./shared/adCard/AdCard";
 export { default as Indicator } from "./shared/indicator/Indicator";
 export { default as Table } from "./shared/table/Table";
 export { default as Modal } from "./shared/modal/Modal";
-export { default as Carousel } from "./shared/carousel/Carousel";
+export { Carousel, ShoppingCartCarousel } from "./shared/carousel/Carousel";
 export { default as BingoBoard } from "./shared/bingoBoard/BingoBoard";
 
 /*home components */

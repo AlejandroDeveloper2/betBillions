@@ -42,7 +42,7 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
       }
       setBingoBoards([...bingoBoards, bingoBoard]);
       setTotalToPay((prevState) => {
-        if (bingoBoards.length <= 5) {
+        if (bingoBoards.length < 5) {
           return prevState + singleBoardPrice;
         }
         return prevState;
@@ -68,7 +68,7 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
     config: ToastConfig
   ): void => {
     const filteredBingoBoards = bingoBoards.filter(
-      (bingoBoard) => bingoBoard.id !== bingoBoardId
+      (bingoBoard) => bingoBoard.key !== bingoBoardId
     );
     setBingoBoards(filteredBingoBoards);
     window.localStorage.setItem("cart", JSON.stringify(filteredBingoBoards));
