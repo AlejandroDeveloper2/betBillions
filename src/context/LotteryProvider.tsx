@@ -1,4 +1,5 @@
 import { useState, createContext, useMemo, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   MessageConfig,
@@ -31,6 +32,7 @@ const LotteryProvider = ({ children }: ProviderProps) => {
   const [randomBingoBoards, setRandomBingoBoards] = useState<BingoBoard[]>([]);
   const [userBingoBoards, setUserBingoBoards] = useState<BingoBoard[]>([]);
   const { clearShoppingCart } = useShoppingCartContext();
+  const navigate = useNavigate();
 
   const getAllBingoReffels = useCallback(
     async (config: MessageConfig): Promise<void> => {
@@ -136,6 +138,7 @@ const LotteryProvider = ({ children }: ProviderProps) => {
           );
           toastConfig.configToast(res.typeStatus, res.message);
           toastConfig.showToast();
+          navigate(`/userPanel/lottery/details/${idLottery}`);
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
           toastConfig.showToast();

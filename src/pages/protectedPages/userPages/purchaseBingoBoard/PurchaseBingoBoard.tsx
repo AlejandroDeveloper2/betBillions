@@ -151,7 +151,6 @@ const PurchaseBingoBoard = (): JSX.Element => {
                   setMessage,
                 },
               });
-              navigate(`/userPanel/lottery/details/${lotteryId}`);
             }}
           >
             <BiSolidPurchaseTagAlt
