@@ -39,7 +39,7 @@ const UserRoutes = (): JSX.Element => {
         <Route path="/userPanel/transactions" element={<Transactions />} />
         <Route path="/userPanel/myTeam" element={<TeamPage />} />
         <Route
-          path="/userPanel/lottery/purchaseBingoBoard"
+          path="/userPanel/lottery/purchaseBingoBoard/:lotteryId"
           element={<PurchaseBingoBoard />}
         />
         <Route path="*" element={<Page404 />} />

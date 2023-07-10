@@ -128,7 +128,9 @@ const LotteryDetails = (): JSX.Element => {
               }}
               title={"Seleccionar cartones de bingo"}
               label="Seleccionar tablas"
-              onClick={() => navigate("/userPanel/lottery/purchaseBingoBoard")}
+              onClick={() =>
+                navigate(`/userPanel/lottery/purchaseBingoBoard/${lotteryId}`)
+              }
             >
               <TbCardboards
                 style={{ color: "var(--white)", fontSize: 40, marginRight: 5 }}

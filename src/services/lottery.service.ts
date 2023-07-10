@@ -96,11 +96,8 @@ class LotteryService {
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
       const { data } = await axiosClient.post<ServerResponse>(
-        "/cardBingo/save",
-        {
-          idLottery,
-          card: purchaseData,
-        },
+        `/cardBingo/save/${idLottery}`,
+        purchaseData,
         config
       );
       response = data;

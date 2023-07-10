@@ -19,7 +19,6 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
   const [bingoBoards, setBingoBoards] = useState<BingoBoard[]>(cartLS);
   const [totalToPay, setTotalToPay] = useState<number>(0);
   const [singleBoardPrice] = useState<number>(5);
-  // const [cardDuplicated, setCardDuplicated] = useState<boolean>(false);
 
   const getCart = (): void => {
     if (window.localStorage.getItem("cart")) {
@@ -90,12 +89,6 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
   useEffect(() => {
     getCart();
   }, []);
-
-  // useEffect(()=>{
-  //   bingoBoards.forEach((card, i)=>{
-
-  //   })
-  // },[bingoBoards])
 
   const value = useMemo(
     () => ({

@@ -78,6 +78,11 @@ interface LotteryContextType {
   getAllBingoReffels: (config: MessageConfig) => Promise<void>;
   getBingoReffel: (lotteryId: number, config: MessageConfig) => Promise<void>;
   getRandomBingoBoards: () => Promise<void>;
+  buyBingoBoards: (
+    purchaseData: BingoBoard[],
+    idLottery: number,
+    config: MessageConfig
+  ) => Promise<void>;
 }
 
 interface TransactionContextType {

@@ -27,7 +27,29 @@ const responsiveConfig = [
     },
   },
   {
+    breakpoint: 820,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 2,
+      initialSlide: 2,
+    },
+  },
+  {
     breakpoint: 375,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    },
+  },
+  {
+    breakpoint: 414,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    },
+  },
+  {
+    breakpoint: 540,
     settings: {
       slidesToShow: 1,
       slidesToScroll: 1,

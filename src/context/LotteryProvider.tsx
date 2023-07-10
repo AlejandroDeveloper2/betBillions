@@ -10,6 +10,7 @@ import {
   BingoBoard,
 } from "../types";
 import { TokenAuth } from "@utils/index";
+import { useShoppingCartContext } from "@hooks/index";
 
 /*services*/
 import { LotteryService } from "@services/lottery.service";
@@ -27,6 +28,7 @@ const LotteryProvider = ({ children }: ProviderProps) => {
     null
   );
   const [randomBingoBoards, setRandomBingoBoards] = useState<BingoBoard[]>([]);
+  const { clearShoppingCart } = useShoppingCartContext();
 
   const getAllBingoReffels = useCallback(
     async (config: MessageConfig): Promise<void> => {
@@ -97,6 +99,47 @@ const LotteryProvider = ({ children }: ProviderProps) => {
     }
   }, []);
 
+  const buyBingoBoards = useCallback(
+    async (
+      purchaseData: BingoBoard[],
+      idLottery: number,
+      config: MessageConfig
+    ): Promise<void> => {
+      const { loadingConfig, toastConfig } = config;
+      const token = tokenAuth.getToken();
+      if (token) {
+        try {
+          loadingConfig.setMessage("Realizando compra...");
+          loadingConfig.activeLoading();
+          if (purchaseData.length === 0) {
+            toastConfig.configToast(
+              ToastTypes.warning,
+              "No has seleccionado ningún cartón!"
+            );
+            toastConfig.showToast();
+            return;
+          }
+          const res = await lotteryService.buyBingoBoards(
+            purchaseData,
+            idLottery,
+            token
+          );
+          toastConfig.configToast(res.typeStatus, res.message);
+          toastConfig.showToast();
+        } catch (error: unknown) {
+          const errorMessage = (error as Error).message;
+          toastConfig.showToast();
+          toastConfig.configToast(ToastTypes.error, errorMessage);
+        } finally {
+          toastConfig.hideToast(3000);
+          loadingConfig.inactiveLoading();
+          clearShoppingCart();
+        }
+      }
+    },
+    []
+  );
+
   const value = useMemo(
     () => ({
       reffels,
@@ -105,6 +148,7 @@ const LotteryProvider = ({ children }: ProviderProps) => {
       getAllBingoReffels,
       getBingoReffel,
       getRandomBingoBoards,
+      buyBingoBoards,
     }),
     [
       reffels,
@@ -113,6 +157,7 @@ const LotteryProvider = ({ children }: ProviderProps) => {
       getAllBingoReffels,
       getBingoReffel,
       getRandomBingoBoards,
+      buyBingoBoards,
     ]
   );
 
