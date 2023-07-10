@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { TbCardboards } from "react-icons/tb";
 import { IoGiftSharp } from "react-icons/io5";
+import { AiFillPlayCircle } from "react-icons/ai";
 
 import { useLoading, useLotteryContext, useToast } from "@hooks/index";
 import { formatDate } from "@utils/index";
@@ -22,7 +23,6 @@ import { Datetext } from "../userPanel/UserPanel.style";
 import {
   IndicatorList,
   LotteryContainer,
-  // PromIndicator,
   RoundDatails,
 } from "./LotteryPage.style";
 import {
@@ -34,7 +34,12 @@ import {
 const LotteryDetails = (): JSX.Element => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { lotteryDetail, getBingoReffel } = useLotteryContext();
+  const {
+    lotteryDetail,
+    userBingoBoards,
+    getBingoReffel,
+    getPurchasedUserBingoBoards,
+  } = useLotteryContext();
   const lotteryId = window.parseInt(location.pathname.split("/")[4]);
 
   const {
@@ -66,6 +71,14 @@ const LotteryDetails = (): JSX.Element => {
         inactiveLoading,
         setMessage,
       },
+    });
+  }, []);
+
+  useEffect(() => {
+    getPurchasedUserBingoBoards(lotteryId, {
+      activeLoading,
+      inactiveLoading,
+      setMessage,
     });
   }, []);
 
@@ -114,28 +127,50 @@ const LotteryDetails = (): JSX.Element => {
                   </RoundDatails>
                 ))}
               </IndicatorList>
-              {/* <Image
-                  source={Gift3dIcon}
-                  alt={"Team bet billions"}
-                  size={{ lg: 10, md: 20, sm: 40 }}
-                /> */}
             </Indicator>
-            <DefaultButton
-              style={{
-                bg: "var(--black)",
-                fontColor: "var(--white)",
-                width: "30rem",
-              }}
-              title={"Seleccionar cartones de bingo"}
-              label="Seleccionar tablas"
-              onClick={() =>
-                navigate(`/userPanel/lottery/purchaseBingoBoard/${lotteryId}`)
-              }
-            >
-              <TbCardboards
-                style={{ color: "var(--white)", fontSize: 40, marginRight: 5 }}
-              />
-            </DefaultButton>
+            {userBingoBoards.length === 0 ? (
+              <DefaultButton
+                style={{
+                  bg: "var(--black)",
+                  fontColor: "var(--white)",
+                  width: "30rem",
+                }}
+                title={"Seleccionar cartones de bingo"}
+                label="Seleccionar tablas"
+                onClick={() =>
+                  navigate(`/userPanel/lottery/purchaseBingoBoard/${lotteryId}`)
+                }
+              >
+                <TbCardboards
+                  style={{
+                    color: "var(--white)",
+                    fontSize: 40,
+                    marginRight: 5,
+                  }}
+                />
+              </DefaultButton>
+            ) : (
+              <DefaultButton
+                style={{
+                  bg: "var(--black)",
+                  fontColor: "var(--white)",
+                  width: "30rem",
+                }}
+                title={"Ver mis cartones de bingo"}
+                label="Ir al juego"
+                onClick={() =>
+                  navigate(`/userPanel/lottery/gamePreview/${lotteryId}`)
+                }
+              >
+                <AiFillPlayCircle
+                  style={{
+                    color: "var(--white)",
+                    fontSize: 40,
+                    marginRight: 5,
+                  }}
+                />
+              </DefaultButton>
+            )}
           </>
         )}
         <Footer />

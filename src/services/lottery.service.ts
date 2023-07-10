@@ -108,6 +108,32 @@ class LotteryService {
     }
     return response;
   }
+
+  public async getPurchasedUserBingoBoards(
+    token: string,
+    idLottery: number
+  ): Promise<BingoBoard[]> {
+    let response: BingoBoard[] | null = null;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      const { data } = await axiosClient.get<BingoBoard[]>(
+        `/cardBingo/lottery/${idLottery}/users`,
+        config
+      );
+      response = data;
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+    return response;
+  }
 }
 
 export { LotteryService };

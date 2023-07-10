@@ -4,12 +4,19 @@ import { BiPlus } from "react-icons/bi";
 import { IoMdRemoveCircle } from "react-icons/io";
 
 import {
+  useLoading,
   useLotteryContext,
   useShoppingCartContext,
   useToast,
 } from "@hooks/index";
 
-import { BingoBoard, Toast, Image, DefaultButton } from "@components/index";
+import {
+  BingoBoard,
+  Toast,
+  Image,
+  DefaultButton,
+  Loading,
+} from "@components/index";
 
 import {
   CarouselContainer,
@@ -151,4 +158,38 @@ const ShoppingCartCarousel = (): JSX.Element => {
   );
 };
 
-export { Carousel, ShoppingCartCarousel };
+const UserBingoCardsCarousel = (): JSX.Element => {
+  const lotteryId = window.parseInt(location.pathname.split("/")[4]);
+  const { userBingoBoards, getPurchasedUserBingoBoards } = useLotteryContext();
+  const {
+    isLoading,
+    loadingMessage,
+    activeLoading,
+    inactiveLoading,
+    setMessage,
+  } = useLoading();
+
+  useEffect(() => {
+    getPurchasedUserBingoBoards(lotteryId, {
+      activeLoading,
+      inactiveLoading,
+      setMessage,
+    });
+  }, []);
+
+  return (
+    <CarouselContainer>
+      {isLoading ? (
+        <Loading message={loadingMessage} textColor="var(bg-secondary-color)" />
+      ) : (
+        <Slider {...settings} className="slider">
+          {userBingoBoards.map((board, index) => (
+            <BingoBoard key={board.key} board={board} index={index + 1} />
+          ))}
+        </Slider>
+      )}
+    </CarouselContainer>
+  );
+};
+
+export { Carousel, ShoppingCartCarousel, UserBingoCardsCarousel };

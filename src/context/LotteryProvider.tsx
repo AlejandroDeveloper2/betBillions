@@ -8,7 +8,8 @@ import {
   LotteryListItem,
   LotteryDetail,
   BingoBoard,
-} from "../types";
+  LoadingConfig,
+} from "types";
 import { TokenAuth } from "@utils/index";
 import { useShoppingCartContext } from "@hooks/index";
 
@@ -28,6 +29,7 @@ const LotteryProvider = ({ children }: ProviderProps) => {
     null
   );
   const [randomBingoBoards, setRandomBingoBoards] = useState<BingoBoard[]>([]);
+  const [userBingoBoards, setUserBingoBoards] = useState<BingoBoard[]>([]);
   const { clearShoppingCart } = useShoppingCartContext();
 
   const getAllBingoReffels = useCallback(
@@ -140,24 +142,52 @@ const LotteryProvider = ({ children }: ProviderProps) => {
     []
   );
 
+  const getPurchasedUserBingoBoards = useCallback(
+    async (idLottery: number, config: LoadingConfig): Promise<void> => {
+      const { activeLoading, inactiveLoading, setMessage } = config;
+      const token = tokenAuth.getToken();
+      if (token) {
+        try {
+          setMessage("Cargando...");
+          activeLoading();
+          const res = await lotteryService.getPurchasedUserBingoBoards(
+            token,
+            idLottery
+          );
+          setUserBingoBoards(res);
+        } catch (error: unknown) {
+          const errorMessage = (error as Error).message;
+          console.log(errorMessage);
+        } finally {
+          inactiveLoading();
+        }
+      }
+    },
+    []
+  );
+
   const value = useMemo(
     () => ({
       reffels,
       lotteryDetail,
       randomBingoBoards,
+      userBingoBoards,
       getAllBingoReffels,
       getBingoReffel,
       getRandomBingoBoards,
       buyBingoBoards,
+      getPurchasedUserBingoBoards,
     }),
     [
       reffels,
       lotteryDetail,
       randomBingoBoards,
+      userBingoBoards,
       getAllBingoReffels,
       getBingoReffel,
       getRandomBingoBoards,
       buyBingoBoards,
+      getPurchasedUserBingoBoards,
     ]
   );
 

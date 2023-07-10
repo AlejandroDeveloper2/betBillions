@@ -150,6 +150,7 @@ export type {
   LoginServerResponse,
   MessageConfig,
   ToastConfig,
+  LoadingConfig,
   UserAuth,
   MenuItem,
   UserPanelData,

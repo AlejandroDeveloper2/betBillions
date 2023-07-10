@@ -2,6 +2,7 @@ import { UseFormReset } from "react-hook-form";
 import {
   AuthStatus,
   BingoBoard,
+  LoadingConfig,
   LoginFormValues,
   LotteryDetail,
   LotteryListItem,
@@ -75,6 +76,7 @@ interface LotteryContextType {
   reffels: LotteryListItem[];
   lotteryDetail: LotteryDetail | null;
   randomBingoBoards: BingoBoard[];
+  userBingoBoards: BingoBoard[];
   getAllBingoReffels: (config: MessageConfig) => Promise<void>;
   getBingoReffel: (lotteryId: number, config: MessageConfig) => Promise<void>;
   getRandomBingoBoards: () => Promise<void>;
@@ -82,6 +84,10 @@ interface LotteryContextType {
     purchaseData: BingoBoard[],
     idLottery: number,
     config: MessageConfig
+  ) => Promise<void>;
+  getPurchasedUserBingoBoards: (
+    idLottery: number,
+    config: LoadingConfig
   ) => Promise<void>;
 }
 
