@@ -187,7 +187,8 @@ type EmptyProps = {
 
 type CheckboxProps = {
   isChecked: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: () => void;
+  label: string;
 };
 
 export type {

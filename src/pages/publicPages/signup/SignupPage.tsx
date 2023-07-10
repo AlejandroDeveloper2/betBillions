@@ -62,6 +62,7 @@ const SignupPage = (): JSX.Element => {
 
   const { createUserAccount } = useAuthContext();
   const { isChecked, onChange } = useCheckbox();
+  const { isChecked: isCheckedBox, onChange: onChangeBox } = useCheckbox();
 
   return (
     <>
@@ -164,7 +165,6 @@ const SignupPage = (): JSX.Element => {
                 <ErrorMessage message={errors.confirmEmail.message} />
               ) : null}
             </FormRow>
-            <Checkbox isChecked={isChecked} onChange={onChange} />
           </FormGrid>
           <DefaultInput
             type="text"
@@ -175,6 +175,16 @@ const SignupPage = (): JSX.Element => {
             name="invitationLink"
             disabled={true}
           />
+          <Checkbox
+            isChecked={isCheckedBox}
+            onChange={onChangeBox}
+            label="Confirmo que soy mayor de 18 años"
+          />
+          <Checkbox
+            isChecked={isChecked}
+            onChange={onChange}
+            label="Acepto todos los terminos y condiciones"
+          />
           {!isLoading ? (
             <DefaultSubmit
               style={{
@@ -183,6 +193,7 @@ const SignupPage = (): JSX.Element => {
               }}
               title="Crear cuenta nueva"
               label="Crear cuenta"
+              disabled={!isChecked || !isCheckedBox}
             />
           ) : (
             <LoadingButton
