@@ -18,6 +18,12 @@ interface LoginServerResponse extends ServerResponse {
   token: string | null;
 }
 
+interface ToastConfig {
+  showToast: () => void;
+  hideToast: (delay?: number) => void;
+  configToast: (type: ToastTypes, message: string) => void;
+}
+
 interface LoadingConfig {
   activeLoading: () => void;
   inactiveLoading: (delay?: number) => void;
@@ -139,6 +145,7 @@ export type {
   ServerResponse,
   LoginServerResponse,
   LoadingConfig,
+  ToastConfig,
   UserAuth,
   MenuItem,
   UserPanelData,

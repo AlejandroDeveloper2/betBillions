@@ -57,6 +57,7 @@ export type {
   ServerResponse,
   LoginServerResponse,
   LoadingConfig,
+  ToastConfig,
   UserAuth,
   MenuItem,
   UserPanelData,
