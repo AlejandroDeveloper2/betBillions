@@ -37,4 +37,31 @@ const Button = styled.button<ButtonStyleProps>`
   }
 `;
 
-export { Button };
+const ExternalLink = styled.a`
+  background-color: none;
+  list-style: none;
+  color: var(--white);
+  width: auto;
+  padding: 0.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  svg {
+    transition: all 0.5s ease-in-out;
+  }
+  span {
+    color: var(--dark-gray);
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: capitalize;
+  }
+  &:hover {
+    svg {
+      transform: rotate(30deg);
+    }
+  }
+`;
+
+export { Button, ExternalLink };

@@ -1,10 +1,14 @@
 /*Functions */
-import { CustomButtonProps, LoadingButtonProps } from "types";
+import {
+  CustomButtonProps,
+  ExternalLinkProps,
+  LoadingButtonProps,
+} from "types";
 
 import { Loading } from "@components/index";
 
 /*Styles */
-import { Button } from "./CustomButton.style";
+import { Button, ExternalLink } from "./CustomButton.style";
 
 const DefaultButton = (props: CustomButtonProps): JSX.Element => {
   const { label, title, onClick, style, disabled, children } = props;
@@ -63,4 +67,19 @@ const LoadingButton = (props: LoadingButtonProps): JSX.Element => {
   );
 };
 
-export { DefaultButton, DefaultSubmit, LoadingButton };
+const ExternalLinkButton = (props: ExternalLinkProps): JSX.Element => {
+  const { url, title, label, children } = props;
+  return (
+    <ExternalLink
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={title}
+    >
+      {children}
+      <span>{label}</span>
+    </ExternalLink>
+  );
+};
+
+export { DefaultButton, DefaultSubmit, LoadingButton, ExternalLinkButton };

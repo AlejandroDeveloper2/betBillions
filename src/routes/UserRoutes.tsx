@@ -29,6 +29,13 @@ const UserRoutes = (): JSX.Element => {
           path="/userPanel/myWallet/deposit"
           element={<MyWalletDeposit />}
         />
+        {/* Rutas Plan de fidelización */}
+        <Route path="/userPanel/myWallet/:param" element={<MyWallet />} />
+        <Route
+          path="/userPanel/myWallet/deposit/:param"
+          element={<MyWalletDeposit />}
+        />
+
         <Route
           path="/userPanel/myWallet/withdraw"
           element={<MyWalletWithdraw />}

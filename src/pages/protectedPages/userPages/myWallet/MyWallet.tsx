@@ -27,6 +27,7 @@ import {
 import { CopyLinkIcon, Logo2, Wallet3dIcon, WalletQr } from "@assets/index";
 
 const MyWallet = (): JSX.Element => {
+  const isLoyaltyPlan = window.location.pathname.split("/")[3];
   const paymentWalletAddress = "TBpHGP33y66r74FqKypYY33nTqaxePEGRn";
   const navigate = useNavigate();
   const { showToast, hideToast, configToast } = useToastContext();
@@ -96,7 +97,13 @@ const MyWallet = (): JSX.Element => {
         }}
         title={"Realizar recarga a mi billetera"}
         label="¡Ya Realice mi recarga!"
-        onClick={() => navigate("/userPanel/myWallet/deposit")}
+        onClick={() =>
+          navigate(
+            isLoyaltyPlan
+              ? "/userPanel/myWallet/deposit/loyaltyPlan"
+              : "/userPanel/myWallet/deposit"
+          )
+        }
       >
         <AiOutlinePaperClip
           color="var(--white)"

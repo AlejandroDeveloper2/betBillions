@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { useAuthContext, useRealTimeFecher } from "@hooks/index";
 import { formatDate } from "@utils/index";
 import { UserProfileService } from "@services/userProfile.service";
@@ -11,9 +13,10 @@ import {
   Image,
   Loading,
   SidebarDefault,
+  DefaultButton,
 } from "@components/index";
 
-import { Datetext, PanelContainer } from "./UserPanel.style";
+import { Datetext, PanelContainer, Section } from "./UserPanel.style";
 import {
   CardAdTitle,
   IndicatorHead,
@@ -35,6 +38,8 @@ const UserPanel = (): JSX.Element => {
   const { data: reffels, isLoading: isLoadingReffels } = useRealTimeFecher<
     LotteryListItem[]
   >("/lottery/list", lotteryService.getAllBingoReffels);
+
+  const navigate = useNavigate();
 
   return (
     <PanelContainer>
@@ -101,14 +106,26 @@ const UserPanel = (): JSX.Element => {
           )}
         </Indicator>
       </Indicators>
-      {isLoadingUserData ? (
-        <Loading
-          message="Cargando link de referido..."
-          textColor="var(--bg-primary-color)"
+      <Section>
+        {isLoadingUserData ? (
+          <Loading
+            message="Cargando link de referido..."
+            textColor="var(--bg-primary-color)"
+          />
+        ) : (
+          <InvitationLink />
+        )}
+        <DefaultButton
+          style={{
+            bg: "var(--black)",
+            fontColor: "var(--white)",
+            width: "30rem",
+          }}
+          title={"Quiero obtener mi ID de 10 dolares"}
+          label="Plan de fidelización"
+          onClick={() => navigate("/userPanel/myWallet/loyaltyPlan")}
         />
-      ) : (
-        <InvitationLink />
-      )}
+      </Section>
       <Footer />
     </PanelContainer>
   );

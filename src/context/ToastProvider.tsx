@@ -30,7 +30,7 @@ const ToastProvider = ({ children }: ProviderProps) => {
         ? "var(--error)"
         : toast.toastType === "Success"
         ? "var(--success)"
-        : "var(--pink)";
+        : "var(--orange)";
     return style;
   };
 

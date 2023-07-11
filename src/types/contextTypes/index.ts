@@ -68,6 +68,11 @@ interface WalletContextType {
     e: React.ChangeEvent<HTMLInputElement>,
     config: LoadingConfig
   ) => Promise<void>;
+  sendCommissionTransaction: (
+    transactionData: WalletDepositFormValues,
+    config: LoadingConfig,
+    reset: UseFormReset<WalletDepositFormValues>
+  ) => Promise<void>;
 }
 
 interface LotteryContextType {

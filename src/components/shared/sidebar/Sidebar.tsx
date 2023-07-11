@@ -1,22 +1,18 @@
 import { BsFacebook, BsYoutube, BsInstagram, BsTelegram } from "react-icons/bs";
 
-import {
-  useAuthContext,
-  useLotteryContext,
-  useRealTimeFecher,
-} from "@hooks/index";
+import { useAuthContext, useRealTimeFecher } from "@hooks/index";
 import { getSidebarMenuItems } from "./constants";
 import { SidebarProps } from "types";
 import { UserProfileService } from "@services/userProfile.service";
 
-import { Image, Indicator, MenuSidebar } from "@components/index";
-
 import {
-  Gift3dIcon,
-  Team3dIcon,
-  TrophyIcon,
-  Wallet3dIcon,
-} from "@assets/index";
+  ExternalLinkButton,
+  Image,
+  Indicator,
+  MenuSidebar,
+} from "@components/index";
+
+import { Team3dIcon, TrophyIcon, Wallet3dIcon } from "@assets/index";
 
 import {
   Info,
@@ -33,10 +29,8 @@ import {
 } from "./Sidebar.style";
 import {
   IndicatorHead,
-  IndicatorList,
   IndicatorTitle,
   IndicatorValue,
-  PromIndicator,
 } from "@styles/GlobalStyles.style";
 
 const userProfileService = new UserProfileService();
@@ -74,10 +68,24 @@ const Sidebar = (props: SidebarProps): JSX.Element => {
         <SocialMedia>
           <h2>Nuestras redes</h2>
           <SocialLinks>
-            <BsYoutube color="var(--bg-primary-color)" />
-            <BsFacebook color="var(--bg-primary-color)" />
-            <BsInstagram color="var(--bg-primary-color)" />
-            <BsTelegram color="var(--bg-primary-color)" />
+            <ExternalLinkButton
+              url="https://youtube.com/@BetbillionsAPP"
+              title="Ir a nuestro canal de youtube"
+            >
+              <BsYoutube color="var(--bg-primary-color)" />
+            </ExternalLinkButton>
+            <ExternalLinkButton url="#" title="Ir a nuestra pagina de Facebook">
+              <BsFacebook color="var(--bg-primary-color)" />
+            </ExternalLinkButton>
+            <ExternalLinkButton
+              url="https://instagram.com/betbillons?igshid=OGIzYTJhMTRmYQ=="
+              title="Ir a nuestra pagina de Instagram"
+            >
+              <BsInstagram color="var(--bg-primary-color)" />
+            </ExternalLinkButton>
+            <ExternalLinkButton url="#" title="Ir a nuestro canal de Telegram">
+              <BsTelegram color="var(--bg-primary-color)" />
+            </ExternalLinkButton>
           </SocialLinks>
         </SocialMedia>
       </SecondContent>
@@ -155,60 +163,4 @@ const SidebarBalance = (): JSX.Element => {
   );
 };
 
-const SidebarGifts = (): JSX.Element => {
-  const { data: userPanelData } = useRealTimeFecher(
-    "/users/panel",
-    userProfileService.getUserPanelData
-  );
-  const { lotteryDetail } = useLotteryContext();
-
-  return (
-    <Sidebar>
-      <Indicator width="100%">
-        <IndicatorHead>
-          <IndicatorTitle>Saldo Total</IndicatorTitle>
-          <Image
-            source={Wallet3dIcon}
-            alt={"Bet billions wallet"}
-            size={{ lg: 20, md: 10, sm: 20 }}
-          />
-        </IndicatorHead>
-        <IndicatorValue>
-          ${userPanelData?.balance}
-          <span>USD</span>
-        </IndicatorValue>
-      </Indicator>
-      <Indicator width="100%">
-        <IndicatorHead>
-          <IndicatorTitle>Premios</IndicatorTitle>
-          <Image
-            source={TrophyIcon}
-            alt={"Bet billions wallet"}
-            size={{ lg: 20, md: 10, sm: 20 }}
-          />
-        </IndicatorHead>
-        <IndicatorList>
-          {lotteryDetail?.rounds.map((round, index) => (
-            <p key={round.id}>
-              {index + 1} juego {round.award} usd
-            </p>
-          ))}
-        </IndicatorList>
-        <PromIndicator>
-          <h2>
-            Si aplica PROMO
-            <span>6 500 usd</span>
-            <span>7 500 usd</span>
-          </h2>
-          <Image
-            source={Gift3dIcon}
-            alt={"Team bet billions"}
-            size={{ lg: 20, md: 10, sm: 20 }}
-          />
-        </PromIndicator>
-      </Indicator>
-    </Sidebar>
-  );
-};
-
-export { SidebarBalance, SidebarGifts, SidebarDefault };
+export { SidebarBalance, SidebarDefault };

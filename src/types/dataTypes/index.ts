@@ -82,7 +82,7 @@ interface LotteryRound {
 interface UserTransaction {
   id: number;
   balance: number;
-  typeHistory: "Shopping" | "Earnings" | "Transaction";
+  typeHistory: "Shopping" | "Earnings" | "Transaction" | "Recharge";
   state: boolean;
   createdAt: string;
 }
@@ -97,6 +97,7 @@ interface AdminTransaction {
   userId: null | number;
   stateTransaction: "Pending" | "Completed" | "Invalid";
   state: boolean;
+  typeTransaction: "Shopping" | "Earnings" | "Transaction" | "Recharge";
   createdAt: string;
   username: string;
   email: string;

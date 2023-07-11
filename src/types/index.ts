@@ -23,6 +23,7 @@ export type {
   BingoBoardProps,
   EmptyProps,
   CheckboxProps,
+  ExternalLinkProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";

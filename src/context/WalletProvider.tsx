@@ -116,18 +116,52 @@ const WalletProvider = ({ children }: ProviderProps) => {
     []
   );
 
+  const sendCommissionTransaction = useCallback(
+    async (
+      transactionData: WalletDepositFormValues,
+      config: LoadingConfig,
+      reset: UseFormReset<WalletDepositFormValues>
+    ) => {
+      const token = tokenAuth.getToken();
+      if (token) {
+        try {
+          config.setMessage("Enviando solicitud de deposito..");
+          config.activeLoading();
+          const res = await userWalletService.sendCommissionTransaction(
+            transactionData,
+            token
+          );
+          reset();
+          setTransactionVoucher("");
+          configToast(res.typeStatus, res.message);
+          showToast();
+        } catch (error: unknown) {
+          const errorMessage = (error as Error).message;
+          showToast();
+          configToast(ToastTypes.error, errorMessage);
+        } finally {
+          hideToast(3000);
+          config.inactiveLoading();
+        }
+      }
+    },
+    []
+  );
+
   const value = useMemo(
     () => ({
       transactionVoucher,
       setUserWalletAddress,
       sendWalletDepositTransaction,
       uploadTransactionVoucher,
+      sendCommissionTransaction,
     }),
     [
       transactionVoucher,
       setUserWalletAddress,
       sendWalletDepositTransaction,
       uploadTransactionVoucher,
+      sendCommissionTransaction,
     ]
   );
 

@@ -114,10 +114,12 @@ const LotteryProvider = ({ children }: ProviderProps) => {
             showToast();
             return;
           }
-          if (purchaseData.length === 5) {
+          if (purchaseData.length === 5 || purchaseData.length === 6) {
             configToast(
               ToastTypes.warning,
-              "Selecciona 2 cartones mas para aplicar a la promoción!"
+              `Selecciona ${
+                7 - purchaseData.length
+              } cartones mas para aplicar a la promoción!`
             );
             showToast();
             return;

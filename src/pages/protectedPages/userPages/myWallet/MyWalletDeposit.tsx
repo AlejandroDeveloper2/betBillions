@@ -39,10 +39,12 @@ import {
 } from "./MyWallet.style";
 
 const MyWalletDeposit = (): JSX.Element => {
+  const isLoyaltyPlan = window.location.pathname.split("/")[4];
   const {
     transactionVoucher,
     sendWalletDepositTransaction,
     uploadTransactionVoucher,
+    sendCommissionTransaction,
   } = useWalletContext();
   const {
     register,
@@ -107,7 +109,11 @@ const MyWalletDeposit = (): JSX.Element => {
           setMessage,
         }}
         handleSubmit={handleSubmit}
-        action={sendWalletDepositTransaction}
+        action={
+          isLoyaltyPlan
+            ? sendCommissionTransaction
+            : sendWalletDepositTransaction
+        }
         reset={reset}
       >
         <WalletCard>

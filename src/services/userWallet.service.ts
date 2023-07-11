@@ -86,6 +86,33 @@ class UserWalletService {
     return response;
   }
 
+  public async sendCommissionTransaction(
+    transactionData: WalletDepositFormValues,
+    token: string
+  ): Promise<ServerResponse> {
+    let response: ServerResponse | null = null;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      const { data } = await axiosClient.patch<ServerResponse>(
+        `/transaction/validate/userNetwork/${transactionData.transaction}`,
+        {},
+        config
+      );
+      response = data;
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+    return response;
+  }
+
   public async uploadTransactionVoucher(formData: FormData): Promise<string> {
     const axiosClient = getAxiosClient("cloudinaryAPI");
     let response = "";

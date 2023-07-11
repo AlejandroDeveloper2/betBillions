@@ -187,6 +187,13 @@ type CheckboxProps = {
   label: string;
 };
 
+type ExternalLinkProps = {
+  url: string;
+  title: string;
+  label?: string;
+  children?: JSX.Element | JSX.Element[];
+};
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -212,6 +219,7 @@ export type {
   BingoBoardProps,
   EmptyProps,
   CheckboxProps,
+  ExternalLinkProps,
 };
 
 export { ToastTypes };

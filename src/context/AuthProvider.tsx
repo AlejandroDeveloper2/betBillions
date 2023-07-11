@@ -56,8 +56,9 @@ const AuthProvider = ({ children }: ProviderProps) => {
           setUserAuth(userAuth);
           setAuthStatus("authenticated");
           userAuthStateLS.setUserAuthState("authenticated");
+          reset();
+          return;
         }
-        reset();
         configToast(res.typeStatus, res.message);
         showToast();
       } catch (error: unknown) {
@@ -198,7 +199,7 @@ const AuthProvider = ({ children }: ProviderProps) => {
           showToast();
           configToast(
             ToastTypes.warning,
-            "La sesión a caducado por favor loguese de nuevo!"
+            "La sesión ha caducado por favor loguese de nuevo!"
           );
           logout(3000);
         }
