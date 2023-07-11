@@ -35,6 +35,7 @@ import {
   WalletAddress,
   WalletBody,
   Text,
+  Paragraph,
 } from "./MyWallet.style";
 import {
   IndicatorHead,
@@ -198,7 +199,7 @@ const MyWalletWithdraw = (): JSX.Element => {
           title={"Retirar fondos"}
           label="Retirar"
           onClick={() => console.log("Retirado")}
-          disabled={wallet?.wallet ? false : true}
+          disabled={true}
         >
           <BiMoneyWithdraw
             color="var(--white)"
@@ -206,6 +207,9 @@ const MyWalletWithdraw = (): JSX.Element => {
           />
         </DefaultButton>
       </CustomForm>
+      <Paragraph>
+        ¡Los retiros se efectuaran el dia del sorteo de bingo!
+      </Paragraph>
       <Footer />
     </MyWalletContainer>
   );

@@ -131,19 +131,15 @@ const InputRow = styled.div`
   }
 `;
 
-const ToastsContainer = styled.div`
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: flex-start;
-  z-index: 30;
-  div {
-    position: relative;
-  }
+const Paragraph = styled.p`
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--dark-gray);
+  padding: 1rem;
+  background-color: var(--green);
+  border-radius: 1rem;
 `;
 
 export {
@@ -157,5 +153,5 @@ export {
   WalletBody,
   WalletInputContainer,
   InputRow,
-  ToastsContainer,
+  Paragraph,
 };

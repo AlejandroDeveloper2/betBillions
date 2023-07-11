@@ -60,27 +60,37 @@ const ValidTransaction = (props: ValidTransactionProps): JSX.Element => {
             <DialogMessage>
               ¿Esta seguro que desea verificar esta transacción?
             </DialogMessage>
-
-            <DefaultButton
-              style={{
-                bg: "var(--black)",
-                fontColor: "var(--white)",
-                width: "30rem",
-              }}
-              title={"Verificar transacción"}
-              label="Validar"
-              onClick={() =>
-                validateLoyaltyPlanTransaction(dataProm.transaction, {
-                  activeLoading,
-                  inactiveLoading,
-                  setMessage,
-                })
-              }
-            >
-              <AiFillCheckSquare
-                style={{ fill: "var(--white)", fontSize: 20, marginRight: 5 }}
+            {isLoading ? (
+              <LoadingButton
+                message={loadingMessage}
+                style={{
+                  bg: "var(--black)",
+                  fontColor: "var(--white)",
+                  width: "20rem",
+                }}
               />
-            </DefaultButton>
+            ) : (
+              <DefaultButton
+                style={{
+                  bg: "var(--black)",
+                  fontColor: "var(--white)",
+                  width: "20rem",
+                }}
+                title={"Verificar transacción"}
+                label="Validar"
+                onClick={() =>
+                  validateLoyaltyPlanTransaction(dataProm.transaction, {
+                    activeLoading,
+                    inactiveLoading,
+                    setMessage,
+                  })
+                }
+              >
+                <AiFillCheckSquare
+                  style={{ fill: "var(--white)", fontSize: 20, marginRight: 5 }}
+                />
+              </DefaultButton>
+            )}
           </>
         ) : (
           <CustomForm
