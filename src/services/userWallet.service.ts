@@ -99,9 +99,9 @@ class UserWalletService {
     };
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
-      const { data } = await axiosClient.patch<ServerResponse>(
-        `/transaction/validate/userNetwork/${transactionData.transaction}`,
-        {},
+      const { data } = await axiosClient.post<ServerResponse>(
+        "/transaction/save/userNetwork",
+        transactionData,
         config
       );
       response = data;

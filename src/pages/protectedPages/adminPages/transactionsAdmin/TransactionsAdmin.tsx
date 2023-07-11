@@ -50,10 +50,15 @@ const TransactionsAdmin = (): JSX.Element => {
     "/transaction/list",
     transactionsService.getAdminTransactions
   );
-  const { isModalVisible, hideModal, showModal } = useModal();
+  const {
+    isModalVisible,
+    hideModal,
+    showModal,
+    data: dataProm,
+  } = useModal<AdminTransaction>();
   const {
     isModalVisible: isDialogVisible,
-    data,
+    data: dataTransaction,
     hideModal: hideDialog,
     showModal: showDialog,
   } = useModal<AdminTransaction>();
@@ -111,11 +116,14 @@ const TransactionsAdmin = (): JSX.Element => {
               title={"Invalidar transacción"}
               label="Invalidar"
               onClick={() => {
-                invalidateTransaction(data ? data?.transaction : "", {
-                  activeLoading,
-                  inactiveLoading,
-                  setMessage,
-                }).then(() => {
+                invalidateTransaction(
+                  dataTransaction ? dataTransaction?.transaction : "",
+                  {
+                    activeLoading,
+                    inactiveLoading,
+                    setMessage,
+                  }
+                ).then(() => {
                   hideDialog();
                 });
               }}
@@ -131,64 +139,74 @@ const TransactionsAdmin = (): JSX.Element => {
       <Modal isModalVisible={isModalVisible}>
         <Modal.Head title="Validar transacción" hideModal={hideModal} />
         <Modal.Body>
-          <CustomForm
-            formTitle=""
-            formType="TransactionValidation"
-            config={{
-              activeLoading,
-              inactiveLoading,
-              setMessage,
-            }}
-            handleSubmit={handleSubmit}
-            action={validateTransaction}
-            reset={reset}
-          >
-            <InputWithLabel
-              type="number"
-              placeholder="Ingrese el valor en USD de la transacción"
-              label={"Precio"}
-              Icon={AiFillDollarCircle}
-              register={register}
-              name="price"
-            />
-            {errors.price ? (
-              <ErrorMessage message={errors.price.message} />
-            ) : null}
-            <InputWithLabel
-              type="number"
-              placeholder="Confirme el valor en USD de la transacción"
-              label={"Confirmar precio"}
-              Icon={AiFillDollarCircle}
-              register={register}
-              name="confirmPrice"
-            />
-            {errors.confirmPrice ? (
-              <ErrorMessage message={errors.confirmPrice.message} />
-            ) : null}
-            {isLoadingForm ? (
-              <LoadingButton
-                message={loadingMessage}
-                style={{
-                  bg: "var(--black)",
-                  fontColor: "var(--white)",
-                }}
+          {dataProm?.typeTransaction === "UserNetwork" ? (
+            <DialogMessage>
+              ¿Esta seguro que desea activar esta transacción?
+            </DialogMessage>
+          ) : (
+            <CustomForm
+              formTitle=""
+              formType="TransactionValidation"
+              config={{
+                activeLoading,
+                inactiveLoading,
+                setMessage,
+              }}
+              handleSubmit={handleSubmit}
+              action={validateTransaction}
+              reset={reset}
+            >
+              <InputWithLabel
+                type="number"
+                placeholder="Ingrese el valor en USD de la transacción"
+                label={"Precio"}
+                Icon={AiFillDollarCircle}
+                register={register}
+                name="price"
               />
-            ) : (
-              <DefaultSubmit
-                style={{
-                  bg: "var(--black)",
-                  fontColor: "var(--white)",
-                }}
-                title={"Validar transacción"}
-                label="Validar"
-                // onClick={() => hideModal(1000)}
-              >
-                <AiOutlineCheck
-                  style={{ fill: "var(--white)", fontSize: 20, marginRight: 5 }}
+              {errors.price ? (
+                <ErrorMessage message={errors.price.message} />
+              ) : null}
+              <InputWithLabel
+                type="number"
+                placeholder="Confirme el valor en USD de la transacción"
+                label={"Confirmar precio"}
+                Icon={AiFillDollarCircle}
+                register={register}
+                name="confirmPrice"
+              />
+              {errors.confirmPrice ? (
+                <ErrorMessage message={errors.confirmPrice.message} />
+              ) : null}
+              {isLoadingForm ? (
+                <LoadingButton
+                  message={loadingMessage}
+                  style={{
+                    bg: "var(--black)",
+                    fontColor: "var(--white)",
+                  }}
                 />
-              </DefaultSubmit>
-            )}
-          </CustomForm>
+              ) : (
+                <DefaultSubmit
+                  style={{
+                    bg: "var(--black)",
+                    fontColor: "var(--white)",
+                  }}
+                  title={"Validar transacción"}
+                  label="Validar"
+                  // onClick={() => hideModal(1000)}
+                >
+                  <AiOutlineCheck
+                    style={{
+                      fill: "var(--white)",
+                      fontSize: 20,
+                      marginRight: 5,
+                    }}
+                  />
+                </DefaultSubmit>
+              )}
+            </CustomForm>
+          )}
         </Modal.Body>
       </Modal>
 
@@ -304,7 +322,7 @@ const TransactionsAdmin = (): JSX.Element => {
                       }}
                       title={"Validar transacción"}
                       onClick={() => {
-                        showModal();
+                        showModal(transaction);
                         setValue("id", transaction.id);
                         setValue("transaction", transaction.transaction);
                       }}
