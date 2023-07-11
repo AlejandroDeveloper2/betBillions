@@ -152,6 +152,14 @@ const PromIndicator = styled.div`
   }
 `;
 
+const DialogMessage = styled.p`
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: medium;
+  text-align: center;
+  color: var(--dark-gray);
+`;
+
 export {
   FormContainer,
   Links,
@@ -163,4 +171,5 @@ export {
   IndicatorHead,
   IndicatorList,
   PromIndicator,
+  DialogMessage,
 };

@@ -110,6 +110,33 @@ class TransactionsService {
     }
     return response;
   }
+
+  public async validateLoyaltyPlanTransaction(
+    transactionHash: string,
+    token: string
+  ): Promise<ServerResponse> {
+    let response: ServerResponse | null = null;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      const { data } = await axiosClient.patch<ServerResponse>(
+        `/transaction/validate/userNetwork/${transactionHash}`,
+        {},
+        config
+      );
+      response = data;
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+    return response;
+  }
 }
 
 export { TransactionsService };

@@ -24,6 +24,9 @@ export type {
   EmptyProps,
   CheckboxProps,
   ExternalLinkProps,
+  InvalidTransactionProps,
+  ValidTransactionProps,
+  TransactionDetailsProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";

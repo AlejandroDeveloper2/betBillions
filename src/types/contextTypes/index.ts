@@ -104,6 +104,10 @@ interface TransactionContextType {
     transactionHash: string,
     config: LoadingConfig
   ) => Promise<void>;
+  validateLoyaltyPlanTransaction: (
+    transactionHash: string,
+    config: LoadingConfig
+  ) => Promise<void>;
 }
 
 interface ShoppingCartContextType {

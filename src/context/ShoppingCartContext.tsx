@@ -67,7 +67,7 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
     );
     setBingoBoards(filteredBingoBoards);
     window.localStorage.setItem("cart", JSON.stringify(filteredBingoBoards));
-    if (bingoBoards.length < 5) {
+    if (bingoBoards.length <= 5) {
       setTotalToPay((prevState) => prevState - singleBoardPrice);
     }
     configToast(ToastTypes.success, "Cartón removido!");

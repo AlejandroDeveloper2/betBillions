@@ -6,7 +6,7 @@ import {
   UseFormReset,
 } from "react-hook-form";
 
-import { BingoBoard, HeaderType, LoadingConfig } from "..";
+import { AdminTransaction, BingoBoard, HeaderType, LoadingConfig } from "..";
 
 type InputName =
   | "password"
@@ -194,6 +194,24 @@ type ExternalLinkProps = {
   children?: JSX.Element | JSX.Element[];
 };
 
+type InvalidTransactionProps = {
+  isDialogVisible: boolean;
+  hideDialog: (delay?: number) => void;
+  dataTransaction: AdminTransaction | undefined;
+};
+
+type ValidTransactionProps = {
+  isModalVisible: boolean;
+  hideModal: (delay?: number) => void;
+  dataProm: AdminTransaction | undefined;
+};
+
+type TransactionDetailsProps = {
+  isDetailModalVisible: boolean;
+  hideDetailModal: (delay?: number) => void;
+  details: AdminTransaction | undefined;
+};
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -220,6 +238,9 @@ export type {
   EmptyProps,
   CheckboxProps,
   ExternalLinkProps,
+  InvalidTransactionProps,
+  ValidTransactionProps,
+  TransactionDetailsProps,
 };
 
 export { ToastTypes };

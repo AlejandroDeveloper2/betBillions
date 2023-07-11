@@ -34,3 +34,8 @@ export { default as Checkbox } from "./shared/checkbox/Checkbox";
 
 /*home components */
 export { default as InvitationLink } from "./home/invitationLink/InvitationLink";
+
+/*Transaction admin  components */
+export { default as InvalidTransaction } from "./transactionsAdmin/invalidTransaction/InvalidTransaction";
+export { default as ValidTransaction } from "./transactionsAdmin/validTransaction/ValidTransaction";
+export { default as TransactionDetails } from "./transactionsAdmin/transactionDetails/TransactionDetails";
