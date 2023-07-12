@@ -39,6 +39,7 @@ export type {
   WalletDepositFormValues,
   WalletWithdrawFormValues,
   ValidTransactionFormValues,
+  UserProfileFormValues,
 } from "./formTypes";
 
 export type {
@@ -74,6 +75,7 @@ export type {
   Team,
   BingoBoard,
   BingoBall,
+  User,
 } from "./dataTypes";
 
 export type {

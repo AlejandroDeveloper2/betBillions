@@ -117,9 +117,7 @@ type HeaderType = {
 interface Team {
   id: number;
   userName: string;
-  fullName: string;
   dateRegistered: string;
-  phone?: string;
   level: string;
 }
 
@@ -137,6 +135,26 @@ interface BingoBall {
   numbers: string;
   state: boolean;
   color: string;
+}
+
+interface User {
+  id: number;
+  username: string;
+  email: string;
+  fullName: string;
+  phone: string;
+  country: string;
+  city: string;
+  emailVerified: string;
+  photo: string;
+  refLink: string;
+  invitationLink: string;
+  roles: string;
+  status: boolean;
+  level: number;
+  createdAt: string;
+  updatedAt: string;
+  evoxWallet: string;
 }
 
 export type {
@@ -159,4 +177,5 @@ export type {
   Team,
   BingoBoard,
   BingoBall,
+  User,
 };
