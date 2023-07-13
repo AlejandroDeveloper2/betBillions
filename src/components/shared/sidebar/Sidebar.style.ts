@@ -9,12 +9,12 @@ const SidebarContainer = styled.aside`
   display: flex;
   @media (min-width: 1000px) {
     flex-direction: column;
-    width: 20%;
+    width: 30%;
     gap: 2rem;
-    position: absolute;
-    top: 0;
-    right: 2rem;
     padding-bottom: 2rem;
+  }
+  @media (min-width: 1400px) {
+    width: 25%;
   }
 `;
 

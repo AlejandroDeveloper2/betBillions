@@ -14,9 +14,10 @@ const MyWalletContainer = styled.div`
   gap: 2rem;
 
   @media (min-width: 1000px) {
-    width: 70%;
+    width: 100%;
     align-items: flex-start;
     padding-bottom: 1rem;
+    flex-direction: row-reverse;
   }
 `;
 
@@ -37,6 +38,9 @@ const PageHeader = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  @media (min-width: 1000px) {
+    justify-content: flex-start;
+  }
 `;
 
 const Text = styled.p`

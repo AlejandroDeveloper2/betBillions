@@ -62,6 +62,8 @@ const Figure = styled.figure`
   display: none;
   @media (min-width: 1000px) {
     left: -10rem;
+  }
+  @media (min-width: 1400px) {
     display: block;
   }
 `;

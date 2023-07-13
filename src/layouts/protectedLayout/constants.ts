@@ -86,7 +86,7 @@ const getMenuItems = (
       label: "Configuración",
       icon: IoMdSettings,
       title: "Configuración de cuenta",
-      to: "#",
+      to: "/admin/settings/myProfile",
     },
     {
       label: "Notificaciones",

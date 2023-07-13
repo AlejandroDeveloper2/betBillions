@@ -47,17 +47,18 @@ const UL = styled.ul`
   }
 
   img {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     display: none;
   }
 
   @media (min-width: 1000px) {
-    left: 0;
-    width: 15%;
+    position: relative;
+    width: 100%;
     height: 100%;
     flex-direction: column;
     gap: 1rem;
     align-items: center;
+    justify-content: flex-start;
     border-radius: 0;
     padding: 3rem 1rem;
     li:nth-child(8) {
@@ -86,6 +87,7 @@ const UL = styled.ul`
     }
   }
   @media (min-width: 1400px) {
+    width: 100%;
     padding: 3rem 2rem;
   }
 `;
@@ -182,17 +184,19 @@ const LinkItem = styled(Link)<MenuItemStyleProps>`
   }
 
   @media (min-width: 1000px) {
-    width: 100%;
+    width: 5rem;
     border-radius: 4rem;
-    justify-content: start;
+    justify-content: center;
     padding: 0.5rem 1rem;
-    span {
-      display: block;
-    }
   }
 
   @media (min-width: 1400px) {
+    width: 100%;
     padding: 0.5rem 1.5rem;
+    justify-content: start;
+    span {
+      display: block;
+    }
   }
 `;
 

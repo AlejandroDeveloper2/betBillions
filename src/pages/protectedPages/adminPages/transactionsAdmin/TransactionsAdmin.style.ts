@@ -3,7 +3,7 @@ import styled from "styled-components";
 const TransactionsContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   padding-top: 1rem;
@@ -17,6 +17,7 @@ const TransactionsContainer = styled.div`
     align-items: flex-start;
     width: 100%;
     padding-bottom: 1rem;
+    height: 100vh;
   }
 `;
 
@@ -30,7 +31,7 @@ const PageTitle = styled.div`
     font-weight: bold;
     color: var(--bg-secondary-color);
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   @media (min-width: 1000px) {
     flex-direction: row;

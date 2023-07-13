@@ -37,13 +37,16 @@ const userProfileService = new UserProfileService();
 
 const Sidebar = (props: SidebarProps): JSX.Element => {
   const { children } = props;
-  const { logout } = useAuthContext();
+  const { logout, userAuth } = useAuthContext();
 
   const { data: userPanelData } = useRealTimeFecher(
     "/users/panel",
     userProfileService.getUserPanelData
   );
-  const SIDEBARMENUITEMS = getSidebarMenuItems(logout);
+  const SIDEBARMENUITEMS = getSidebarMenuItems(
+    logout,
+    userAuth ? userAuth?.roles[0].authority : "ROLE_USER"
+  );
 
   return (
     <SidebarContainer>

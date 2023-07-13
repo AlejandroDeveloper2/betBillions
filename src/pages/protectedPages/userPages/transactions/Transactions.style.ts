@@ -14,7 +14,8 @@ const TransactionsContainer = styled.div`
   gap: 2rem;
 
   @media (min-width: 1000px) {
-    width: 70%;
+    width: 100%;
+    flex-direction: row-reverse;
     padding-bottom: 1rem;
   }
 `;

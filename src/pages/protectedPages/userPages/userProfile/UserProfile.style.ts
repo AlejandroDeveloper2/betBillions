@@ -14,8 +14,9 @@ const UserProfileContainer = styled.div`
   gap: 2rem;
 
   @media (min-width: 1000px) {
+    flex-direction: row-reverse;
     align-items: flex-start;
-    width: 70%;
+    width: 100%;
     padding-bottom: 1rem;
   }
 `;

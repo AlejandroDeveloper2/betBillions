@@ -18,6 +18,7 @@ import {
 
 import { PageTitle, TeamPageContainer } from "./TeamPage.style";
 import { Team3dIcon } from "@assets/index";
+import { Content } from "@styles/GlobalStyles.style";
 
 const TeamPage = (): JSX.Element => {
   const userProfileService = new UserProfileService();
@@ -29,52 +30,54 @@ const TeamPage = (): JSX.Element => {
   return (
     <TeamPageContainer>
       <SidebarDefault />
-      <PageTitle>
-        <h1>Mi Equipo</h1>
-        <Image
-          source={Team3dIcon}
-          alt="Bet billion equipo"
-          size={{ lg: 20, md: 20, sm: 20 }}
-        />
-      </PageTitle>
-      {isLoading ? (
-        <Loading
-          message="Cargando tu red de referidos..."
-          textColor="var(--bg-secondary-color)"
-        />
-      ) : (
-        <Table
-          headers={tableHeaders}
-          columnsNumber={4}
-          title="Mi red de referidos"
-        >
-          {userTeam?.length === 0 ? (
-            <Empty message="¡No tienes referidos aún!" />
-          ) : (
-            userTeam?.map((referral) => (
-              <Table.Row key={referral.id} columnsNumber={4}>
-                <Table.Item value={referral.id} Icon={FaHashtag} label="Id" />
-                <Table.Item
-                  value={referral.userName}
-                  Icon={BiSolidUser}
-                  label="Usuario"
-                />
-                <Table.Item
-                  value={formatDate(referral.dateRegistered)}
-                  Icon={BsFillCalendarDateFill}
-                  label="Registro"
-                />
-                <Table.Item
-                  value={referral.level}
-                  Icon={FaLevelUpAlt}
-                  label="Nivel"
-                />
-              </Table.Row>
-            ))
-          )}
-        </Table>
-      )}
-      <Footer />
+      <Content>
+        <PageTitle>
+          <h1>Mi Equipo</h1>
+          <Image
+            source={Team3dIcon}
+            alt="Bet billion equipo"
+            size={{ lg: 20, md: 20, sm: 20 }}
+          />
+        </PageTitle>
+        {isLoading ? (
+          <Loading
+            message="Cargando tu red de referidos..."
+            textColor="var(--bg-secondary-color)"
+          />
+        ) : (
+          <Table
+            headers={tableHeaders}
+            columnsNumber={4}
+            title="Mi red de referidos"
+          >
+            {userTeam?.length === 0 ? (
+              <Empty message="¡No tienes referidos aún!" />
+            ) : (
+              userTeam?.map((referral) => (
+                <Table.Row key={referral.id} columnsNumber={4}>
+                  <Table.Item value={referral.id} Icon={FaHashtag} label="Id" />
+                  <Table.Item
+                    value={referral.userName}
+                    Icon={BiSolidUser}
+                    label="Usuario"
+                  />
+                  <Table.Item
+                    value={formatDate(referral.dateRegistered)}
+                    Icon={BsFillCalendarDateFill}
+                    label="Registro"
+                  />
+                  <Table.Item
+                    value={referral.level}
+                    Icon={FaLevelUpAlt}
+                    label="Nivel"
+                  />
+                </Table.Row>
+              ))
+            )}
+          </Table>
+        )}
+        <Footer />
+      </Content>
     </TeamPageContainer>
   );
 };

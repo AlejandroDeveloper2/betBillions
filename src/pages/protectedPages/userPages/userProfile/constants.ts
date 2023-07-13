@@ -38,7 +38,7 @@ const schema = yup
     city: yup
       .string()
       .required("Selecciona tu ciudad | provincia | municipio!"),
-    photo: yup.string().required(),
+    photo: yup.string().required("¡Sube una imagen de perfil!"),
   })
   .required();
 
