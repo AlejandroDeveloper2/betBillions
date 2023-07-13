@@ -18,7 +18,7 @@ const DefaultInput = (props: CustomInputProps) => {
   const inputType = getPasswordVisibility();
 
   return (
-    <InputContainer>
+    <InputContainer aria-disabled={disabled}>
       <Icon color="var(--dark-gray)" style={{ fontSize: "1.3rem" }} />
       <Input
         type={inputType}
