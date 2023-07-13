@@ -17,6 +17,7 @@ import {
   TeamPage,
   Transactions,
   UserPanel,
+  UserProfile,
 } from "@pages/index";
 
 const UserRoutes = (): JSX.Element => {
@@ -59,6 +60,7 @@ const UserRoutes = (): JSX.Element => {
           path="/userPanel/lottery/gamePreview/:lotteryId"
           element={<GamePreview />}
         />
+        <Route path="/userPanel/settings/myProfile" element={<UserProfile />} />
         <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>

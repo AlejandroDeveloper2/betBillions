@@ -1,4 +1,4 @@
-import { CustomFileInputProps, CustomInputProps } from "types";
+import { CustomFileInputProps, CustomInputProps, SelectProps } from "types";
 
 /*Styles */
 import {
@@ -8,6 +8,7 @@ import {
   Label,
   InputContainerVariant,
   InputUploadFile,
+  Select,
 } from "./CustomInput.style";
 import { usePasswordInput } from "@hooks/index";
 
@@ -66,4 +67,26 @@ const InputFile = (props: CustomFileInputProps): JSX.Element => {
   );
 };
 
-export { DefaultInput, InputWithLabel, InputVariant, InputFile };
+const SelectWithLabel = (props: SelectProps): JSX.Element => {
+  const { defaultValue, label, Icon, register, name, children } = props;
+  return (
+    <InputContainerLabel>
+      <Label>{label}</Label>
+      <InputContainer>
+        <Icon color="var(--dark-gray)" style={{ fontSize: "1.3rem" }} />
+        <Select name={name} {...register}>
+          <option value="">{defaultValue}</option>
+          {children}
+        </Select>
+      </InputContainer>
+    </InputContainerLabel>
+  );
+};
+
+export {
+  DefaultInput,
+  InputWithLabel,
+  InputVariant,
+  InputFile,
+  SelectWithLabel,
+};

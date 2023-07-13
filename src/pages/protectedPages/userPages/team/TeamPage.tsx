@@ -1,7 +1,6 @@
 import { BiSolidUser } from "react-icons/bi";
 import { BsFillCalendarDateFill } from "react-icons/bs";
 import { FaHashtag, FaLevelUpAlt } from "react-icons/fa";
-import { PiIdentificationBadgeFill } from "react-icons/pi";
 
 import { useRealTimeFecher } from "@hooks/index";
 import { UserProfileService } from "@services/userProfile.service";
@@ -46,24 +45,19 @@ const TeamPage = (): JSX.Element => {
       ) : (
         <Table
           headers={tableHeaders}
-          columnsNumber={5}
+          columnsNumber={4}
           title="Mi red de referidos"
         >
           {userTeam?.length === 0 ? (
             <Empty message="¡No tienes referidos aún!" />
           ) : (
             userTeam?.map((referral) => (
-              <Table.Row key={referral.id} columnsNumber={5}>
+              <Table.Row key={referral.id} columnsNumber={4}>
                 <Table.Item value={referral.id} Icon={FaHashtag} label="Id" />
                 <Table.Item
                   value={referral.userName}
                   Icon={BiSolidUser}
                   label="Usuario"
-                />
-                <Table.Item
-                  value={referral.fullName}
-                  Icon={PiIdentificationBadgeFill}
-                  label="Nombre"
                 />
                 <Table.Item
                   value={formatDate(referral.dateRegistered)}

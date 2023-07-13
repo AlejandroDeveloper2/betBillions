@@ -39,6 +39,17 @@ interface ValidTransactionFormValues {
   confirmPrice: number;
 }
 
+interface UserProfileFormValues {
+  username: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  country: string;
+  city: string;
+  sponsorName?: string;
+  photo: string;
+}
+
 export type {
   LoginFormValues,
   RegisterFormValues,
@@ -47,4 +58,5 @@ export type {
   WalletDepositFormValues,
   WalletWithdrawFormValues,
   ValidTransactionFormValues,
+  UserProfileFormValues,
 };

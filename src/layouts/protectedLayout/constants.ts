@@ -47,7 +47,7 @@ const getMenuItems = (
         label: "Configuración",
         icon: IoMdSettings,
         title: "Configuración de cuenta",
-        to: "#",
+        to: "/userPanel/settings/myProfile",
       },
       {
         label: "Notificaciones",

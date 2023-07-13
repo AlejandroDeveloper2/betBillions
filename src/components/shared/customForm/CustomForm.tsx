@@ -14,7 +14,11 @@ const CustomForm = (props: CustomFormProps): JSX.Element => {
     <Form
       onSubmit={handleSubmit((data) => {
         const newData = valuesForm.setFormValues(formType, data);
-        action(newData, config, reset);
+        if (reset) {
+          action(newData, config, reset);
+        } else {
+          action(newData, config);
+        }
       })}
     >
       <FormTitle> {formTitle} </FormTitle>

@@ -1,4 +1,4 @@
-import { BsFacebook, BsYoutube, BsInstagram, BsTelegram } from "react-icons/bs";
+import { BsYoutube, BsInstagram, BsTelegram } from "react-icons/bs";
 
 import { useAuthContext, useRealTimeFecher } from "@hooks/index";
 import { getSidebarMenuItems } from "./constants";
@@ -74,16 +74,16 @@ const Sidebar = (props: SidebarProps): JSX.Element => {
             >
               <BsYoutube color="var(--bg-primary-color)" />
             </ExternalLinkButton>
-            <ExternalLinkButton url="#" title="Ir a nuestra pagina de Facebook">
-              <BsFacebook color="var(--bg-primary-color)" />
-            </ExternalLinkButton>
             <ExternalLinkButton
               url="https://instagram.com/betbillons?igshid=OGIzYTJhMTRmYQ=="
               title="Ir a nuestra pagina de Instagram"
             >
               <BsInstagram color="var(--bg-primary-color)" />
             </ExternalLinkButton>
-            <ExternalLinkButton url="#" title="Ir a nuestro canal de Telegram">
+            <ExternalLinkButton
+              url="https://t.me/+dsVlEmksnOBjYzRh"
+              title="Ir a nuestro canal de Telegram"
+            >
               <BsTelegram color="var(--bg-primary-color)" />
             </ExternalLinkButton>
           </SocialLinks>
