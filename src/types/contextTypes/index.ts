@@ -2,6 +2,8 @@ import { UseFormReset } from "react-hook-form";
 import {
   AuthStatus,
   BingoBoard,
+  City,
+  Country,
   LoadingConfig,
   LoginFormValues,
   LotteryDetail,
@@ -11,7 +13,7 @@ import {
   ToastTypes,
   UpdatePassFormValues,
   UserAuth,
-  UserPanelData,
+  UserProfileFormValues,
   ValidTransactionFormValues,
   WalletDepositFormValues,
   WalletWithdrawFormValues,
@@ -50,7 +52,15 @@ interface AuthContextType {
 }
 
 interface UserProfileContextType {
-  userPanelData: UserPanelData | null;
+  userPhotoUrl: string;
+  updateUserProfile: (
+    userData: UserProfileFormValues,
+    config: LoadingConfig
+  ) => Promise<void>;
+  uploadUserProfilePhoto: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    config: LoadingConfig
+  ) => Promise<void>;
 }
 
 interface WalletContextType {
@@ -130,6 +140,13 @@ interface ToastContextType {
   configToast: (type: ToastTypes, message: string) => void;
 }
 
+interface LocationContextType {
+  countries: Country[];
+  cities: City[];
+  getCountries: () => Promise<void>;
+  getCitiesPerCountry: (country: string) => Promise<void>;
+}
+
 export type {
   AuthContextType,
   ProviderProps,
@@ -139,4 +156,5 @@ export type {
   TransactionContextType,
   ShoppingCartContextType,
   ToastContextType,
+  LocationContextType,
 };

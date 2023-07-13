@@ -13,6 +13,7 @@ const DEFAULTVALUES: UserProfileFormValues = {
   country: "",
   city: "",
   sponsorName: "",
+  photo: "",
 };
 
 const schema = yup
@@ -37,6 +38,7 @@ const schema = yup
     city: yup
       .string()
       .required("Selecciona tu ciudad | provincia | municipio!"),
+    photo: yup.string().required(),
   })
   .required();
 

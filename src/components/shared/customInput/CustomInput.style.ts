@@ -68,6 +68,20 @@ const Input = styled.input`
   }
 `;
 
+const Select = styled.select`
+  width: 80%;
+  height: auto;
+  border: none;
+  outline: none;
+  margin-left: 0.5rem;
+  background-color: transparent;
+  color: var(--dark-gray);
+  font-size: 1rem;
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
 const InputUploadFile = styled.input`
   outline: none;
   position: absolute;
@@ -104,4 +118,5 @@ export {
   InputContainerLabel,
   InputContainerVariant,
   InputUploadFile,
+  Select,
 };

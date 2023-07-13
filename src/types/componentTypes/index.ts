@@ -19,7 +19,11 @@ type InputName =
   | "transaction"
   | "wallet"
   | "price"
-  | "confirmPrice";
+  | "confirmPrice"
+  | "phone"
+  | "sponsorName"
+  | "country"
+  | "city";
 
 type ImageProps = {
   source: string;
@@ -38,7 +42,8 @@ type FormType =
   | "updatePass"
   | "walletDeposit"
   | "walletWithdraw"
-  | "TransactionValidation";
+  | "TransactionValidation"
+  | "ProfileForm";
 
 type CustomFormProps = {
   children: JSX.Element | JSX.Element[] | any[];
@@ -46,11 +51,11 @@ type CustomFormProps = {
   config: LoadingConfig;
   formType: FormType;
   handleSubmit: UseFormHandleSubmit<any, undefined>;
-  reset: UseFormReset<any>;
+  reset?: UseFormReset<any> | any;
   action: (
     data: any,
     config: LoadingConfig,
-    reset: UseFormReset<any>
+    reset?: UseFormReset<any> | any
   ) => Promise<void>;
 };
 
@@ -62,6 +67,15 @@ type CustomInputProps = {
   register: UseFormRegister<any>;
   name: InputName;
   disabled?: boolean;
+};
+
+type SelectProps = {
+  defaultValue: string;
+  label: string | null;
+  Icon: IconType;
+  register: UseFormRegister<any>;
+  name: InputName;
+  children: JSX.Element | JSX.Element[];
 };
 
 type CustomFileInputProps = {
@@ -212,11 +226,17 @@ type TransactionDetailsProps = {
   details: AdminTransaction | undefined;
 };
 
+type AvatarProps = {
+  photo: string;
+  username: string;
+};
+
 export type {
   ImageProps,
   CustomFormProps,
   FormType,
   CustomInputProps,
+  SelectProps,
   CustomFileInputProps,
   CustomButtonProps,
   ErrorMessageProps,
@@ -241,6 +261,7 @@ export type {
   InvalidTransactionProps,
   ValidTransactionProps,
   TransactionDetailsProps,
+  AvatarProps,
 };
 
 export { ToastTypes };

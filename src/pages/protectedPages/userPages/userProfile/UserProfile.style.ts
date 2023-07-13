@@ -25,13 +25,15 @@ const PageTitle = styled.div`
   gap: 1rem;
   justify-content: center;
   align-items: center;
+  flex-direction: column-reverse;
   h1 {
     font-weight: bold;
     color: var(--bg-secondary-color);
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   @media (min-width: 1000px) {
+    flex-direction: row;
     h1 {
       display: inline-block;
       text-align: left;
@@ -40,4 +42,23 @@ const PageTitle = styled.div`
   }
 `;
 
-export { UserProfileContainer, PageTitle };
+const FormGrid = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+const FormRow = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+export { UserProfileContainer, PageTitle, FormGrid, FormRow };

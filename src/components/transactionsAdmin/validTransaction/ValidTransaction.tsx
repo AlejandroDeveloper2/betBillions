@@ -49,7 +49,7 @@ const ValidTransaction = (props: ValidTransactionProps): JSX.Element => {
   useEffect(() => {
     setValue("id", dataProm ? dataProm.id : 0);
     setValue("transaction", dataProm ? dataProm.transaction : "");
-  }, []);
+  }, [dataProm]);
 
   return (
     <Modal isModalVisible={isModalVisible}>

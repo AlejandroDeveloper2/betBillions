@@ -4,6 +4,7 @@ export {
   InputWithLabel,
   InputVariant,
   InputFile,
+  SelectWithLabel,
 } from "./shared/customInput/CustomInput";
 export { default as CustomForm } from "./shared/customForm/CustomForm";
 export {
@@ -31,6 +32,7 @@ export {
 export { default as BingoBoard } from "./shared/bingoBoard/BingoBoard";
 export { default as Empty } from "./shared/empty/Empty";
 export { default as Checkbox } from "./shared/checkbox/Checkbox";
+export { default as Avatar } from "./shared/avatar/Avatar";
 
 /*home components */
 export { default as InvitationLink } from "./home/invitationLink/InvitationLink";

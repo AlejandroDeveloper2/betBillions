@@ -3,6 +3,7 @@ export type {
   CustomFormProps,
   FormType,
   CustomInputProps,
+  SelectProps,
   CustomFileInputProps,
   ErrorMessageProps,
   ToastProps,
@@ -27,6 +28,7 @@ export type {
   InvalidTransactionProps,
   ValidTransactionProps,
   TransactionDetailsProps,
+  AvatarProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
@@ -75,7 +77,10 @@ export type {
   Team,
   BingoBoard,
   BingoBall,
-  User,
+  UserProfileData,
+  UserAdminData,
+  Country,
+  City,
 } from "./dataTypes";
 
 export type {
@@ -87,4 +92,5 @@ export type {
   TransactionContextType,
   ShoppingCartContextType,
   ToastContextType,
+  LocationContextType
 } from "./contextTypes";

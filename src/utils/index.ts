@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { UseFormSetValue } from "react-hook-form";
 import { Location } from "react-router-dom";
 
 import {
@@ -132,6 +133,21 @@ const setColorBingoBalls = (board: BingoBoard): BingoBall[] => {
   return cardBalls;
 };
 
+const setSelectOptions = <T>(options: T[]): T[] => {
+  return options;
+};
+
+const setFormValues = <T>(values: T, setValue: UseFormSetValue<any>) => {
+  for (const key in values) {
+    const element = values[key] as Extract<keyof T, string>;
+    if (key === "invitationLink") {
+      const sponsorName = (values[key] as string)?.split("/")[1];
+      setValue("sponsorName", sponsorName as Extract<keyof T, string>);
+    }
+    setValue(key, element);
+  }
+};
+
 export {
   ValuesForm,
   TokenAuth,
@@ -141,4 +157,6 @@ export {
   copyToClipBoard,
   formatDate,
   setColorBingoBalls,
+  setSelectOptions,
+  setFormValues,
 };

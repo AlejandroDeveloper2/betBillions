@@ -14,3 +14,4 @@ export { default as useLotteryContext } from "./useLotteryContext";
 export { default as useTransactionContext } from "./useTransactionContext";
 export { default as useShoppingCartContext } from "./useShoppingCartContext";
 export { default as useToastContext } from "./useToastContext";
+export { default as useLocationContext } from "./useLocationContext";

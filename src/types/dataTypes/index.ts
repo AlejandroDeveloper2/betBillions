@@ -137,24 +137,36 @@ interface BingoBall {
   color: string;
 }
 
-interface User {
-  id: number;
+interface UserProfileData {
   username: string;
   email: string;
   fullName: string;
   phone: string;
   country: string;
   city: string;
-  emailVerified: string;
   photo: string;
-  refLink: string;
   invitationLink: string;
+  evoxWallet: string;
+}
+
+interface UserAdminData extends UserProfileData {
+  id: number;
+  emailVerified: string;
+  refLink: string;
   roles: string;
   status: boolean;
   level: number;
   createdAt: string;
   updatedAt: string;
-  evoxWallet: string;
+}
+
+interface Country {
+  id: number;
+  name: string;
+}
+
+interface City extends Country {
+  country_name: string;
 }
 
 export type {
@@ -177,5 +189,8 @@ export type {
   Team,
   BingoBoard,
   BingoBall,
-  User,
+  UserProfileData,
+  UserAdminData,
+  Country,
+  City,
 };

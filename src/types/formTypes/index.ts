@@ -46,7 +46,8 @@ interface UserProfileFormValues {
   phone: string;
   country: string;
   city: string;
-  sponsorName: string;
+  sponsorName?: string;
+  photo: string;
 }
 
 export type {

@@ -9,6 +9,7 @@ import {
   TransactionProvider,
   ShoppingCartProvider,
   ToastProvider,
+  LocationProvider,
 } from "@context/index";
 
 /* Routers */
@@ -18,19 +19,21 @@ function App(): JSX.Element {
   return (
     <BrowserRouter>
       <ToastProvider>
-        <ShoppingCartProvider>
-          <TransactionProvider>
-            <LotteryProvider>
-              <WalletProvider>
-                <UserProfileProvider>
-                  <AuthProvider>
-                    <AppRouter />
-                  </AuthProvider>
-                </UserProfileProvider>
-              </WalletProvider>
-            </LotteryProvider>
-          </TransactionProvider>
-        </ShoppingCartProvider>
+        <LocationProvider>
+          <ShoppingCartProvider>
+            <TransactionProvider>
+              <LotteryProvider>
+                <WalletProvider>
+                  <UserProfileProvider>
+                    <AuthProvider>
+                      <AppRouter />
+                    </AuthProvider>
+                  </UserProfileProvider>
+                </WalletProvider>
+              </LotteryProvider>
+            </TransactionProvider>
+          </ShoppingCartProvider>
+        </LocationProvider>
       </ToastProvider>
     </BrowserRouter>
   );
