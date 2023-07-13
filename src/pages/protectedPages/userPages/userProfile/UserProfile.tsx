@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { CgProfile } from "react-icons/cg";
@@ -18,7 +18,7 @@ import {
 } from "@hooks/index";
 import { UserProfileData, UserProfileFormValues } from "types";
 import { DEFAULTVALUES, schema } from "./constants";
-import { setFormValues, setSelectOptions } from "@utils/index";
+import { setFormValues } from "@utils/index";
 
 import { UserProfileService } from "@services/userProfile.service";
 
@@ -47,18 +47,20 @@ const UserProfile = (): JSX.Element => {
   const { countries, cities, getCitiesPerCountry } = useLocationContext();
   const { data: userProfile } = useRealTimeFecher(
     "/users/getUser",
-    userProfileService.getUserProfile
+    userProfileService.getUserProfile,
+    undefined
   );
   const {
     register,
     handleSubmit,
     setValue,
-    getValues,
+    control,
     formState: { errors },
   } = useForm<UserProfileFormValues>({
     defaultValues: DEFAULTVALUES,
     resolver: yupResolver(schema),
   });
+
   const {
     isLoading,
     loadingMessage,
@@ -68,19 +70,15 @@ const UserProfile = (): JSX.Element => {
   } = useLoading();
 
   useEffect(() => {
+    setValue("photo", userPhotoUrl);
+  }, [userPhotoUrl]);
+
+  useEffect(() => {
     setFormValues<UserProfileData | null>(
       userProfile ? userProfile : null,
       setValue
     );
   }, [userProfile]);
-
-  useEffect(() => {
-    setValue("photo", userPhotoUrl);
-  }, [userPhotoUrl]);
-
-  useEffect(() => {
-    getCitiesPerCountry(getValues().country);
-  }, [getValues().country]);
 
   return (
     <UserProfileContainer>
@@ -159,42 +157,63 @@ const UserProfile = (): JSX.Element => {
               <ErrorMessage message={errors.phone.message} />
             ) : null}
           </FormRow>
-          <FormRow>
-            <SelectWithLabel
-              defaultValue="Selecciona tu país"
-              label="Tu país de residencia"
-              Icon={FaLocationArrow}
-              register={register}
-              name="country"
-            >
-              {setSelectOptions(countries).map((option) => (
-                <option key={option.id} value={option.name}>
-                  {option.name}
-                </option>
-              ))}
-            </SelectWithLabel>
-            {errors.country ? (
-              <ErrorMessage message={errors.country.message} />
-            ) : null}
-          </FormRow>
-          <FormRow>
-            <SelectWithLabel
-              defaultValue="Selecciona tu ciudad | provincia | municipio"
-              label="Tu ciudad | provincia | municipio"
-              Icon={FaLocationDot}
-              register={register}
-              name="city"
-            >
-              {setSelectOptions(cities).map((option) => (
-                <option key={option.id} value={option.name}>
-                  {option.name}
-                </option>
-              ))}
-            </SelectWithLabel>
-            {errors.city ? (
-              <ErrorMessage message={errors.city.message} />
-            ) : null}
-          </FormRow>
+
+          <Controller
+            control={control}
+            name="country"
+            render={({ field: { onChange, value, name, ref } }) => (
+              <FormRow>
+                <SelectWithLabel
+                  defaultValue="Selecciona tu país"
+                  label="Tu país de residencia"
+                  Icon={FaLocationArrow}
+                  name={name}
+                  value={value}
+                  ref={ref}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    onChange(e);
+                    getCitiesPerCountry(e.target.value);
+                  }}
+                >
+                  {countries.map((option) => (
+                    <option key={option.id} value={option.name}>
+                      {option.name}
+                    </option>
+                  ))}
+                </SelectWithLabel>
+                {errors.country ? (
+                  <ErrorMessage message={errors.country.message} />
+                ) : null}
+              </FormRow>
+            )}
+          />
+
+          <Controller
+            control={control}
+            name="city"
+            render={({ field: { onChange, value, name, ref } }) => (
+              <FormRow>
+                <SelectWithLabel
+                  defaultValue="Selecciona tu ciudad | provincia | municipio"
+                  label="Tu ciudad | provincia | municipio"
+                  Icon={FaLocationDot}
+                  name={name}
+                  value={value}
+                  ref={ref}
+                  onChange={onChange}
+                >
+                  {cities.map((option) => (
+                    <option key={option.id} value={option.name}>
+                      {option.name}
+                    </option>
+                  ))}
+                </SelectWithLabel>
+                {errors.city ? (
+                  <ErrorMessage message={errors.city.message} />
+                ) : null}
+              </FormRow>
+            )}
+          />
         </FormGrid>
         <InputWithLabel
           type="text"

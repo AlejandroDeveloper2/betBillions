@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { IconType } from "react-icons";
 import {
+  RefCallBack,
   UseFormHandleSubmit,
   UseFormRegister,
   UseFormReset,
@@ -73,9 +74,11 @@ type SelectProps = {
   defaultValue: string;
   label: string | null;
   Icon: IconType;
-  register: UseFormRegister<any>;
   name: InputName;
-  children: JSX.Element | JSX.Element[];
+  value: string;
+  ref: RefCallBack;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  children: JSX.Element | JSX.Element[] | any[];
 };
 
 type CustomFileInputProps = {
