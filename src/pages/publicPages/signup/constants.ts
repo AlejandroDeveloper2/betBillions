@@ -18,8 +18,8 @@ const getDefaultValues = (location: Location): RegisterFormValues => {
 };
 
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
-const userNameRules = /^(?=.*\d)(?=.*[a-z]).{5,}$/;
-const userNameRule2 = /^[a-zA-Z0-9 ]+$/;
+const userNameRules = /^(?=.*\d)(?=.*[A-z]).{5,}$/;
+const userNameRule2 = /^[a-zA-Z0-9]+$/;
 
 const schema = yup
   .object()
