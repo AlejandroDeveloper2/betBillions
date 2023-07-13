@@ -1,4 +1,5 @@
 import { CustomFileInputProps, CustomInputProps, SelectProps } from "types";
+import { usePasswordInput } from "@hooks/index";
 
 /*Styles */
 import {
@@ -10,7 +11,6 @@ import {
   InputUploadFile,
   Select,
 } from "./CustomInput.style";
-import { usePasswordInput } from "@hooks/index";
 
 const DefaultInput = (props: CustomInputProps) => {
   const { type, placeholder, name, disabled, Icon, register } = props;
@@ -68,13 +68,14 @@ const InputFile = (props: CustomFileInputProps): JSX.Element => {
 };
 
 const SelectWithLabel = (props: SelectProps): JSX.Element => {
-  const { defaultValue, label, Icon, register, name, children } = props;
+  const { defaultValue, label, Icon, name, value, ref, onChange, children } =
+    props;
   return (
     <InputContainerLabel>
       <Label>{label}</Label>
       <InputContainer>
         <Icon color="var(--dark-gray)" style={{ fontSize: "1.3rem" }} />
-        <Select name={name} {...register}>
+        <Select name={name} value={value} ref={ref} onChange={onChange}>
           <option value="">{defaultValue}</option>
           {children}
         </Select>

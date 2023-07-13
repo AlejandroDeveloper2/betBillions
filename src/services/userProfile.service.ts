@@ -85,6 +85,7 @@ class UserProfileService {
     token: string
   ): Promise<ServerResponse> {
     const { username, fullName, email, phone, country, city, photo } = userData;
+    console.log(userData);
     let response: ServerResponse | null = null;
     const config = {
       headers: {
