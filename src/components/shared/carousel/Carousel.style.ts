@@ -25,11 +25,20 @@ const P = styled.p`
 
 const responsiveConfig = [
   {
-    breakpoint: 1024,
+    breakpoint: 1400,
     settings: {
       slidesToShow: 3,
       slidesToScroll: 3,
-      infinite: true,
+      infinite: false,
+      dots: true,
+    },
+  },
+  {
+    breakpoint: 1000,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 2,
+      infinite: false,
       dots: true,
     },
   },

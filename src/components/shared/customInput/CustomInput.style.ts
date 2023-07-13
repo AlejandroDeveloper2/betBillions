@@ -4,7 +4,8 @@ const InputContainer = styled.div`
   width: 100%;
   padding: 1rem 1rem;
   border-radius: 4rem;
-  background-color: var(--light-gray);
+  background-color: ${(props) =>
+    props["aria-disabled"] ? "var(--gray)" : "var(--light-gray)"};
   display: flex;
   justify-content: flex-start;
   align-items: center;

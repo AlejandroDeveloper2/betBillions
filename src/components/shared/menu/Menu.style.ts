@@ -86,7 +86,7 @@ const UL = styled.ul`
       display: block;
     }
   }
-  @media (min-width: 1400px) {
+  @media (min-width: 1700px) {
     width: 100%;
     padding: 3rem 2rem;
   }
@@ -190,7 +190,7 @@ const LinkItem = styled(Link)<MenuItemStyleProps>`
     padding: 0.5rem 1rem;
   }
 
-  @media (min-width: 1400px) {
+  @media (min-width: 1700px) {
     width: 100%;
     padding: 0.5rem 1.5rem;
     justify-content: start;

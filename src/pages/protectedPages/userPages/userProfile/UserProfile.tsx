@@ -119,6 +119,7 @@ const UserProfile = (): JSX.Element => {
                 Icon={FaUserAlt}
                 register={register}
                 name="username"
+                disabled
               />
               {errors.username ? (
                 <ErrorMessage message={errors.username.message} />
@@ -145,6 +146,7 @@ const UserProfile = (): JSX.Element => {
                 Icon={MdAlternateEmail}
                 register={register}
                 name="email"
+                disabled
               />
               {errors.email ? (
                 <ErrorMessage message={errors.email.message} />

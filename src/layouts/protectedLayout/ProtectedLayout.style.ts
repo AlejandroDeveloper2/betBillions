@@ -12,7 +12,7 @@ const Container = styled.main`
     display: grid;
     grid-template-columns: 10% 90%;
   }
-  @media (min-width: 1400px) {
+  @media (min-width: 1700px) {
     display: grid;
     grid-template-columns: 15% 85%;
   }
