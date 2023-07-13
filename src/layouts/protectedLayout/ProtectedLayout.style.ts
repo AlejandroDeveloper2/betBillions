@@ -6,15 +6,21 @@ const Container = styled.main`
   flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
-  background-color: var(--white);
-
+  background-color: var(--gray);
+  position: relative;
   @media (min-width: 1000px) {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 10% 90%;
+  }
+  @media (min-width: 1400px) {
+    display: grid;
+    grid-template-columns: 15% 85%;
   }
 `;
 
 const Panel = styled.div`
   width: 100%;
+  height: 100%;
   background-color: var(--white);
   display: flex;
   padding: 0;
@@ -22,11 +28,11 @@ const Panel = styled.div`
   align-items: center;
   flex-direction: column-reverse;
   gap: 3rem;
-
+  position: relative;
   @media (min-width: 1000px) {
     flex-direction: row;
-    width: 85%;
-    margin-left: 15%;
+    width: 100%;
+    align-items: flex-start;
   }
 `;
 

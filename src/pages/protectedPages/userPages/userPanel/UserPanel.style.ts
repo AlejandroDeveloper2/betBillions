@@ -38,8 +38,9 @@ const PanelContainer = styled.div`
   }
 
   @media (min-width: 1000px) {
-    width: 70%;
+    width: 100%;
     align-items: flex-start;
+    flex-direction: row-reverse;
     h1 {
       display: inline-block;
       text-align: left;
@@ -73,6 +74,11 @@ const Section = styled.section`
 
   @media (min-width: 768px) {
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (min-width: 1400px) {
     justify-content: space-between;
   }
 `;

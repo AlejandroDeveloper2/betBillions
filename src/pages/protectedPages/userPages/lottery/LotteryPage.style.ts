@@ -29,8 +29,8 @@ const LotteryContainer = styled.div`
   }
 
   @media (min-width: 1000px) {
-    align-items: center;
-    width: 70%;
+    align-items: flex-start;
+    width: 100%;
     h1 {
       display: inline-block;
       text-align: left;
@@ -39,6 +39,7 @@ const LotteryContainer = styled.div`
         font-size: 1.5rem;
       }
     }
+    flex-direction: row-reverse;
     padding-bottom: 1rem;
   }
 `;

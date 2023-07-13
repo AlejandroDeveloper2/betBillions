@@ -20,7 +20,9 @@ const MenuSidebar = ({ children }: MenuProps): JSX.Element => {
 const MenuContainer = ({ children }: MenuProps): JSX.Element => {
   return (
     <UL>
-      <Image source={Logo} alt={"Logo"} size={{ lg: 80, md: 100, sm: 80 }} />
+      <div>
+        <Image source={Logo} alt={"Logo"} size={{ lg: 100, md: 100, sm: 80 }} />
+      </div>
       {children}
     </UL>
   );

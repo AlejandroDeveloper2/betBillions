@@ -12,6 +12,7 @@ import {
 
 import { GamePreviewContainer, PageTitle, Subtitle } from "./GamePreview.style";
 import { BingoFigure } from "@assets/index";
+import { Content } from "@styles/GlobalStyles.style";
 
 const GamePreview = (): JSX.Element => {
   const navigate = useNavigate();
@@ -20,28 +21,50 @@ const GamePreview = (): JSX.Element => {
   return (
     <GamePreviewContainer>
       <SidebarBalance />
-      <PageTitle>
-        <h1>Mi juego de bingo</h1>
-        <Image
-          source={BingoFigure}
-          alt={"Bingo boards betbillions"}
-          size={{
-            lg: 15,
-            md: 20,
-            sm: 20,
-          }}
-        />
+      <Content>
+        <PageTitle>
+          <h1>Mi juego de bingo</h1>
+          <Image
+            source={BingoFigure}
+            alt={"Bingo boards betbillions"}
+            size={{
+              lg: 15,
+              md: 20,
+              sm: 20,
+            }}
+          />
+          <DefaultButton
+            style={{
+              bg: "var(--bg-secondary-color)",
+              fontColor: "var(--white)",
+              width: "20rem",
+            }}
+            title={"Volver al detalle del sorteo"}
+            label="Volver"
+            onClick={() => navigate(`/userPanel/lottery/details/${lotteryId}`)}
+          >
+            <BiArrowBack
+              style={{
+                color: "var(--white)",
+                fontSize: 40,
+                marginRight: 5,
+              }}
+            />
+          </DefaultButton>
+        </PageTitle>
+        <Subtitle>Mis cartones de bingo</Subtitle>
+        <UserBingoCardsCarousel />
         <DefaultButton
           style={{
-            bg: "var(--bg-secondary-color)",
+            bg: "var(--black)",
             fontColor: "var(--white)",
-            width: "20rem",
+            width: "30rem",
           }}
-          title={"Volver al detalle del sorteo"}
-          label="Volver"
-          onClick={() => navigate(`/userPanel/lottery/details/${lotteryId}`)}
+          title={"Jugar bingo"}
+          label="Empezar a jugar"
+          disabled
         >
-          <BiArrowBack
+          <AiFillPlayCircle
             style={{
               color: "var(--white)",
               fontSize: 40,
@@ -49,28 +72,8 @@ const GamePreview = (): JSX.Element => {
             }}
           />
         </DefaultButton>
-      </PageTitle>
-      <Subtitle>Mis cartones de bingo</Subtitle>
-      <UserBingoCardsCarousel />
-      <DefaultButton
-        style={{
-          bg: "var(--black)",
-          fontColor: "var(--white)",
-          width: "30rem",
-        }}
-        title={"Jugar bingo"}
-        label="Empezar a jugar"
-        disabled
-      >
-        <AiFillPlayCircle
-          style={{
-            color: "var(--white)",
-            fontSize: 40,
-            marginRight: 5,
-          }}
-        />
-      </DefaultButton>
-      <Footer />
+        <Footer />
+      </Content>
     </GamePreviewContainer>
   );
 };

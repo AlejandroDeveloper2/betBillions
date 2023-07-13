@@ -160,6 +160,21 @@ const DialogMessage = styled.p`
   color: var(--dark-gray);
 `;
 
+const Content = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 2rem;
+  @media (min-width: 1000px) {
+    width: 70%;
+  }
+  @media (min-width: 1400px) {
+    width: 75%;
+  }
+`;
+
 export {
   FormContainer,
   Links,
@@ -172,4 +187,5 @@ export {
   IndicatorList,
   PromIndicator,
   DialogMessage,
+  Content,
 };

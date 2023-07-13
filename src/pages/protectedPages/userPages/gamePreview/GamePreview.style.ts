@@ -19,8 +19,9 @@ const GamePreviewContainer = styled.div`
 
   @media (min-width: 1000px) {
     align-items: flex-start;
-    width: 70%;
+    width: 100%;
     padding-bottom: 1rem;
+    flex-direction: row-reverse;
   }
 `;
 
