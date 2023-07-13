@@ -80,6 +80,10 @@ const UserProfile = (): JSX.Element => {
     );
   }, [userProfile]);
 
+  useEffect(() => {
+    getCitiesPerCountry(userProfile ? userProfile.country : "Colombia");
+  }, [userProfile?.country]);
+
   return (
     <UserProfileContainer>
       <SidebarDefault />

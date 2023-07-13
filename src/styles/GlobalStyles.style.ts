@@ -122,7 +122,7 @@ const IndicatorHead = styled.div`
     justify-content: flex-start;
     flex-direction: row;
     button {
-      margin-left: calc(100% - 30rem);
+      margin-left: calc(100% - 40rem);
     }
   }
 `;

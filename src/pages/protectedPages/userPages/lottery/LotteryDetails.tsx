@@ -96,7 +96,7 @@ const LotteryDetails = (): JSX.Element => {
                   style={{
                     bg: "var(--black)",
                     fontColor: "var(--white)",
-                    width: "30rem",
+                    width: "40rem",
                   }}
                   title={"Seleccionar cartones de bingo"}
                   label="Seleccionar tablas"
