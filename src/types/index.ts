@@ -29,6 +29,7 @@ export type {
   ValidTransactionProps,
   TransactionDetailsProps,
   AvatarProps,
+  PaginationProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";

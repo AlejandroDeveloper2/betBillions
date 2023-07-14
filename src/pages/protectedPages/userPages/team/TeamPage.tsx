@@ -2,7 +2,7 @@ import { BiSolidUser } from "react-icons/bi";
 import { BsFillCalendarDateFill } from "react-icons/bs";
 import { FaHashtag, FaLevelUpAlt } from "react-icons/fa";
 
-import { useRealTimeFecher } from "@hooks/index";
+import { useListPagination, useRealTimeFecher } from "@hooks/index";
 import { UserProfileService } from "@services/userProfile.service";
 import { tableHeaders } from "./constants";
 import { formatDate, sortListPerDate } from "@utils/index";
@@ -26,11 +26,11 @@ const TeamPage = (): JSX.Element => {
     "/users/referrals/team",
     userProfileService.getUserTeam
   );
-
-  const sortedTeam = sortListPerDate(
-    userTeam ? userTeam : [],
-    "dateRegistered"
+  const { records, PaginationComponent } = useListPagination(
+    userTeam ? userTeam : []
   );
+
+  const sortedTeam = sortListPerDate(records, "dateRegistered");
 
   return (
     <TeamPageContainer>
@@ -67,7 +67,7 @@ const TeamPage = (): JSX.Element => {
                     label="Usuario"
                   />
                   <Table.Item
-                    value={formatDate(referral.dateRegistered)}
+                    value={formatDate(referral.dateRegistered, "numeric")}
                     Icon={BsFillCalendarDateFill}
                     label="Registro"
                   />
@@ -81,6 +81,7 @@ const TeamPage = (): JSX.Element => {
             )}
           </Table>
         )}
+        <PaginationComponent />
         <Footer />
       </Content>
     </TeamPageContainer>

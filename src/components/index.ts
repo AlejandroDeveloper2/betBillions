@@ -33,6 +33,7 @@ export { default as BingoBoard } from "./shared/bingoBoard/BingoBoard";
 export { default as Empty } from "./shared/empty/Empty";
 export { default as Checkbox } from "./shared/checkbox/Checkbox";
 export { default as Avatar } from "./shared/avatar/Avatar";
+export { default as Pagination } from "./shared/pagination/Pagination";
 
 /*home components */
 export { default as InvitationLink } from "./home/invitationLink/InvitationLink";

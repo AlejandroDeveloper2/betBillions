@@ -8,7 +8,7 @@ import { RiPriceTag3Fill } from "react-icons/ri";
 import { AiFillEye, AiOutlineCheck } from "react-icons/ai";
 import { HiXMark } from "react-icons/hi2";
 
-import { useModal, useRealTimeFecher } from "@hooks/index";
+import { useListPagination, useModal, useRealTimeFecher } from "@hooks/index";
 import { TransactionsService } from "@services/transactions.service";
 import { tableHeaders } from "./constants";
 import { formatDate, sortListPerDate } from "@utils/index";
@@ -34,10 +34,11 @@ const TransactionsAdmin = (): JSX.Element => {
     transactionsService.getAdminTransactions
   );
 
-  const sortedTransactions = sortListPerDate(
-    transactions ? transactions : [],
-    "createdAt"
+  const { records, PaginationComponent } = useListPagination(
+    transactions ? transactions : []
   );
+
+  const sortedTransactions = sortListPerDate(records, "createdAt");
 
   const {
     isModalVisible,
@@ -195,6 +196,7 @@ const TransactionsAdmin = (): JSX.Element => {
             )}
           </Table>
         )}
+        <PaginationComponent />
         <Footer />
       </TransactionsContainer>
     </>
