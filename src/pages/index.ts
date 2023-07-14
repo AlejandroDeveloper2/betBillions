@@ -21,6 +21,7 @@ export { default as UserProfile } from "./protectedPages/userPages/userProfile/U
 
 /* Protected admin pages*/
 export { default as TransactionsAdmin } from "./protectedPages/adminPages/transactionsAdmin/TransactionsAdmin";
+export { default as UsersAdmin } from "./protectedPages/adminPages/usersAdmin/UsersAdmin";
 
 /*Error page */
 export { default as Page404 } from "./404Page/Page404";

@@ -5,7 +5,7 @@ import { BsFillCalendarDateFill } from "react-icons/bs";
 
 import { useRealTimeFecher } from "@hooks/index";
 import { tableHeaders } from "./constants";
-import { formatDate } from "@utils/index";
+import { formatDate, sortListPerDate } from "@utils/index";
 
 import { TransactionsService } from "@services/transactions.service";
 import { UserProfileService } from "@services/userProfile.service";
@@ -39,6 +39,11 @@ const Transactions = (): JSX.Element => {
   );
   const { data: userPanelData, isLoading: isLoadingUserData } =
     useRealTimeFecher("/users/panel", userProfileService.getUserPanelData);
+
+  const sortedTransactions = sortListPerDate(
+    userTransactions ? userTransactions : [],
+    "createdAt"
+  );
 
   return (
     <TransactionsContainer>
@@ -83,7 +88,7 @@ const Transactions = (): JSX.Element => {
             {userTransactions?.length === 0 ? (
               <Empty message="No tienes transaciones aún" />
             ) : (
-              userTransactions?.map((transaction) => (
+              sortedTransactions?.map((transaction) => (
                 <Table.Row key={transaction.id} columnsNumber={5}>
                   <Table.Item
                     value={transaction.id}

@@ -11,7 +11,7 @@ import { HiXMark } from "react-icons/hi2";
 import { useModal, useRealTimeFecher } from "@hooks/index";
 import { TransactionsService } from "@services/transactions.service";
 import { tableHeaders } from "./constants";
-import { formatDate } from "@utils/index";
+import { formatDate, sortListPerDate } from "@utils/index";
 import { AdminTransaction } from "types";
 
 import {
@@ -33,6 +33,12 @@ const TransactionsAdmin = (): JSX.Element => {
     "/transaction/list",
     transactionsService.getAdminTransactions
   );
+
+  const sortedTransactions = sortListPerDate(
+    transactions ? transactions : [],
+    "createdAt"
+  );
+
   const {
     isModalVisible,
     hideModal,
@@ -90,7 +96,7 @@ const TransactionsAdmin = (): JSX.Element => {
             {transactions?.length === 0 ? (
               <Empty message="¡No hay transacciones aún!" />
             ) : (
-              transactions?.map((transaction) => (
+              sortedTransactions?.map((transaction) => (
                 <Table.Row key={transaction.id} columnsNumber={9}>
                   <Table.Item
                     value={transaction.walletType}

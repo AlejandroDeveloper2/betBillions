@@ -92,5 +92,5 @@ export type {
   TransactionContextType,
   ShoppingCartContextType,
   ToastContextType,
-  LocationContextType
+  LocationContextType,
 } from "./contextTypes";
