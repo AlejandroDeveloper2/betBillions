@@ -88,7 +88,7 @@ interface LotteryRound {
 interface UserTransaction {
   id: number;
   balance: number;
-  typeHistory: "Shopping" | "Earnings" | "Transaction";
+  typeHistory: "Shopping" | "Earnings" | "Transaction" | "Commission";
   state: boolean;
   createdAt: string;
 }
