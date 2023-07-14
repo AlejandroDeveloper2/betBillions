@@ -3,7 +3,7 @@ import { FaHashtag } from "react-icons/fa";
 import { MdAccountBalanceWallet, MdCategory } from "react-icons/md";
 import { BsFillCalendarDateFill } from "react-icons/bs";
 
-import { useRealTimeFecher } from "@hooks/index";
+import { useListPagination, useRealTimeFecher } from "@hooks/index";
 import { tableHeaders } from "./constants";
 import { formatDate, sortListPerDate } from "@utils/index";
 
@@ -40,10 +40,11 @@ const Transactions = (): JSX.Element => {
   const { data: userPanelData, isLoading: isLoadingUserData } =
     useRealTimeFecher("/users/panel", userProfileService.getUserPanelData);
 
-  const sortedTransactions = sortListPerDate(
-    userTransactions ? userTransactions : [],
-    "createdAt"
+  const { records, PaginationComponent } = useListPagination(
+    userTransactions ? userTransactions : []
   );
+
+  const sortedTransactions = sortListPerDate(records, "createdAt");
 
   return (
     <TransactionsContainer>
@@ -126,6 +127,7 @@ const Transactions = (): JSX.Element => {
             )}
           </Table>
         )}
+        <PaginationComponent />
         <Footer />
       </Content>
     </TransactionsContainer>

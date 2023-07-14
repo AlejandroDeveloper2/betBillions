@@ -5,7 +5,11 @@ import { GrStatusDisabledSmall } from "react-icons/gr";
 import { IoLocationSharp } from "react-icons/io5";
 import { MdAlternateEmail } from "react-icons/md";
 
-import { useAuthContext, useRealTimeFecher } from "@hooks/index";
+import {
+  useAuthContext,
+  useListPagination,
+  useRealTimeFecher,
+} from "@hooks/index";
 import { UsersService } from "@services/users.service";
 import { formatDate, filterDiferenceList, sortListPerDate } from "@utils/index";
 import { tableHeaders } from "./constants";
@@ -21,8 +25,11 @@ const UsersAdmin = (): JSX.Element => {
     "/users/list",
     usersService.getAllUsers
   );
+  const { records, PaginationComponent } = useListPagination(
+    users ? users : []
+  );
 
-  const filteredUsers = filterDiferenceList(users ? users : [], {
+  const filteredUsers = filterDiferenceList(records, {
     a: "username",
     b: userAuth?.sub,
   });
@@ -103,6 +110,7 @@ const UsersAdmin = (): JSX.Element => {
             )}
           </Table>
         )}
+        <PaginationComponent />
         <Footer />
       </UsersContainer>
     </>

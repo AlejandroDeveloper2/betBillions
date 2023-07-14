@@ -234,6 +234,20 @@ type AvatarProps = {
   username: string;
 };
 
+interface PaginationProps {
+  config: {
+    next: boolean;
+    prev: boolean;
+    goBack: () => void;
+    goNext: () => void;
+    getPaginationIndicators: () => {
+      presented: number;
+      of: number;
+      total: number;
+    };
+  };
+}
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -265,6 +279,7 @@ export type {
   ValidTransactionProps,
   TransactionDetailsProps,
   AvatarProps,
+  PaginationProps,
 };
 
 export { ToastTypes };
