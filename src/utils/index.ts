@@ -133,10 +133,6 @@ const setColorBingoBalls = (board: BingoBoard): BingoBall[] => {
   return cardBalls;
 };
 
-const setSelectOptions = <T>(options: T[]): T[] => {
-  return options;
-};
-
 const setFormValues = <T>(values: T, setValue: UseFormSetValue<any>) => {
   for (const key in values) {
     const element = values[key] as Extract<keyof T, string>;
@@ -148,6 +144,26 @@ const setFormValues = <T>(values: T, setValue: UseFormSetValue<any>) => {
   }
 };
 
+const filterDiferenceList = <T>(
+  list: T[],
+  comparisonKeys: { a: string; b: unknown }
+): T[] => {
+  const { a, b } = comparisonKeys;
+  const formattedList = list as any[];
+  const filteredList = formattedList.filter((item) => item[a] !== b);
+  return filteredList as T[];
+};
+
+const sortListPerDate = <T>(list: T, comparisonKey: string): T => {
+  const formattedList = list as any[];
+  const filteredList = formattedList.sort(
+    (a, b) =>
+      new Date(b[comparisonKey]).getTime() -
+      new Date(a[comparisonKey]).getTime()
+  );
+  return filteredList as T;
+};
+
 export {
   ValuesForm,
   TokenAuth,
@@ -157,6 +173,7 @@ export {
   copyToClipBoard,
   formatDate,
   setColorBingoBalls,
-  setSelectOptions,
   setFormValues,
+  filterDiferenceList,
+  sortListPerDate,
 };

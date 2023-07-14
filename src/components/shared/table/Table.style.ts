@@ -47,7 +47,7 @@ const TableBody = styled.div`
 const TableHeader = styled.div<TableStyledProps>`
   width: 100%;
   display: none;
-  padding: 1rem 0.5rem;
+  padding: 1rem 1.5rem;
   background-color: var(--bg-secondary-color);
   border-radius: 1rem;
   grid-gap: 1.5rem;
@@ -67,8 +67,9 @@ const TableHeader = styled.div<TableStyledProps>`
 `;
 
 const TableHeadItem = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
   span {
@@ -108,7 +109,6 @@ const TableItem = styled(TableHeadItem)`
     text-transform: none;
     color: var(--dark-gray);
     text-align: left;
-    white-space: pre-wrap;
   }
   svg {
     color: var(--dark-gray);
@@ -117,13 +117,8 @@ const TableItem = styled(TableHeadItem)`
   }
 
   @media (min-width: 1000px) {
-    justify-self: center;
-    justify-content: center;
     span:first-of-type {
       display: none;
-    }
-    span {
-      text-align: center;
     }
     svg {
       display: none;

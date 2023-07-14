@@ -52,7 +52,7 @@ const UL = styled.ul`
   }
 
   @media (min-width: 1000px) {
-    position: relative;
+    position: sticky;
     width: 100%;
     height: 100%;
     flex-direction: column;

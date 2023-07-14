@@ -5,7 +5,7 @@ import { FaHashtag, FaLevelUpAlt } from "react-icons/fa";
 import { useRealTimeFecher } from "@hooks/index";
 import { UserProfileService } from "@services/userProfile.service";
 import { tableHeaders } from "./constants";
-import { formatDate } from "@utils/index";
+import { formatDate, sortListPerDate } from "@utils/index";
 
 import {
   Image,
@@ -25,6 +25,11 @@ const TeamPage = (): JSX.Element => {
   const { data: userTeam, isLoading } = useRealTimeFecher(
     "/users/referrals/team",
     userProfileService.getUserTeam
+  );
+
+  const sortedTeam = sortListPerDate(
+    userTeam ? userTeam : [],
+    "dateRegistered"
   );
 
   return (
@@ -53,7 +58,7 @@ const TeamPage = (): JSX.Element => {
             {userTeam?.length === 0 ? (
               <Empty message="¡No tienes referidos aún!" />
             ) : (
-              userTeam?.map((referral) => (
+              sortedTeam?.map((referral) => (
                 <Table.Row key={referral.id} columnsNumber={4}>
                   <Table.Item value={referral.id} Icon={FaHashtag} label="Id" />
                   <Table.Item

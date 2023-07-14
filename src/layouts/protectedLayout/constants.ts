@@ -4,6 +4,7 @@ import { IoLogOutSharp } from "react-icons/io5";
 import { GiWallet } from "react-icons/gi";
 import { BiSolidMessageDetail, BiSolidHelpCircle } from "react-icons/bi";
 import { AiOutlineTeam, AiOutlineTransaction } from "react-icons/ai";
+import { PiUsersFourFill } from "react-icons/pi";
 
 import { MenuItem } from "types";
 
@@ -76,6 +77,12 @@ const getMenuItems = (
       },
     ];
   return [
+    {
+      label: "Usuarios",
+      icon: PiUsersFourFill,
+      title: "Ver listado de usuarios",
+      to: "/admin/users",
+    },
     {
       label: "Transacciones",
       icon: AiOutlineTransaction,
