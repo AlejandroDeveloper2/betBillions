@@ -1,11 +1,29 @@
-import { TransactionDetailsProps } from "types";
+import { FaCopy } from "react-icons/fa";
 
-import { Modal, Image } from "@components/index";
+import { TransactionDetailsProps } from "types";
+import { copyToClipBoard } from "@utils/index";
+import { useToastContext } from "@hooks/index";
+
+import { Modal, Image, DefaultButton } from "@components/index";
 
 import { DialogMessage } from "@styles/GlobalStyles.style";
+import {
+  HashContainer,
+  TypeTransactionContainer,
+} from "./TransactionDetails.style";
 
 const TransactionDetails = (props: TransactionDetailsProps): JSX.Element => {
   const { isDetailModalVisible, hideDetailModal, details } = props;
+  const { showToast, hideToast, configToast } = useToastContext();
+
+  const getTransactionType = (): string => {
+    const name = details
+      ? details.typeTransaction === "Recharge"
+        ? "Recarga"
+        : "Plan de fidelización"
+      : "";
+    return name;
+  };
 
   return (
     <Modal isModalVisible={isDetailModalVisible}>
@@ -16,11 +34,37 @@ const TransactionDetails = (props: TransactionDetailsProps): JSX.Element => {
           source={details ? details.urlTransaction : ""}
           alt="Comprobante de pago"
           size={{
-            lg: 60,
-            md: 60,
+            lg: 100,
+            md: 100,
             sm: 80,
           }}
         />
+        <DialogMessage>Hash de transacción</DialogMessage>
+        <HashContainer>
+          <p>{details ? details.transaction : ""}</p>
+          <DefaultButton
+            style={{
+              bg: "var(--black)",
+              fontColor: "var(--white)",
+              width: "4rem",
+              padding: "0.7rem 0.7rem",
+            }}
+            title={"Copiar hash de transacción"}
+            onClick={() =>
+              copyToClipBoard(details ? details.transaction : "", {
+                showToast,
+                hideToast,
+                configToast,
+              })
+            }
+          >
+            <FaCopy style={{ color: "var(--white)", fontSize: 25 }} />
+          </DefaultButton>
+        </HashContainer>
+        <DialogMessage>Tipo de transacción</DialogMessage>
+        <TypeTransactionContainer>
+          <p>{getTransactionType()}</p>
+        </TypeTransactionContainer>
       </Modal.Body>
     </Modal>
   );
