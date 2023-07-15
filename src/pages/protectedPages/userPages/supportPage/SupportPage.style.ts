@@ -16,6 +16,7 @@ const SupportContainer = styled.div`
     width: 100%;
     flex-direction: row-reverse;
     padding-bottom: 1rem;
+    align-items: flex-start;
   }
 `;
 
