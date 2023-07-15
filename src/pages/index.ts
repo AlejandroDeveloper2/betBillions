@@ -18,6 +18,8 @@ export { default as PurchaseBingoBoard } from "./protectedPages/userPages/purcha
 export { default as PurchaseBingoDetails } from "./protectedPages/userPages/purchaseBingoBoard/PurchaseBingoDetails";
 export { default as GamePreview } from "./protectedPages/userPages/gamePreview/GamePreview";
 export { default as UserProfile } from "./protectedPages/userPages/userProfile/UserProfile";
+export { default as SupportHistory } from "./protectedPages/userPages/supportPage/SupportHistory";
+export { default as SupportRequest } from "./protectedPages/userPages/supportPage/SupportRequest";
 
 /* Protected admin pages*/
 export { default as TransactionsAdmin } from "./protectedPages/adminPages/transactionsAdmin/TransactionsAdmin";

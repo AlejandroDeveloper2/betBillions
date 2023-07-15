@@ -24,7 +24,9 @@ type InputName =
   | "phone"
   | "sponsorName"
   | "country"
-  | "city";
+  | "city"
+  | "category"
+  | "question";
 
 type ImageProps = {
   source: string;
@@ -44,7 +46,8 @@ type FormType =
   | "walletDeposit"
   | "walletWithdraw"
   | "TransactionValidation"
-  | "ProfileForm";
+  | "ProfileForm"
+  | "SupportRequestForm";
 
 type CustomFormProps = {
   children: JSX.Element | JSX.Element[] | any[];
@@ -52,12 +55,12 @@ type CustomFormProps = {
   config: LoadingConfig;
   formType: FormType;
   handleSubmit: UseFormHandleSubmit<any, undefined>;
-  reset?: UseFormReset<any> | any;
   action: (
     data: any,
     config: LoadingConfig,
     reset?: UseFormReset<any> | any
   ) => Promise<void>;
+  reset?: UseFormReset<any> | any;
 };
 
 type CustomInputProps = {

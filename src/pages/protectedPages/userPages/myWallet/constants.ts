@@ -17,7 +17,7 @@ const transactionHashRules = /^[a-fA-F0-9]{64}$/;
 const schema = yup
   .object()
   .shape({
-    walletType: yup.string(),
+    walletType: yup.string().required(),
     transaction: yup
       .string()
       .required("El hash de transacción es obligatorio!")

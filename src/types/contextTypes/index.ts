@@ -10,6 +10,8 @@ import {
   LotteryListItem,
   RecoverPassFormValues,
   RegisterFormValues,
+  SupportFormValues,
+  SupportRequest,
   ToastTypes,
   UpdatePassFormValues,
   UserAuth,
@@ -147,6 +149,23 @@ interface LocationContextType {
   getCitiesPerCountry: (country: string) => Promise<void>;
 }
 
+interface SupportContextType {
+  supportImage: string;
+  sendUserSupportRequest: (
+    requestData: SupportFormValues,
+    config: LoadingConfig,
+    reset: UseFormReset<SupportFormValues>
+  ) => Promise<void>;
+  uploadSupportImage: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    config: LoadingConfig
+  ) => Promise<void>;
+  answerSupportUserRequest: (
+    answerData: SupportRequest,
+    config: LoadingConfig
+  ) => Promise<void>;
+}
+
 export type {
   AuthContextType,
   ProviderProps,
@@ -157,4 +176,5 @@ export type {
   ShoppingCartContextType,
   ToastContextType,
   LocationContextType,
+  SupportContextType,
 };

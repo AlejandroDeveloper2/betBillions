@@ -20,6 +20,7 @@ const getDefaultValues = (location: Location): RegisterFormValues => {
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 const userNameRules = /^(?=.*\d)(?=.*[A-z]).{5,}$/;
 const userNameRule2 = /^[a-zA-Z0-9]+$/;
+const userNameRules3 = /^(?!\s)/;
 
 const schema = yup
   .object()
@@ -33,6 +34,9 @@ const schema = yup
       })
       .matches(userNameRule2, {
         message: "El nombre de usuario solo puede contener letras y números!",
+      })
+      .matches(userNameRules3, {
+        message: "El nombre de usuario no puede contener espacios en blanco!",
       }),
     password: yup
       .string()

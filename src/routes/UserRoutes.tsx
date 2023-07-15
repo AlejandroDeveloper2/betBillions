@@ -14,6 +14,8 @@ import {
   Page404,
   PurchaseBingoBoard,
   PurchaseBingoDetails,
+  SupportHistory,
+  SupportRequest,
   TeamPage,
   Transactions,
   UserPanel,
@@ -61,6 +63,11 @@ const UserRoutes = (): JSX.Element => {
           element={<GamePreview />}
         />
         <Route path="/userPanel/settings/myProfile" element={<UserProfile />} />
+        <Route path="/userPanel/support" element={<SupportHistory />} />
+        <Route
+          path="/userPanel/support/sendRequest"
+          element={<SupportRequest />}
+        />
         <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>
