@@ -18,6 +18,7 @@ class ValuesForm {
     if (formType === "register") {
       delete newFormData?.confirmPassword;
       delete newFormData?.confirmEmail;
+      newFormData.username.replace(/ /g, "");
       return newFormData;
     }
 

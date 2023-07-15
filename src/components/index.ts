@@ -5,6 +5,7 @@ export {
   InputVariant,
   InputFile,
   SelectWithLabel,
+  TextareaInput,
 } from "./shared/customInput/CustomInput";
 export { default as CustomForm } from "./shared/customForm/CustomForm";
 export {

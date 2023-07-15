@@ -112,6 +112,35 @@ const InputContainerLabel = styled.div`
   gap: 1rem;
 `;
 
+const Textarea = styled.textarea`
+  width: 80%;
+  height: 10rem;
+  border: none;
+  outline: none;
+  margin-left: 0.5rem;
+  resize: none;
+  background-color: transparent;
+  color: var(--dark-gray);
+  font-size: 1rem;
+  &::placeholder {
+    color: var(--dark-gray);
+    opacity: 0.6;
+    text-transform: capitalize;
+    font-size: 1rem;
+  }
+  @media (min-width: 768px) {
+    font-size: 1rem;
+    &::placeholder {
+      font-size: 1rem;
+    }
+  }
+`;
+
+const TextareaContainer = styled(InputContainer)`
+  align-items: flex-start;
+  border-radius: 1rem;
+`;
+
 export {
   Input,
   InputContainer,
@@ -120,4 +149,6 @@ export {
   InputContainerVariant,
   InputUploadFile,
   Select,
+  Textarea,
+  TextareaContainer,
 };

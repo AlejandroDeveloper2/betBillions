@@ -169,6 +169,21 @@ interface City extends Country {
   country_name: string;
 }
 
+interface SupportRequest {
+  id: number;
+  ticket: string;
+  category: string;
+  question: string;
+  answer: string;
+  userId: number;
+  urlPhoto?: string;
+  state: "Reply" | "Pending";
+  createdAt: string;
+  updateAt: string;
+  username: string;
+  email: string;
+}
+
 export type {
   AuthStatus,
   ApiName,
@@ -193,4 +208,5 @@ export type {
   UserAdminData,
   Country,
   City,
+  SupportRequest,
 };

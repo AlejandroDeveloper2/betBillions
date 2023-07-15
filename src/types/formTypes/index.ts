@@ -50,6 +50,12 @@ interface UserProfileFormValues {
   photo: string;
 }
 
+interface SupportFormValues {
+  category: string;
+  question: string;
+  urlPhoto?: string;
+}
+
 export type {
   LoginFormValues,
   RegisterFormValues,
@@ -59,4 +65,5 @@ export type {
   WalletWithdrawFormValues,
   ValidTransactionFormValues,
   UserProfileFormValues,
+  SupportFormValues,
 };

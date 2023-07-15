@@ -10,6 +10,8 @@ import {
   InputContainerVariant,
   InputUploadFile,
   Select,
+  Textarea,
+  TextareaContainer,
 } from "./CustomInput.style";
 
 const DefaultInput = (props: CustomInputProps) => {
@@ -84,10 +86,25 @@ const SelectWithLabel = (props: SelectProps): JSX.Element => {
   );
 };
 
+const TextareaInput = (props: CustomInputProps): JSX.Element => {
+  const { placeholder, name, disabled, Icon, register } = props;
+  return (
+    <TextareaContainer aria-disabled={disabled}>
+      <Icon color="var(--dark-gray)" style={{ fontSize: "1.3rem" }} />
+      <Textarea
+        placeholder={placeholder}
+        disabled={disabled}
+        {...register(name)}
+      ></Textarea>
+    </TextareaContainer>
+  );
+};
+
 export {
   DefaultInput,
   InputWithLabel,
   InputVariant,
   InputFile,
   SelectWithLabel,
+  TextareaInput,
 };
