@@ -8,8 +8,8 @@ import { Menu, Toast } from "@components/index";
 import { Container, Panel } from "./ProtectedLayout.style";
 
 const ProtectedLayout = (): JSX.Element => {
-  useUserSession(1000);
-  const { userAuth, logout } = useAuthContext();
+  useUserSession(100);
+  const { logout, userAuth } = useAuthContext();
   const { toast, isToastVisible, getToastColor, hideToast } = useToastContext();
 
   const userRole = userAuth ? userAuth.roles[0].authority : "ROLE_USER";

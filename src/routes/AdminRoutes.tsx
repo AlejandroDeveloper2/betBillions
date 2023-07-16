@@ -4,6 +4,7 @@ import { ProtectedLayout } from "@layouts/index";
 
 import {
   Page404,
+  SupportAdminPage,
   TransactionsAdmin,
   UserProfile,
   UsersAdmin,
@@ -16,6 +17,7 @@ const AdminRoutes = (): JSX.Element => {
         <Route index element={<TransactionsAdmin />} />
         <Route path="/admin/settings/myProfile" element={<UserProfile />} />
         <Route path="/admin/users" element={<UsersAdmin />} />
+        <Route path="/admin/support/list" element={<SupportAdminPage />} />
         <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>

@@ -7,7 +7,7 @@ import {
   ToastTypes,
   SupportContextType,
   SupportFormValues,
-  SupportRequest,
+  SupportAnswerFormValues,
 } from "types";
 import { TokenAuth } from "@utils/index";
 import { useToastContext } from "@hooks/index";
@@ -90,8 +90,9 @@ const SupportProvider = ({ children }: ProviderProps) => {
 
   const answerSupportUserRequest = useCallback(
     async (
-      answerData: SupportRequest,
-      config: LoadingConfig
+      answerData: SupportAnswerFormValues,
+      config: LoadingConfig,
+      reset: UseFormReset<SupportAnswerFormValues>
     ): Promise<void> => {
       const token = tokenAuth.getToken();
       if (token) {
@@ -104,6 +105,7 @@ const SupportProvider = ({ children }: ProviderProps) => {
           );
           configToast(res.typeStatus, res.message);
           showToast();
+          reset();
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
           showToast();

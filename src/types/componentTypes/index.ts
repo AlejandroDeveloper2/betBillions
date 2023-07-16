@@ -7,7 +7,13 @@ import {
   UseFormReset,
 } from "react-hook-form";
 
-import { AdminTransaction, BingoBoard, HeaderType, LoadingConfig } from "..";
+import {
+  AdminTransaction,
+  BingoBoard,
+  HeaderType,
+  LoadingConfig,
+  SupportRequest,
+} from "..";
 
 type InputName =
   | "password"
@@ -26,7 +32,8 @@ type InputName =
   | "country"
   | "city"
   | "category"
-  | "question";
+  | "question"
+  | "answer";
 
 type ImageProps = {
   source: string;
@@ -251,6 +258,18 @@ interface PaginationProps {
   };
 }
 
+type SeeAnswerModalProps = {
+  isModalVisible: boolean;
+  hideModal: (delay?: number) => void;
+  requestAnswer: SupportRequest | undefined;
+};
+
+type AnswerRequestModalProps = {
+  isModalVisible: boolean;
+  hideModal: (delay?: number) => void;
+  requestData: SupportRequest | undefined;
+};
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -283,6 +302,8 @@ export type {
   TransactionDetailsProps,
   AvatarProps,
   PaginationProps,
+  SeeAnswerModalProps,
+  AnswerRequestModalProps,
 };
 
 export { ToastTypes };

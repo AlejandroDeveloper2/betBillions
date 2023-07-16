@@ -24,6 +24,7 @@ export { default as SupportRequest } from "./protectedPages/userPages/supportPag
 /* Protected admin pages*/
 export { default as TransactionsAdmin } from "./protectedPages/adminPages/transactionsAdmin/TransactionsAdmin";
 export { default as UsersAdmin } from "./protectedPages/adminPages/usersAdmin/UsersAdmin";
+export { default as SupportAdminPage } from "./protectedPages/adminPages/supportAdmin/SupportAdminPage";
 
 /*Error page */
 export { default as Page404 } from "./404Page/Page404";

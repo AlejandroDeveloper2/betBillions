@@ -2,7 +2,12 @@ import { AxiosError } from "axios";
 
 import getAxiosClient from "@config/axiosClient";
 
-import { SupportFormValues, ServerResponse, SupportRequest } from "types";
+import {
+  SupportFormValues,
+  ServerResponse,
+  SupportRequest,
+  SupportAnswerFormValues,
+} from "types";
 
 class SupportService {
   public async getSupportUserRequests(
@@ -123,7 +128,7 @@ class SupportService {
   }
 
   public async answerSupportUserRequest(
-    answerData: SupportRequest,
+    answerData: SupportAnswerFormValues,
     token: string
   ): Promise<ServerResponse> {
     let response: ServerResponse | null = null;

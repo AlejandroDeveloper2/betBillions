@@ -84,8 +84,12 @@ const getInvitationLink = (location: Location): string | undefined => {
 };
 
 const getActiveItem = (location: Location, to: string): MenuItemStyleProps => {
-  const path = location.pathname;
-  if (path === to) {
+  const path = location.pathname.split("/")[2]
+    ? location.pathname.split("/")[2]
+    : location.pathname.split("/")[1];
+  const toPath = to.split("/")[2] ? to.split("/")[2] : to.split("/")[1];
+
+  if (path === toPath) {
     return {
       background: "var(--white)",
       color: "var(--bg-secondary-color)",
