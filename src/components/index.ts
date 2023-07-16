@@ -43,3 +43,7 @@ export { default as InvitationLink } from "./home/invitationLink/InvitationLink"
 export { default as InvalidTransaction } from "./transactionsAdmin/invalidTransaction/InvalidTransaction";
 export { default as ValidTransaction } from "./transactionsAdmin/validTransaction/ValidTransaction";
 export { default as TransactionDetails } from "./transactionsAdmin/transactionDetails/TransactionDetails";
+
+/*See ansawer modal components */
+export { default as SeeAnswerModal } from "./support/seeAnswerModal/SeeAnswerModal";
+export { default as AnswerRequestModal } from "./support/answerRequestModal/AnswerRequestModal";

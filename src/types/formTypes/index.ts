@@ -56,6 +56,11 @@ interface SupportFormValues {
   urlPhoto?: string;
 }
 
+interface SupportAnswerFormValues {
+  id: number;
+  answer: string;
+}
+
 export type {
   LoginFormValues,
   RegisterFormValues,
@@ -66,4 +71,5 @@ export type {
   ValidTransactionFormValues,
   UserProfileFormValues,
   SupportFormValues,
+  SupportAnswerFormValues,
 };

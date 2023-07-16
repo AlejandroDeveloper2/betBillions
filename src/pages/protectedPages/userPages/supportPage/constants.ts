@@ -12,7 +12,12 @@ const DEFAULTVALUES: SupportFormValues = {
   urlPhoto: "",
 };
 
-const categories: string[] = ["Recargas", "Plan de fidelización", "Premios"];
+const categories: string[] = [
+  "Recargas",
+  "Plan de fidelización",
+  "Premios",
+  "Otro",
+];
 
 const schema = yup
   .object()

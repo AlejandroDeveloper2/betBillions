@@ -21,21 +21,21 @@ function App(): JSX.Element {
     <BrowserRouter>
       <ToastProvider>
         <LocationProvider>
-          <SupportProvider>
-            <ShoppingCartProvider>
-              <TransactionProvider>
-                <LotteryProvider>
-                  <WalletProvider>
-                    <UserProfileProvider>
-                      <AuthProvider>
+          <AuthProvider>
+            <SupportProvider>
+              <ShoppingCartProvider>
+                <TransactionProvider>
+                  <LotteryProvider>
+                    <WalletProvider>
+                      <UserProfileProvider>
                         <AppRouter />
-                      </AuthProvider>
-                    </UserProfileProvider>
-                  </WalletProvider>
-                </LotteryProvider>
-              </TransactionProvider>
-            </ShoppingCartProvider>
-          </SupportProvider>
+                      </UserProfileProvider>
+                    </WalletProvider>
+                  </LotteryProvider>
+                </TransactionProvider>
+              </ShoppingCartProvider>
+            </SupportProvider>
+          </AuthProvider>
         </LocationProvider>
       </ToastProvider>
     </BrowserRouter>

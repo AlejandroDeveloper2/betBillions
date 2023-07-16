@@ -90,6 +90,12 @@ const getMenuItems = (
       to: "/admin",
     },
     {
+      label: "Soporte",
+      icon: BiSolidMessageDetail,
+      title: "Ver solicitudes de soporte",
+      to: "/admin/support/list",
+    },
+    {
       label: "Configuración",
       icon: IoMdSettings,
       title: "Configuración de cuenta",

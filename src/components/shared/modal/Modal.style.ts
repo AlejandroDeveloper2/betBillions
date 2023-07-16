@@ -21,7 +21,6 @@ const ModalContainer = styled.div<ModalStyledProps>`
 
 const ModalWindow = styled.div`
   width: 100%;
-  height: auto;
   background-color: var(--white);
   display: flex;
   flex-direction: column;
@@ -29,8 +28,10 @@ const ModalWindow = styled.div`
   align-items: center;
   border-radius: 1.5rem;
   overflow: hidden;
+  transform: scale(0.8);
   @media (min-width: 768px) {
     width: 30rem;
+    transform: scale(1);
   }
 `;
 

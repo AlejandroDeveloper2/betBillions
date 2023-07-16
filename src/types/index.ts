@@ -30,6 +30,8 @@ export type {
   TransactionDetailsProps,
   AvatarProps,
   PaginationProps,
+  SeeAnswerModalProps,
+  AnswerRequestModalProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
@@ -44,6 +46,7 @@ export type {
   ValidTransactionFormValues,
   UserProfileFormValues,
   SupportFormValues,
+  SupportAnswerFormValues,
 } from "./formTypes";
 
 export type {

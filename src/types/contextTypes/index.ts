@@ -10,8 +10,8 @@ import {
   LotteryListItem,
   RecoverPassFormValues,
   RegisterFormValues,
+  SupportAnswerFormValues,
   SupportFormValues,
-  SupportRequest,
   ToastTypes,
   UpdatePassFormValues,
   UserAuth,
@@ -161,8 +161,9 @@ interface SupportContextType {
     config: LoadingConfig
   ) => Promise<void>;
   answerSupportUserRequest: (
-    answerData: SupportRequest,
-    config: LoadingConfig
+    answerData: SupportAnswerFormValues,
+    config: LoadingConfig,
+    reset: UseFormReset<SupportAnswerFormValues>
   ) => Promise<void>;
 }
 
