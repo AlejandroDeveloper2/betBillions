@@ -21,7 +21,7 @@ const getSidebarMenuItems = (
         label: "Soporte",
         icon: BiSolidMessageDetail,
         title: "Soporte para el usuario",
-        to: "#",
+        to: "/userPanel/support",
       },
       {
         label: "Ayuda",
