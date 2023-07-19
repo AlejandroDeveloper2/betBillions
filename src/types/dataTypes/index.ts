@@ -184,6 +184,17 @@ interface SupportRequest {
   email: string;
 }
 
+interface BingoRound {
+  id: number;
+  idLottery: number;
+  typeGame: string;
+  numberRound: number;
+  award: number;
+  balls: string[];
+  userWinner: string | null;
+  completed: boolean;
+}
+
 export type {
   AuthStatus,
   ApiName,
@@ -209,4 +220,5 @@ export type {
   Country,
   City,
   SupportRequest,
+  BingoRound,
 };

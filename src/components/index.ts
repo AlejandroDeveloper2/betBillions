@@ -47,3 +47,9 @@ export { default as TransactionDetails } from "./transactionsAdmin/transactionDe
 /*See ansawer modal components */
 export { default as SeeAnswerModal } from "./support/seeAnswerModal/SeeAnswerModal";
 export { default as AnswerRequestModal } from "./support/answerRequestModal/AnswerRequestModal";
+
+/*Bingo game */
+export { default as GameHead } from "./bingoGame/gameHead/GameHead";
+export { default as LastBallsList } from "./bingoGame/lastBallsList/LastBallsList";
+export { default as GameMode } from "./bingoGame/gameMode/GameMode";
+export { default as Counter } from "./bingoGame/counter/Counter";

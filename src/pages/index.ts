@@ -20,6 +20,7 @@ export { default as GamePreview } from "./protectedPages/userPages/gamePreview/G
 export { default as UserProfile } from "./protectedPages/userPages/userProfile/UserProfile";
 export { default as SupportHistory } from "./protectedPages/userPages/supportPage/SupportHistory";
 export { default as SupportRequest } from "./protectedPages/userPages/supportPage/SupportRequest";
+export { default as BingoGame } from "./protectedPages/userPages/bingoGame/BingoGame";
 
 /* Protected admin pages*/
 export { default as TransactionsAdmin } from "./protectedPages/adminPages/transactionsAdmin/TransactionsAdmin";

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { RoundStyledProps } from "../../../../types";
+import { RoundStyledProps } from "types";
 
 const LotteryContainer = styled.div`
   width: 100%;
@@ -49,9 +49,6 @@ const IndicatorList = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 0.5rem;
-  align-items: center;
-  justify-content: center;
-
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -116,8 +113,9 @@ const RoundDatails = styled.div<RoundStyledProps>`
     }
   }
   span:last-of-type {
-    font-size: 3rem;
-    color: var(--light-gray);
+    font-size: 1rem;
+    color: ${(props: RoundStyledProps) =>
+      props.roundkey < 5 ? "var(--dark-gray)" : "var(--white)"};
   }
 `;
 

@@ -32,6 +32,7 @@ export type {
   PaginationProps,
   SeeAnswerModalProps,
   AnswerRequestModalProps,
+  GameModeProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
@@ -87,6 +88,7 @@ export type {
   Country,
   City,
   SupportRequest,
+  BingoRound,
 } from "./dataTypes";
 
 export type {
@@ -100,4 +102,5 @@ export type {
   ToastContextType,
   LocationContextType,
   SupportContextType,
+  BingoContextType,
 } from "./contextTypes";

@@ -5,6 +5,7 @@ import { ProtectedLayout } from "@layouts/index";
 
 /* Pages */
 import {
+  BingoGame,
   GamePreview,
   LotteryDetails,
   LotteryPage,
@@ -67,6 +68,10 @@ const UserRoutes = (): JSX.Element => {
         <Route
           path="/userPanel/support/sendRequest"
           element={<SupportRequest />}
+        />
+        <Route
+          path="/userPanel/lottery/bingoGame/:lotteryId"
+          element={<BingoGame />}
         />
         <Route path="*" element={<Page404 />} />
       </Route>

@@ -15,6 +15,7 @@ import {
   SidebarBalance,
   Loading,
   DefaultButton,
+  GameMode,
 } from "@components/index";
 import { TrophyIcon } from "@assets/index";
 
@@ -91,7 +92,7 @@ const LotteryDetails = (): JSX.Element => {
                 <Image
                   source={TrophyIcon}
                   alt={"Bet billions wallet"}
-                  size={{ lg: 10, md: 10, sm: 20 }}
+                  size={{ lg: 5, md: 8, sm: 20 }}
                 />
                 {userBingoBoards.length === 0 ? (
                   <DefaultButton
@@ -152,7 +153,7 @@ const LotteryDetails = (): JSX.Element => {
                       Se sorteará un premio de <small>{round.award} USD</small>
                     </span>
                     <p>Tipo de juego:</p>
-                    <span>{round.typeGame}</span>
+                    <GameMode mode={round.typeGame} />
                   </RoundDatails>
                 ))}
               </IndicatorList>

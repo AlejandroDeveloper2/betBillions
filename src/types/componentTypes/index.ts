@@ -270,6 +270,10 @@ type AnswerRequestModalProps = {
   requestData: SupportRequest | undefined;
 };
 
+type GameModeProps = {
+  mode: string | null;
+};
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -304,6 +308,7 @@ export type {
   PaginationProps,
   SeeAnswerModalProps,
   AnswerRequestModalProps,
+  GameModeProps,
 };
 
 export { ToastTypes };

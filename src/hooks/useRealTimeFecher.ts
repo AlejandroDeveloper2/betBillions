@@ -4,7 +4,7 @@ import { TokenAuth } from "@utils/index";
 
 const useRealTimeFecher = <T>(
   endpoint: string,
-  fecher: (token: string) => Promise<T>,
+  fecher: (token: string, { ...args }?) => Promise<T>,
   refreshInterval = 100
 ) => {
   const tokenAuth = new TokenAuth();

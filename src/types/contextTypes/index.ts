@@ -2,6 +2,7 @@ import { UseFormReset } from "react-hook-form";
 import {
   AuthStatus,
   BingoBoard,
+  BingoRound,
   City,
   Country,
   LoadingConfig,
@@ -167,6 +168,13 @@ interface SupportContextType {
   ) => Promise<void>;
 }
 
+interface BingoContextType {
+  bingoRound: BingoRound | null;
+  playerBoard: BingoBoard | null;
+  startGame: (idLottery: number) => Promise<void>;
+  getPlayerBoard: (idLottery: number, roundId: number) => Promise<void>;
+}
+
 export type {
   AuthContextType,
   ProviderProps,
@@ -178,4 +186,5 @@ export type {
   ToastContextType,
   LocationContextType,
   SupportContextType,
+  BingoContextType,
 };

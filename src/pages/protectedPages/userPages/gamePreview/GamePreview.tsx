@@ -62,7 +62,7 @@ const GamePreview = (): JSX.Element => {
           }}
           title={"Jugar bingo"}
           label="Empezar a jugar"
-          disabled
+          onClick={() => navigate(`/userPanel/lottery/bingoGame/${lotteryId}`)}
         >
           <AiFillPlayCircle
             style={{
