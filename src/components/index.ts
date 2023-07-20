@@ -53,3 +53,5 @@ export { default as GameHead } from "./bingoGame/gameHead/GameHead";
 export { default as LastBallsList } from "./bingoGame/lastBallsList/LastBallsList";
 export { default as GameMode } from "./bingoGame/gameMode/GameMode";
 export { default as Counter } from "./bingoGame/counter/Counter";
+export { default as Dropdown } from "./bingoGame/dropdown/Dropdown";
+export { default as DynamicBingoBoard } from "./shared/bingoBoard/DynamicBingoBoard";

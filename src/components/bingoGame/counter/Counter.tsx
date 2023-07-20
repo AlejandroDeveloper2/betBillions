@@ -1,9 +1,8 @@
-import { useCounter } from "@hooks/index";
+import { useCounter, useGame } from "@hooks/index";
 import { CounterContainer } from "./Counter.style";
-import useBingoContext from "@hooks/useBingoContext";
 
 const Counter = (): JSX.Element => {
-  const { bingoRound } = useBingoContext();
+  const { bingoRound } = useGame();
   const counter = useCounter(bingoRound);
   return (
     <CounterContainer>

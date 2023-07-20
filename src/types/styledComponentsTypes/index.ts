@@ -53,6 +53,16 @@ interface BallStyledProps {
   color: string;
 }
 
+interface DynamicBallStyleProps extends BallStyledProps {
+  background: string;
+}
+
+interface DropdownStyledProps {
+  direction: "row" | "column";
+  visible: string;
+  wrap: string;
+}
+
 export type {
   ButtonStyleProps,
   ToastStyleProps,
@@ -64,4 +74,6 @@ export type {
   RoundStyledProps,
   ModalStyledProps,
   BallStyledProps,
+  DropdownStyledProps,
+  DynamicBallStyleProps,
 };

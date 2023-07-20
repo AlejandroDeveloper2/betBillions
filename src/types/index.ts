@@ -33,6 +33,7 @@ export type {
   SeeAnswerModalProps,
   AnswerRequestModalProps,
   GameModeProps,
+  DropdownProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
@@ -61,6 +62,8 @@ export type {
   RoundStyledProps,
   ModalStyledProps,
   BallStyledProps,
+  DropdownStyledProps,
+  DynamicBallStyleProps,
 } from "./styledComponentsTypes";
 
 export type {

@@ -102,6 +102,12 @@ const getMenuItems = (
       to: "/admin/settings/myProfile",
     },
     {
+      label: "Sorteos",
+      icon: MdGames,
+      title: "Ver sorteos programados",
+      to: "/admin/lottery",
+    },
+    {
       label: "Notificaciones",
       icon: IoMdNotifications,
       title: "Notificaciones del sistema",

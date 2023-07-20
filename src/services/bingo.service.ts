@@ -56,6 +56,30 @@ class BingoService {
     }
     return response;
   }
+
+  public async activeBingoLottery(
+    idLottery: number,
+    roundId: number,
+    token: string
+  ): Promise<void> {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      await axiosClient.get<void>(
+        `/lottery/start/${idLottery}/round/${roundId}`,
+        config
+      );
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+  }
 }
 
 export { BingoService };

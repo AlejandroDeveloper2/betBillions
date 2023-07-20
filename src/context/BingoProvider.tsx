@@ -1,4 +1,4 @@
-import { createContext, useMemo, useState } from "react";
+import { createContext, useMemo, useState, useCallback } from "react";
 
 import {
   BingoContextType,
@@ -6,6 +6,7 @@ import {
   BingoBoard,
   ProviderProps,
   ToastTypes,
+  LoadingConfig,
 } from "types";
 import { TokenAuth } from "@utils/index";
 import { useToastContext } from "@hooks/index";
@@ -65,14 +66,38 @@ const BingoProvider = ({ children }: ProviderProps) => {
     }
   };
 
+  const activeBingoLottery = useCallback(
+    async (idLottery: number, roundId: number, config: LoadingConfig) => {
+      const token = tokenAuth.getToken();
+      if (token) {
+        try {
+          config.setMessage("Activando....");
+          config.activeLoading();
+          await bingoService.activeBingoLottery(idLottery, roundId, token);
+          showToast();
+          configToast(ToastTypes.success, "Sorteo activado...");
+        } catch (error: unknown) {
+          const errorMessage = (error as Error).message;
+          showToast();
+          configToast(ToastTypes.error, errorMessage);
+        } finally {
+          hideToast(3000);
+          config.inactiveLoading();
+        }
+      }
+    },
+    []
+  );
+
   const value = useMemo(
     () => ({
       bingoRound,
       playerBoard,
       startGame,
       getPlayerBoard,
+      activeBingoLottery,
     }),
-    [bingoRound, playerBoard, startGame, getPlayerBoard]
+    [bingoRound, playerBoard, startGame, getPlayerBoard, activeBingoLottery]
   );
 
   return (

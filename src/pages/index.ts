@@ -26,6 +26,7 @@ export { default as BingoGame } from "./protectedPages/userPages/bingoGame/Bingo
 export { default as TransactionsAdmin } from "./protectedPages/adminPages/transactionsAdmin/TransactionsAdmin";
 export { default as UsersAdmin } from "./protectedPages/adminPages/usersAdmin/UsersAdmin";
 export { default as SupportAdminPage } from "./protectedPages/adminPages/supportAdmin/SupportAdminPage";
+export { default as LotteryAdmin } from "./protectedPages/adminPages/lotteryAdmin/LotteryAdmin";
 
 /*Error page */
 export { default as Page404 } from "./404Page/Page404";

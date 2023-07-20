@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { BsFillGiftFill } from "react-icons/bs";
 
-import { useBingoContext } from "@hooks/index";
+import { useBingoContext, useGame } from "@hooks/index";
 
 import {
-  BingoBoard,
   DefaultButton,
+  DynamicBingoBoard,
   Footer,
   GameHead,
   Loading,
@@ -21,7 +21,8 @@ import {
 
 const BingoGame = (): JSX.Element => {
   const lotteryId = window.parseInt(location.pathname.split("/")[4]);
-  const { bingoRound, playerBoard, getPlayerBoard } = useBingoContext();
+  const { playerBoard, getPlayerBoard } = useBingoContext();
+  const { bingoRound } = useGame();
 
   useEffect(() => {
     if (bingoRound) {
@@ -50,7 +51,7 @@ const BingoGame = (): JSX.Element => {
         </DefaultButton>
         <BoardContainer>
           {playerBoard ? (
-            <BingoBoard board={playerBoard} index={1} />
+            <DynamicBingoBoard board={playerBoard} index={1} />
           ) : (
             <Loading
               message="Cargando tabla..."

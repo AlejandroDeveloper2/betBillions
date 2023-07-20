@@ -274,6 +274,14 @@ type GameModeProps = {
   mode: string | null;
 };
 
+type DropdownProps = {
+  style: {
+    direction: "column" | "row";
+    wrap: boolean;
+  };
+  children: JSX.Element | JSX.Element[];
+};
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -309,6 +317,7 @@ export type {
   SeeAnswerModalProps,
   AnswerRequestModalProps,
   GameModeProps,
+  DropdownProps,
 };
 
 export { ToastTypes };

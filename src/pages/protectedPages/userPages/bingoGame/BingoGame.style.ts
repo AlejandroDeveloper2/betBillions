@@ -7,7 +7,7 @@ const BingoGameContainer = styled.div`
   align-items: center;
   flex-direction: column;
   padding-bottom: 8rem;
-  background-color: var(--white);
+  background-color: var(--light-gray);
   gap: 1rem;
   position: relative;
 `;

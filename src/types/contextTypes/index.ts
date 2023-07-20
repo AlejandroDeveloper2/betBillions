@@ -173,6 +173,11 @@ interface BingoContextType {
   playerBoard: BingoBoard | null;
   startGame: (idLottery: number) => Promise<void>;
   getPlayerBoard: (idLottery: number, roundId: number) => Promise<void>;
+  activeBingoLottery: (
+    idLottery: number,
+    roundId: number,
+    config: LoadingConfig
+  ) => Promise<void>;
 }
 
 export type {

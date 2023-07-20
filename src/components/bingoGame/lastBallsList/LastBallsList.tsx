@@ -1,8 +1,6 @@
-import { GiEightBall } from "react-icons/gi";
+import { useGame } from "@hooks/index";
 
-import { useBingoContext } from "@hooks/index";
-
-import { DefaultButton, Loading } from "@components/index";
+import { Dropdown, Loading } from "@components/index";
 
 import {
   Ball,
@@ -11,13 +9,13 @@ import {
 } from "./LastBallsList.style";
 
 const LastBallsList = (): JSX.Element => {
-  const { bingoRound } = useBingoContext();
+  const { showedBalls } = useGame();
 
   return (
     <LastBallsContainer>
-      {bingoRound ? (
+      {showedBalls ? (
         <>
-          {bingoRound.balls.slice(0, 4).map((ball, index) => (
+          {showedBalls.slice(0, 4).map((ball, index) => (
             <Ball key={index}>
               <div></div>
               <NumberBallVariant>
@@ -25,28 +23,33 @@ const LastBallsList = (): JSX.Element => {
               </NumberBallVariant>
             </Ball>
           ))}
-          <DefaultButton
+          <Dropdown
             style={{
-              bg: "var(--white)",
-              fontColor: "var(--dark-gray)",
-              padding: "0.5rem 0.5rem",
+              direction: "row",
+              wrap: true,
             }}
-            label="Ver balotas"
-            title={"Ver balotas que ya salieron"}
           >
-            <GiEightBall
-              style={{
-                color: "var(--dark-gray)",
-                fontSize: 30,
-                marginRight: 10,
-              }}
-            />
-          </DefaultButton>
+            {showedBalls.map((showedBall, index) => (
+              <DropdownElement key={index} ball={showedBall} />
+            ))}
+          </Dropdown>
         </>
       ) : (
         <Loading message="Cargando balotas..." textColor="var(--dark-gray)" />
       )}
     </LastBallsContainer>
+  );
+};
+
+const DropdownElement = (props: { ball: string }): JSX.Element => {
+  const { ball } = props;
+  return (
+    <Ball>
+      <div></div>
+      <NumberBallVariant>
+        <span>{ball}</span>
+      </NumberBallVariant>
+    </Ball>
   );
 };
 

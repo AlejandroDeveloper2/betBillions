@@ -1,29 +1,36 @@
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 
-import { useBingoContext } from "@hooks/index";
+import { BingoService } from "@services/bingo.service";
+import { TokenAuth } from "@utils/index";
+
+const bingoService = new BingoService();
+const tokenAuth = new TokenAuth();
 
 const useGame = () => {
+  const token = tokenAuth.getToken();
   const lotteryId = window.parseInt(location.pathname.split("/")[4]);
-  const { bingoRound, startGame } = useBingoContext();
   const [round, setRound] = useState<number | string>("?");
   const [gameMode, setGameMode] = useState<string | null>(null);
   const [currentBall, setCurrentBall] = useState<string>("?");
+  const [showedBalls, setShowedBalls] = useState<string[]>([]);
 
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      startGame(lotteryId);
-    }, 10000);
-
-    return () => {
-      window.clearInterval(interval);
-    };
-  }, []);
+  const { data: bingoRound } = useSWR(
+    "/lottery/start/round",
+    () => {
+      if (token) {
+        return bingoService.startGame(lotteryId, token);
+      }
+    },
+    { refreshInterval: 10000 }
+  );
 
   useEffect(() => {
     if (bingoRound) {
       setRound(bingoRound.numberRound);
       setGameMode(bingoRound.typeGame);
       setCurrentBall(bingoRound.balls[bingoRound.balls.length - 1]);
+      setShowedBalls(bingoRound.balls);
     }
   }, [bingoRound]);
 
@@ -31,6 +38,8 @@ const useGame = () => {
     round,
     gameMode,
     currentBall,
+    showedBalls,
+    bingoRound,
   };
 };
 

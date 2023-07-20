@@ -56,7 +56,6 @@ const GameHead = (): JSX.Element => {
         </CurrentBall>
         <Counter />
       </CurrentBallContainer>
-
       <LastBallsList />
     </GameHeadContainer>
   );
