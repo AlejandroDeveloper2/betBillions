@@ -61,10 +61,10 @@ const Figure = styled.figure`
   left: 0;
   display: none;
   @media (min-width: 1000px) {
-    left: -10rem;
+    left: -6rem;
   }
   @media (min-width: 1400px) {
-    display: block;
+    display: none;
   }
 `;
 

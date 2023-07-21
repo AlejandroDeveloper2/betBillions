@@ -22,9 +22,9 @@ function App(): JSX.Element {
     <BrowserRouter>
       <ToastProvider>
         <LocationProvider>
-          <AuthProvider>
-            <SupportProvider>
-              <ShoppingCartProvider>
+          <ShoppingCartProvider>
+            <AuthProvider>
+              <SupportProvider>
                 <TransactionProvider>
                   <LotteryProvider>
                     <WalletProvider>
@@ -36,9 +36,9 @@ function App(): JSX.Element {
                     </WalletProvider>
                   </LotteryProvider>
                 </TransactionProvider>
-              </ShoppingCartProvider>
-            </SupportProvider>
-          </AuthProvider>
+              </SupportProvider>
+            </AuthProvider>
+          </ShoppingCartProvider>
         </LocationProvider>
       </ToastProvider>
     </BrowserRouter>

@@ -81,7 +81,7 @@ const AwardContainer = styled.div`
     text-align: center;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1000px) {
     position: fixed;
     left: 20rem;
     top: 10rem;

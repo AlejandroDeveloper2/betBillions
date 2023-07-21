@@ -10,10 +10,10 @@ import {
   Footer,
   GameMode,
   Loading,
-  LoadingButton,
 } from "@components/index";
 
 import {
+  AdContainer,
   LotteryAdminContainer,
   RoundCard,
   RoundsContainer,
@@ -47,43 +47,43 @@ const LotteryAdmin = (): JSX.Element => {
         />
       ) : availableLottery ? (
         <>
-          <AdCard key={availableLottery.id} lotteryId={availableLottery.id}>
-            <CardAdTitle>Juega y gana </CardAdTitle>
-            <Datetext>{formatDate(availableLottery.startDate)}</Datetext>
-          </AdCard>
+          <AdContainer>
+            <AdCard key={availableLottery.id} lotteryId={availableLottery.id}>
+              <CardAdTitle>Juega y gana </CardAdTitle>
+              <Datetext>{formatDate(availableLottery.startDate)}</Datetext>
+            </AdCard>
+          </AdContainer>
           <RoundsContainer>
             {availableLottery.rounds.map((round) => (
               <RoundCard key={round.id}>
                 <span>Ronda - {round.numberRound}</span>
                 <GameMode mode={round.typeGame} />
-                {isLoadingActive ? (
-                  <LoadingButton
-                    message={loadingMessage}
-                    style={{
-                      bg: "var(--light-gray)",
-                      fontColor: "var(--bg-secondary-color)",
-                    }}
-                  />
-                ) : (
-                  <DefaultButton
-                    style={{
-                      bg: "var(--light-gray)",
-                      fontColor: "var(--bg-secondary-color)",
-                    }}
-                    title="Activar ronda de bingo!"
-                    label="Empezar ronda"
-                    onClick={() => {
-                      activeBingoLottery(
-                        round.idLottery ? round.idLottery : 0,
-                        round.id,
-                        {
-                          activeLoading,
-                          inactiveLoading,
-                          setMessage,
-                        }
-                      );
-                    }}
-                  >
+
+                <DefaultButton
+                  style={{
+                    bg: "var(--light-gray)",
+                    fontColor: "var(--bg-secondary-color)",
+                  }}
+                  title="Activar ronda de bingo!"
+                  label="Empezar ronda"
+                  onClick={() => {
+                    activeBingoLottery(
+                      round.idLottery ? round.idLottery : 0,
+                      round.id,
+                      {
+                        activeLoading,
+                        inactiveLoading,
+                        setMessage,
+                      }
+                    );
+                  }}
+                >
+                  {isLoadingActive ? (
+                    <Loading
+                      message={loadingMessage}
+                      textColor="var(--bg-secondary-color)"
+                    />
+                  ) : (
                     <MdNotStarted
                       style={{
                         color: "var(--bg-secondary-color)",
@@ -91,8 +91,8 @@ const LotteryAdmin = (): JSX.Element => {
                         marginRight: "10px",
                       }}
                     />
-                  </DefaultButton>
-                )}
+                  )}
+                </DefaultButton>
               </RoundCard>
             ))}
           </RoundsContainer>

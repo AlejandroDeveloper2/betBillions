@@ -80,6 +80,32 @@ class BingoService {
       throw new Error(errorMessage);
     }
   }
+
+  public async validateBingoBalls(
+    idLottery: number,
+    roundId: number,
+    ball: string,
+    token: string
+  ): Promise<void> {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      await axiosClient.patch<void>(
+        `cardBingo/lottery/${idLottery}/round/${roundId}/ball/${ball}`,
+        {},
+        config
+      );
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+  }
 }
 
 export { BingoService };

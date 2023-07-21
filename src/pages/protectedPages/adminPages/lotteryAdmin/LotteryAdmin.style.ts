@@ -20,7 +20,7 @@ const LotteryAdminContainer = styled.div`
   }
 
   @media (min-width: 1000px) {
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     width: 100%;
     height: 100%;
@@ -63,4 +63,12 @@ const RoundCard = styled.div`
   }
 `;
 
-export { LotteryAdminContainer, RoundsContainer, RoundCard };
+const AdContainer = styled.div`
+  width: 100%;
+  display: block;
+  @media (min-width: 1000px) {
+    width: 60%;
+  }
+`;
+
+export { LotteryAdminContainer, RoundsContainer, RoundCard, AdContainer };

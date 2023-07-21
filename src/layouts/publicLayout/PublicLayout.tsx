@@ -19,8 +19,8 @@ import "./animation.css";
 import { Logo } from "@assets/index";
 
 const PublicLayout = (): JSX.Element => {
-  useUserSession(0);
   const isScreenLoading = useScreenLoader();
+  useUserSession(0);
   const { toast, isToastVisible, getToastColor, hideToast } = useToastContext();
 
   if (isScreenLoading) return <LoadingScreen />;

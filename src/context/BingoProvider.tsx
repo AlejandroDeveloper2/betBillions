@@ -89,6 +89,31 @@ const BingoProvider = ({ children }: ProviderProps) => {
     []
   );
 
+  const validateBingoBalls = useCallback(
+    async (idLottery: number, roundId: number, ball: string) => {
+      const token = tokenAuth.getToken();
+      if (token) {
+        try {
+          await bingoService.validateBingoBalls(
+            idLottery,
+            roundId,
+            ball,
+            token
+          );
+          showToast();
+          configToast(ToastTypes.success, "Balota correcta...");
+        } catch (error: unknown) {
+          const errorMessage = (error as Error).message;
+          showToast();
+          configToast(ToastTypes.error, errorMessage);
+        } finally {
+          hideToast(3000);
+        }
+      }
+    },
+    []
+  );
+
   const value = useMemo(
     () => ({
       bingoRound,
@@ -96,8 +121,16 @@ const BingoProvider = ({ children }: ProviderProps) => {
       startGame,
       getPlayerBoard,
       activeBingoLottery,
+      validateBingoBalls,
     }),
-    [bingoRound, playerBoard, startGame, getPlayerBoard, activeBingoLottery]
+    [
+      bingoRound,
+      playerBoard,
+      startGame,
+      getPlayerBoard,
+      activeBingoLottery,
+      validateBingoBalls,
+    ]
   );
 
   return (

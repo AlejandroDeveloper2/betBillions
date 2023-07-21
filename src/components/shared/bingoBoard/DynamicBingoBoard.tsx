@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
-
-import { setColorBingoBalls } from "@utils/index";
-import { BingoBoard, BingoBoardProps } from "types";
+import { BingoBoardProps } from "types";
+import { useGame, useBingoBoard } from "@hooks/index";
 
 import {
   BoardBody,
@@ -10,38 +8,11 @@ import {
   BoardHead,
   DynamicBall,
 } from "./BingoBard.style";
-import useGame from "@hooks/useGame";
 
 const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
   const { board } = props;
   const { showedBalls } = useGame();
-  const boardLS =
-    window.localStorage.getItem("playerBingoBoard") ?? JSON.stringify(board);
-  const [bingoBoard, setBingoBoard] = useState<BingoBoard>(JSON.parse(boardLS));
-
-  const bingoStyledBalls = setColorBingoBalls(bingoBoard);
-
-  const toggleBall = (ball: string): void => {
-    const newCard = bingoStyledBalls.map((bingoBall) => {
-      if (ball === bingoBall.numbers) {
-        if (showedBalls.includes(bingoBall.numbers)) {
-          const newBall = { ...bingoBall, state: true };
-          return newBall;
-        }
-        return bingoBall;
-      }
-      return bingoBall;
-    });
-    const newBoard = { ...board, card: newCard };
-    setBingoBoard(newBoard);
-    window.localStorage.setItem("playerBingoBoard", JSON.stringify(newBoard));
-  };
-
-  useEffect(() => {
-    const boardLS =
-      window.localStorage.getItem("playerBingoBoard") ?? JSON.stringify(board);
-    setBingoBoard(JSON.parse(boardLS));
-  }, [showedBalls]);
+  const { bingoStyledBalls, toggleBall } = useBingoBoard(board, showedBalls);
 
   return (
     <BoardContainer>
@@ -59,7 +30,9 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
             <DynamicBall
               key={index}
               color={ball.color}
-              onClick={() => toggleBall(ball.numbers)}
+              onClick={() => {
+                toggleBall(ball.numbers);
+              }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
               <span>{ball.numbers.substring(1, 3)}</span>
@@ -72,7 +45,9 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
             <DynamicBall
               key={index}
               color={ball.color}
-              onClick={() => toggleBall(ball.numbers)}
+              onClick={() => {
+                toggleBall(ball.numbers);
+              }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
               <span>{ball.numbers.substring(1, 3)}</span>
@@ -85,7 +60,9 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
             <DynamicBall
               key={index}
               color={ball.color}
-              onClick={() => toggleBall(ball.numbers)}
+              onClick={() => {
+                toggleBall(ball.numbers);
+              }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
               <span>{ball.numbers.substring(1, 3)}</span>
@@ -98,7 +75,9 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
             <DynamicBall
               key={index}
               color={ball.color}
-              onClick={() => toggleBall(ball.numbers)}
+              onClick={() => {
+                toggleBall(ball.numbers);
+              }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
               <span>{ball.numbers.substring(1, 3)}</span>
@@ -111,7 +90,9 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
             <DynamicBall
               key={index}
               color={ball.color}
-              onClick={() => toggleBall(ball.numbers)}
+              onClick={() => {
+                toggleBall(ball.numbers);
+              }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
               <span>{ball.numbers.substring(1, 3)}</span>

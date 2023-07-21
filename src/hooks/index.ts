@@ -9,6 +9,7 @@ export { default as useListPagination } from "./useListPagination";
 export { default as useGame } from "./useGame";
 export { default as useGameMode } from "./useGameMode";
 export { default as useCounter } from "./useCounter";
+export { default as useBingoBoard } from "./useBingoBoard";
 
 /*Context hooks */
 export { default as useAuthContext } from "./useAuthContext";

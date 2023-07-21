@@ -178,6 +178,11 @@ interface BingoContextType {
     roundId: number,
     config: LoadingConfig
   ) => Promise<void>;
+  validateBingoBalls: (
+    idLottery: number,
+    roundId: number,
+    ball: string
+  ) => Promise<void>;
 }
 
 export type {
