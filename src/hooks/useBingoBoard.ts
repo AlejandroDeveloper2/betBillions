@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { BingoBoard } from "types";
 import { setColorBingoBalls } from "@utils/index";
 import { useBingoContext } from ".";
 
 const useBingoBoard = (board: BingoBoard, showedBalls: string[]) => {
-  const boardLS =
-    window.localStorage.getItem("playerBingoBoard") ?? JSON.stringify(board);
-  const [bingoBoard, setBingoBoard] = useState<BingoBoard>(JSON.parse(boardLS));
+  // const boardLS =
+  //   window.localStorage.getItem("playerBingoBoard") ?? JSON.stringify(board);
+  const [bingoBoard, setBingoBoard] = useState<BingoBoard>(board);
   const { validateBingoBalls } = useBingoContext();
 
   const bingoStyledBalls = setColorBingoBalls(bingoBoard);
@@ -16,7 +16,9 @@ const useBingoBoard = (board: BingoBoard, showedBalls: string[]) => {
     const newCard = bingoStyledBalls.map((bingoBall) => {
       if (ball === bingoBall.numbers) {
         if (showedBalls.includes(bingoBall.numbers)) {
-          validateBingoBalls(bingoBoard.lotteryId, bingoBoard.round, ball);
+          if (!bingoBall.state) {
+            validateBingoBalls(bingoBoard.lotteryId, bingoBoard.round, ball);
+          }
           const newBall = { ...bingoBall, state: true };
           return newBall;
         }
@@ -26,14 +28,14 @@ const useBingoBoard = (board: BingoBoard, showedBalls: string[]) => {
     });
     const newBoard = { ...board, card: newCard };
     setBingoBoard(newBoard);
-    window.localStorage.setItem("playerBingoBoard", JSON.stringify(newBoard));
+    // window.localStorage.setItem("playerBingoBoard", JSON.stringify(newBoard));
   };
 
-  useEffect(() => {
-    const boardLS =
-      window.localStorage.getItem("playerBingoBoard") ?? JSON.stringify(board);
-    setBingoBoard(JSON.parse(boardLS));
-  }, [showedBalls]);
+  // useEffect(() => {
+  //   const boardLS =
+  //     window.localStorage.getItem("playerBingoBoard") ?? JSON.stringify(board);
+  //   setBingoBoard(JSON.parse(boardLS));
+  // }, [showedBalls]);
 
   return {
     toggleBall,
