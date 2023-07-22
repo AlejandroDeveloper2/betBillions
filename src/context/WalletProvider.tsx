@@ -23,7 +23,7 @@ const tokenAuth = new TokenAuth();
 const WalletProvider = ({ children }: ProviderProps) => {
   const [transactionVoucher, setTransactionVoucher] = useState<string>("");
 
-  const { showToast, hideToast, configToast } = useToastContext();
+  const { openToast } = useToastContext();
 
   const setUserWalletAddress = useCallback(
     async (
@@ -39,14 +39,19 @@ const WalletProvider = ({ children }: ProviderProps) => {
             walletData,
             token
           );
-          configToast(res.typeStatus, res.message);
-          showToast();
+          openToast({
+            message: res.message,
+            type: res.typeStatus,
+            isToastVisible: true,
+          });
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          showToast();
-          configToast(ToastTypes.error, errorMessage);
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+            isToastVisible: true,
+          });
         } finally {
-          hideToast(3000);
           config.inactiveLoading();
         }
       }
@@ -71,14 +76,19 @@ const WalletProvider = ({ children }: ProviderProps) => {
           );
           reset();
           setTransactionVoucher("");
-          configToast(res.typeStatus, res.message);
-          showToast();
+          openToast({
+            message: res.message,
+            type: res.typeStatus,
+            isToastVisible: true,
+          });
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          showToast();
-          configToast(ToastTypes.error, errorMessage);
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+            isToastVisible: true,
+          });
         } finally {
-          hideToast(3000);
           config.inactiveLoading();
         }
       }
@@ -102,14 +112,19 @@ const WalletProvider = ({ children }: ProviderProps) => {
         config.activeLoading();
         const res = await userWalletService.uploadTransactionVoucher(formData);
         setTransactionVoucher(res);
-        configToast(ToastTypes.success, "Comprobante subido correctamente!");
-        showToast();
+        openToast({
+          message: "Comprobante subido correctamente!",
+          type: ToastTypes.success,
+          isToastVisible: true,
+        });
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        showToast();
-        configToast(ToastTypes.error, errorMessage);
+        openToast({
+          message: errorMessage,
+          type: ToastTypes.error,
+          isToastVisible: true,
+        });
       } finally {
-        hideToast(3000);
         config.inactiveLoading();
       }
     },
@@ -133,14 +148,19 @@ const WalletProvider = ({ children }: ProviderProps) => {
           );
           reset();
           setTransactionVoucher("");
-          configToast(res.typeStatus, res.message);
-          showToast();
+          openToast({
+            message: res.message,
+            type: res.typeStatus,
+            isToastVisible: true,
+          });
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          showToast();
-          configToast(ToastTypes.error, errorMessage);
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+            isToastVisible: true,
+          });
         } finally {
-          hideToast(3000);
           config.inactiveLoading();
         }
       }

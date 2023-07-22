@@ -7,6 +7,7 @@ export type {
   CustomFileInputProps,
   ErrorMessageProps,
   ToastProps,
+  ToastsConfig,
   LoadingProps,
   LoadingButtonProps,
   MenuProps,
@@ -93,6 +94,7 @@ export type {
   City,
   SupportRequest,
   BingoRound,
+  ToastType,
 } from "./dataTypes";
 
 export type {

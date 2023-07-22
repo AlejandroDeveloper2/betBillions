@@ -22,7 +22,7 @@ const transactionsService = new TransactionsService();
 const tokenAuth = new TokenAuth();
 
 const TransactionProvider = ({ children }: ProviderProps) => {
-  const { showToast, hideToast, configToast } = useToastContext();
+  const { openToast } = useToastContext();
 
   const validateTransaction = useCallback(
     async (
@@ -39,15 +39,20 @@ const TransactionProvider = ({ children }: ProviderProps) => {
             transactionData,
             token
           );
-          showToast();
-          configToast(res.typeStatus, res.message);
+          openToast({
+            message: res.message,
+            type: res.typeStatus,
+            isToastVisible: true,
+          });
           reset();
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          showToast();
-          configToast(ToastTypes.error, errorMessage);
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+            isToastVisible: true,
+          });
         } finally {
-          hideToast(3000);
           config.inactiveLoading();
         }
       }
@@ -66,14 +71,19 @@ const TransactionProvider = ({ children }: ProviderProps) => {
             transactionHash,
             token
           );
-          showToast();
-          configToast(res.typeStatus, res.message);
+          openToast({
+            message: res.message,
+            type: res.typeStatus,
+            isToastVisible: true,
+          });
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          showToast();
-          configToast(ToastTypes.error, errorMessage);
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+            isToastVisible: true,
+          });
         } finally {
-          hideToast(3000);
           config.inactiveLoading();
         }
       }
@@ -92,14 +102,19 @@ const TransactionProvider = ({ children }: ProviderProps) => {
             transactionHash,
             token
           );
-          showToast();
-          configToast(res.typeStatus, res.message);
+          openToast({
+            message: res.message,
+            type: res.typeStatus,
+            isToastVisible: true,
+          });
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          showToast();
-          configToast(ToastTypes.error, errorMessage);
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+            isToastVisible: true,
+          });
         } finally {
-          hideToast(3000);
           config.inactiveLoading();
         }
       }

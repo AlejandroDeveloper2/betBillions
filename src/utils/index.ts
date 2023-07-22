@@ -9,8 +9,8 @@ import {
   FormType,
   LotteryRound,
   MenuItemStyleProps,
-  ToastConfig,
   ToastTypes,
+  ToastsConfig,
 } from "types";
 
 class ValuesForm {
@@ -102,12 +102,16 @@ const getActiveItem = (location: Location, to: string): MenuItemStyleProps => {
   };
 };
 
-const copyToClipBoard = (textToCopy: string, config: ToastConfig): void => {
-  const { showToast, hideToast, configToast } = config;
-  navigator.clipboard.writeText(textToCopy);
-  configToast(ToastTypes.success, "Texto copiado con exito!");
-  showToast();
-  hideToast(3000);
+const copyToClipBoard = (
+  textToCopy: string,
+  openToast: (config: ToastsConfig, timeout?: number) => void
+): void => {
+  window.navigator.clipboard.writeText(textToCopy);
+  openToast({
+    message: "Texto copiado con exito!",
+    type: ToastTypes.success,
+    isToastVisible: true,
+  });
 };
 
 const formatDate = (

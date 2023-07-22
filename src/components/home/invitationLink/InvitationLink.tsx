@@ -13,13 +13,7 @@ const InvitationLink = (): JSX.Element => {
     "/users/panel",
     userProfileService.getUserPanelData
   );
-  const { showToast, hideToast, configToast } = useToastContext();
-
-  const toastConfig = {
-    showToast,
-    hideToast,
-    configToast,
-  };
+  const { openToast } = useToastContext();
 
   const invitationLink = userPanelData
     ? userPanelData.link
@@ -37,7 +31,7 @@ const InvitationLink = (): JSX.Element => {
             width: "auto",
           }}
           title={"Copiar link de invitación"}
-          onClick={() => copyToClipBoard(invitationLink, toastConfig)}
+          onClick={() => copyToClipBoard(invitationLink, openToast)}
         >
           <Image
             source={CopyLinkIcon}

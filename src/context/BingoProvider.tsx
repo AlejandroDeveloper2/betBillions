@@ -23,7 +23,7 @@ const BingoProvider = ({ children }: ProviderProps) => {
   const [bingoRound, setBingoRound] = useState<BingoRound | null>(null);
   const [playerBoard, setPlayerBoard] = useState<BingoBoard | null>(null);
 
-  const { showToast, hideToast, configToast } = useToastContext();
+  const { openToast } = useToastContext();
 
   const startGame = async (idLottery: number): Promise<void> => {
     const token = tokenAuth.getToken();
@@ -31,14 +31,13 @@ const BingoProvider = ({ children }: ProviderProps) => {
       try {
         const res = await bingoService.startGame(idLottery, token);
         setBingoRound(res);
-        // showToast();
-        // configToast(ToastTypes.success, "Ronda iniciada!");
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        showToast();
-        configToast(ToastTypes.error, errorMessage);
-      } finally {
-        hideToast(3000);
+        openToast({
+          message: errorMessage,
+          type: ToastTypes.error,
+          isToastVisible: true,
+        });
       }
     }
   };
@@ -58,10 +57,11 @@ const BingoProvider = ({ children }: ProviderProps) => {
         setPlayerBoard(res);
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        showToast();
-        configToast(ToastTypes.error, errorMessage);
-      } finally {
-        hideToast(3000);
+        openToast({
+          message: errorMessage,
+          type: ToastTypes.error,
+          isToastVisible: true,
+        });
       }
     }
   };
@@ -74,14 +74,19 @@ const BingoProvider = ({ children }: ProviderProps) => {
           config.setMessage("Activando....");
           config.activeLoading();
           await bingoService.activeBingoLottery(idLottery, roundId, token);
-          showToast();
-          configToast(ToastTypes.success, "Sorteo activado...");
+          openToast({
+            message: "Sorteo activado...",
+            type: ToastTypes.success,
+            isToastVisible: true,
+          });
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          showToast();
-          configToast(ToastTypes.error, errorMessage);
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+            isToastVisible: true,
+          });
         } finally {
-          hideToast(3000);
           config.inactiveLoading();
         }
       }
@@ -100,14 +105,18 @@ const BingoProvider = ({ children }: ProviderProps) => {
             ball,
             token
           );
-          showToast();
-          configToast(ToastTypes.success, "Balota correcta...");
+          openToast({
+            message: "Balota correcta",
+            type: ToastTypes.success,
+            isToastVisible: true,
+          });
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          showToast();
-          configToast(ToastTypes.error, errorMessage);
-        } finally {
-          hideToast(3000);
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+            isToastVisible: true,
+          });
         }
       }
     },

@@ -7,8 +7,8 @@ const ToastContainer = styled.div<ToastStyleProps>`
   padding: 1.5rem 2rem;
   background-color: ${(props) => props.background};
   border-radius: 1rem;
-  transform: ${(props) =>
-    props.istoastvisible === "true" ? "translateX(0)" : " translateX(200%)"};
+  opacity: ${(props: ToastStyleProps) =>
+    props.istoastvisible !== "true" ? "0" : "1"};
   span {
     color: ${(props) => props.color};
     font-size: 1rem;
@@ -16,14 +16,11 @@ const ToastContainer = styled.div<ToastStyleProps>`
     text-align: center;
     text-transform: capitalize;
   }
-  transition: all ease 0.5s;
+  transition: all 0.7s ease;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
   z-index: 60;
 `;
 

@@ -36,8 +36,7 @@ const AuthProvider = ({ children }: ProviderProps) => {
   );
   const location = useLocation();
   const navigate = useNavigate();
-  const { showToast, hideToast, configToast } = useToastContext();
-
+  const { openToast } = useToastContext();
   const { clearShoppingCart } = useShoppingCartContext();
 
   const login = useCallback(
@@ -59,14 +58,19 @@ const AuthProvider = ({ children }: ProviderProps) => {
           reset();
           return;
         }
-        configToast(res.typeStatus, res.message);
-        showToast();
+        openToast({
+          message: "Inicio de sesión exitoso!",
+          type: res.typeStatus,
+          isToastVisible: true,
+        });
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        showToast();
-        configToast(ToastTypes.error, errorMessage);
+        openToast({
+          message: errorMessage,
+          type: ToastTypes.error,
+          isToastVisible: true,
+        });
       } finally {
-        hideToast(3000);
         config.inactiveLoading();
       }
     },
@@ -93,15 +97,23 @@ const AuthProvider = ({ children }: ProviderProps) => {
         config.setMessage("Creando cuenta...");
         config.activeLoading();
         const res = await authService.registerUser(userData);
-        showToast();
-        configToast(res.typeStatus, res.message);
+        openToast(
+          {
+            message: res.message,
+            type: res.typeStatus,
+            isToastVisible: true,
+          },
+          4000
+        );
         reset();
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        showToast();
-        configToast(ToastTypes.error, errorMessage);
+        openToast({
+          message: errorMessage,
+          type: ToastTypes.error,
+          isToastVisible: true,
+        });
       } finally {
-        hideToast(3000);
         config.inactiveLoading();
       }
     },
@@ -118,15 +130,20 @@ const AuthProvider = ({ children }: ProviderProps) => {
         config.setMessage("Enviando solicitud...");
         config.activeLoading();
         const res = await authService.sendRecoverPassRequest(userRequestData);
-        showToast();
-        configToast(res.typeStatus, res.message);
+        openToast({
+          message: res.message,
+          type: res.typeStatus,
+          isToastVisible: true,
+        });
         reset();
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        showToast();
-        configToast(ToastTypes.error, errorMessage);
+        openToast({
+          message: errorMessage,
+          type: ToastTypes.error,
+          isToastVisible: true,
+        });
       } finally {
-        hideToast(3000);
         config.inactiveLoading();
       }
     },
@@ -144,15 +161,20 @@ const AuthProvider = ({ children }: ProviderProps) => {
         config.setMessage("Actualizando clave...");
         config.activeLoading();
         const res = await authService.updatePassword(userNewPassword, token);
-        showToast();
-        configToast(res.typeStatus, res.message);
+        openToast({
+          message: res.message,
+          type: res.typeStatus,
+          isToastVisible: true,
+        });
         reset();
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        showToast();
-        configToast(ToastTypes.error, errorMessage);
+        openToast({
+          message: errorMessage,
+          type: ToastTypes.error,
+          isToastVisible: true,
+        });
       } finally {
-        hideToast(3000);
         config.inactiveLoading();
       }
     },
@@ -166,14 +188,19 @@ const AuthProvider = ({ children }: ProviderProps) => {
         config.setMessage("Verificando cuenta...");
         config.activeLoading();
         const res = await authService.activateUserAccount(token);
-        showToast();
-        configToast(res.typeStatus, res.message);
+        openToast({
+          message: res.message,
+          type: res.typeStatus,
+          isToastVisible: true,
+        });
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        showToast();
-        configToast(ToastTypes.error, errorMessage);
+        openToast({
+          message: errorMessage,
+          type: ToastTypes.error,
+          isToastVisible: true,
+        });
       } finally {
-        hideToast(3000);
         config.inactiveLoading();
         setTimeout(() => {
           navigate("/");
@@ -196,11 +223,11 @@ const AuthProvider = ({ children }: ProviderProps) => {
           userAuthStateLS.setUserAuthState("authenticated");
           setUserAuth(userAuth);
         } else {
-          showToast();
-          configToast(
-            ToastTypes.warning,
-            "La sesión ha caducado por favor loguese de nuevo!"
-          );
+          openToast({
+            message: "La sesión ha caducado por favor loguese de nuevo!",
+            type: ToastTypes.warning,
+            isToastVisible: true,
+          });
           logout(3000);
         }
       } else {
@@ -209,12 +236,13 @@ const AuthProvider = ({ children }: ProviderProps) => {
       }
     } catch (error: unknown) {
       const errorMessage = (error as Error).message;
-      configToast(ToastTypes.error, errorMessage);
-      showToast();
-    } finally {
-      hideToast(3000);
+      openToast({
+        message: errorMessage,
+        type: ToastTypes.error,
+        isToastVisible: true,
+      });
     }
-  }, [configToast, logout]);
+  }, [logout]);
 
   const value = useMemo(
     () => ({

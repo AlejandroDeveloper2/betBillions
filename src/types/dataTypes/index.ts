@@ -195,6 +195,11 @@ interface BingoRound {
   completed: boolean;
 }
 
+interface ToastType {
+  Component: () => JSX.Element;
+  id: string;
+}
+
 export type {
   AuthStatus,
   ApiName,
@@ -221,4 +226,5 @@ export type {
   City,
   SupportRequest,
   BingoRound,
+  ToastType,
 };

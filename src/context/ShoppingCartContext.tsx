@@ -19,7 +19,7 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
   const [bingoBoards, setBingoBoards] = useState<BingoBoard[]>(cartLS);
   const [totalToPay, setTotalToPay] = useState<number>(0);
   const [singleBoardPrice] = useState<number>(5);
-  const { showToast, hideToast, configToast } = useToastContext();
+  const { openToast } = useToastContext();
 
   const getCart = (): void => {
     if (window.localStorage.getItem("cart")) {
@@ -34,8 +34,11 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
   const addBingoBoardToCart = (bingoBoard: BingoBoard): void => {
     if (bingoBoards.length < 7) {
       if (bingoBoards.includes(bingoBoard)) {
-        configToast(ToastTypes.error, "Ya seleccionaste este cartón!");
-        showToast();
+        openToast({
+          message: "Ya seleccionaste este cartón!",
+          type: ToastTypes.error,
+          isToastVisible: true,
+        });
         return;
       }
       setBingoBoards([...bingoBoards, bingoBoard]);
@@ -49,16 +52,18 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
         "cart",
         JSON.stringify([...bingoBoards, bingoBoard])
       );
-      configToast(ToastTypes.success, "Carton agregado!");
-      showToast();
+      openToast({
+        message: "Carton agregado!",
+        type: ToastTypes.success,
+        isToastVisible: true,
+      });
     } else {
-      configToast(
-        ToastTypes.warning,
-        "Solo puedes seleccionar maximo 7 cartones!"
-      );
-      showToast();
+      openToast({
+        message: "Solo puedes seleccionar maximo 7 cartones!",
+        type: ToastTypes.warning,
+        isToastVisible: true,
+      });
     }
-    hideToast(4000);
   };
 
   const removeBingoBoardFromCart = (bingoBoardId: string): void => {
@@ -70,9 +75,11 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
     if (bingoBoards.length <= 5) {
       setTotalToPay((prevState) => prevState - singleBoardPrice);
     }
-    configToast(ToastTypes.success, "Cartón removido!");
-    showToast();
-    hideToast(4000);
+    openToast({
+      message: "Cartón removido!",
+      type: ToastTypes.success,
+      isToastVisible: true,
+    });
   };
 
   const clearShoppingCart = (): void => {

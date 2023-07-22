@@ -123,13 +123,16 @@ enum ToastTypes {
 }
 
 type ToastProps = {
+  id: string;
   message: string | null;
-  type: ToastTypes | null;
-  toastConfig: {
-    isToastVisible: boolean | string;
-    getToastColor: () => string;
-    hideToast: () => void;
-  };
+  type: ToastTypes;
+  isToastVisible: boolean;
+};
+
+type ToastsConfig = {
+  message: string | null;
+  type: ToastTypes;
+  isToastVisible: boolean;
 };
 
 type LoadingProps = {
@@ -301,6 +304,7 @@ export type {
   CustomButtonProps,
   ErrorMessageProps,
   ToastProps,
+  ToastsConfig,
   LoadingProps,
   LoadingButtonProps,
   MenuProps,

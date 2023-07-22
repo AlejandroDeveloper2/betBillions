@@ -13,7 +13,9 @@ import {
   RegisterFormValues,
   SupportAnswerFormValues,
   SupportFormValues,
+  ToastType,
   ToastTypes,
+  ToastsConfig,
   UpdatePassFormValues,
   UserAuth,
   UserProfileFormValues,
@@ -132,15 +134,10 @@ interface ShoppingCartContextType {
 }
 
 interface ToastContextType {
-  isToastVisible: boolean | string;
-  toast: {
-    toastMessage: string | null;
-    toastType: ToastTypes | null;
-  };
-  showToast: () => void;
-  hideToast: (delay?: number) => void;
-  getToastColor: () => string;
-  configToast: (type: ToastTypes, message: string) => void;
+  toasts: ToastType[];
+  openToast: (config: ToastsConfig, timeout?: number) => void;
+  closeToast: (id: string) => void;
+  getToastColor: (type: ToastTypes) => string;
 }
 
 interface LocationContextType {

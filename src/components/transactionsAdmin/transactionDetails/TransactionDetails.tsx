@@ -14,7 +14,7 @@ import {
 
 const TransactionDetails = (props: TransactionDetailsProps): JSX.Element => {
   const { isDetailModalVisible, hideDetailModal, details } = props;
-  const { showToast, hideToast, configToast } = useToastContext();
+  const { openToast } = useToastContext();
 
   const getTransactionType = (): string => {
     const name = details
@@ -51,11 +51,7 @@ const TransactionDetails = (props: TransactionDetailsProps): JSX.Element => {
             }}
             title={"Copiar hash de transacción"}
             onClick={() =>
-              copyToClipBoard(details ? details.transaction : "", {
-                showToast,
-                hideToast,
-                configToast,
-              })
+              copyToClipBoard(details ? details.transaction : "", openToast)
             }
           >
             <FaCopy style={{ color: "var(--white)", fontSize: 25 }} />
