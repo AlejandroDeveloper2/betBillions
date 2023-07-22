@@ -6,6 +6,7 @@ export {
   InputFile,
   SelectWithLabel,
   TextareaInput,
+  SearchInput,
 } from "./shared/customInput/CustomInput";
 export { default as CustomForm } from "./shared/customForm/CustomForm";
 export {

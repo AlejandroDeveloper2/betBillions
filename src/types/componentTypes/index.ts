@@ -14,6 +14,7 @@ import {
   LoadingConfig,
   SupportRequest,
 } from "..";
+import React from "react";
 
 type InputName =
   | "password"
@@ -279,7 +280,15 @@ type DropdownProps = {
     direction: "column" | "row";
     wrap: boolean;
   };
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element | JSX.Element[] | React.ReactNode;
+};
+
+type SearchInputProps = {
+  name: string;
+  value: string;
+  Icon: IconType;
+  placeholder: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export type {
@@ -318,6 +327,7 @@ export type {
   AnswerRequestModalProps,
   GameModeProps,
   DropdownProps,
+  SearchInputProps,
 };
 
 export { ToastTypes };

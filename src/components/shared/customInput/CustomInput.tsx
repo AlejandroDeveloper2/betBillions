@@ -1,4 +1,9 @@
-import { CustomFileInputProps, CustomInputProps, SelectProps } from "types";
+import {
+  CustomFileInputProps,
+  CustomInputProps,
+  SearchInputProps,
+  SelectProps,
+} from "types";
 import { usePasswordInput } from "@hooks/index";
 
 /*Styles */
@@ -100,6 +105,22 @@ const TextareaInput = (props: CustomInputProps): JSX.Element => {
   );
 };
 
+const SearchInput = (props: SearchInputProps): JSX.Element => {
+  const { name, value, Icon, placeholder, onChange } = props;
+  return (
+    <InputContainer>
+      <Icon color="var(--dark-gray)" style={{ fontSize: "1.3rem" }} />
+      <Input
+        type="text"
+        value={value}
+        placeholder={placeholder}
+        name={name}
+        onChange={onChange}
+      />
+    </InputContainer>
+  );
+};
+
 export {
   DefaultInput,
   InputWithLabel,
@@ -107,4 +128,5 @@ export {
   InputFile,
   SelectWithLabel,
   TextareaInput,
+  SearchInput,
 };

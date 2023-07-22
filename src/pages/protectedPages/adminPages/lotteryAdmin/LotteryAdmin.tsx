@@ -2,7 +2,7 @@ import { MdNotStarted } from "react-icons/md";
 
 import { useBingoContext, useLoading, useRealTimeFecher } from "@hooks/index";
 import { LotteryService } from "@services/lottery.service";
-import { formatDate } from "@utils/index";
+import { activeRoundButton, formatDate } from "@utils/index";
 
 import {
   AdCard,
@@ -10,6 +10,7 @@ import {
   Footer,
   GameMode,
   Loading,
+  LoadingButton,
 } from "@components/index";
 
 import {
@@ -54,36 +55,41 @@ const LotteryAdmin = (): JSX.Element => {
             </AdCard>
           </AdContainer>
           <RoundsContainer>
-            {availableLottery.rounds.map((round) => (
+            {availableLottery.rounds.map((round, i) => (
               <RoundCard key={round.id}>
                 <span>Ronda - {round.numberRound}</span>
+                <p>{round.userWinner ? round.userWinner : "No hay ganador"}</p>
                 <GameMode mode={round.typeGame} />
-
-                <DefaultButton
-                  style={{
-                    bg: "var(--light-gray)",
-                    fontColor: "var(--bg-secondary-color)",
-                  }}
-                  title="Activar ronda de bingo!"
-                  label="Empezar ronda"
-                  onClick={() => {
-                    activeBingoLottery(
-                      round.idLottery ? round.idLottery : 0,
-                      round.id,
-                      {
-                        activeLoading,
-                        inactiveLoading,
-                        setMessage,
-                      }
-                    );
-                  }}
-                >
-                  {isLoadingActive ? (
-                    <Loading
-                      message={loadingMessage}
-                      textColor="var(--bg-secondary-color)"
-                    />
-                  ) : (
+                {!activeRoundButton(i, availableLottery.rounds) &&
+                isLoadingActive ? (
+                  <LoadingButton
+                    message={loadingMessage}
+                    style={{
+                      bg: "var(--light-gray)",
+                      fontColor: "var(--bg-secondary-color)",
+                    }}
+                  />
+                ) : (
+                  <DefaultButton
+                    style={{
+                      bg: "var(--light-gray)",
+                      fontColor: "var(--bg-secondary-color)",
+                    }}
+                    title="Activar ronda de bingo!"
+                    label="Empezar ronda"
+                    onClick={() => {
+                      activeBingoLottery(
+                        round.idLottery ? round.idLottery : 0,
+                        round.id,
+                        {
+                          activeLoading,
+                          inactiveLoading,
+                          setMessage,
+                        }
+                      );
+                    }}
+                    disabled={activeRoundButton(i, availableLottery.rounds)}
+                  >
                     <MdNotStarted
                       style={{
                         color: "var(--bg-secondary-color)",
@@ -91,8 +97,8 @@ const LotteryAdmin = (): JSX.Element => {
                         marginRight: "10px",
                       }}
                     />
-                  )}
-                </DefaultButton>
+                  </DefaultButton>
+                )}
               </RoundCard>
             ))}
           </RoundsContainer>

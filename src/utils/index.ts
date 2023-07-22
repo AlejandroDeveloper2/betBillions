@@ -7,6 +7,7 @@ import {
   BingoBall,
   BingoBoard,
   FormType,
+  LotteryRound,
   MenuItemStyleProps,
   ToastConfig,
   ToastTypes,
@@ -169,6 +170,16 @@ const sortListPerDate = <T>(list: T, comparisonKey: string): T => {
   return filteredList as T;
 };
 
+const activeRoundButton = (index: number, rounds: LotteryRound[]): boolean => {
+  const condition = index > 0 && index < rounds.length;
+  const active = condition
+    ? rounds[index - 1].userWinner === null || !rounds[index - 1].completed
+      ? true
+      : false
+    : false;
+  return active;
+};
+
 export {
   ValuesForm,
   TokenAuth,
@@ -181,4 +192,5 @@ export {
   setFormValues,
   filterDiferenceList,
   sortListPerDate,
+  activeRoundButton,
 };

@@ -1,15 +1,18 @@
-import { useGame } from "@hooks/index";
+import { useGame, useSearch } from "@hooks/index";
 
-import { Dropdown, Loading } from "@components/index";
+import { Dropdown, Loading, SearchInput } from "@components/index";
 
 import {
   Ball,
   LastBallsContainer,
   NumberBallVariant,
 } from "./LastBallsList.style";
+import { FiSearch } from "react-icons/fi";
 
 const LastBallsList = (): JSX.Element => {
   const { showedBalls } = useGame();
+  const { searchedElement, filteredList, handleChange } =
+    useSearch(showedBalls);
 
   return (
     <LastBallsContainer>
@@ -29,7 +32,14 @@ const LastBallsList = (): JSX.Element => {
               wrap: true,
             }}
           >
-            {showedBalls.map((showedBall, index) => (
+            <SearchInput
+              name="searchShownBall"
+              value={searchedElement}
+              placeholder="Buscar balota por nombre"
+              onChange={handleChange}
+              Icon={FiSearch}
+            />
+            {filteredList.map((showedBall, index) => (
               <DropdownElement key={index} ball={showedBall} />
             ))}
           </Dropdown>

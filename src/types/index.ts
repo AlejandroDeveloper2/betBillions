@@ -34,6 +34,7 @@ export type {
   AnswerRequestModalProps,
   GameModeProps,
   DropdownProps,
+  SearchInputProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";

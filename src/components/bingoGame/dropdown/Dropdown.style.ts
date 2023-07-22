@@ -31,7 +31,7 @@ const DropdownItemsContainer = styled.div<DropdownStyledProps>`
   flex-wrap: ${(props: DropdownStyledProps) =>
     props.wrap === "true" ? "wrap" : "nowrap"};
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
   z-index: ${(props: DropdownStyledProps) =>
     props.visible === "true" ? "20" : "-20"};

@@ -5,8 +5,6 @@ import { setColorBingoBalls } from "@utils/index";
 import { useBingoContext } from ".";
 
 const useBingoBoard = (board: BingoBoard, showedBalls: string[]) => {
-  // const boardLS =
-  //   window.localStorage.getItem("playerBingoBoard") ?? JSON.stringify(board);
   const [bingoBoard, setBingoBoard] = useState<BingoBoard>(board);
   const { validateBingoBalls } = useBingoContext();
 
