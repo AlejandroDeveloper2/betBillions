@@ -5,8 +5,9 @@ interface ButtonStyleProps {
   padding?: string;
 }
 
-interface ToastStyleProps extends ButtonStyleProps {
-  istoastvisible: boolean | string;
+interface ToastStyleProps {
+  background: string;
+  color: string;
 }
 
 interface LoadingStyleProps {

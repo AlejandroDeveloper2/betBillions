@@ -37,7 +37,6 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
         openToast({
           message: "Ya seleccionaste este cartón!",
           type: ToastTypes.error,
-          isToastVisible: true,
         });
         return;
       }
@@ -55,13 +54,11 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
       openToast({
         message: "Carton agregado!",
         type: ToastTypes.success,
-        isToastVisible: true,
       });
     } else {
       openToast({
         message: "Solo puedes seleccionar maximo 7 cartones!",
         type: ToastTypes.warning,
-        isToastVisible: true,
       });
     }
   };
@@ -78,7 +75,6 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
     openToast({
       message: "Cartón removido!",
       type: ToastTypes.success,
-      isToastVisible: true,
     });
   };
 

@@ -36,7 +36,6 @@ const BingoProvider = ({ children }: ProviderProps) => {
         openToast({
           message: errorMessage,
           type: ToastTypes.error,
-          isToastVisible: true,
         });
       }
     }
@@ -60,7 +59,6 @@ const BingoProvider = ({ children }: ProviderProps) => {
         openToast({
           message: errorMessage,
           type: ToastTypes.error,
-          isToastVisible: true,
         });
       }
     }
@@ -77,14 +75,12 @@ const BingoProvider = ({ children }: ProviderProps) => {
           openToast({
             message: "Sorteo activado...",
             type: ToastTypes.success,
-            isToastVisible: true,
           });
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
           openToast({
             message: errorMessage,
             type: ToastTypes.error,
-            isToastVisible: true,
           });
         } finally {
           config.inactiveLoading();
@@ -108,14 +104,12 @@ const BingoProvider = ({ children }: ProviderProps) => {
           openToast({
             message: "Balota correcta",
             type: ToastTypes.success,
-            isToastVisible: true,
           });
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
           openToast({
             message: errorMessage,
             type: ToastTypes.error,
-            isToastVisible: true,
           });
         }
       }

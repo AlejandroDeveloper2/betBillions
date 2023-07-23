@@ -61,14 +61,12 @@ const AuthProvider = ({ children }: ProviderProps) => {
         openToast({
           message: "Inicio de sesión exitoso!",
           type: res.typeStatus,
-          isToastVisible: true,
         });
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
         openToast({
           message: errorMessage,
           type: ToastTypes.error,
-          isToastVisible: true,
         });
       } finally {
         config.inactiveLoading();
@@ -101,7 +99,6 @@ const AuthProvider = ({ children }: ProviderProps) => {
           {
             message: res.message,
             type: res.typeStatus,
-            isToastVisible: true,
           },
           4000
         );
@@ -111,7 +108,6 @@ const AuthProvider = ({ children }: ProviderProps) => {
         openToast({
           message: errorMessage,
           type: ToastTypes.error,
-          isToastVisible: true,
         });
       } finally {
         config.inactiveLoading();
@@ -133,7 +129,6 @@ const AuthProvider = ({ children }: ProviderProps) => {
         openToast({
           message: res.message,
           type: res.typeStatus,
-          isToastVisible: true,
         });
         reset();
       } catch (error: unknown) {
@@ -141,7 +136,6 @@ const AuthProvider = ({ children }: ProviderProps) => {
         openToast({
           message: errorMessage,
           type: ToastTypes.error,
-          isToastVisible: true,
         });
       } finally {
         config.inactiveLoading();
@@ -164,7 +158,6 @@ const AuthProvider = ({ children }: ProviderProps) => {
         openToast({
           message: res.message,
           type: res.typeStatus,
-          isToastVisible: true,
         });
         reset();
       } catch (error: unknown) {
@@ -172,7 +165,6 @@ const AuthProvider = ({ children }: ProviderProps) => {
         openToast({
           message: errorMessage,
           type: ToastTypes.error,
-          isToastVisible: true,
         });
       } finally {
         config.inactiveLoading();
@@ -191,14 +183,12 @@ const AuthProvider = ({ children }: ProviderProps) => {
         openToast({
           message: res.message,
           type: res.typeStatus,
-          isToastVisible: true,
         });
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
         openToast({
           message: errorMessage,
           type: ToastTypes.error,
-          isToastVisible: true,
         });
       } finally {
         config.inactiveLoading();
@@ -226,7 +216,6 @@ const AuthProvider = ({ children }: ProviderProps) => {
           openToast({
             message: "La sesión ha caducado por favor loguese de nuevo!",
             type: ToastTypes.warning,
-            isToastVisible: true,
           });
           logout(3000);
         }
@@ -239,7 +228,6 @@ const AuthProvider = ({ children }: ProviderProps) => {
       openToast({
         message: errorMessage,
         type: ToastTypes.error,
-        isToastVisible: true,
       });
     }
   }, [logout]);

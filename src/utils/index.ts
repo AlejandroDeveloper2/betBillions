@@ -110,7 +110,6 @@ const copyToClipBoard = (
   openToast({
     message: "Texto copiado con exito!",
     type: ToastTypes.success,
-    isToastVisible: true,
   });
 };
 

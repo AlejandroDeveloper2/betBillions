@@ -44,7 +44,6 @@ const SupportProvider = ({ children }: ProviderProps) => {
           openToast({
             message: res.message,
             type: res.typeStatus,
-            isToastVisible: true,
           });
           reset();
           setSupportImage("");
@@ -53,7 +52,6 @@ const SupportProvider = ({ children }: ProviderProps) => {
           openToast({
             message: errorMessage,
             type: ToastTypes.error,
-            isToastVisible: true,
           });
         } finally {
           config.inactiveLoading();
@@ -82,14 +80,12 @@ const SupportProvider = ({ children }: ProviderProps) => {
         openToast({
           message: "Imagen subida correctamente!",
           type: ToastTypes.success,
-          isToastVisible: true,
         });
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
         openToast({
           message: errorMessage,
           type: ToastTypes.error,
-          isToastVisible: true,
         });
       } finally {
         config.inactiveLoading();
@@ -116,7 +112,6 @@ const SupportProvider = ({ children }: ProviderProps) => {
           openToast({
             message: res.message,
             type: res.typeStatus,
-            isToastVisible: true,
           });
           reset();
         } catch (error: unknown) {
@@ -124,7 +119,6 @@ const SupportProvider = ({ children }: ProviderProps) => {
           openToast({
             message: errorMessage,
             type: ToastTypes.error,
-            isToastVisible: true,
           });
         } finally {
           config.inactiveLoading();

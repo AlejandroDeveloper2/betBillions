@@ -126,13 +126,11 @@ type ToastProps = {
   id: string;
   message: string | null;
   type: ToastTypes;
-  isToastVisible: boolean;
 };
 
 type ToastsConfig = {
   message: string | null;
   type: ToastTypes;
-  isToastVisible: boolean;
 };
 
 type LoadingProps = {

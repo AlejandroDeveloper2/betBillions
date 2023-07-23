@@ -46,14 +46,12 @@ const LotteryProvider = ({ children }: ProviderProps) => {
           openToast({
             message: "Sorteos cargados correctamente!",
             type: ToastTypes.success,
-            isToastVisible: true,
           });
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
           openToast({
             message: errorMessage,
             type: ToastTypes.error,
-            isToastVisible: true,
           });
         } finally {
           config.inactiveLoading();
@@ -75,14 +73,12 @@ const LotteryProvider = ({ children }: ProviderProps) => {
           openToast({
             message: "Información cargada correctamente!",
             type: ToastTypes.success,
-            isToastVisible: true,
           });
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
           openToast({
             message: errorMessage,
             type: ToastTypes.error,
-            isToastVisible: true,
           });
         } finally {
           config.inactiveLoading();
@@ -120,7 +116,6 @@ const LotteryProvider = ({ children }: ProviderProps) => {
             openToast({
               message: "No has seleccionado ningún cartón!",
               type: ToastTypes.warning,
-              isToastVisible: true,
             });
             return;
           }
@@ -130,7 +125,6 @@ const LotteryProvider = ({ children }: ProviderProps) => {
                 7 - purchaseData.length
               } cartones mas para aplicar a la promoción!`,
               type: ToastTypes.warning,
-              isToastVisible: true,
             });
             return;
           }
@@ -142,7 +136,6 @@ const LotteryProvider = ({ children }: ProviderProps) => {
           openToast({
             message: res.message,
             type: res.typeStatus,
-            isToastVisible: true,
           });
           clearShoppingCart();
           navigate(`/userPanel/lottery/details/${idLottery}`);
@@ -151,7 +144,6 @@ const LotteryProvider = ({ children }: ProviderProps) => {
           openToast({
             message: errorMessage,
             type: ToastTypes.error,
-            isToastVisible: true,
           });
         } finally {
           config.inactiveLoading();
@@ -179,7 +171,6 @@ const LotteryProvider = ({ children }: ProviderProps) => {
           openToast({
             message: errorMessage,
             type: ToastTypes.error,
-            isToastVisible: true,
           });
         } finally {
           inactiveLoading();

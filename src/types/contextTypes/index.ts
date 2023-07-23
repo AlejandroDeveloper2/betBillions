@@ -23,6 +23,7 @@ import {
   WalletDepositFormValues,
   WalletWithdrawFormValues,
 } from "..";
+import { IconType } from "react-icons";
 
 interface ProviderProps {
   children: JSX.Element | JSX.Element[];
@@ -138,6 +139,7 @@ interface ToastContextType {
   openToast: (config: ToastsConfig, timeout?: number) => void;
   closeToast: (id: string) => void;
   getToastColor: (type: ToastTypes) => string;
+  getToastIcon: (type: ToastTypes) => IconType;
 }
 
 interface LocationContextType {

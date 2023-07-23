@@ -1,4 +1,9 @@
 import { useState, createContext, useMemo } from "react";
+import { IconType } from "react-icons";
+
+import { BiSolidErrorAlt } from "react-icons/bi";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { IoIosWarning } from "react-icons/io";
 
 import {
   ProviderProps,
@@ -9,6 +14,7 @@ import {
 } from "types";
 
 import { Toast } from "@components/index";
+
 import { ToastsContainer } from "@styles/GlobalStyles.style";
 
 const ToastContext = createContext<ToastContextType>({} as ToastContextType);
@@ -28,7 +34,9 @@ const ToastProvider = ({ children }: ProviderProps) => {
       ];
       return newState;
     });
-    window.setTimeout(() => closeToast(id), timeout);
+    window.setTimeout(() => {
+      setToasts((prevState) => prevState.slice(1));
+    }, timeout);
   };
 
   const closeToast = (id: string): void => {
@@ -48,14 +56,25 @@ const ToastProvider = ({ children }: ProviderProps) => {
     return style;
   };
 
+  const getToastIcon = (type: ToastTypes): IconType => {
+    const Icon =
+      type === "Error"
+        ? BiSolidErrorAlt
+        : type === "Success"
+        ? AiFillCheckCircle
+        : IoIosWarning;
+    return Icon;
+  };
+
   const value = useMemo(
     () => ({
       toasts,
       openToast,
       closeToast,
       getToastColor,
+      getToastIcon,
     }),
-    [toasts, openToast, closeToast, getToastColor]
+    [toasts, openToast, closeToast, getToastColor, getToastIcon]
   );
 
   return (
