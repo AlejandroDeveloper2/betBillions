@@ -16,7 +16,6 @@ const ToastContainer = styled.div<ToastStyleProps>`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  z-index: 60;
   animation: toast-in-right 0.7s;
   animation-fill-mode: forwards;
 

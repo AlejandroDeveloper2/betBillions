@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 
 import getAxiosClient from "@config/axiosClient";
-import { BingoBoard, BingoRound, ServerResponse } from "types";
+import { BingoBall, BingoBoard, BingoRound, ServerResponse } from "types";
 
 class BingoService {
   public async startGame(
@@ -86,7 +86,36 @@ class BingoService {
     roundId: number,
     ball: string,
     token: string
-  ): Promise<void> {
+  ): Promise<BingoBall> {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    let response: BingoBall | null = null;
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      const { data } = await axiosClient.patch<BingoBall>(
+        `cardBingo/lottery/${idLottery}/round/${roundId}/ball/${ball}`,
+        {},
+        config
+      );
+      response = data;
+      return response;
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+  }
+
+  public async setBingoWinner(
+    idLottery: number,
+    roundId: number,
+    token: string
+  ): Promise<ServerResponse> {
+    let response: ServerResponse | null = null;
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -95,16 +124,18 @@ class BingoService {
     };
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
-      await axiosClient.patch<void>(
-        `cardBingo/lottery/${idLottery}/round/${roundId}/ball/${ball}`,
+      const { data } = await axiosClient.patch<ServerResponse>(
+        `/cardBingo/winner/lottery/${idLottery}/round/${roundId}`,
         {},
         config
       );
+      response = data;
     } catch (_e: unknown) {
       const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
         .message;
       throw new Error(errorMessage);
     }
+    return response;
   }
 }
 

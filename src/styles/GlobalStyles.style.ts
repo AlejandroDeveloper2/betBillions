@@ -186,6 +186,7 @@ const ToastsContainer = styled.div`
   gap: 1rem;
   align-items: center;
   justify-content: center;
+  z-index: 60;
 `;
 
 export {

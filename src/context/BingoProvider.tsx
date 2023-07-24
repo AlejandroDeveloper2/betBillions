@@ -7,6 +7,7 @@ import {
   ProviderProps,
   ToastTypes,
   LoadingConfig,
+  BingoBall,
 } from "types";
 import { TokenAuth } from "@utils/index";
 import { useToastContext } from "@hooks/index";
@@ -91,16 +92,26 @@ const BingoProvider = ({ children }: ProviderProps) => {
   );
 
   const validateBingoBalls = useCallback(
-    async (idLottery: number, roundId: number, ball: string) => {
+    async (
+      idLottery: number,
+      roundId: number,
+      ball: string
+    ): Promise<BingoBall> => {
       const token = tokenAuth.getToken();
+      let updatedBall: BingoBall = {
+        numbers: ball,
+        state: false,
+        color: "var(--white)",
+      };
       if (token) {
         try {
-          await bingoService.validateBingoBalls(
+          const res = await bingoService.validateBingoBalls(
             idLottery,
             roundId,
             ball,
             token
           );
+          updatedBall = { ...res, color: "var(--green)" };
           openToast({
             message: "Balota correcta",
             type: ToastTypes.success,
@@ -111,6 +122,42 @@ const BingoProvider = ({ children }: ProviderProps) => {
             message: errorMessage,
             type: ToastTypes.error,
           });
+        }
+        return updatedBall;
+      }
+      return updatedBall;
+    },
+    []
+  );
+
+  const setBingoWinner = useCallback(
+    async (
+      idLottery: number,
+      roundId: number,
+      config: LoadingConfig
+    ): Promise<void> => {
+      const token = tokenAuth.getToken();
+      if (token) {
+        try {
+          config.setMessage("Validando carton....");
+          config.activeLoading();
+          const res = await bingoService.setBingoWinner(
+            idLottery,
+            roundId,
+            token
+          );
+          openToast({
+            message: res.message,
+            type: res.typeStatus,
+          });
+        } catch (error: unknown) {
+          const errorMessage = (error as Error).message;
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+          });
+        } finally {
+          config.inactiveLoading();
         }
       }
     },
@@ -125,6 +172,7 @@ const BingoProvider = ({ children }: ProviderProps) => {
       getPlayerBoard,
       activeBingoLottery,
       validateBingoBalls,
+      setBingoWinner,
     }),
     [
       bingoRound,
@@ -133,6 +181,7 @@ const BingoProvider = ({ children }: ProviderProps) => {
       getPlayerBoard,
       activeBingoLottery,
       validateBingoBalls,
+      setBingoWinner,
     ]
   );
 

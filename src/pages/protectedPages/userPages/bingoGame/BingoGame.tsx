@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { BsFillGiftFill } from "react-icons/bs";
 
-import { useBingoContext, useGame } from "@hooks/index";
+import { useBingoContext, useGame, useLoading } from "@hooks/index";
 
 import {
   DefaultButton,
@@ -9,6 +9,7 @@ import {
   Footer,
   GameHead,
   Loading,
+  LoadingButton,
 } from "@components/index";
 
 import {
@@ -21,8 +22,15 @@ import {
 
 const BingoGame = (): JSX.Element => {
   const lotteryId = window.parseInt(location.pathname.split("/")[4]);
-  const { playerBoard, getPlayerBoard } = useBingoContext();
-  const { bingoRound } = useGame();
+  const { playerBoard, getPlayerBoard, setBingoWinner } = useBingoContext();
+  const { bingoRound, getIsUserWinner } = useGame();
+  const {
+    inactiveLoading,
+    activeLoading,
+    setMessage,
+    loadingMessage,
+    isLoading,
+  } = useLoading();
 
   useEffect(() => {
     if (bingoRound) {
@@ -39,16 +47,39 @@ const BingoGame = (): JSX.Element => {
         <span>$ {bingoRound?.award} USD</span>
       </AwardContainer>
       <BingoGameBody>
-        <DefaultButton
-          style={{
-            bg: "var(--bg-secondary-color)",
-            fontColor: "var(--white)",
-            width: "15rem",
-          }}
-          title={"Bingo!"}
-        >
-          <BingoButtonText>¡Bingo!</BingoButtonText>
-        </DefaultButton>
+        {isLoading ? (
+          <LoadingButton
+            message={loadingMessage}
+            style={{
+              bg: "var(--bg-secondary-color)",
+              fontColor: "var(--white)",
+              width: "15rem",
+            }}
+          />
+        ) : (
+          <DefaultButton
+            style={{
+              bg: "var(--bg-secondary-color)",
+              fontColor: "var(--white)",
+              width: "15rem",
+            }}
+            title={"Bingo!"}
+            onClick={() =>
+              setBingoWinner(
+                lotteryId,
+                bingoRound ? bingoRound.numberRound : 1,
+                {
+                  inactiveLoading,
+                  activeLoading,
+                  setMessage,
+                }
+              )
+            }
+            disabled={getIsUserWinner(playerBoard)}
+          >
+            <BingoButtonText>¡Bingo!</BingoButtonText>
+          </DefaultButton>
+        )}
         <BoardContainer>
           {playerBoard ? (
             <DynamicBingoBoard board={playerBoard} index={1} />
