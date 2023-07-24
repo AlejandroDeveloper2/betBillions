@@ -88,10 +88,18 @@ const AwardContainer = styled.div`
   }
 `;
 
+const ModalMessage = styled.p`
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+  font-weight: 600;
+  text-align: center;
+`;
+
 export {
   BingoGameContainer,
   BingoGameBody,
   BingoButtonText,
   BoardContainer,
   AwardContainer,
+  ModalMessage,
 };

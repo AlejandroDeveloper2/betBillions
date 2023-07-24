@@ -1,5 +1,6 @@
 import { BingoBoardProps } from "types";
-import { useGame, useBingoBoard } from "@hooks/index";
+import { useGame, useBingoContext } from "@hooks/index";
+import { setColorBingoBalls } from "@utils/index";
 
 import {
   BoardBody,
@@ -12,7 +13,8 @@ import {
 const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
   const { board } = props;
   const { showedBalls } = useGame();
-  const { bingoStyledBalls, toggleBall } = useBingoBoard(board, showedBalls);
+  const { validateBingoBalls } = useBingoContext();
+  const bingoStyledBalls = setColorBingoBalls(board);
 
   return (
     <BoardContainer>
@@ -31,7 +33,12 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               key={index}
               color={ball.color}
               onClick={() => {
-                toggleBall(ball.numbers);
+                validateBingoBalls(
+                  board.lotteryId,
+                  board.round,
+                  ball.numbers,
+                  showedBalls
+                );
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
@@ -46,7 +53,12 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               key={index}
               color={ball.color}
               onClick={() => {
-                toggleBall(ball.numbers);
+                validateBingoBalls(
+                  board.lotteryId,
+                  board.round,
+                  ball.numbers,
+                  showedBalls
+                );
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
@@ -61,7 +73,12 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               key={index}
               color={ball.color}
               onClick={() => {
-                toggleBall(ball.numbers);
+                validateBingoBalls(
+                  board.lotteryId,
+                  board.round,
+                  ball.numbers,
+                  showedBalls
+                );
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
@@ -76,7 +93,12 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               key={index}
               color={ball.color}
               onClick={() => {
-                toggleBall(ball.numbers);
+                validateBingoBalls(
+                  board.lotteryId,
+                  board.round,
+                  ball.numbers,
+                  showedBalls
+                );
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
@@ -91,7 +113,12 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               key={index}
               color={ball.color}
               onClick={() => {
-                toggleBall(ball.numbers);
+                validateBingoBalls(
+                  board.lotteryId,
+                  board.round,
+                  ball.numbers,
+                  showedBalls
+                );
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >

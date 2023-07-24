@@ -1,7 +1,6 @@
 import { UseFormReset } from "react-hook-form";
 import {
   AuthStatus,
-  BingoBall,
   BingoBoard,
   BingoRound,
   City,
@@ -181,8 +180,9 @@ interface BingoContextType {
   validateBingoBalls: (
     idLottery: number,
     roundId: number,
-    ball: string
-  ) => Promise<BingoBall>;
+    ball: string,
+    shownBall: string[]
+  ) => Promise<void>;
   setBingoWinner: (
     idLottery: number,
     roundId: number,

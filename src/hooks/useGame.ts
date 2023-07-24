@@ -4,6 +4,7 @@ import useSWR from "swr";
 import { BingoService } from "@services/bingo.service";
 import { TokenAuth } from "@utils/index";
 import { BingoBoard } from "types";
+import { useBingoContext } from ".";
 
 const bingoService = new BingoService();
 const tokenAuth = new TokenAuth();
@@ -15,6 +16,7 @@ const useGame = () => {
   const [gameMode, setGameMode] = useState<string | null>(null);
   const [currentBall, setCurrentBall] = useState<string>("?");
   const [showedBalls, setShowedBalls] = useState<string[]>([]);
+  const { getPlayerBoard } = useBingoContext();
 
   const { data: bingoRound } = useSWR(
     "/lottery/start/round",
@@ -23,8 +25,16 @@ const useGame = () => {
         return bingoService.startGame(lotteryId, token);
       }
     },
-    { refreshInterval: 10000 }
+    {
+      refreshInterval: 10000,
+    }
   );
+
+  useEffect(() => {
+    if (bingoRound) {
+      getPlayerBoard(lotteryId, bingoRound.numberRound);
+    }
+  }, [bingoRound]);
 
   useEffect(() => {
     if (bingoRound) {
@@ -35,7 +45,9 @@ const useGame = () => {
     }
   }, [bingoRound]);
 
-  const getIsUserWinner = (playerBoard: BingoBoard | null): boolean => {
+  const getIsUserWinner = (
+    playerBoard: BingoBoard | null | undefined
+  ): boolean => {
     let activeBalls: number = 0;
     playerBoard?.card.forEach((ball) => {
       if (ball.state) activeBalls++;

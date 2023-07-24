@@ -12,6 +12,7 @@ import {
   MyWallet,
   MyWalletDeposit,
   MyWalletWithdraw,
+  Notifications,
   Page404,
   PurchaseBingoBoard,
   PurchaseBingoDetails,
@@ -73,6 +74,7 @@ const UserRoutes = (): JSX.Element => {
           path="/userPanel/lottery/bingoGame/:lotteryId"
           element={<BingoGame />}
         />
+        <Route path="/userPanel/notifications" element={<Notifications />} />
         <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>

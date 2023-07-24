@@ -7,6 +7,7 @@ const useGameMode = (typeGame: string | null) => {
   );
 
   const drawGameMode = (): void => {
+    setExampleBoard([...exampleBoard]);
     if (typeGame === "X") {
       drawXGameMode();
     } else if (typeGame === "L") {

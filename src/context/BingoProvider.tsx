@@ -95,8 +95,9 @@ const BingoProvider = ({ children }: ProviderProps) => {
     async (
       idLottery: number,
       roundId: number,
-      ball: string
-    ): Promise<BingoBall> => {
+      ball: string,
+      shownBalls: string[]
+    ): Promise<void> => {
       const token = tokenAuth.getToken();
       let updatedBall: BingoBall = {
         numbers: ball,
@@ -112,10 +113,7 @@ const BingoProvider = ({ children }: ProviderProps) => {
             token
           );
           updatedBall = { ...res, color: "var(--green)" };
-          openToast({
-            message: "Balota correcta",
-            type: ToastTypes.success,
-          });
+          updatePlayerBoard(ball, shownBalls, updatedBall);
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
           openToast({
@@ -123,12 +121,36 @@ const BingoProvider = ({ children }: ProviderProps) => {
             type: ToastTypes.error,
           });
         }
-        return updatedBall;
       }
-      return updatedBall;
     },
-    []
+    [playerBoard]
   );
+
+  const updatePlayerBoard = (
+    ball: string,
+    shownBalls: string[],
+    updatedBall: BingoBall
+  ): void => {
+    if (playerBoard) {
+      const newCard = { ...playerBoard }.card.map((bingoBall) => {
+        if (
+          ball === bingoBall.numbers &&
+          shownBalls.includes(bingoBall.numbers)
+        ) {
+          if (!bingoBall.state) {
+            openToast({
+              message: "Balota correcta",
+              type: ToastTypes.success,
+            });
+            return updatedBall;
+          }
+          return bingoBall;
+        }
+        return bingoBall;
+      });
+      setPlayerBoard({ ...playerBoard, card: newCard });
+    }
+  };
 
   const setBingoWinner = useCallback(
     async (

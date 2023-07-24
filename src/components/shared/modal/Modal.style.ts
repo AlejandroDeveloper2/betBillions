@@ -71,7 +71,7 @@ const ModalBodyContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
-  padding-top: 0;
+  padding-top: 1rem;
   padding-bottom: 2rem;
   padding-left: 2rem;
   padding-right: 2rem;

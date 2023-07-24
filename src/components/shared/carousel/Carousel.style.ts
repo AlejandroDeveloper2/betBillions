@@ -27,8 +27,8 @@ const responsiveConfig = [
   {
     breakpoint: 1400,
     settings: {
-      slidesToShow: 3,
-      slidesToScroll: 3,
+      slidesToShow: 2,
+      slidesToScroll: 2,
       infinite: false,
       dots: true,
     },
@@ -45,9 +45,8 @@ const responsiveConfig = [
   {
     breakpoint: 768,
     settings: {
-      slidesToShow: 2,
-      slidesToScroll: 2,
-      initialSlide: 2,
+      slidesToShow: 1,
+      slidesToScroll: 1,
     },
   },
   {
@@ -55,7 +54,6 @@ const responsiveConfig = [
     settings: {
       slidesToShow: 2,
       slidesToScroll: 2,
-      initialSlide: 2,
     },
   },
   {

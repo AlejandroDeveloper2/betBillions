@@ -54,7 +54,7 @@ const getMenuItems = (
         label: "Notificaciones",
         icon: IoMdNotifications,
         title: "Notificaciones del sistema",
-        to: "#",
+        to: "/userPanel/notifications",
       },
       {
         label: "Soporte",
