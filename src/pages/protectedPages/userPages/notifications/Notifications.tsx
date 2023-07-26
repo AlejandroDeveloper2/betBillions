@@ -1,6 +1,10 @@
 import { Footer, Image, SidebarDefault } from "@components/index";
 
-import { NotificationsContainer, PageTitle } from "./Notifications.style";
+import {
+  EmptyNotifications,
+  NotificationsContainer,
+  PageTitle,
+} from "./Notifications.style";
 import { Content } from "@styles/GlobalStyles.style";
 
 import { NoNotifications, Notification3DICon } from "@assets/index";
@@ -22,15 +26,18 @@ const Notifications = (): JSX.Element => {
             }}
           />
         </PageTitle>
-        <Image
-          source={NoNotifications}
-          alt={"Sin notificaciones"}
-          size={{
-            lg: 40,
-            md: 40,
-            sm: 40,
-          }}
-        />
+        <EmptyNotifications>
+          <Image
+            source={NoNotifications}
+            alt={"Sin notificaciones"}
+            size={{
+              lg: 40,
+              md: 40,
+              sm: 40,
+            }}
+          />
+          <p>¡No tienes notificaciones aún! </p>
+        </EmptyNotifications>
         <Footer />
       </Content>
     </NotificationsContainer>

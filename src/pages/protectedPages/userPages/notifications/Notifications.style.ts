@@ -45,4 +45,18 @@ const PageTitle = styled.div`
   }
 `;
 
-export { NotificationsContainer, PageTitle };
+const EmptyNotifications = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--bg-secondary-color);
+  }
+`;
+
+export { NotificationsContainer, PageTitle, EmptyNotifications };
