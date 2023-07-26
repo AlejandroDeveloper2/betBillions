@@ -44,6 +44,11 @@ const BoardBody = styled.div`
   border: 2px solid var(--bg-secondary-color);
 `;
 
+const BoardBodyVariant = styled(BoardBody)`
+  background-color: rgba(255, 255, 255, 0.6);
+  grid-gap: 0.2rem;
+`;
+
 const BoardColumn = styled.div`
   width: 100%;
   display: grid;
@@ -121,4 +126,5 @@ export {
   Ball,
   NumberIndicator,
   DynamicBall,
+  BoardBodyVariant,
 };

@@ -3,11 +3,11 @@ import { useGame, useBingoContext } from "@hooks/index";
 import { setColorBingoBalls } from "@utils/index";
 
 import {
-  BoardBody,
   BoardColumn,
   BoardContainer,
   BoardHead,
   DynamicBall,
+  BoardBodyVariant,
 } from "./BingoBard.style";
 
 const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
@@ -25,7 +25,7 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
         <span>G</span>
         <span>O</span>
       </BoardHead>
-      <BoardBody>
+      <BoardBodyVariant>
         {/*B */}
         <BoardColumn>
           {bingoStyledBalls.slice(0, 5).map((ball, index) => (
@@ -126,7 +126,7 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
             </DynamicBall>
           ))}
         </BoardColumn>
-      </BoardBody>
+      </BoardBodyVariant>
     </BoardContainer>
   );
 };

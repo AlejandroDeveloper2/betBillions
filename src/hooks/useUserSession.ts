@@ -17,6 +17,7 @@ const useUserSession = (sessionTimer: number): void => {
         validateUserAuth();
       }
     }, sessionTimer);
+
     return () => {
       window.clearInterval(interval);
     };

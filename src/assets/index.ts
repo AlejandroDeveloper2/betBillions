@@ -21,3 +21,6 @@ export { default as Gift3dIcon } from "./icons/gift3d-icon.png";
 export { default as TrophyIcon } from "./icons/trophy-icon.png";
 export { default as Team3dIcon } from "./icons/team-3d-icon.png";
 export { default as BingoBallsFigure } from "./icons/bingo-balls-figure.png";
+
+/*Gifts */
+export { default as PartyGift } from "./gifts/party.gif";

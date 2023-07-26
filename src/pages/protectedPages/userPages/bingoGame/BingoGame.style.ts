@@ -93,6 +93,12 @@ const ModalMessage = styled.p`
   color: var(--dark-gray);
   font-weight: 600;
   text-align: center;
+  span {
+    text-transform: uppercase;
+    color: var(--green);
+    font-weight: 900;
+    font-size: 1.5rem;
+  }
 `;
 
 export {

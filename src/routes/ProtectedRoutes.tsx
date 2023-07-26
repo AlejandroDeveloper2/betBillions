@@ -1,9 +1,10 @@
+import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { useAuthContext } from "@hooks/index";
 
-import UserRoutes from "./UserRoutes";
-import AdminRoutes from "./AdminRoutes";
+const UserRoutes = lazy(() => import("./UserRoutes"));
+const AdminRoutes = lazy(() => import("./AdminRoutes"));
 
 const ProtectedRoutes = (): JSX.Element => {
   const { userAuth } = useAuthContext();

@@ -19,6 +19,10 @@ const ModalContainer = styled.div<ModalStyledProps>`
   transition: all 0.5s ease;
 `;
 
+const ModalContainerVariant = styled(ModalContainer)`
+  background-color: rgba(0, 0, 0, 0.8);
+`;
+
 const ModalWindow = styled.div`
   width: 100%;
   background-color: var(--white);
@@ -77,4 +81,10 @@ const ModalBodyContainer = styled.div`
   padding-right: 2rem;
 `;
 
-export { ModalContainer, ModalWindow, ModalHeader, ModalBodyContainer };
+export {
+  ModalContainer,
+  ModalWindow,
+  ModalHeader,
+  ModalBodyContainer,
+  ModalContainerVariant,
+};

@@ -1,6 +1,8 @@
 import { BsFillGiftFill } from "react-icons/bs";
+import { VscDebugContinue } from "react-icons/vsc";
 
 import { useBingoContext, useGame, useLoading, useModal } from "@hooks/index";
+import { BingoRound } from "types";
 
 import {
   DefaultButton,
@@ -11,6 +13,7 @@ import {
   Loading,
   LoadingButton,
   Modal,
+  ModalVariant,
 } from "@components/index";
 
 import {
@@ -21,7 +24,7 @@ import {
   BoardContainer,
   ModalMessage,
 } from "./BingoGame.style";
-import { BingoFigure } from "@assets/index";
+import { BingoFigure, PartyGift } from "@assets/index";
 
 const BingoGame = (): JSX.Element => {
   const lotteryId = window.parseInt(location.pathname.split("/")[4]);
@@ -34,12 +37,42 @@ const BingoGame = (): JSX.Element => {
     loadingMessage,
     isLoading,
   } = useLoading();
-  const {} = useModal();
+  const { isModalVisible, showModal, hideModal, data } = useModal<BingoRound>();
   const isGameStopped = showedBalls.length === 0 ? true : false;
 
   return (
     <>
-      <Modal isModalVisible={isGameStopped}>
+      <ModalVariant isModalVisible={isModalVisible}>
+        <Modal.Body>
+          <Image
+            source={PartyGift}
+            alt={"Bet billions ganador"}
+            size={{
+              lg: 40,
+              md: 40,
+              sm: 60,
+            }}
+          />
+          <ModalMessage>
+            ¡Felicitaciones <span>{data?.userWinner}</span> has sido el primero
+            en decir BINGO!
+          </ModalMessage>
+          <DefaultButton
+            style={{
+              bg: "var(--bg-secondary-color)",
+              fontColor: "var(--white)",
+            }}
+            title={"Continuar siguiente ronda"}
+            label="Continuar"
+            onClick={hideModal}
+          >
+            <VscDebugContinue
+              style={{ color: "var(--white)", fontSize: 30, marginRight: 10 }}
+            />
+          </DefaultButton>
+        </Modal.Body>
+      </ModalVariant>
+      <ModalVariant isModalVisible={isGameStopped}>
         <Modal.Body>
           <Image
             source={BingoFigure}
@@ -54,7 +87,7 @@ const BingoGame = (): JSX.Element => {
             La ronda aun no se ha iniciado espera un momento!
           </ModalMessage>
         </Modal.Body>
-      </Modal>
+      </ModalVariant>
       <BingoGameContainer>
         <GameHead />
         <AwardContainer>
@@ -80,7 +113,7 @@ const BingoGame = (): JSX.Element => {
                 width: "15rem",
               }}
               title={"Bingo!"}
-              onClick={() =>
+              onClick={() => {
                 setBingoWinner(
                   lotteryId,
                   bingoRound ? bingoRound.numberRound : 1,
@@ -89,9 +122,10 @@ const BingoGame = (): JSX.Element => {
                     activeLoading,
                     setMessage,
                   }
-                )
-              }
-              disabled={getIsUserWinner(playerBoard)}
+                );
+                showModal(bingoRound);
+              }}
+              disabled={getIsUserWinner()}
             >
               <BingoButtonText>¡Bingo!</BingoButtonText>
             </DefaultButton>

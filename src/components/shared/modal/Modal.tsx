@@ -5,6 +5,7 @@ import { ModalBodyProps, ModalHeaderProps, ModalProps } from "types";
 import {
   ModalBodyContainer,
   ModalContainer,
+  ModalContainerVariant,
   ModalHeader,
   ModalWindow,
 } from "./Modal.style";
@@ -34,7 +35,17 @@ const ModalBody = (props: ModalBodyProps) => {
   return <ModalBodyContainer>{children}</ModalBodyContainer>;
 };
 
+const ModalVariant = (props: ModalProps): JSX.Element => {
+  const { isModalVisible, children } = props;
+
+  return (
+    <ModalContainerVariant ismodalvisible={isModalVisible.toString()}>
+      <ModalWindow>{children}</ModalWindow>
+    </ModalContainerVariant>
+  );
+};
+
 Modal.Head = ModalHead;
 Modal.Body = ModalBody;
 
-export default Modal;
+export { Modal, ModalVariant };
