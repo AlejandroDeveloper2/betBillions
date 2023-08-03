@@ -22,6 +22,7 @@ import {
   Transactions,
   UserPanel,
   UserProfile,
+  Withdraws,
 } from "@pages/index";
 
 const UserRoutes = (): JSX.Element => {
@@ -75,6 +76,7 @@ const UserRoutes = (): JSX.Element => {
           element={<BingoGame />}
         />
         <Route path="/userPanel/notifications" element={<Notifications />} />
+        <Route path="/userPanel/myWallet/withdraws" element={<Withdraws />} />
         <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>

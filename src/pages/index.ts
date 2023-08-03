@@ -22,6 +22,7 @@ export { default as SupportHistory } from "./protectedPages/userPages/supportPag
 export { default as SupportRequest } from "./protectedPages/userPages/supportPage/SupportRequest";
 export { default as BingoGame } from "./protectedPages/userPages/bingoGame/BingoGame";
 export { default as Notifications } from "./protectedPages/userPages/notifications/Notifications";
+export { default as Withdraws } from "./protectedPages/userPages/withdraws/Withdraws";
 
 /* Protected admin pages*/
 export { default as TransactionsAdmin } from "./protectedPages/adminPages/transactionsAdmin/TransactionsAdmin";

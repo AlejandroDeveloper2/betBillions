@@ -96,7 +96,8 @@ const BingoProvider = ({ children }: ProviderProps) => {
       idLottery: number,
       roundId: number,
       ball: string,
-      shownBalls: string[]
+      shownBalls: string[],
+      config: LoadingConfig
     ): Promise<void> => {
       const token = tokenAuth.getToken();
       let updatedBall: BingoBall = {
@@ -106,6 +107,8 @@ const BingoProvider = ({ children }: ProviderProps) => {
       };
       if (token) {
         try {
+          config.setMessage("");
+          config.activeLoading();
           const res = await bingoService.validateBingoBalls(
             idLottery,
             roundId,
@@ -120,6 +123,8 @@ const BingoProvider = ({ children }: ProviderProps) => {
             message: errorMessage,
             type: ToastTypes.error,
           });
+        } finally {
+          config.inactiveLoading();
         }
       }
     },

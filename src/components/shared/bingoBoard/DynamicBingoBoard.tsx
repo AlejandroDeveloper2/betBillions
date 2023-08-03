@@ -1,5 +1,5 @@
 import { BingoBoardProps } from "types";
-import { useGame, useBingoContext } from "@hooks/index";
+import { useGame, useBingoContext, useLoading } from "@hooks/index";
 import { setColorBingoBalls } from "@utils/index";
 
 import {
@@ -9,11 +9,14 @@ import {
   DynamicBall,
   BoardBodyVariant,
 } from "./BingoBard.style";
+import { Loading } from "../loading/Loading";
 
 const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
   const { board } = props;
   const { showedBalls } = useGame();
   const { validateBingoBalls } = useBingoContext();
+  const { isLoading, setMessage, activeLoading, inactiveLoading } =
+    useLoading();
   const bingoStyledBalls = setColorBingoBalls(board);
 
   return (
@@ -37,12 +40,17 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
                   board.lotteryId,
                   board.round,
                   ball.numbers,
-                  showedBalls
+                  showedBalls,
+                  { setMessage, activeLoading, inactiveLoading }
                 );
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
-              <span>{ball.numbers.substring(1, 3)}</span>
+              {isLoading ? (
+                <Loading message={null} textColor="var(--bg-secondary-color)" />
+              ) : (
+                <span>{ball.numbers.substring(1, 3)}</span>
+              )}
             </DynamicBall>
           ))}
         </BoardColumn>
@@ -57,12 +65,17 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
                   board.lotteryId,
                   board.round,
                   ball.numbers,
-                  showedBalls
+                  showedBalls,
+                  { setMessage, activeLoading, inactiveLoading }
                 );
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
-              <span>{ball.numbers.substring(1, 3)}</span>
+              {isLoading ? (
+                <Loading message={null} textColor="var(--bg-secondary-color)" />
+              ) : (
+                <span>{ball.numbers.substring(1, 3)}</span>
+              )}
             </DynamicBall>
           ))}
         </BoardColumn>
@@ -77,12 +90,17 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
                   board.lotteryId,
                   board.round,
                   ball.numbers,
-                  showedBalls
+                  showedBalls,
+                  { setMessage, activeLoading, inactiveLoading }
                 );
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
-              <span>{ball.numbers.substring(1, 3)}</span>
+              {isLoading ? (
+                <Loading message={null} textColor="var(--bg-secondary-color)" />
+              ) : (
+                <span>{ball.numbers.substring(1, 3)}</span>
+              )}
             </DynamicBall>
           ))}
         </BoardColumn>
@@ -97,12 +115,17 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
                   board.lotteryId,
                   board.round,
                   ball.numbers,
-                  showedBalls
+                  showedBalls,
+                  { setMessage, activeLoading, inactiveLoading }
                 );
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
-              <span>{ball.numbers.substring(1, 3)}</span>
+              {isLoading ? (
+                <Loading message={null} textColor="var(--bg-secondary-color)" />
+              ) : (
+                <span>{ball.numbers.substring(1, 3)}</span>
+              )}
             </DynamicBall>
           ))}
         </BoardColumn>
@@ -117,12 +140,17 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
                   board.lotteryId,
                   board.round,
                   ball.numbers,
-                  showedBalls
+                  showedBalls,
+                  { setMessage, activeLoading, inactiveLoading }
                 );
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
-              <span>{ball.numbers.substring(1, 3)}</span>
+              {isLoading ? (
+                <Loading message={null} textColor="var(--bg-secondary-color)" />
+              ) : (
+                <span>{ball.numbers.substring(1, 3)}</span>
+              )}
             </DynamicBall>
           ))}
         </BoardColumn>

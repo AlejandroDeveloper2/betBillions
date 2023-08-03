@@ -34,7 +34,9 @@ type InputName =
   | "city"
   | "category"
   | "question"
-  | "answer";
+  | "answer"
+  | "walletAddress"
+  | "value";
 
 type ImageProps = {
   source: string;

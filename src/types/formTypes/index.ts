@@ -61,6 +61,11 @@ interface SupportAnswerFormValues {
   answer: string;
 }
 
+interface WithdrawFormValues {
+  walletAddress: string;
+  value: number;
+}
+
 export type {
   LoginFormValues,
   RegisterFormValues,
@@ -72,4 +77,5 @@ export type {
   UserProfileFormValues,
   SupportFormValues,
   SupportAnswerFormValues,
+  WithdrawFormValues,
 };

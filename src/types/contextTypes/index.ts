@@ -181,7 +181,8 @@ interface BingoContextType {
     idLottery: number,
     roundId: number,
     ball: string,
-    shownBall: string[]
+    shownBall: string[],
+    config: LoadingConfig
   ) => Promise<void>;
   setBingoWinner: (
     idLottery: number,
@@ -189,6 +190,8 @@ interface BingoContextType {
     config: LoadingConfig
   ) => Promise<void>;
 }
+
+interface WithdrawContextType {}
 
 export type {
   AuthContextType,
@@ -202,4 +205,5 @@ export type {
   LocationContextType,
   SupportContextType,
   BingoContextType,
+  WithdrawContextType,
 };

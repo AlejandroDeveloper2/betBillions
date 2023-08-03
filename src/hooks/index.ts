@@ -22,3 +22,4 @@ export { default as useToastContext } from "./useToastContext";
 export { default as useLocationContext } from "./useLocationContext";
 export { default as useSupportContext } from "./useSupportContext";
 export { default as useBingoContext } from "./useBingoContext";
+export { default as useWithdrawContext } from "./useWithdrawContext";

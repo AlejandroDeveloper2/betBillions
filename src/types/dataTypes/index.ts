@@ -18,12 +18,6 @@ interface LoginServerResponse extends ServerResponse {
   token: string | null;
 }
 
-interface ToastConfig {
-  showToast: () => void;
-  hideToast: (delay?: number) => void;
-  configToast: (type: ToastTypes, message: string) => void;
-}
-
 interface LoadingConfig {
   activeLoading: () => void;
   inactiveLoading: (delay?: number) => void;
@@ -200,13 +194,23 @@ interface ToastType {
   id: string;
 }
 
+interface Retreat {
+  id: number;
+  wallet: number;
+  userWalletId: number;
+  price: number;
+  commissionPercentage: number;
+  currency: string;
+  stateRetreats: string;
+  createdAt: string;
+}
+
 export type {
   AuthStatus,
   ApiName,
   ServerResponse,
   LoginServerResponse,
   LoadingConfig,
-  ToastConfig,
   UserAuth,
   MenuItem,
   UserPanelData,
@@ -227,4 +231,5 @@ export type {
   SupportRequest,
   BingoRound,
   ToastType,
+  Retreat,
 };
