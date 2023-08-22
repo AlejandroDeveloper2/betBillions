@@ -23,12 +23,13 @@ const LotteryAdminContainer = styled.div`
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     h1 {
       text-align: left;
       font-size: 2.5rem;
     }
     padding-bottom: 1rem;
+    overflow-y: scroll;
   }
 `;
 
@@ -77,4 +78,32 @@ const AdContainer = styled.div`
   }
 `;
 
-export { LotteryAdminContainer, RoundsContainer, RoundCard, AdContainer };
+const PageTitle = styled.div`
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  h1 {
+    font-weight: bold;
+    color: var(--bg-secondary-color);
+    text-align: center;
+    font-size: 1.8rem;
+  }
+  @media (min-width: 1000px) {
+    flex-direction: row;
+    h1 {
+      display: inline-block;
+      text-align: left;
+      font-size: 2.5rem;
+    }
+  }
+`;
+
+export {
+  LotteryAdminContainer,
+  RoundsContainer,
+  RoundCard,
+  AdContainer,
+  PageTitle,
+};

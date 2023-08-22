@@ -36,6 +36,8 @@ export type {
   GameModeProps,
   DropdownProps,
   SearchInputProps,
+  NormalInputProps,
+  NormalSelectProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
@@ -52,6 +54,8 @@ export type {
   SupportFormValues,
   SupportAnswerFormValues,
   WithdrawFormValues,
+  RoundFormValues,
+  LotteryFormValues,
 } from "./formTypes";
 
 export type {

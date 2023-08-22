@@ -8,6 +8,7 @@ import {
   LoadingConfig,
   LoginFormValues,
   LotteryDetail,
+  LotteryFormValues,
   LotteryListItem,
   RecoverPassFormValues,
   RegisterFormValues,
@@ -97,15 +98,19 @@ interface LotteryContextType {
   randomBingoBoards: BingoBoard[];
   userBingoBoards: BingoBoard[];
   getAllBingoReffels: (config: LoadingConfig) => Promise<void>;
-  getBingoReffel: (lotteryId: number, config: LoadingConfig) => Promise<void>;
+  getBingoReffel: (lotteryKey: string, config: LoadingConfig) => Promise<void>;
   getRandomBingoBoards: () => Promise<void>;
   buyBingoBoards: (
     purchaseData: BingoBoard[],
-    idLottery: number,
+    lotteryKey: string,
     config: LoadingConfig
   ) => Promise<void>;
   getPurchasedUserBingoBoards: (
-    idLottery: number,
+    lotteryKey: string,
+    config: LoadingConfig
+  ) => Promise<void>;
+  createLottery: (
+    lotteryData: LotteryFormValues,
     config: LoadingConfig
   ) => Promise<void>;
 }
@@ -170,22 +175,22 @@ interface SupportContextType {
 interface BingoContextType {
   bingoRound: BingoRound | null;
   playerBoard: BingoBoard | null;
-  startGame: (idLottery: number) => Promise<void>;
-  getPlayerBoard: (idLottery: number, roundId: number) => Promise<void>;
+  startGame: (lotteryKey: string) => Promise<void>;
+  getPlayerBoard: (lotteryKey: string, roundId: number) => Promise<void>;
   activeBingoLottery: (
-    idLottery: number,
+    lotteryKey: string,
     roundId: number,
     config: LoadingConfig
   ) => Promise<void>;
   validateBingoBalls: (
-    idLottery: number,
+    lotteryKey: string,
     roundId: number,
     ball: string,
     shownBall: string[],
     config: LoadingConfig
   ) => Promise<void>;
   setBingoWinner: (
-    idLottery: number,
+    lotteryKey: string,
     roundId: number,
     config: LoadingConfig
   ) => Promise<void>;

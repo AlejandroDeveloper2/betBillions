@@ -71,7 +71,7 @@ interface LotteryDetail extends LotteryListItem {
 
 interface LotteryRound {
   id: number;
-  idLottery: number | null;
+  idLottery: string | null;
   typeGame: string;
   numberRound: number;
   award: number;
@@ -119,7 +119,7 @@ interface BingoBoard {
   id: string;
   key: string;
   userId: number;
-  lotteryId: number;
+  lotteryId: string;
   card: BingoBall[];
   round: number;
   state: number;
@@ -180,7 +180,7 @@ interface SupportRequest {
 
 interface BingoRound {
   id: number;
-  idLottery: number;
+  idLottery: string;
   typeGame: string;
   numberRound: number;
   award: number;

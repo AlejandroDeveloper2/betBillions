@@ -35,13 +35,16 @@ import {
 const LotteryDetails = (): JSX.Element => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const lotteryKey = location.pathname.split("/")[4];
+
   const {
     lotteryDetail,
     userBingoBoards,
     getBingoReffel,
     getPurchasedUserBingoBoards,
   } = useLotteryContext();
-  const lotteryId = window.parseInt(location.pathname.split("/")[4]);
+  console.log(lotteryKey);
 
   const {
     isLoading,
@@ -52,7 +55,7 @@ const LotteryDetails = (): JSX.Element => {
   } = useLoading();
 
   useEffect(() => {
-    getBingoReffel(lotteryId, {
+    getBingoReffel(lotteryKey, {
       activeLoading,
       inactiveLoading,
       setMessage,
@@ -60,7 +63,7 @@ const LotteryDetails = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    getPurchasedUserBingoBoards(lotteryId, {
+    getPurchasedUserBingoBoards(lotteryKey, {
       activeLoading,
       inactiveLoading,
       setMessage,
@@ -79,7 +82,7 @@ const LotteryDetails = (): JSX.Element => {
           />
         ) : (
           <>
-            <AdCard lotteryId={lotteryDetail ? lotteryDetail.id : 0}>
+            <AdCard lotteryKey={lotteryDetail ? lotteryDetail.key : ""}>
               <CardAdTitle>Juega y gana </CardAdTitle>
               <Datetext>
                 {formatDate(lotteryDetail ? lotteryDetail.startDate : "")}
@@ -105,7 +108,7 @@ const LotteryDetails = (): JSX.Element => {
                     label="Seleccionar tablas"
                     onClick={() =>
                       navigate(
-                        `/userPanel/lottery/purchaseBingoBoard/${lotteryId}`
+                        `/userPanel/lottery/purchaseBingoBoard/${lotteryKey}`
                       )
                     }
                   >
@@ -127,7 +130,7 @@ const LotteryDetails = (): JSX.Element => {
                     title={"Ver mis cartones de bingo"}
                     label="Ir al juego"
                     onClick={() =>
-                      navigate(`/userPanel/lottery/gamePreview/${lotteryId}`)
+                      navigate(`/userPanel/lottery/gamePreview/${lotteryKey}`)
                     }
                   >
                     <AiFillPlayCircle

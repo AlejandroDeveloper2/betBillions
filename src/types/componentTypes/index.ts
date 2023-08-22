@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { IconType } from "react-icons";
 import {
-  RefCallBack,
   UseFormHandleSubmit,
   UseFormRegister,
   UseFormReset,
@@ -14,29 +13,7 @@ import {
   LoadingConfig,
   SupportRequest,
 } from "..";
-import React from "react";
-
-type InputName =
-  | "password"
-  | "username"
-  | "fullName"
-  | "invitationLink"
-  | "email"
-  | "confirmPassword"
-  | "confirmEmail"
-  | "transaction"
-  | "wallet"
-  | "price"
-  | "confirmPrice"
-  | "phone"
-  | "sponsorName"
-  | "country"
-  | "city"
-  | "category"
-  | "question"
-  | "answer"
-  | "walletAddress"
-  | "value";
+import React, { ReactNode } from "react";
 
 type ImageProps = {
   source: string;
@@ -57,7 +34,8 @@ type FormType =
   | "walletWithdraw"
   | "TransactionValidation"
   | "ProfileForm"
-  | "SupportRequestForm";
+  | "SupportRequestForm"
+  | "LotteryForm";
 
 type CustomFormProps = {
   children: JSX.Element | JSX.Element[] | any[];
@@ -74,12 +52,12 @@ type CustomFormProps = {
 };
 
 type CustomInputProps = {
-  type: "text" | "password" | "number";
+  type: "text" | "password" | "number" | "date";
   placeholder: string;
   label: string | null;
   Icon: IconType;
   register: UseFormRegister<any>;
-  name: InputName;
+  name: string;
   disabled?: boolean;
 };
 
@@ -87,9 +65,8 @@ type SelectProps = {
   defaultValue: string;
   label: string | null;
   Icon: IconType;
-  name: InputName;
+  name: string;
   value: string;
-  ref: RefCallBack;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   children: JSX.Element | JSX.Element[] | any[];
 };
@@ -156,7 +133,7 @@ type MenuProps = {
 type AdCardProps = {
   children: JSX.Element | JSX.Element[];
   play?: boolean;
-  lotteryId: number;
+  lotteryKey: string;
 };
 
 type IndicatorProps = {
@@ -294,6 +271,25 @@ type SearchInputProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
+type NormalInputProps = {
+  name: string;
+  value: string | number;
+  id: string;
+  type: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
+};
+
+type NormalSelectProps = {
+  name: string;
+  value: string | number;
+  id: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  label: string;
+  defaultValue: string;
+  children: ReactNode;
+};
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -332,6 +328,8 @@ export type {
   GameModeProps,
   DropdownProps,
   SearchInputProps,
+  NormalInputProps,
+  NormalSelectProps,
 };
 
 export { ToastTypes };

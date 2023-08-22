@@ -10,6 +10,7 @@ export { default as useGame } from "./useGame";
 export { default as useGameMode } from "./useGameMode";
 export { default as useCounter } from "./useCounter";
 export { default as useSearch } from "./useSearch";
+export { default as useGenerateFields } from "./useGenerateFields";
 
 /*Context hooks */
 export { default as useAuthContext } from "./useAuthContext";

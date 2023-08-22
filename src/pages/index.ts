@@ -29,6 +29,7 @@ export { default as TransactionsAdmin } from "./protectedPages/adminPages/transa
 export { default as UsersAdmin } from "./protectedPages/adminPages/usersAdmin/UsersAdmin";
 export { default as SupportAdminPage } from "./protectedPages/adminPages/supportAdmin/SupportAdminPage";
 export { default as LotteryAdmin } from "./protectedPages/adminPages/lotteryAdmin/LotteryAdmin";
+export { default as WithdrawRequestAdmin } from "./protectedPages/adminPages/withdrawRequestsAdmin/WithdrawRequestAdmin";
 
 /*Error page */
 export { default as Page404 } from "./404Page/Page404";

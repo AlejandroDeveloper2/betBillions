@@ -27,7 +27,7 @@ import {
 import { BingoFigure, PartyGift } from "@assets/index";
 
 const BingoGame = (): JSX.Element => {
-  const lotteryId = window.parseInt(location.pathname.split("/")[4]);
+  const lotteryKey = location.pathname.split("/")[4];
   const { playerBoard, setBingoWinner } = useBingoContext();
   const { bingoRound, showedBalls, getIsUserWinner } = useGame();
   const {
@@ -115,7 +115,7 @@ const BingoGame = (): JSX.Element => {
               title={"Bingo!"}
               onClick={() => {
                 setBingoWinner(
-                  lotteryId,
+                  lotteryKey,
                   bingoRound ? bingoRound.numberRound : 1,
                   {
                     inactiveLoading,

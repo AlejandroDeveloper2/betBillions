@@ -13,10 +13,11 @@ const ModalContainer = styled.div<ModalStyledProps>`
     props.ismodalvisible === "false" ? "-50" : "50"};
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   opacity: ${(props: ModalStyledProps) =>
     props.ismodalvisible === "false" ? "0" : "1"};
   transition: all 0.5s ease;
+  overflow-y: scroll;
 `;
 
 const ModalContainerVariant = styled(ModalContainer)`
@@ -33,8 +34,9 @@ const ModalWindow = styled.div`
   border-radius: 1.5rem;
   overflow: hidden;
   transform: scale(0.8);
+  margin-top: 1rem;
   @media (min-width: 768px) {
-    width: 30rem;
+    width: auto;
     transform: scale(1);
   }
 `;

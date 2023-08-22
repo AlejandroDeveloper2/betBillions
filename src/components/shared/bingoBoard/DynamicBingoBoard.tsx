@@ -9,14 +9,12 @@ import {
   DynamicBall,
   BoardBodyVariant,
 } from "./BingoBard.style";
-import { Loading } from "../loading/Loading";
 
 const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
   const { board } = props;
   const { showedBalls } = useGame();
   const { validateBingoBalls } = useBingoContext();
-  const { isLoading, setMessage, activeLoading, inactiveLoading } =
-    useLoading();
+  const { setMessage, activeLoading, inactiveLoading } = useLoading();
   const bingoStyledBalls = setColorBingoBalls(board);
 
   return (
@@ -46,11 +44,7 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
-              {isLoading ? (
-                <Loading message={null} textColor="var(--bg-secondary-color)" />
-              ) : (
-                <span>{ball.numbers.substring(1, 3)}</span>
-              )}
+              <span>{ball.numbers.substring(1, 3)}</span>
             </DynamicBall>
           ))}
         </BoardColumn>
@@ -71,11 +65,7 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
-              {isLoading ? (
-                <Loading message={null} textColor="var(--bg-secondary-color)" />
-              ) : (
-                <span>{ball.numbers.substring(1, 3)}</span>
-              )}
+              <span>{ball.numbers.substring(1, 3)}</span>
             </DynamicBall>
           ))}
         </BoardColumn>
@@ -96,11 +86,7 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
-              {isLoading ? (
-                <Loading message={null} textColor="var(--bg-secondary-color)" />
-              ) : (
-                <span>{ball.numbers.substring(1, 3)}</span>
-              )}
+              <span>{ball.numbers.substring(1, 3)}</span>
             </DynamicBall>
           ))}
         </BoardColumn>
@@ -121,11 +107,7 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
-              {isLoading ? (
-                <Loading message={null} textColor="var(--bg-secondary-color)" />
-              ) : (
-                <span>{ball.numbers.substring(1, 3)}</span>
-              )}
+              <span>{ball.numbers.substring(1, 3)}</span>
             </DynamicBall>
           ))}
         </BoardColumn>
@@ -146,11 +128,7 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               }}
               background={ball.state ? "var(--green)" : "transparent"}
             >
-              {isLoading ? (
-                <Loading message={null} textColor="var(--bg-secondary-color)" />
-              ) : (
-                <span>{ball.numbers.substring(1, 3)}</span>
-              )}
+              <span>{ball.numbers.substring(1, 3)}</span>
             </DynamicBall>
           ))}
         </BoardColumn>

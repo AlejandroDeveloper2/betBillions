@@ -115,7 +115,7 @@ const getMenuItems = (
       label: "Solicitudes de retiro",
       icon: BiMoneyWithdraw,
       title: "Ver solicitudes de retiro",
-      to: "#",
+      to: "/admin/withdraws/requests",
     },
     {
       label: "Notificaciones",

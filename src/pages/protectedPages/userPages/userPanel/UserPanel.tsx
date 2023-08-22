@@ -58,7 +58,11 @@ const UserPanel = (): JSX.Element => {
           reffels
             ?.filter((reffel) => reffel.state === true)
             .map((reffel) => (
-              <AdCard key={reffel.id} play={reffel.state} lotteryId={reffel.id}>
+              <AdCard
+                key={reffel.id}
+                play={reffel.state}
+                lotteryKey={reffel.key}
+              >
                 <CardAdTitle>Proximo sorteo</CardAdTitle>
                 <Datetext>{formatDate(reffel.startDate)}</Datetext>
               </AdCard>

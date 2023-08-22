@@ -38,7 +38,7 @@ const PurchaseBingoBoard = (): JSX.Element => {
   const { buyBingoBoards } = useLotteryContext();
   const navigate = useNavigate();
   const location = useLocation();
-  const lotteryId = window.parseInt(location.pathname.split("/")[4]);
+  const lotteryKey = location.pathname.split("/")[4];
 
   const {
     isLoading,
@@ -80,7 +80,9 @@ const PurchaseBingoBoard = (): JSX.Element => {
               title={"Ver carrito de compras"}
               label="Ver carrito"
               onClick={() =>
-                navigate(`/userPanel/lottery/purchaseBingoDetails/${lotteryId}`)
+                navigate(
+                  `/userPanel/lottery/purchaseBingoDetails/${lotteryKey}`
+                )
               }
             >
               <AiFillEye
@@ -129,7 +131,7 @@ const PurchaseBingoBoard = (): JSX.Element => {
             title={"Realizar Compra"}
             label="Realizar compra"
             onClick={() => {
-              buyBingoBoards(bingoBoards, lotteryId, {
+              buyBingoBoards(bingoBoards, lotteryKey, {
                 activeLoading,
                 inactiveLoading,
                 setMessage,

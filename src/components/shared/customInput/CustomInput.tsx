@@ -1,6 +1,8 @@
 import {
   CustomFileInputProps,
   CustomInputProps,
+  NormalInputProps,
+  NormalSelectProps,
   SearchInputProps,
   SelectProps,
 } from "types";
@@ -75,14 +77,13 @@ const InputFile = (props: CustomFileInputProps): JSX.Element => {
 };
 
 const SelectWithLabel = (props: SelectProps): JSX.Element => {
-  const { defaultValue, label, Icon, name, value, ref, onChange, children } =
-    props;
+  const { defaultValue, label, Icon, name, value, onChange, children } = props;
   return (
     <InputContainerLabel>
       <Label>{label}</Label>
       <InputContainer>
         <Icon color="var(--dark-gray)" style={{ fontSize: "1.3rem" }} />
-        <Select name={name} value={value} ref={ref} onChange={onChange}>
+        <Select name={name} value={value} onChange={onChange}>
           <option value="">{defaultValue}</option>
           {children}
         </Select>
@@ -121,6 +122,33 @@ const SearchInput = (props: SearchInputProps): JSX.Element => {
   );
 };
 
+const NormalInput = (props: NormalInputProps): JSX.Element => {
+  return (
+    <InputContainerLabel>
+      <Label>{props.placeholder}</Label>
+      <InputContainer>
+        <Input {...props} />
+      </InputContainer>
+    </InputContainerLabel>
+  );
+};
+
+const NormalSelect = (props: NormalSelectProps): JSX.Element => {
+  const { defaultValue, label, name, value, id, onChange, children } = props;
+
+  return (
+    <InputContainerLabel>
+      <Label>{label}</Label>
+      <InputContainer>
+        <Select id={id} name={name} value={value} onChange={onChange}>
+          <option value="">{defaultValue}</option>
+          {children}
+        </Select>
+      </InputContainer>
+    </InputContainerLabel>
+  );
+};
+
 export {
   DefaultInput,
   InputWithLabel,
@@ -129,4 +157,6 @@ export {
   SelectWithLabel,
   TextareaInput,
   SearchInput,
+  NormalInput,
+  NormalSelect,
 };

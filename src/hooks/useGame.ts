@@ -10,7 +10,7 @@ const tokenAuth = new TokenAuth();
 
 const useGame = () => {
   const token = tokenAuth.getToken();
-  const lotteryId = window.parseInt(location.pathname.split("/")[4]);
+  const lotteryKey = window.location.pathname.split("/")[4];
   const [round, setRound] = useState<number | string>("?");
   const [gameMode, setGameMode] = useState<string | null>(null);
   const [currentBall, setCurrentBall] = useState<string>("?");
@@ -21,7 +21,7 @@ const useGame = () => {
     "/lottery/start/round",
     () => {
       if (token) {
-        return bingoService.startGame(lotteryId, token);
+        return bingoService.startGame(lotteryKey, token);
       }
     },
     {
@@ -31,7 +31,7 @@ const useGame = () => {
 
   useEffect(() => {
     if (bingoRound) {
-      getPlayerBoard(lotteryId, bingoRound.numberRound);
+      getPlayerBoard(lotteryKey, bingoRound.numberRound);
     }
   }, [bingoRound]);
 

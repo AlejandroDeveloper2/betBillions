@@ -13,7 +13,7 @@ import {
 } from "./AdCard.style";
 
 const AdCard = (props: AdCardProps): JSX.Element => {
-  const { children, play, lotteryId } = props;
+  const { children, play, lotteryKey } = props;
 
   return (
     <CardContainer>
@@ -27,7 +27,7 @@ const AdCard = (props: AdCardProps): JSX.Element => {
           />
         </Figure>
         {play && (
-          <PlayLink to={`/userPanel/lottery/details/${lotteryId}`}>
+          <PlayLink to={`/userPanel/lottery/details/${lotteryKey}`}>
             Jugar
           </PlayLink>
         )}

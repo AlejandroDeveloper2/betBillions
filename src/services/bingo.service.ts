@@ -5,7 +5,7 @@ import { BingoBall, BingoBoard, BingoRound, ServerResponse } from "types";
 
 class BingoService {
   public async startGame(
-    idLottery: number,
+    lotteryKey: string,
     token: string
   ): Promise<BingoRound> {
     let response: BingoRound | null = null;
@@ -18,7 +18,7 @@ class BingoService {
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
       const { data } = await axiosClient.get<BingoRound>(
-        `/lottery/start/${idLottery}`,
+        `/lottery/start/${lotteryKey}`,
         config
       );
       response = data;
@@ -31,7 +31,7 @@ class BingoService {
   }
 
   public async getPlayerBoard(
-    idLottery: number,
+    lotteryKey: string,
     roundId: number,
     token: string
   ): Promise<BingoBoard> {
@@ -45,7 +45,7 @@ class BingoService {
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
       const { data } = await axiosClient.get<BingoBoard>(
-        `/cardBingo/lottery/${idLottery}/round/${roundId}`,
+        `/cardBingo/lottery/${lotteryKey}/round/${roundId}`,
         config
       );
       response = data;
@@ -58,7 +58,7 @@ class BingoService {
   }
 
   public async activeBingoLottery(
-    idLottery: number,
+    lotteryKey: string,
     roundId: number,
     token: string
   ): Promise<void> {
@@ -71,7 +71,7 @@ class BingoService {
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
       await axiosClient.get<void>(
-        `/lottery/start/${idLottery}/round/${roundId}`,
+        `/lottery/start/${lotteryKey}/round/${roundId}`,
         config
       );
     } catch (_e: unknown) {
@@ -82,7 +82,7 @@ class BingoService {
   }
 
   public async validateBingoBalls(
-    idLottery: number,
+    lotteryKey: string,
     roundId: number,
     ball: string,
     token: string
@@ -97,7 +97,7 @@ class BingoService {
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
       const { data } = await axiosClient.patch<BingoBall>(
-        `cardBingo/lottery/${idLottery}/round/${roundId}/ball/${ball}`,
+        `cardBingo/lottery/${lotteryKey}/round/${roundId}/ball/${ball}`,
         {},
         config
       );
@@ -111,7 +111,7 @@ class BingoService {
   }
 
   public async setBingoWinner(
-    idLottery: number,
+    lotteryKey: string,
     roundId: number,
     token: string
   ): Promise<ServerResponse> {
@@ -125,7 +125,7 @@ class BingoService {
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
       const { data } = await axiosClient.patch<ServerResponse>(
-        `/cardBingo/winner/lottery/${idLottery}/round/${roundId}`,
+        `/cardBingo/winner/lottery/${lotteryKey}/round/${roundId}`,
         {},
         config
       );

@@ -7,6 +7,8 @@ export {
   SelectWithLabel,
   TextareaInput,
   SearchInput,
+  NormalInput,
+  NormalSelect,
 } from "./shared/customInput/CustomInput";
 export { default as CustomForm } from "./shared/customForm/CustomForm";
 export {
@@ -56,3 +58,6 @@ export { default as GameMode } from "./bingoGame/gameMode/GameMode";
 export { default as Counter } from "./bingoGame/counter/Counter";
 export { default as Dropdown } from "./bingoGame/dropdown/Dropdown";
 export { default as DynamicBingoBoard } from "./shared/bingoBoard/DynamicBingoBoard";
+
+/*LotteryAdmin */
+export { default as LotteryAdminForm } from "./lotteryAdminForm/LotteryAdminForm";
