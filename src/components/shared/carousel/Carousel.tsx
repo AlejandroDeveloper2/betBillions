@@ -102,7 +102,7 @@ const ShoppingCartCarousel = (): JSX.Element => {
 };
 
 const UserBingoCardsCarousel = (): JSX.Element => {
-  const lotteryId = window.parseInt(location.pathname.split("/")[4]);
+  const lotteryKey = window.location.pathname.split("/")[4];
   const { userBingoBoards, getPurchasedUserBingoBoards } = useLotteryContext();
   const {
     isLoading,
@@ -113,7 +113,7 @@ const UserBingoCardsCarousel = (): JSX.Element => {
   } = useLoading();
 
   useEffect(() => {
-    getPurchasedUserBingoBoards(lotteryId, {
+    getPurchasedUserBingoBoards(lotteryKey, {
       activeLoading,
       inactiveLoading,
       setMessage,
