@@ -108,7 +108,7 @@ const SupportPage = (): JSX.Element => {
             <Controller
               control={control}
               name="category"
-              render={({ field: { onChange, value, name, ref } }) => (
+              render={({ field: { onChange, value, name } }) => (
                 <>
                   <SelectWithLabel
                     defaultValue="Selecciona la categoria"
@@ -116,7 +116,6 @@ const SupportPage = (): JSX.Element => {
                     Icon={BiSolidCategory}
                     name={name}
                     value={value}
-                    ref={ref}
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       onChange(e);
                     }}

@@ -1,13 +1,13 @@
-import { useState, createContext, useMemo, useCallback } from "react";
+import { createContext, useMemo } from "react";
 
 import {
-  LoadingConfig,
+  // LoadingConfig,
   ProviderProps,
-  ToastTypes,
+  // ToastTypes,
   WithdrawContextType,
 } from "types";
-import { TokenAuth } from "@utils/index";
-import { useToastContext } from "@hooks/index";
+// import { TokenAuth } from "@utils/index";
+// import { useToastContext } from "@hooks/index";
 
 /*services*/
 
@@ -15,7 +15,7 @@ const WithdrawContext = createContext<WithdrawContextType>(
   {} as WithdrawContextType
 );
 
-const tokenAuth = new TokenAuth();
+// const tokenAuth = new TokenAuth();
 
 const WithdrawProvider = ({ children }: ProviderProps) => {
   const value = useMemo(() => ({}), []);

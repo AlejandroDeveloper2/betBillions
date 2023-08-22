@@ -126,7 +126,9 @@ const Withdraws = (): JSX.Element => {
               config: LoadingConfig,
               reset?: any
             ): Promise<void> {
-              throw new Error("Function not implemented.");
+              reset();
+              console.log(data, config);
+              return Promise.resolve();
             }}
           >
             <InputWithLabel
