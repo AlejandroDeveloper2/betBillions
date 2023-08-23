@@ -1,4 +1,4 @@
-import { useAuthContext } from "@hooks/index";
+import { useAuthContext, useUserSession } from "@hooks/index";
 
 import { Loading, SpinnerScreen, Image } from "@components/index";
 
@@ -12,6 +12,7 @@ import "./animation.css";
 import { LogoTap } from "@assets/index";
 
 const LoadingScreen = (): JSX.Element => {
+  useUserSession(0);
   const { authStatus } = useAuthContext();
 
   return (
