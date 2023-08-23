@@ -114,15 +114,11 @@ const BingoGame = (): JSX.Element => {
               }}
               title={"Bingo!"}
               onClick={() => {
-                setBingoWinner(
-                  lotteryKey,
-                  bingoRound ? bingoRound.numberRound : 1,
-                  {
-                    inactiveLoading,
-                    activeLoading,
-                    setMessage,
-                  }
-                );
+                setBingoWinner(lotteryKey, bingoRound ? bingoRound.id : 1, {
+                  inactiveLoading,
+                  activeLoading,
+                  setMessage,
+                });
                 showModal(bingoRound);
               }}
               disabled={getIsUserWinner()}
