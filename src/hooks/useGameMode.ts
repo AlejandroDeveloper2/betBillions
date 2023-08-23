@@ -40,7 +40,7 @@ const useGameMode = (typeGame: string | null) => {
     return () => {
       setExampleBoard(new Array(25).fill({ active: false }, 0));
     };
-  }, [typeGame]);
+  }, []);
 
   return {
     exampleBoard,

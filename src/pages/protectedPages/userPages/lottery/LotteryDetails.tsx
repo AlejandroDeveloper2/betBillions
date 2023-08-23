@@ -44,7 +44,6 @@ const LotteryDetails = (): JSX.Element => {
     getBingoReffel,
     getPurchasedUserBingoBoards,
   } = useLotteryContext();
-  console.log(lotteryKey);
 
   const {
     isLoading,
