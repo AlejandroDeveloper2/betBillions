@@ -2,21 +2,16 @@ import { useState } from "react";
 
 import { RoundFormValues } from "types";
 
-const useGenerateFields = (numberOfRounds: number) => {
-  const [roundsData, setRoundsData] = useState<RoundFormValues[]>(() =>
-    Array<RoundFormValues>(numberOfRounds).fill({
-      typeGame: "",
-      award: 0,
-    })
-  );
+const useGenerateFields = () => {
+  const [roundsData, setRoundsData] = useState<RoundFormValues[]>([]);
 
   const generateDynamicFields = (numberOfRounds: number): void => {
-    setRoundsData(() => {
-      return Array<RoundFormValues>(numberOfRounds).fill({
-        typeGame: "",
-        award: 0,
-      });
-    });
+    let rounds = [];
+    for (let index = 0; index < numberOfRounds; index++) {
+      const element: RoundFormValues = { typeGame: "", award: 0 };
+      rounds.push(element);
+    }
+    setRoundsData(rounds);
   };
 
   const handleChange = (

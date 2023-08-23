@@ -111,7 +111,8 @@ interface LotteryContextType {
   ) => Promise<void>;
   createLottery: (
     lotteryData: LotteryFormValues,
-    config: LoadingConfig
+    config: LoadingConfig,
+    reset: UseFormReset<LotteryFormValues>
   ) => Promise<void>;
 }
 

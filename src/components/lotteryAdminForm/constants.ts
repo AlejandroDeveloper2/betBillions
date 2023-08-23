@@ -4,7 +4,7 @@ import { LotteryFormValues } from "types";
 
 const DEFAULTVALUES: LotteryFormValues = {
   startDate: "",
-  numberOfRounds: 7,
+  numberOfRounds: 0,
   rounds: [],
   state: "",
 };

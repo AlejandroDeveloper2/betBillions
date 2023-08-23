@@ -52,7 +52,7 @@ type CustomFormProps = {
 };
 
 type CustomInputProps = {
-  type: "text" | "password" | "number" | "date";
+  type: "text" | "password" | "number" | "date" | "datetime-local";
   placeholder: string;
   label: string | null;
   Icon: IconType;

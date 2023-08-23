@@ -16,6 +16,7 @@ import { useShoppingCartContext, useToastContext } from "@hooks/index";
 
 /*services*/
 import { LotteryService } from "@services/lottery.service";
+import { UseFormReset } from "react-hook-form";
 
 const LotteryContext = createContext<LotteryContextType>(
   {} as LotteryContextType
@@ -184,7 +185,8 @@ const LotteryProvider = ({ children }: ProviderProps) => {
   const createLottery = useCallback(
     async (
       lotteryData: LotteryFormValues,
-      config: LoadingConfig
+      config: LoadingConfig,
+      reset: UseFormReset<LotteryFormValues>
     ): Promise<void> => {
       const { activeLoading, inactiveLoading, setMessage } = config;
       const token = tokenAuth.getToken();
@@ -198,6 +200,7 @@ const LotteryProvider = ({ children }: ProviderProps) => {
             message: res.message,
             type: res.typeStatus,
           });
+          reset();
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
           openToast({

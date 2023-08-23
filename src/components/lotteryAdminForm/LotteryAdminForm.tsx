@@ -28,9 +28,9 @@ const LotteryAdminForm = (): JSX.Element => {
     register,
     control,
     handleSubmit,
-    getValues,
     setValue,
-    // watch,
+    watch,
+    reset,
     formState: { errors },
   } = useForm<LotteryFormValues>({
     defaultValues: DEFAULTVALUES,
@@ -38,9 +38,8 @@ const LotteryAdminForm = (): JSX.Element => {
   });
 
   const { createLottery } = useLotteryContext();
-  const { roundsData, handleChange } = useGenerateFields(
-    getValues("numberOfRounds")
-  );
+  const { roundsData, handleChange, generateDynamicFields } =
+    useGenerateFields();
 
   const {
     isLoading,
@@ -54,10 +53,9 @@ const LotteryAdminForm = (): JSX.Element => {
     setValue("rounds", roundsData);
   }, [roundsData]);
 
-  // useEffect(() => {
-  //   generateDynamicFields(getValues("numberOfRounds"));
-  //   console.log(watch("numberOfRounds"));
-  // }, [watch]);
+  useEffect(() => {
+    generateDynamicFields(watch("numberOfRounds"));
+  }, [watch("numberOfRounds")]);
 
   return (
     <CustomForm
@@ -66,11 +64,12 @@ const LotteryAdminForm = (): JSX.Element => {
       formType="LotteryForm"
       action={createLottery}
       handleSubmit={handleSubmit}
+      reset={reset}
     >
       <FormGrid>
         <FormRow>
           <InputWithLabel
-            type="date"
+            type="datetime-local"
             placeholder="Fecha del sorteo"
             label="Fecha de inicio"
             Icon={BsCalendar2DateFill}
@@ -89,7 +88,6 @@ const LotteryAdminForm = (): JSX.Element => {
             Icon={AiOutlineNumber}
             register={register}
             name="numberOfRounds"
-            disabled
           />
           {errors.numberOfRounds ? (
             <ErrorMessage message={errors.numberOfRounds.message} />
@@ -138,7 +136,9 @@ const LotteryAdminForm = (): JSX.Element => {
             ))}
           </NormalSelect>
           {errors.rounds ? (
-            <ErrorMessage message={errors.rounds[i]?.typeGame?.message} />
+            errors.rounds[i]?.typeGame ? (
+              <ErrorMessage message={errors.rounds[i]?.typeGame?.message} />
+            ) : null
           ) : null}
           <NormalInput
             type="number"
@@ -149,7 +149,9 @@ const LotteryAdminForm = (): JSX.Element => {
             placeholder="Premio"
           />
           {errors.rounds ? (
-            <ErrorMessage message={errors.rounds[i]?.award?.message} />
+            errors.rounds[i]?.award ? (
+              <ErrorMessage message={errors.rounds[i]?.award?.message} />
+            ) : null
           ) : null}
         </FormRow>
       ))}
