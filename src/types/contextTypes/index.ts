@@ -135,7 +135,7 @@ interface TransactionContextType {
 interface ShoppingCartContextType {
   bingoBoards: BingoBoard[];
   totalToPay: number;
-  addBingoBoardToCart: (bingoBoard: BingoBoard) => void;
+  addBingoBoardToCart: (bingoBoard: BingoBoard, numberOfRounds: number) => void;
   removeBingoBoardFromCart: (bingoBoardId: string) => void;
   clearShoppingCart: () => void;
 }

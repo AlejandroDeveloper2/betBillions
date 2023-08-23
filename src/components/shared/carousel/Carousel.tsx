@@ -30,7 +30,8 @@ const settings = {
 };
 
 const Carousel = (): JSX.Element => {
-  const { randomBingoBoards, getRandomBingoBoards } = useLotteryContext();
+  const { randomBingoBoards, getRandomBingoBoards, lotteryDetail } =
+    useLotteryContext();
   const { addBingoBoardToCart } = useShoppingCartContext();
 
   useEffect(() => {
@@ -48,7 +49,12 @@ const Carousel = (): JSX.Element => {
                 fontColor: "var(--dark-gray)",
               }}
               title={"Seleccionar cartón"}
-              onClick={() => addBingoBoardToCart(board)}
+              onClick={() =>
+                addBingoBoardToCart(
+                  board,
+                  lotteryDetail ? lotteryDetail.numberOfRounds : 1
+                )
+              }
             >
               <BiPlus style={{ color: "var(--dark-gray)", fontSize: 20 }} />
             </DefaultButton>

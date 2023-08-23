@@ -97,7 +97,7 @@ class BingoService {
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
       const { data } = await axiosClient.patch<BingoBall>(
-        `cardBingo/lottery/${lotteryKey}/round/${roundId}/ball/${ball}`,
+        `/cardBingo/lottery/${lotteryKey}/round/${roundId}/ball/${ball}`,
         {},
         config
       );

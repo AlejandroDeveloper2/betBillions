@@ -7,11 +7,13 @@ const useGameMode = (typeGame: string | null) => {
   );
 
   const drawGameMode = (): void => {
-    setExampleBoard([...exampleBoard]);
     if (typeGame === "X") {
       drawXGameMode();
-    } else if (typeGame === "L") {
+      return;
+    }
+    if (typeGame === "L") {
       drawLGameMode();
+      return;
     }
   };
 
@@ -35,6 +37,9 @@ const useGameMode = (typeGame: string | null) => {
 
   useEffect(() => {
     drawGameMode();
+    return () => {
+      setExampleBoard(new Array(25).fill({ active: false }, 0));
+    };
   }, [typeGame]);
 
   return {

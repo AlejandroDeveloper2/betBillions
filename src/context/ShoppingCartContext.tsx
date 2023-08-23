@@ -31,8 +31,11 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
     }
   };
 
-  const addBingoBoardToCart = (bingoBoard: BingoBoard): void => {
-    if (bingoBoards.length < 7) {
+  const addBingoBoardToCart = (
+    bingoBoard: BingoBoard,
+    numberOfRounds: number
+  ): void => {
+    if (bingoBoards.length < numberOfRounds) {
       if (bingoBoards.includes(bingoBoard)) {
         openToast({
           message: "Ya seleccionaste este cartón!",
@@ -57,7 +60,7 @@ const ShoppingCartProvider = ({ children }: ProviderProps) => {
       });
     } else {
       openToast({
-        message: "Solo puedes seleccionar maximo 7 cartones!",
+        message: `Solo puedes seleccionar maximo ${numberOfRounds} cartones!`,
         type: ToastTypes.warning,
       });
     }
