@@ -12,15 +12,17 @@ import { RoundCard, RoundsContainer } from "./LotteryDetails.style";
 const LotteryDetailsAdmin = ({
   lotteryDetails,
 }: LotteryDetailsProps): JSX.Element => {
-  const { activeBingoLottery } = useBingoContext();
+  const { activeBingoLottery, stopGame } = useBingoContext();
 
   const {
-    isLoading: isLoadingActive,
+    isLoading,
     loadingMessage,
     activeLoading,
     inactiveLoading,
     setMessage,
   } = useLoading();
+
+  const stoppingRoundLoading = useLoading();
 
   return (
     <RoundsContainer>
@@ -29,7 +31,7 @@ const LotteryDetailsAdmin = ({
           <span>Ronda - {round.numberRound}</span>
           <p>{round.userWinner ? round.userWinner : "No hay ganador"}</p>
           <GameMode mode={round.typeGame} />
-          {!activeRoundButton(i, lotteryDetails.rounds) && isLoadingActive ? (
+          {!activeRoundButton(i, lotteryDetails.rounds) && isLoading ? (
             <LoadingButton
               message={loadingMessage}
               style={{
@@ -67,26 +69,35 @@ const LotteryDetailsAdmin = ({
                   }}
                 />
               </DefaultButton>
-              <DefaultButton
-                style={{
-                  bg: "var(--gray)",
-                  fontColor: "var(--bg-secondary-color)",
-                }}
-                title="Parar ronda de bingo!"
-                label="Terminar ronda"
-                onClick={() => {
-                  console.log("Terminar ronda de bingo!");
-                }}
-                disabled={activeRoundButton(i, lotteryDetails.rounds)}
-              >
-                <FiPause
+              {!activeRoundButton(i, lotteryDetails.rounds) &&
+              stoppingRoundLoading.isLoading ? (
+                <LoadingButton
+                  message={stoppingRoundLoading.loadingMessage}
                   style={{
-                    color: "var(--bg-secondary-color)",
-                    fontSize: "40px",
-                    marginRight: "10px",
+                    bg: "var(--light-gray)",
+                    fontColor: "var(--bg-secondary-color)",
                   }}
                 />
-              </DefaultButton>
+              ) : (
+                <DefaultButton
+                  style={{
+                    bg: "var(--gray)",
+                    fontColor: "var(--bg-secondary-color)",
+                  }}
+                  title="Parar ronda de bingo!"
+                  label="Terminar ronda"
+                  onClick={() => stopGame(round.id, stoppingRoundLoading)}
+                  disabled={activeRoundButton(i, lotteryDetails.rounds)}
+                >
+                  <FiPause
+                    style={{
+                      color: "var(--bg-secondary-color)",
+                      fontSize: "40px",
+                      marginRight: "10px",
+                    }}
+                  />
+                </DefaultButton>
+              )}
             </>
           )}
         </RoundCard>

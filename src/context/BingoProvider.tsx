@@ -191,6 +191,32 @@ const BingoProvider = ({ children }: ProviderProps) => {
     []
   );
 
+  const stopGame = useCallback(
+    async (roundId: number, config: LoadingConfig): Promise<void> => {
+      const token = tokenAuth.getToken();
+      if (token) {
+        try {
+          config.setMessage("Finalizando ronda....");
+          config.activeLoading();
+          const res = await bingoService.stopGame(roundId, token);
+          openToast({
+            message: res.message,
+            type: res.typeStatus,
+          });
+        } catch (error: unknown) {
+          const errorMessage = (error as Error).message;
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+          });
+        } finally {
+          config.inactiveLoading();
+        }
+      }
+    },
+    []
+  );
+
   const value = useMemo(
     () => ({
       bingoRound,
@@ -200,6 +226,7 @@ const BingoProvider = ({ children }: ProviderProps) => {
       activeBingoLottery,
       validateBingoBalls,
       setBingoWinner,
+      stopGame,
     }),
     [
       bingoRound,
@@ -209,6 +236,7 @@ const BingoProvider = ({ children }: ProviderProps) => {
       activeBingoLottery,
       validateBingoBalls,
       setBingoWinner,
+      stopGame,
     ]
   );
 

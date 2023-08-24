@@ -195,6 +195,7 @@ interface BingoContextType {
     roundId: number,
     config: LoadingConfig
   ) => Promise<void>;
+  stopGame: (roundId: number, config: LoadingConfig) => Promise<void>;
 }
 
 interface WithdrawContextType {}
