@@ -1,31 +1,22 @@
-import { MdNotStarted } from "react-icons/md";
-
-import {
-  useBingoContext,
-  useLoading,
-  useModal,
-  useRealTimeFecher,
-} from "@hooks/index";
+import { useModal, useRealTimeFecher } from "@hooks/index";
 import { LotteryService } from "@services/lottery.service";
-import { activeRoundButton, formatDate } from "@utils/index";
+import { formatDate } from "@utils/index";
+import { LotteryDetail } from "types";
 
 import {
   AdCard,
   DefaultButton,
   Empty,
   Footer,
-  GameMode,
   Loading,
-  LoadingButton,
   LotteryAdminForm,
+  LotteryDetailsAdmin,
   Modal,
 } from "@components/index";
 
 import {
   AdContainer,
   LotteryAdminContainer,
-  RoundCard,
-  RoundsContainer,
   PageTitle,
 } from "./LotteryAdmin.style";
 import { CardAdTitle } from "@styles/GlobalStyles.style";
@@ -34,19 +25,18 @@ import { Datetext } from "@pages/protectedPages/userPages/userPanel/UserPanel.st
 const lotteryService = new LotteryService();
 
 const LotteryAdmin = (): JSX.Element => {
-  const { data: availableLottery, isLoading } = useRealTimeFecher(
+  const { data: availableLotteries, isLoading } = useRealTimeFecher(
     "/lottery/available/admin",
-    lotteryService.getAvailableLotteries
+    lotteryService.getAdminLotteries
   );
-  const { activeBingoLottery } = useBingoContext();
-  const {
-    isLoading: isLoadingActive,
-    loadingMessage,
-    activeLoading,
-    inactiveLoading,
-    setMessage,
-  } = useLoading();
+
   const { isModalVisible, showModal, hideModal } = useModal();
+  const {
+    isModalVisible: isDetailModalVisible,
+    showModal: showDetailModal,
+    hideModal: hideDetailModal,
+    data,
+  } = useModal<LotteryDetail>();
 
   return (
     <>
@@ -54,6 +44,12 @@ const LotteryAdmin = (): JSX.Element => {
         <Modal.Head title="Crear nuevo sorteo" hideModal={hideModal} />
         <Modal.Body>
           <LotteryAdminForm />
+        </Modal.Body>
+      </Modal>
+      <Modal isModalVisible={isDetailModalVisible}>
+        <Modal.Head title="Detalle del sorteo" hideModal={hideDetailModal} />
+        <Modal.Body>
+          <LotteryDetailsAdmin lotteryDetails={data} />
         </Modal.Body>
       </Modal>
       <LotteryAdminContainer>
@@ -76,68 +72,19 @@ const LotteryAdmin = (): JSX.Element => {
             message="Cargando sorteos disponibles..."
             textColor="var(--bg-secondary-color)"
           />
-        ) : availableLottery ? (
-          <>
-            <AdContainer>
-              <AdCard
-                key={availableLottery.id}
-                lotteryKey={availableLottery.key}
-              >
+        ) : availableLotteries ? (
+          availableLotteries.map((lottery, i) => (
+            <AdContainer
+              key={lottery.id}
+              onClick={() => showDetailModal(lottery)}
+            >
+              <AdCard lotteryKey={lottery.key}>
+                <Datetext>Sorteo {i + 1}</Datetext>
                 <CardAdTitle>Juega y gana </CardAdTitle>
-                <Datetext>{formatDate(availableLottery.startDate)}</Datetext>
+                <Datetext>{formatDate(lottery.startDate)}</Datetext>
               </AdCard>
             </AdContainer>
-            <RoundsContainer>
-              {availableLottery.rounds.map((round, i) => (
-                <RoundCard key={round.id}>
-                  <span>Ronda - {round.numberRound}</span>
-                  <p>
-                    {round.userWinner ? round.userWinner : "No hay ganador"}
-                  </p>
-                  <GameMode mode={round.typeGame} />
-                  {!activeRoundButton(i, availableLottery.rounds) &&
-                  isLoadingActive ? (
-                    <LoadingButton
-                      message={loadingMessage}
-                      style={{
-                        bg: "var(--light-gray)",
-                        fontColor: "var(--bg-secondary-color)",
-                      }}
-                    />
-                  ) : (
-                    <DefaultButton
-                      style={{
-                        bg: "var(--light-gray)",
-                        fontColor: "var(--bg-secondary-color)",
-                      }}
-                      title="Activar ronda de bingo!"
-                      label="Empezar ronda"
-                      onClick={() => {
-                        activeBingoLottery(
-                          round.idLottery ? round.idLottery : "",
-                          round.id,
-                          {
-                            activeLoading,
-                            inactiveLoading,
-                            setMessage,
-                          }
-                        );
-                      }}
-                      disabled={activeRoundButton(i, availableLottery.rounds)}
-                    >
-                      <MdNotStarted
-                        style={{
-                          color: "var(--bg-secondary-color)",
-                          fontSize: "40px",
-                          marginRight: "10px",
-                        }}
-                      />
-                    </DefaultButton>
-                  )}
-                </RoundCard>
-              ))}
-            </RoundsContainer>
-          </>
+          ))
         ) : (
           <Empty message="¡No hay sorteos programados!" />
         )}

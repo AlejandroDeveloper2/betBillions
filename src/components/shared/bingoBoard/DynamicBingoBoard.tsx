@@ -12,7 +12,7 @@ import {
 
 const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
   const { board } = props;
-  const { showedBalls, bingoRound } = useGame();
+  const { showedBalls, roundId } = useGame();
   const { validateBingoBalls } = useBingoContext();
   const { setMessage, activeLoading, inactiveLoading } = useLoading();
   const bingoStyledBalls = setColorBingoBalls(board);
@@ -36,7 +36,7 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               onClick={() => {
                 validateBingoBalls(
                   board.lotteryId,
-                  bingoRound ? bingoRound.id : 1,
+                  roundId,
                   ball.numbers,
                   showedBalls,
                   { setMessage, activeLoading, inactiveLoading }
@@ -57,7 +57,7 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               onClick={() => {
                 validateBingoBalls(
                   board.lotteryId,
-                  bingoRound ? bingoRound.id : 1,
+                  roundId,
                   ball.numbers,
                   showedBalls,
                   { setMessage, activeLoading, inactiveLoading }
@@ -78,7 +78,7 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               onClick={() => {
                 validateBingoBalls(
                   board.lotteryId,
-                  bingoRound ? bingoRound.id : 1,
+                  roundId,
                   ball.numbers,
                   showedBalls,
                   { setMessage, activeLoading, inactiveLoading }
@@ -99,7 +99,7 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               onClick={() => {
                 validateBingoBalls(
                   board.lotteryId,
-                  bingoRound ? bingoRound.id : 1,
+                  roundId,
                   ball.numbers,
                   showedBalls,
                   { setMessage, activeLoading, inactiveLoading }
@@ -120,7 +120,7 @@ const DynamicBingoBoard = (props: BingoBoardProps): JSX.Element => {
               onClick={() => {
                 validateBingoBalls(
                   board.lotteryId,
-                  bingoRound ? bingoRound.id : 1,
+                  roundId,
                   ball.numbers,
                   showedBalls,
                   { setMessage, activeLoading, inactiveLoading }

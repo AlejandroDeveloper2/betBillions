@@ -38,6 +38,7 @@ export type {
   SearchInputProps,
   NormalInputProps,
   NormalSelectProps,
+  LotteryDetailsProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";

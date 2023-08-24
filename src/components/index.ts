@@ -61,3 +61,4 @@ export { default as DynamicBingoBoard } from "./shared/bingoBoard/DynamicBingoBo
 
 /*LotteryAdmin */
 export { default as LotteryAdminForm } from "./lotteryAdminForm/LotteryAdminForm";
+export { default as LotteryDetailsAdmin } from "./lotteryDetailsAdmin/LotteryDetailsAdmin";

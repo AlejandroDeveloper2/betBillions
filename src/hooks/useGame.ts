@@ -15,6 +15,7 @@ const useGame = () => {
   const [gameMode, setGameMode] = useState<string | null>(null);
   const [currentBall, setCurrentBall] = useState<string>("?");
   const [showedBalls, setShowedBalls] = useState<string[]>([]);
+  const [roundId, setRoundId] = useState<number>(1);
   const { getPlayerBoard, playerBoard } = useBingoContext();
 
   const { data: bingoRound } = useSWR(
@@ -31,7 +32,7 @@ const useGame = () => {
 
   useEffect(() => {
     if (bingoRound) {
-      getPlayerBoard(lotteryKey, bingoRound.numberRound);
+      getPlayerBoard(lotteryKey, bingoRound.id);
     }
   }, [bingoRound]);
 
@@ -41,6 +42,7 @@ const useGame = () => {
       setGameMode(bingoRound.typeGame);
       setCurrentBall(bingoRound.balls[bingoRound.balls.length - 1]);
       setShowedBalls(bingoRound.balls);
+      setRoundId(bingoRound.id);
     }
   }, [bingoRound]);
 
@@ -59,6 +61,7 @@ const useGame = () => {
     currentBall,
     showedBalls,
     bingoRound,
+    roundId,
     getIsUserWinner,
   };
 };

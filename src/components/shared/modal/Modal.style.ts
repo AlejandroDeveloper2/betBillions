@@ -50,6 +50,7 @@ const ModalHeader = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  gap: 1rem;
   h1 {
     font-size: 1.2rem;
     color: var(--white);
@@ -61,11 +62,6 @@ const ModalHeader = styled.div`
     fill: var(--white);
     font-size: 1.4rem;
     cursor: pointer;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    right: 1rem;
   }
 `;
 

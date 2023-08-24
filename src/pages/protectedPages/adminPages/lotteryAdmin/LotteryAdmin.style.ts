@@ -33,48 +33,16 @@ const LotteryAdminContainer = styled.div`
   }
 `;
 
-const RoundsContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-`;
-
-const RoundCard = styled.div`
-  width: 25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  border-radius: 1rem;
-  background-color: var(--bg-secondary-color);
-  padding: 1.5rem;
-  span:nth-child(1) {
-    font-size: 1.2rem;
-    color: var(--white);
-    font-weight: bold;
-    text-align: center;
-  }
-  p {
-    font-size: 1rem;
-    color: var(--white);
-    font-weight: 500;
-    text-align: center;
-  }
-  button {
-    span {
-      text-transform: capitalize;
-    }
-  }
-`;
-
 const AdContainer = styled.div`
   width: 100%;
   display: block;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+  &:hover {
+    opacity: 0.8;
+  }
   @media (min-width: 1000px) {
-    width: 60%;
+    width: 80%;
   }
 `;
 
@@ -100,10 +68,4 @@ const PageTitle = styled.div`
   }
 `;
 
-export {
-  LotteryAdminContainer,
-  RoundsContainer,
-  RoundCard,
-  AdContainer,
-  PageTitle,
-};
+export { LotteryAdminContainer, AdContainer, PageTitle };

@@ -21,7 +21,7 @@ import {
 } from "./GameHead.style";
 
 const GameHead = (): JSX.Element => {
-  const { round, gameMode, currentBall } = useGame();
+  const { round, currentBall, gameMode } = useGame();
   const navigate = useNavigate();
 
   return (

@@ -11,6 +11,7 @@ import {
   BingoBoard,
   HeaderType,
   LoadingConfig,
+  LotteryDetail,
   SupportRequest,
 } from "..";
 import React, { ReactNode } from "react";
@@ -290,6 +291,10 @@ type NormalSelectProps = {
   children: ReactNode;
 };
 
+interface LotteryDetailsProps {
+  lotteryDetails: LotteryDetail | undefined;
+}
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -330,6 +335,7 @@ export type {
   SearchInputProps,
   NormalInputProps,
   NormalSelectProps,
+  LotteryDetailsProps,
 };
 
 export { ToastTypes };
