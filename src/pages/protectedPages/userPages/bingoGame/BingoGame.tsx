@@ -29,7 +29,7 @@ import { BingoFigure, PartyGift } from "@assets/index";
 const BingoGame = (): JSX.Element => {
   const lotteryKey = location.pathname.split("/")[4];
   const { playerBoard, setBingoWinner } = useBingoContext();
-  const { bingoRound, showedBalls, getIsUserWinner } = useGame();
+  const { bingoRound, showedBalls, gameMode, getIsUserWinner } = useGame();
   const {
     inactiveLoading,
     activeLoading,
@@ -89,7 +89,7 @@ const BingoGame = (): JSX.Element => {
         </Modal.Body>
       </ModalVariant>
       <BingoGameContainer>
-        <GameHead />
+        <GameHead gameMode={gameMode} />
         <AwardContainer>
           <BsFillGiftFill style={{ color: "var(--white)", fontSize: "40px" }} />
           <p>Premio</p>

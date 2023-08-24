@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 
 import { useGame } from "@hooks/index";
+import { GameHeadProps } from "types";
 
 import {
   DefaultButton,
@@ -20,8 +21,8 @@ import {
   Span,
 } from "./GameHead.style";
 
-const GameHead = (): JSX.Element => {
-  const { round, currentBall, gameMode } = useGame();
+const GameHead = ({ gameMode }: GameHeadProps): JSX.Element => {
+  const { round, currentBall } = useGame();
   const navigate = useNavigate();
 
   return (

@@ -39,6 +39,7 @@ export type {
   NormalInputProps,
   NormalSelectProps,
   LotteryDetailsProps,
+  GameHeadProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes";
