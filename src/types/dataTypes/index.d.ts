@@ -63,6 +63,7 @@ interface LotteryListItem {
   startDate: string;
   numberOfRounds: number;
   state: boolean;
+  price: number;
 }
 
 interface LotteryDetail extends LotteryListItem {

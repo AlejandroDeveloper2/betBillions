@@ -126,10 +126,10 @@ const LotteryAdminForm = (): JSX.Element => {
             label="Precio del cartón"
             Icon={ImPriceTag}
             register={register}
-            name="boardPrice"
+            name="price"
           />
-          {errors.boardPrice ? (
-            <ErrorMessage message={errors.boardPrice.message} />
+          {errors.price ? (
+            <ErrorMessage message={errors.price.message} />
           ) : null}
         </FormRow>
       </FormGrid>

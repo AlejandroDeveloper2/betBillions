@@ -76,7 +76,7 @@ interface LotteryFormValues {
   numberOfRounds: number;
   rounds: RoundFormValues[];
   state: string;
-  boardPrice: number;
+  price: number;
 }
 
 export type {

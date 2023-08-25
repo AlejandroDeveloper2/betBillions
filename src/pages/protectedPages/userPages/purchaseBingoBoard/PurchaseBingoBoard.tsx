@@ -110,7 +110,7 @@ const PurchaseBingoBoard = (): JSX.Element => {
           </PurchaseDetailsIndicator>
         </PurchaseDetailsContainer>
         <Subtitle>Selecciona tus cartones de bingo</Subtitle>
-        <P>Si compras más de 5 cartones solo pagas 5!</P>
+        <P>Si compras 5 cartones recibes 2 gratis!</P>
         <Carousel />
         {isLoading ? (
           <LoadingButton
