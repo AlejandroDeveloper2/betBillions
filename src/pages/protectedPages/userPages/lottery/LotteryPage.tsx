@@ -3,7 +3,13 @@ import { useEffect } from "react";
 import { useLoading, useLotteryContext } from "@hooks/index";
 import { formatDate } from "@utils/index";
 
-import { AdCard, Footer, Loading, SidebarBalance } from "@components/index";
+import {
+  AdCard,
+  Empty,
+  Footer,
+  Loading,
+  SidebarBalance,
+} from "@components/index";
 
 import { Datetext } from "../userPanel/UserPanel.style";
 import { LotteryContainer } from "./LotteryPage.style";
@@ -37,7 +43,7 @@ const LotteryPage = (): JSX.Element => {
             message={loadingMessage}
             textColor="var(--bg-secondary-color)"
           />
-        ) : (
+        ) : reffels.filter((reffel) => reffel.state === true).length > 0 ? (
           reffels
             .filter((reffel) => reffel.state === true)
             .map((reffel) => (
@@ -50,6 +56,8 @@ const LotteryPage = (): JSX.Element => {
                 <Datetext>{formatDate(reffel.startDate)}</Datetext>
               </AdCard>
             ))
+        ) : (
+          <Empty message="¡No hay sorteos programados!" />
         )}
         <Footer />
       </Content>

@@ -191,7 +191,6 @@ const LotteryProvider = ({ children }: ProviderProps) => {
       const { activeLoading, inactiveLoading, setMessage } = config;
       const token = tokenAuth.getToken();
       if (token) {
-        console.log(lotteryData);
         try {
           setMessage("Creando sorteo...");
           activeLoading();
@@ -201,6 +200,33 @@ const LotteryProvider = ({ children }: ProviderProps) => {
             type: res.typeStatus,
           });
           reset();
+        } catch (error: unknown) {
+          const errorMessage = (error as Error).message;
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+          });
+        } finally {
+          inactiveLoading();
+        }
+      }
+    },
+    []
+  );
+
+  const inactiveLottery = useCallback(
+    async (lotteryKey: string, config: LoadingConfig): Promise<void> => {
+      const { activeLoading, inactiveLoading, setMessage } = config;
+      const token = tokenAuth.getToken();
+      if (token) {
+        try {
+          setMessage("Inactivando sorteo...");
+          activeLoading();
+          const res = await lotteryService.inactiveLottery(lotteryKey, token);
+          openToast({
+            message: res.message,
+            type: res.typeStatus,
+          });
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
           openToast({
@@ -227,6 +253,7 @@ const LotteryProvider = ({ children }: ProviderProps) => {
       buyBingoBoards,
       getPurchasedUserBingoBoards,
       createLottery,
+      inactiveLottery,
     }),
     [
       reffels,
@@ -239,6 +266,7 @@ const LotteryProvider = ({ children }: ProviderProps) => {
       buyBingoBoards,
       getPurchasedUserBingoBoards,
       createLottery,
+      inactiveLottery,
     ]
   );
 

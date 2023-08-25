@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { GrStatusCriticalSmall } from "react-icons/gr";
 import { AiOutlineAppstoreAdd, AiOutlineNumber } from "react-icons/ai";
 import { BsCalendar2DateFill } from "react-icons/bs";
+import { ImPriceTag } from "react-icons/im";
 
 import { useGenerateFields, useLoading, useLotteryContext } from "@hooks/index";
 import { LotteryFormValues } from "types";
@@ -118,6 +119,19 @@ const LotteryAdminForm = (): JSX.Element => {
             </FormRow>
           )}
         />
+        <FormRow>
+          <InputWithLabel
+            type="number"
+            placeholder="Precio del cartón del bingo"
+            label="Precio del cartón"
+            Icon={ImPriceTag}
+            register={register}
+            name="boardPrice"
+          />
+          {errors.boardPrice ? (
+            <ErrorMessage message={errors.boardPrice.message} />
+          ) : null}
+        </FormRow>
       </FormGrid>
       {roundsData.map((round, i) => (
         <FormRow key={i}>

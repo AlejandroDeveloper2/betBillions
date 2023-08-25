@@ -185,6 +185,33 @@ class LotteryService {
     }
     return response;
   }
+
+  public async inactiveLottery(
+    lotteryKey: string,
+    token: string
+  ): Promise<ServerResponse> {
+    let response: ServerResponse | null = null;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      const { data } = await axiosClient.patch<ServerResponse>(
+        `/lottery/inactive/${lotteryKey}`,
+        {},
+        config
+      );
+      response = data;
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+    return response;
+  }
 }
 
 export { LotteryService };

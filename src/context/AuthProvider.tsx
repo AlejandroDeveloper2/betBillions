@@ -14,7 +14,7 @@ import {
   ToastTypes,
   UpdatePassFormValues,
   UserAuth,
-} from "../types";
+} from "types";
 import { TokenAuth, UserAuthState } from "@utils/index";
 
 /*services*/

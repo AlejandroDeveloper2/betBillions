@@ -1,7 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
 import { BsFillGiftFill } from "react-icons/bs";
 import { VscDebugContinue } from "react-icons/vsc";
 
-import { useBingoContext, useGame, useLoading, useModal } from "@hooks/index";
+import {
+  useBingoContext,
+  useGame,
+  useLoading,
+  useLotteryContext,
+  useModal,
+} from "@hooks/index";
 import { BingoRound } from "types";
 
 import {
@@ -28,8 +36,10 @@ import { BingoFigure, PartyGift } from "@assets/index";
 
 const BingoGame = (): JSX.Element => {
   const lotteryKey = location.pathname.split("/")[4];
+  const navigate = useNavigate();
   const { playerBoard, setBingoWinner } = useBingoContext();
-  const { bingoRound, showedBalls, gameMode, getIsUserWinner } = useGame();
+  const { lotteryDetail } = useLotteryContext();
+  const { bingoRound, showedBalls, getIsUserWinner } = useGame();
   const {
     inactiveLoading,
     activeLoading,
@@ -38,7 +48,12 @@ const BingoGame = (): JSX.Element => {
     isLoading,
   } = useLoading();
   const { isModalVisible, showModal, hideModal, data } = useModal<BingoRound>();
+  const { isModalVisible: isGameModalVisible, hideModal: hideGameInfoModal } =
+    useModal();
+
   const isGameStopped = showedBalls.length === 0 ? true : false;
+  const isGameFinished =
+    lotteryDetail?.rounds.length === bingoRound?.numberRound;
 
   return (
     <>
@@ -72,7 +87,8 @@ const BingoGame = (): JSX.Element => {
           </DefaultButton>
         </Modal.Body>
       </ModalVariant>
-      <ModalVariant isModalVisible={isGameStopped}>
+
+      <ModalVariant isModalVisible={isGameStopped || isGameModalVisible}>
         <Modal.Body>
           <Image
             source={BingoFigure}
@@ -84,12 +100,41 @@ const BingoGame = (): JSX.Element => {
             }}
           />
           <ModalMessage>
-            La ronda aun no se ha iniciado espera un momento!
+            {isGameFinished
+              ? "El juego ha finalizado!"
+              : "La ronda aun no se ha iniciado espera un momento!"}
           </ModalMessage>
+          {isGameFinished && (
+            <>
+              <ModalMessage>El ganador de la ronda ha sido:</ModalMessage>
+              <h2 style={{ fontSize: 30, fontWeight: 900 }}>
+                {bingoRound?.userWinner}
+              </h2>
+            </>
+          )}
+
+          {isGameFinished ? (
+            <DefaultButton
+              style={{
+                bg: "var(--bg-secondary-color)",
+                fontColor: "var(--white)",
+              }}
+              title="Regresar al inicio"
+              label="Volver al inicio"
+              onClick={() => {
+                hideGameInfoModal();
+                navigate("/userPanel");
+              }}
+            >
+              <VscDebugContinue
+                style={{ color: "var(--white)", fontSize: 30, marginRight: 10 }}
+              />
+            </DefaultButton>
+          ) : null}
         </Modal.Body>
       </ModalVariant>
       <BingoGameContainer>
-        <GameHead gameMode={gameMode} />
+        <GameHead />
         <AwardContainer>
           <BsFillGiftFill style={{ color: "var(--white)", fontSize: "40px" }} />
           <p>Premio</p>

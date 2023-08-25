@@ -29,7 +29,6 @@ const LotteryAdmin = (): JSX.Element => {
     "/lottery/available/admin",
     lotteryService.getAdminLotteries
   );
-
   const { isModalVisible, showModal, hideModal } = useModal();
   const {
     isModalVisible: isDetailModalVisible,
@@ -37,6 +36,10 @@ const LotteryAdmin = (): JSX.Element => {
     hideModal: hideDetailModal,
     data,
   } = useModal<LotteryDetail>();
+
+  const filteredActiveLotteries = availableLotteries
+    ? availableLotteries.filter((lottery) => lottery.state === true)
+    : [];
 
   return (
     <>
@@ -72,8 +75,8 @@ const LotteryAdmin = (): JSX.Element => {
             message="Cargando sorteos disponibles..."
             textColor="var(--bg-secondary-color)"
           />
-        ) : availableLotteries ? (
-          availableLotteries.map((lottery, i) => (
+        ) : filteredActiveLotteries.length > 0 ? (
+          filteredActiveLotteries.map((lottery, i) => (
             <AdContainer
               key={lottery.id}
               onClick={() => showDetailModal(lottery)}

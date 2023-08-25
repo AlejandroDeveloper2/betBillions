@@ -114,6 +114,7 @@ interface LotteryContextType {
     config: LoadingConfig,
     reset: UseFormReset<LotteryFormValues>
   ) => Promise<void>;
+  inactiveLottery: (lotteryKey: string, config: LoadingConfig) => Promise<void>;
 }
 
 interface TransactionContextType {

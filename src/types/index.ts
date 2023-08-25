@@ -39,10 +39,9 @@ export type {
   NormalInputProps,
   NormalSelectProps,
   LotteryDetailsProps,
-  GameHeadProps,
 } from "./componentTypes";
 
-export { ToastTypes } from "./componentTypes";
+export { ToastTypes } from "./componentTypes/index.d";
 
 export type {
   LoginFormValues,

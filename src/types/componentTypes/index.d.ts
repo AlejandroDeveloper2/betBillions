@@ -295,10 +295,6 @@ interface LotteryDetailsProps {
   lotteryDetails: LotteryDetail | undefined;
 }
 
-interface GameHeadProps {
-  gameMode: string | null;
-}
-
 export type {
   ImageProps,
   CustomFormProps,
@@ -340,7 +336,6 @@ export type {
   NormalInputProps,
   NormalSelectProps,
   LotteryDetailsProps,
-  GameHeadProps,
 };
 
 export { ToastTypes };

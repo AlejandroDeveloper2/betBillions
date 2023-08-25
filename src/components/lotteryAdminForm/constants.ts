@@ -7,6 +7,7 @@ const DEFAULTVALUES: LotteryFormValues = {
   numberOfRounds: 0,
   rounds: [],
   state: "",
+  boardPrice: 0,
 };
 
 const schema = yup
@@ -32,6 +33,10 @@ const schema = yup
       )
       .required("Llene la información de todas las rondas"),
     state: yup.string().required("Seleccione un estado para el sorteo"),
+    boardPrice: yup
+      .number()
+      .required("Ingrese el precio del cartón de bingo")
+      .min(5, "El valor debe ser de minimo 5 dolares"),
   })
   .required("Todos los campos son obligatorios!");
 
