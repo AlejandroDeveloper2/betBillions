@@ -52,6 +52,7 @@ interface UserPanelData {
 interface WalletData {
   red: string;
   balance: number;
+  bingoWinnings: number;
   wallet: string | null;
   state: boolean;
   currency: string;
@@ -76,7 +77,7 @@ interface LotteryRound {
   typeGame: string;
   numberRound: number;
   award: number;
-  userWinner: string | null;
+  userWinner: number;
   completed: boolean;
 }
 
@@ -186,7 +187,7 @@ interface BingoRound {
   numberRound: number;
   award: number;
   balls: string[];
-  userWinner: string | null;
+  userWinner: number;
   completed: boolean;
 }
 

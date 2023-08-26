@@ -8,10 +8,10 @@ import { IoSend } from "react-icons/io5";
 import { FaMoneyBillWave } from "react-icons/fa6";
 
 import { useLoading, useRealTimeFecher } from "@hooks/index";
-import { UserProfileService } from "@services/userProfile.service";
 import { UserWalletService } from "@services/userWallet.service";
 import { LoadingConfig, WithdrawFormValues } from "types";
 import { DEFAULTVALUES, schema } from "./constants";
+import { calculateWithdrawAmount } from "@utils/index";
 
 import {
   Footer,
@@ -41,14 +41,9 @@ import {
 
 import { Wallet3dIcon } from "@assets/index";
 
-const userProfileService = new UserProfileService();
 const userWalletService = new UserWalletService();
 
 const Withdraws = (): JSX.Element => {
-  const { data: userPanelData } = useRealTimeFecher(
-    "/users/panel",
-    userProfileService.getUserPanelData
-  );
   const { data: wallet } = useRealTimeFecher(
     "/userWallet/wallet",
     userWalletService.getUserWalletData
@@ -59,12 +54,13 @@ const Withdraws = (): JSX.Element => {
     reset,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<WithdrawFormValues>({
     defaultValues: DEFAULTVALUES,
     resolver: yupResolver(schema),
   });
-
+  const price = watch("value");
   const {
     isLoading,
     activeLoading,
@@ -93,7 +89,7 @@ const Withdraws = (): JSX.Element => {
         <IndicatorContainer>
           <Indicator width="30rem">
             <IndicatorHead>
-              <IndicatorTitle>Balance Total</IndicatorTitle>
+              <IndicatorTitle>Total premios</IndicatorTitle>
               <Image
                 source={Wallet3dIcon}
                 alt={"Bet billions wallet"}
@@ -101,7 +97,7 @@ const Withdraws = (): JSX.Element => {
               />
             </IndicatorHead>
             <IndicatorValue>
-              ${userPanelData ? userPanelData.balance : 0}
+              ${wallet ? wallet.bingoWinnings : 0}
               <span>USD</span>
             </IndicatorValue>
           </Indicator>
@@ -181,6 +177,16 @@ const Withdraws = (): JSX.Element => {
               </DefaultSubmit>
             )}
           </CustomForm>
+          <InterestMessage
+            style={{ marginTop: 20, backgroundColor: "var(--gray)" }}
+          >
+            <BiSolidInfoCircle
+              style={{ color: "var(--dark-gray)", fontSize: 40 }}
+            />
+            <p style={{ color: "var(--dark-gray)" }}>
+              Valor que recibiras: {calculateWithdrawAmount(price)}
+            </p>
+          </InterestMessage>
         </FormContainer>
         <Footer />
       </Content>

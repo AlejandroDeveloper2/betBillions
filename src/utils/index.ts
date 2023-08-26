@@ -183,6 +183,10 @@ const activeRoundButton = (index: number, rounds: LotteryRound[]): boolean => {
   return active;
 };
 
+const calculateWithdrawAmount = (price: number): number => {
+  return price - price * 0.03;
+};
+
 export {
   ValuesForm,
   TokenAuth,
@@ -196,4 +200,5 @@ export {
   filterDiferenceList,
   sortListPerDate,
   activeRoundButton,
+  calculateWithdrawAmount,
 };

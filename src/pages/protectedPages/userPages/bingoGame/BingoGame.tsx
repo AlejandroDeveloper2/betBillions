@@ -4,13 +4,16 @@ import { BsFillGiftFill } from "react-icons/bs";
 import { VscDebugContinue } from "react-icons/vsc";
 
 import {
+  useAuthContext,
   useBingoContext,
   useGame,
   useLoading,
   useLotteryContext,
   useModal,
+  useRealTimeFecher,
 } from "@hooks/index";
 import { BingoRound } from "types";
+import { UsersService } from "@services/users.service";
 
 import {
   DefaultButton,
@@ -34,12 +37,15 @@ import {
 } from "./BingoGame.style";
 import { BingoFigure, PartyGift } from "@assets/index";
 
+const usersService = new UsersService();
+
 const BingoGame = (): JSX.Element => {
   const lotteryKey = location.pathname.split("/")[4];
   const navigate = useNavigate();
   const { playerBoard, setBingoWinner } = useBingoContext();
   const { lotteryDetail } = useLotteryContext();
   const { bingoRound, showedBalls, getIsUserWinner } = useGame();
+  const { userAuth } = useAuthContext();
   const {
     inactiveLoading,
     activeLoading,
@@ -47,9 +53,13 @@ const BingoGame = (): JSX.Element => {
     loadingMessage,
     isLoading,
   } = useLoading();
-  const { isModalVisible, showModal, hideModal, data } = useModal<BingoRound>();
+  const { isModalVisible, showModal, hideModal } = useModal<BingoRound>();
   const { isModalVisible: isGameModalVisible, hideModal: hideGameInfoModal } =
     useModal();
+
+  const { data: userWinner } = useRealTimeFecher("/users/winner", (token) =>
+    usersService.getWinnerUser(bingoRound ? bingoRound.userWinner : 1, token)
+  );
 
   const isGameStopped = showedBalls.length === 0 ? true : false;
   const isGameFinished =
@@ -69,8 +79,8 @@ const BingoGame = (): JSX.Element => {
             }}
           />
           <ModalMessage>
-            ¡Felicitaciones <span>{data?.userWinner}</span> has sido el primero
-            en decir BINGO!
+            ¡Felicitaciones <span>{userWinner}</span> has sido el primero en
+            decir BINGO!
           </ModalMessage>
           <DefaultButton
             style={{
@@ -104,9 +114,16 @@ const BingoGame = (): JSX.Element => {
               ? "El juego ha finalizado!"
               : "La ronda aun no se ha iniciado espera un momento!"}
           </ModalMessage>
+          <ModalMessage>
+            {userWinner &&
+              userWinner !== userAuth?.sub &&
+              "El ganador es de la ronda anterior: " + userWinner}
+          </ModalMessage>
           {isGameFinished && (
             <>
-              <ModalMessage>El ganador de la ronda ha sido:</ModalMessage>
+              <ModalMessage>
+                El ganador de la última ronda ha sido:
+              </ModalMessage>
               <h2 style={{ fontSize: 30, fontWeight: 900 }}>
                 {bingoRound?.userWinner}
               </h2>

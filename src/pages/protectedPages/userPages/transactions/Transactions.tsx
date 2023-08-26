@@ -35,8 +35,10 @@ const Transactions = (): JSX.Element => {
   const userProfileService = new UserProfileService();
   const { data: userTransactions, isLoading } = useRealTimeFecher(
     "/transaction/list",
-    transactionsService.getUserTransactions
+    transactionsService.getUserTransactions,
+    100
   );
+
   const { data: userPanelData, isLoading: isLoadingUserData } =
     useRealTimeFecher("/users/panel", userProfileService.getUserPanelData);
 

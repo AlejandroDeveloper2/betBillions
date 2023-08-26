@@ -11,7 +11,6 @@ function useListPagination<T>(list: T[]) {
   const [totalPages] = useState<number>(
     Math.ceil(list.length / totalRecordsPerPage)
   );
-
   const indexOfLastRecord = currentPage * totalRecordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - totalRecordsPerPage;
 
@@ -73,7 +72,7 @@ function useListPagination<T>(list: T[]) {
     return () => {
       active = false;
     };
-  }, [currentPage, list]);
+  }, [currentPage, indexOfFirstRecord, indexOfLastRecord, list]);
 
   return {
     records,
