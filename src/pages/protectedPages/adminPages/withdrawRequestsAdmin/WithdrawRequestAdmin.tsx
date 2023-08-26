@@ -22,11 +22,12 @@ const WithdrawRequestAdmin = (): JSX.Element => {
     "/retreats/list",
     withdrawService.getAllRetreats
   );
-  const { records, PaginationComponent } = useListPagination(
-    retreats ? retreats : []
-  );
 
-  const sortedRetreats = sortListPerDate(records, "createdAt");
+  const sortedRetreats = sortListPerDate(retreats, "createdAt");
+
+  const { records, PaginationComponent } = useListPagination(
+    sortedRetreats ? sortedRetreats : []
+  );
 
   return (
     <WithdrawsContainer>
@@ -47,10 +48,10 @@ const WithdrawRequestAdmin = (): JSX.Element => {
           columnsNumber={7}
           title="Solicitudes de retiro"
         >
-          {retreats?.length === 0 ? (
+          {!retreats ? (
             <Empty message="¡No hay solicitudes de retiro!" />
           ) : (
-            sortedRetreats.map((retreat) => (
+            records.map((retreat) => (
               <Table.Row key={retreat.id} columnsNumber={7}>
                 <Table.Item
                   value={retreat.wallet}

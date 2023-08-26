@@ -72,7 +72,7 @@ function useListPagination<T>(list: T[]) {
     return () => {
       active = false;
     };
-  }, [currentPage, indexOfFirstRecord, indexOfLastRecord, list]);
+  }, [currentPage, indexOfFirstRecord, indexOfLastRecord, list, totalPages]);
 
   return {
     records,

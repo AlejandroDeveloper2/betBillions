@@ -39,14 +39,14 @@ const Transactions = (): JSX.Element => {
     100
   );
 
+  const sortedTransactions = sortListPerDate(userTransactions, "createdAt");
+
   const { data: userPanelData, isLoading: isLoadingUserData } =
     useRealTimeFecher("/users/panel", userProfileService.getUserPanelData);
 
   const { records, PaginationComponent } = useListPagination(
-    userTransactions ? userTransactions : []
+    sortedTransactions ? sortedTransactions : []
   );
-
-  const sortedTransactions = sortListPerDate(records, "createdAt");
 
   return (
     <TransactionsContainer>
@@ -91,7 +91,7 @@ const Transactions = (): JSX.Element => {
             {userTransactions?.length === 0 ? (
               <Empty message="No tienes transaciones aún" />
             ) : (
-              sortedTransactions?.map((transaction) => (
+              records?.map((transaction) => (
                 <Table.Row key={transaction.id} columnsNumber={5}>
                   <Table.Item
                     value={transaction.id}

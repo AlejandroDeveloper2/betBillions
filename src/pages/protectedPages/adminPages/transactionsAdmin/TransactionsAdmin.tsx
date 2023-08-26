@@ -34,11 +34,11 @@ const TransactionsAdmin = (): JSX.Element => {
     transactionsService.getAdminTransactions
   );
 
-  const { records, PaginationComponent } = useListPagination(
-    transactions ? transactions : []
-  );
+  const sortedTransactions = sortListPerDate(transactions, "createdAt");
 
-  const sortedTransactions = sortListPerDate(records, "createdAt");
+  const { records, PaginationComponent } = useListPagination(
+    sortedTransactions ? sortedTransactions : []
+  );
 
   const {
     isModalVisible,
@@ -97,7 +97,7 @@ const TransactionsAdmin = (): JSX.Element => {
             {transactions?.length === 0 ? (
               <Empty message="¡No hay transacciones aún!" />
             ) : (
-              sortedTransactions?.map((transaction) => (
+              records.map((transaction) => (
                 <Table.Row key={transaction.id} columnsNumber={9}>
                   <Table.Item
                     value={transaction.walletType}
