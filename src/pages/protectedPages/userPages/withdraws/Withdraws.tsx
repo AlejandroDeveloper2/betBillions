@@ -7,9 +7,13 @@ import { PiWalletFill } from "react-icons/pi";
 import { IoSend } from "react-icons/io5";
 import { FaMoneyBillWave } from "react-icons/fa6";
 
-import { useLoading, useRealTimeFecher } from "@hooks/index";
+import {
+  useLoading,
+  useRealTimeFecher,
+  useWithdrawContext,
+} from "@hooks/index";
 import { UserWalletService } from "@services/userWallet.service";
-import { LoadingConfig, WithdrawFormValues } from "types";
+import { WithdrawFormValues } from "types";
 import { DEFAULTVALUES, schema } from "./constants";
 import { calculateWithdrawAmount } from "@utils/index";
 
@@ -51,7 +55,6 @@ const Withdraws = (): JSX.Element => {
 
   const {
     register,
-    reset,
     handleSubmit,
     setValue,
     watch,
@@ -75,6 +78,8 @@ const Withdraws = (): JSX.Element => {
       wallet ? (wallet.wallet ? wallet.wallet : "") : ""
     );
   }, [wallet]);
+
+  const { sendWithdrawRequest } = useWithdrawContext();
 
   return (
     <WithdrawsContainer>
@@ -116,16 +121,7 @@ const Withdraws = (): JSX.Element => {
             }}
             formType="walletDeposit"
             handleSubmit={handleSubmit}
-            reset={reset}
-            action={function (
-              data: any,
-              config: LoadingConfig,
-              reset?: any
-            ): Promise<void> {
-              reset();
-              console.log(data, config);
-              return Promise.resolve();
-            }}
+            action={sendWithdrawRequest}
           >
             <InputWithLabel
               type="text"

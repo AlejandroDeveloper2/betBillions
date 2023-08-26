@@ -23,6 +23,7 @@ import {
   ValidTransactionFormValues,
   WalletDepositFormValues,
   WalletWithdrawFormValues,
+  WithdrawFormValues,
 } from "..";
 import { IconType } from "react-icons";
 
@@ -199,7 +200,12 @@ interface BingoContextType {
   stopGame: (roundId: number, config: LoadingConfig) => Promise<void>;
 }
 
-interface WithdrawContextType {}
+interface WithdrawContextType {
+  sendWithdrawRequest: (
+    withdrawData: WithdrawFormValues,
+    config: LoadingConfig
+  ) => Promise<void>;
+}
 
 export type {
   AuthContextType,
