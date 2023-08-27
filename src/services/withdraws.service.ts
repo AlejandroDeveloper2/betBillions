@@ -40,14 +40,10 @@ class WithdrawService {
       },
     };
     try {
-      const newWithdrawData = {
-        ...withdrawData,
-        value: String(withdrawData.value),
-      };
       const axiosClient = getAxiosClient("betBillionsAPI");
       const { data } = await axiosClient.post<ServerResponse>(
         "/retreats/request/money",
-        newWithdrawData,
+        withdrawData,
         config
       );
       response = data;

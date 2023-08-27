@@ -8,12 +8,12 @@ import {
   useBingoContext,
   useGame,
   useLoading,
-  useLotteryContext,
   useModal,
   useRealTimeFecher,
 } from "@hooks/index";
 import { BingoRound } from "types";
 import { UsersService } from "@services/users.service";
+import { LotteryService } from "@services/lottery.service";
 
 import {
   DefaultButton,
@@ -38,12 +38,21 @@ import {
 import { BingoFigure, PartyGift } from "@assets/index";
 
 const usersService = new UsersService();
+const lotteryService = new LotteryService();
 
 const BingoGame = (): JSX.Element => {
   const lotteryKey = location.pathname.split("/")[4];
   const navigate = useNavigate();
+  const { data: lotteryDetail } = useRealTimeFecher(
+    "/lottery/awards",
+    (token) => lotteryService.getBingoReffel(lotteryKey, token),
+    null
+  );
+  const { data: userWinner } = useRealTimeFecher("/users/winner", (token) =>
+    usersService.getWinnerUser(bingoRound ? bingoRound.userWinner : 1, token)
+  );
+
   const { playerBoard, setBingoWinner } = useBingoContext();
-  const { lotteryDetail } = useLotteryContext();
   const { bingoRound, showedBalls, getIsUserWinner } = useGame();
   const { userAuth } = useAuthContext();
   const {
@@ -56,10 +65,6 @@ const BingoGame = (): JSX.Element => {
   const { isModalVisible, showModal, hideModal } = useModal<BingoRound>();
   const { isModalVisible: isGameModalVisible, hideModal: hideGameInfoModal } =
     useModal();
-
-  const { data: userWinner } = useRealTimeFecher("/users/winner", (token) =>
-    usersService.getWinnerUser(bingoRound ? bingoRound.userWinner : 1, token)
-  );
 
   const isGameStopped = showedBalls.length === 0 ? true : false;
   const isGameFinished =
@@ -129,7 +134,6 @@ const BingoGame = (): JSX.Element => {
               </h2>
             </>
           )}
-
           {isGameFinished ? (
             <DefaultButton
               style={{

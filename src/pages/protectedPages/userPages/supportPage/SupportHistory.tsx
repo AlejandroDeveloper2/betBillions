@@ -33,10 +33,12 @@ const SupportHistory = (): JSX.Element => {
     "/support/list/users",
     supportService.getSupportUserRequests
   );
+  const sortedSupportRequests = sortListPerDate(userRequests, "createdAt");
+
   const { records, PaginationComponent } = useListPagination(
-    userRequests ? userRequests : []
+    sortedSupportRequests ? sortedSupportRequests : []
   );
-  const sortedSupportRequests = sortListPerDate(records, "createdAt");
+
   const {
     data: requestAnswer,
     isModalVisible,
@@ -88,10 +90,10 @@ const SupportHistory = (): JSX.Element => {
               columnsNumber={5}
               title="Historial de solicitudes"
             >
-              {userRequests?.length === 0 ? (
+              {records.length === 0 ? (
                 <Empty message="¡No tienes solicitudes de soporte aún!" />
               ) : (
-                sortedSupportRequests.map((request) => (
+                records.map((request) => (
                   <Table.Row key={request.id} columnsNumber={5}>
                     <Table.Item
                       value={request.ticket}

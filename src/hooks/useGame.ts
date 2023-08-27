@@ -1,33 +1,24 @@
 import { useEffect, useState } from "react";
-import useSWR from "swr";
 
 import { BingoService } from "@services/bingo.service";
-import { TokenAuth } from "@utils/index";
-import { useBingoContext } from ".";
+import { useBingoContext, useRealTimeFecher } from ".";
 
 const bingoService = new BingoService();
-const tokenAuth = new TokenAuth();
 
 const useGame = () => {
-  const token = tokenAuth.getToken();
   const lotteryKey = window.location.pathname.split("/")[4];
   const [round, setRound] = useState<number | string>("?");
   const [gameMode, setGameMode] = useState<string | null>(null);
   const [currentBall, setCurrentBall] = useState<string>("?");
   const [showedBalls, setShowedBalls] = useState<string[]>([]);
   const [roundId, setRoundId] = useState<number>(1);
+
   const { getPlayerBoard, playerBoard } = useBingoContext();
 
-  const { data: bingoRound } = useSWR(
+  const { data: bingoRound } = useRealTimeFecher(
     "/lottery/start/round",
-    () => {
-      if (token) {
-        return bingoService.startGame(lotteryKey, token);
-      }
-    },
-    {
-      refreshInterval: 10000,
-    }
+    (token) => bingoService.startGame(lotteryKey, token),
+    10000
   );
 
   useEffect(() => {

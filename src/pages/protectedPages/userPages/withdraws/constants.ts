@@ -3,20 +3,17 @@ import * as yup from "yup";
 import { WithdrawFormValues } from "types";
 
 const DEFAULTVALUES: WithdrawFormValues = {
-  walletAddress: "",
-  value: 0,
+  wallet: "",
+  price: 0,
 };
 
 const schema = yup
   .object()
   .shape({
-    walletAddress: yup
-      .string()
-      .required("La dirección de la wallet es obligatoria!"),
-
-    value: yup
+    wallet: yup.string().required("La dirección de la wallet es obligatoria!"),
+    price: yup
       .number()
-      .integer("El valor ingrsado debe ser un numero!")
+      .integer("El valor ingresado debe ser un numero!")
       .required("El valor en dolares a retirar es obligatiorio!")
       .min(10, "El valor minimo para retirar es 10 USD"),
   })

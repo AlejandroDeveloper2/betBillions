@@ -9,7 +9,7 @@ import { IoMdPricetag } from "react-icons/io";
 import { useRealTimeFecher, useListPagination } from "@hooks/index";
 import { WithdrawService } from "@services/withdraws.service";
 import { tableHeaders } from "./constants";
-import { sortListPerDate } from "@utils/index";
+import { formatDate, sortListPerDate } from "@utils/index";
 
 import { Empty, Footer, Loading, Table } from "@components/index";
 
@@ -84,7 +84,7 @@ const WithdrawRequestAdmin = (): JSX.Element => {
                   label="Estado"
                 />
                 <Table.Item
-                  value={retreat.createdAt}
+                  value={formatDate(retreat.createdAt, "numeric")}
                   Icon={BsFillCalendarDateFill}
                   label="Fecha retiro"
                 />

@@ -198,7 +198,7 @@ interface ToastType {
 
 interface Retreat {
   id: number;
-  wallet: number;
+  wallet: string;
   userWalletId: number;
   price: number;
   commissionPercentage: number;

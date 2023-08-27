@@ -94,19 +94,8 @@ interface WalletContextType {
 }
 
 interface LotteryContextType {
-  reffels: LotteryListItem[];
-  lotteryDetail: LotteryDetail | null;
-  randomBingoBoards: BingoBoard[];
-  userBingoBoards: BingoBoard[];
-  getAllBingoReffels: (config: LoadingConfig) => Promise<void>;
-  getBingoReffel: (lotteryKey: string, config: LoadingConfig) => Promise<void>;
-  getRandomBingoBoards: () => Promise<void>;
   buyBingoBoards: (
     purchaseData: BingoBoard[],
-    lotteryKey: string,
-    config: LoadingConfig
-  ) => Promise<void>;
-  getPurchasedUserBingoBoards: (
     lotteryKey: string,
     config: LoadingConfig
   ) => Promise<void>;
@@ -137,8 +126,12 @@ interface TransactionContextType {
 interface ShoppingCartContextType {
   bingoBoards: BingoBoard[];
   totalToPay: number;
-  addBingoBoardToCart: (bingoBoard: BingoBoard, numberOfRounds: number) => void;
-  removeBingoBoardFromCart: (bingoBoardId: string) => void;
+  addBingoBoardToCart: (
+    bingoBoard: BingoBoard,
+    numberOfRounds: number,
+    price: number
+  ) => void;
+  removeBingoBoardFromCart: (bingoBoardId: string, price: number) => void;
   clearShoppingCart: () => void;
 }
 

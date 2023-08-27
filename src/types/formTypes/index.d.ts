@@ -62,8 +62,8 @@ interface SupportAnswerFormValues {
 }
 
 interface WithdrawFormValues {
-  walletAddress: string;
-  value: number;
+  wallet: string;
+  price: number;
 }
 
 interface RoundFormValues {

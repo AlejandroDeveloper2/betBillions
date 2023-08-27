@@ -1,13 +1,9 @@
-import { useEffect } from "react";
 import Slider from "react-slick";
 import { BiPlus } from "react-icons/bi";
 import { IoMdRemoveCircle } from "react-icons/io";
 
-import {
-  useLoading,
-  useLotteryContext,
-  useShoppingCartContext,
-} from "@hooks/index";
+import { useRealTimeFecher, useShoppingCartContext } from "@hooks/index";
+import { LotteryService } from "@services/lottery.service";
 
 import { BingoBoard, Image, DefaultButton, Loading } from "@components/index";
 
@@ -29,37 +25,52 @@ const settings = {
   responsive: responsiveConfig,
 };
 
-const Carousel = (): JSX.Element => {
-  const { randomBingoBoards, getRandomBingoBoards, lotteryDetail } =
-    useLotteryContext();
-  const { addBingoBoardToCart } = useShoppingCartContext();
+const lotteryService = new LotteryService();
+const lotteryKey = window.location.pathname.split("/")[4];
 
-  useEffect(() => {
-    getRandomBingoBoards();
-  }, []);
+const Carousel = (): JSX.Element => {
+  const { addBingoBoardToCart } = useShoppingCartContext();
+  const { data: lotteryDetail } = useRealTimeFecher(
+    "/lottery/awards",
+    (token) => lotteryService.getBingoReffel(lotteryKey, token),
+    null
+  );
+  const { data: randomBingoBoards, isLoading } = useRealTimeFecher(
+    "/cardBingo/list",
+    lotteryService.getRandomBingoBoards,
+    null
+  );
 
   return (
     <CarouselContainer>
       <Slider {...settings} className="slider">
-        {randomBingoBoards.map((board, index) => (
-          <BingoBoard key={board.key} board={board} index={index + 1}>
-            <DefaultButton
-              style={{
-                bg: "var(--green)",
-                fontColor: "var(--dark-gray)",
-              }}
-              title={"Seleccionar cartón"}
-              onClick={() =>
-                addBingoBoardToCart(
-                  board,
-                  lotteryDetail ? lotteryDetail.numberOfRounds : 1
-                )
-              }
-            >
-              <BiPlus style={{ color: "var(--dark-gray)", fontSize: 20 }} />
-            </DefaultButton>
-          </BingoBoard>
-        ))}
+        {isLoading ? (
+          <Loading
+            message="Cargando cartones aleatorios..."
+            textColor="var(--bg-secondary-color)"
+          />
+        ) : (
+          randomBingoBoards?.map((board, index) => (
+            <BingoBoard key={board.key} board={board} index={index + 1}>
+              <DefaultButton
+                style={{
+                  bg: "var(--green)",
+                  fontColor: "var(--dark-gray)",
+                }}
+                title={"Seleccionar cartón"}
+                onClick={() =>
+                  addBingoBoardToCart(
+                    board,
+                    lotteryDetail ? lotteryDetail.numberOfRounds : 1,
+                    lotteryDetail ? lotteryDetail.price : 1
+                  )
+                }
+              >
+                <BiPlus style={{ color: "var(--dark-gray)", fontSize: 20 }} />
+              </DefaultButton>
+            </BingoBoard>
+          ))
+        )}
       </Slider>
     </CarouselContainer>
   );
@@ -67,7 +78,11 @@ const Carousel = (): JSX.Element => {
 
 const ShoppingCartCarousel = (): JSX.Element => {
   const { bingoBoards, removeBingoBoardFromCart } = useShoppingCartContext();
-
+  const { data: lotteryDetail } = useRealTimeFecher(
+    "/lottery/awards",
+    (token) => lotteryService.getBingoReffel(lotteryKey, token),
+    null
+  );
   return (
     <CarouselContainer>
       {bingoBoards.length === 0 ? (
@@ -93,7 +108,12 @@ const ShoppingCartCarousel = (): JSX.Element => {
                   fontColor: "var(--dark-gray)",
                 }}
                 title={"Quitar cartón del carrito"}
-                onClick={() => removeBingoBoardFromCart(board.key)}
+                onClick={() =>
+                  removeBingoBoardFromCart(
+                    board.key,
+                    lotteryDetail ? lotteryDetail.price : 1
+                  )
+                }
               >
                 <IoMdRemoveCircle
                   style={{ color: "var(--dark-gray)", fontSize: 20 }}
@@ -108,31 +128,22 @@ const ShoppingCartCarousel = (): JSX.Element => {
 };
 
 const UserBingoCardsCarousel = (): JSX.Element => {
-  const lotteryKey = window.location.pathname.split("/")[4];
-  const { userBingoBoards, getPurchasedUserBingoBoards } = useLotteryContext();
-  const {
-    isLoading,
-    loadingMessage,
-    activeLoading,
-    inactiveLoading,
-    setMessage,
-  } = useLoading();
-
-  useEffect(() => {
-    getPurchasedUserBingoBoards(lotteryKey, {
-      activeLoading,
-      inactiveLoading,
-      setMessage,
-    });
-  }, []);
+  const { data: userBingoBoards, isLoading } = useRealTimeFecher(
+    "/cardBingo/lottery/users",
+    (token) => lotteryService.getPurchasedUserBingoBoards(token, lotteryKey),
+    null
+  );
 
   return (
     <CarouselContainer>
       {isLoading ? (
-        <Loading message={loadingMessage} textColor="var(bg-secondary-color)" />
+        <Loading
+          message="Cargando tus cartones..."
+          textColor="var(bg-secondary-color)"
+        />
       ) : (
         <Slider {...settings} className="slider">
-          {userBingoBoards.map((board, index) => (
+          {userBingoBoards?.map((board, index) => (
             <BingoBoard key={board.key} board={board} index={index + 1} />
           ))}
         </Slider>

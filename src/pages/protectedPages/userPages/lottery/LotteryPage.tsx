@@ -1,7 +1,6 @@
-import { useEffect } from "react";
-
-import { useLoading, useLotteryContext } from "@hooks/index";
+import { useRealTimeFecher } from "@hooks/index";
 import { formatDate } from "@utils/index";
+import { LotteryService } from "@services/lottery.service";
 
 import {
   AdCard,
@@ -15,23 +14,15 @@ import { Datetext } from "../userPanel/UserPanel.style";
 import { LotteryContainer } from "./LotteryPage.style";
 import { CardAdTitle, Content } from "@styles/GlobalStyles.style";
 
-const LotteryPage = (): JSX.Element => {
-  const { reffels, getAllBingoReffels } = useLotteryContext();
-  const {
-    isLoading,
-    loadingMessage,
-    activeLoading,
-    inactiveLoading,
-    setMessage,
-  } = useLoading();
+const lotteryService = new LotteryService();
 
-  useEffect(() => {
-    getAllBingoReffels({
-      activeLoading,
-      inactiveLoading,
-      setMessage,
-    });
-  }, []);
+const LotteryPage = (): JSX.Element => {
+  const { data: reffels, isLoading } = useRealTimeFecher(
+    "/lottery/list",
+    lotteryService.getAllBingoReffels
+  );
+
+  const filteredReffels = reffels?.filter((reffel) => reffel.state === true);
 
   return (
     <LotteryContainer>
@@ -40,22 +31,16 @@ const LotteryPage = (): JSX.Element => {
         <h1>Sorteos</h1>
         {isLoading ? (
           <Loading
-            message={loadingMessage}
+            message="Cargando sorteos disponibles!"
             textColor="var(--bg-secondary-color)"
           />
-        ) : reffels.filter((reffel) => reffel.state === true).length > 0 ? (
-          reffels
-            .filter((reffel) => reffel.state === true)
-            .map((reffel) => (
-              <AdCard
-                key={reffel.id}
-                play={reffel.state}
-                lotteryKey={reffel.key}
-              >
-                <CardAdTitle>Juega y gana </CardAdTitle>
-                <Datetext>{formatDate(reffel.startDate)}</Datetext>
-              </AdCard>
-            ))
+        ) : filteredReffels ? (
+          filteredReffels.map((reffel) => (
+            <AdCard key={reffel.id} play={reffel.state} lotteryKey={reffel.key}>
+              <CardAdTitle>Juega y gana </CardAdTitle>
+              <Datetext>{formatDate(reffel.startDate)}</Datetext>
+            </AdCard>
+          ))
         ) : (
           <Empty message="¡No hay sorteos programados!" />
         )}

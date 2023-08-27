@@ -26,11 +26,12 @@ const TeamPage = (): JSX.Element => {
     "/users/referrals/team",
     userProfileService.getUserTeam
   );
-  const { records, PaginationComponent } = useListPagination(
-    userTeam ? userTeam : []
-  );
 
-  const sortedTeam = sortListPerDate(records, "dateRegistered");
+  const sortedTeam = sortListPerDate(userTeam, "dateRegistered");
+
+  const { records, PaginationComponent } = useListPagination(
+    sortedTeam ? sortedTeam : []
+  );
 
   return (
     <TeamPageContainer>
@@ -55,10 +56,10 @@ const TeamPage = (): JSX.Element => {
             columnsNumber={4}
             title="Mi red de referidos"
           >
-            {userTeam?.length === 0 ? (
+            {records.length === 0 ? (
               <Empty message="¡No tienes referidos aún!" />
             ) : (
-              sortedTeam?.map((referral) => (
+              records?.map((referral) => (
                 <Table.Row key={referral.id} columnsNumber={4}>
                   <Table.Item value={referral.id} Icon={FaHashtag} label="Id" />
                   <Table.Item

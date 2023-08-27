@@ -70,7 +70,7 @@ const SupportAdminPage = (): JSX.Element => {
             columnsNumber={7}
             title="Listado de solicitudes"
           >
-            {requests?.length === 0 ? (
+            {!requests ? (
               <Empty message="¡No hay solicitudes de soporte aún!" />
             ) : (
               records.map((request) => (

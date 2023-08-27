@@ -15,6 +15,7 @@ const WithdrawsContainer = styled.div`
 
   @media (min-width: 1000px) {
     align-items: flex-start;
+    justify-content: flex-start;
     width: 100%;
     height: 100vh;
     padding-bottom: 1rem;

@@ -48,7 +48,7 @@ import { Wallet3dIcon } from "@assets/index";
 const userWalletService = new UserWalletService();
 
 const Withdraws = (): JSX.Element => {
-  const { data: wallet } = useRealTimeFecher(
+  const { data: walletInfo } = useRealTimeFecher(
     "/userWallet/wallet",
     userWalletService.getUserWalletData
   );
@@ -63,7 +63,9 @@ const Withdraws = (): JSX.Element => {
     defaultValues: DEFAULTVALUES,
     resolver: yupResolver(schema),
   });
-  const price = watch("value");
+
+  const value = watch("price");
+
   const {
     isLoading,
     activeLoading,
@@ -74,10 +76,10 @@ const Withdraws = (): JSX.Element => {
 
   useEffect(() => {
     setValue(
-      "walletAddress",
-      wallet ? (wallet.wallet ? wallet.wallet : "") : ""
+      "wallet",
+      walletInfo ? (walletInfo.wallet ? walletInfo.wallet : "") : ""
     );
-  }, [wallet]);
+  }, [walletInfo]);
 
   const { sendWithdrawRequest } = useWithdrawContext();
 
@@ -102,7 +104,7 @@ const Withdraws = (): JSX.Element => {
               />
             </IndicatorHead>
             <IndicatorValue>
-              ${wallet ? wallet.bingoWinnings : 0}
+              ${walletInfo ? walletInfo.bingoWinnings : 0}
               <span>USD</span>
             </IndicatorValue>
           </Indicator>
@@ -129,11 +131,11 @@ const Withdraws = (): JSX.Element => {
               label="Dirección de billetera"
               Icon={PiWalletFill}
               register={register}
-              name="walletAddress"
+              name="wallet"
               disabled
             />
-            {errors.walletAddress ? (
-              <ErrorMessage message={errors.walletAddress.message} />
+            {errors.wallet ? (
+              <ErrorMessage message={errors.wallet.message} />
             ) : null}
             <InputWithLabel
               type="number"
@@ -141,10 +143,10 @@ const Withdraws = (): JSX.Element => {
               label="Valor a retirar"
               Icon={FaMoneyBillWave}
               register={register}
-              name="value"
+              name="price"
             />
-            {errors.value ? (
-              <ErrorMessage message={errors.value.message} />
+            {errors.price ? (
+              <ErrorMessage message={errors.price.message} />
             ) : null}
             {isLoading ? (
               <LoadingButton
@@ -180,7 +182,7 @@ const Withdraws = (): JSX.Element => {
               style={{ color: "var(--dark-gray)", fontSize: 40 }}
             />
             <p style={{ color: "var(--dark-gray)" }}>
-              Valor que recibiras: {calculateWithdrawAmount(price)}
+              Valor que recibiras: {calculateWithdrawAmount(value)}
             </p>
           </InterestMessage>
         </FormContainer>
