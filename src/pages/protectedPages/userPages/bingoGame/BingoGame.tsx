@@ -68,7 +68,8 @@ const BingoGame = (): JSX.Element => {
 
   const isGameStopped = showedBalls.length === 0 ? true : false;
   const isGameFinished =
-    lotteryDetail?.rounds.length === bingoRound?.numberRound;
+    lotteryDetail?.rounds.length === bingoRound?.numberRound ||
+    playerBoard === null;
 
   return (
     <>
