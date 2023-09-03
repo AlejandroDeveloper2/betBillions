@@ -295,6 +295,15 @@ interface LotteryDetailsProps {
   lotteryDetails: LotteryDetail | undefined;
 }
 
+interface WinnerWindowProps {
+  userWinner: string | undefined;
+  hideModal: (delay?: number) => void;
+}
+
+interface StopBingoWindowProps {
+  hideGameInfoModal: (delay?: number) => void;
+}
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -336,6 +345,8 @@ export type {
   NormalInputProps,
   NormalSelectProps,
   LotteryDetailsProps,
+  WinnerWindowProps,
+  StopBingoWindowProps,
 };
 
 export { ToastTypes };

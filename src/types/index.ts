@@ -39,6 +39,8 @@ export type {
   NormalInputProps,
   NormalSelectProps,
   LotteryDetailsProps,
+  WinnerWindowProps,
+  StopBingoWindowProps,
 } from "./componentTypes";
 
 export { ToastTypes } from "./componentTypes/index.d";

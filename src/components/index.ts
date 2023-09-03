@@ -58,6 +58,8 @@ export { default as GameMode } from "./bingoGame/gameMode/GameMode";
 export { default as Counter } from "./bingoGame/counter/Counter";
 export { default as Dropdown } from "./bingoGame/dropdown/Dropdown";
 export { default as DynamicBingoBoard } from "./shared/bingoBoard/DynamicBingoBoard";
+export { default as WinnerWindow } from "./bingoGame/winnerWindow/WinnerWindow";
+export { default as StopBingoWindow } from "./bingoGame/stopBingoWindow/StopBingoWindow";
 
 /*LotteryAdmin */
 export { default as LotteryAdminForm } from "./lotteryAdminForm/LotteryAdminForm";
