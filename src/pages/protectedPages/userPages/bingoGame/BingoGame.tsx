@@ -35,11 +35,15 @@ const usersService = new UsersService();
 
 const BingoGame = (): JSX.Element => {
   const lotteryKey = location.pathname.split("/")[4];
-  const { data: userWinner } = useRealTimeFecher("/users/winner", (token) =>
-    usersService.getWinnerUser(bingoRound ? bingoRound.userWinner : 1, token)
-  );
   const { playerBoard, setBingoWinner } = useBingoContext();
   const { bingoRound, showedBalls, getIsUserWinner } = useGame();
+  const { data: userWinner } = useRealTimeFecher("/users/winner", (token) =>
+    usersService.getWinnerUser(
+      bingoRound?.userWinner ? bingoRound.userWinner : 1,
+      token
+    )
+  );
+
   const {
     inactiveLoading,
     activeLoading,

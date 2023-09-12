@@ -20,9 +20,12 @@ const BingoContext = createContext<BingoContextType>({} as BingoContextType);
 const tokenAuth = new TokenAuth();
 const bingoService = new BingoService();
 
+//const requestCounterLS = parseInt(window.localStorage.getItem("requestCounter")?? "0");
+
 const BingoProvider = ({ children }: ProviderProps) => {
   const [bingoRound, setBingoRound] = useState<BingoRound | null>(null);
   const [playerBoard, setPlayerBoard] = useState<BingoBoard | null>(null);
+  const [requestsCounter, setRequestsCounter] = useState<number>(0);
 
   const { openToast } = useToastContext();
 
@@ -65,31 +68,40 @@ const BingoProvider = ({ children }: ProviderProps) => {
     }
   };
 
-  const activeBingoLottery = useCallback(
-    async (lotteryKey: string, roundId: number, config: LoadingConfig) => {
-      const token = tokenAuth.getToken();
-      if (token) {
-        try {
-          config.setMessage("Activando....");
-          config.activeLoading();
-          await bingoService.activeBingoLottery(lotteryKey, roundId, token);
-          openToast({
-            message: "Sorteo activado...",
-            type: ToastTypes.success,
-          });
-        } catch (error: unknown) {
-          const errorMessage = (error as Error).message;
-          openToast({
-            message: errorMessage,
-            type: ToastTypes.error,
-          });
-        } finally {
-          config.inactiveLoading();
-        }
+  const activeBingoLottery = async (
+    lotteryKey: string,
+    roundId: number,
+    config: LoadingConfig
+  ) => {
+    const token = tokenAuth.getToken();
+    if (token && requestsCounter < 75) {
+      setRequestsCounter((prevCounter) => prevCounter + 1);
+      console.log(requestsCounter);
+      try {
+        config.setMessage("Activando....");
+        config.activeLoading();
+        await bingoService.activeBingoLottery(lotteryKey, roundId, token);
+        openToast({
+          message: "Sorteo activado...",
+          type: ToastTypes.success,
+        });
+        window.setTimeout(() => {
+          activeBingoLottery(lotteryKey, roundId, config);
+        }, 5000);
+      } catch (error: unknown) {
+        const errorMessage = (error as Error).message;
+        openToast({
+          message: errorMessage,
+          type: ToastTypes.error,
+        });
+        window.setTimeout(() => {
+          activeBingoLottery(lotteryKey, roundId, config);
+        }, 5000);
+      } finally {
+        config.inactiveLoading();
       }
-    },
-    []
-  );
+    }
+  };
 
   const validateBingoBalls = useCallback(
     async (
@@ -195,6 +207,7 @@ const BingoProvider = ({ children }: ProviderProps) => {
     async (roundId: number, config: LoadingConfig): Promise<void> => {
       const token = tokenAuth.getToken();
       if (token) {
+        setRequestsCounter(0);
         try {
           config.setMessage("Finalizando ronda....");
           config.activeLoading();
@@ -221,6 +234,7 @@ const BingoProvider = ({ children }: ProviderProps) => {
     () => ({
       bingoRound,
       playerBoard,
+      requestsCounter,
       startGame,
       getPlayerBoard,
       activeBingoLottery,
@@ -231,6 +245,7 @@ const BingoProvider = ({ children }: ProviderProps) => {
     [
       bingoRound,
       playerBoard,
+      requestsCounter,
       startGame,
       getPlayerBoard,
       activeBingoLottery,

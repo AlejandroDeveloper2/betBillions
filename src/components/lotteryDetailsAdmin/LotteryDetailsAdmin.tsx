@@ -51,15 +51,11 @@ const LotteryDetailsAdmin = ({
                   title="Activar ronda de bingo!"
                   label="Empezar ronda"
                   onClick={() => {
-                    activeBingoLottery(
-                      round.idLottery ? round.idLottery : "",
-                      round.id,
-                      {
-                        activeLoading,
-                        inactiveLoading,
-                        setMessage,
-                      }
-                    );
+                    activeBingoLottery(lotteryDetails.key, round.id, {
+                      activeLoading,
+                      inactiveLoading,
+                      setMessage,
+                    });
                   }}
                   disabled={activeRoundButton(i, lotteryDetails.rounds)}
                 >

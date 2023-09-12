@@ -171,6 +171,7 @@ interface SupportContextType {
 interface BingoContextType {
   bingoRound: BingoRound | null;
   playerBoard: BingoBoard | null;
+  requestsCounter: number;
   startGame: (lotteryKey: string) => Promise<void>;
   getPlayerBoard: (lotteryKey: string, roundId: number) => Promise<void>;
   activeBingoLottery: (
