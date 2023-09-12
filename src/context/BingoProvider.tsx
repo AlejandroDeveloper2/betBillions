@@ -76,7 +76,6 @@ const BingoProvider = ({ children }: ProviderProps) => {
     const token = tokenAuth.getToken();
     if (token && requestsCounter < 75) {
       setRequestsCounter((prevCounter) => prevCounter + 1);
-      console.log(requestsCounter);
       try {
         config.setMessage("Activando....");
         config.activeLoading();

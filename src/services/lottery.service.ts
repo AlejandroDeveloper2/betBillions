@@ -128,7 +128,6 @@ class LotteryService {
         config
       );
       response = data;
-      console.log(response);
     } catch (_e: unknown) {
       const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
         .message;

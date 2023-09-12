@@ -3,21 +3,34 @@ import { BsFillCalendarDateFill, BsFillTelephoneFill } from "react-icons/bs";
 import { FaHashtag } from "react-icons/fa";
 import { GrStatusDisabledSmall } from "react-icons/gr";
 import { HiCurrencyDollar } from "react-icons/hi";
-import { HiWallet } from "react-icons/hi2";
+import { HiWallet, HiXMark } from "react-icons/hi2";
 import { IoMdPricetag } from "react-icons/io";
 
-import { useRealTimeFecher, useListPagination } from "@hooks/index";
+import {
+  useRealTimeFecher,
+  useListPagination,
+  useWithdrawContext,
+  useLoading,
+} from "@hooks/index";
 import { WithdrawService } from "@services/withdraws.service";
 import { tableHeaders } from "./constants";
 import { formatDate, sortListPerDate } from "@utils/index";
 
-import { Empty, Footer, Loading, Table } from "@components/index";
+import {
+  DefaultButton,
+  Empty,
+  Footer,
+  Loading,
+  Table,
+} from "@components/index";
 
 import { WithdrawsContainer, PageTitle } from "./WithdrawRequestAdmin.style";
+import { AiOutlineCheck } from "react-icons/ai";
 
 const withdrawService = new WithdrawService();
 
 const WithdrawRequestAdmin = (): JSX.Element => {
+  const { validateTransaction, invalidateTransaction } = useWithdrawContext();
   const { data: retreats, isLoading } = useRealTimeFecher(
     "/retreats/list",
     withdrawService.getAllRetreats
@@ -28,6 +41,8 @@ const WithdrawRequestAdmin = (): JSX.Element => {
   const { records, PaginationComponent } = useListPagination(
     sortedRetreats ? sortedRetreats : []
   );
+
+  const { activeLoading, inactiveLoading, setMessage } = useLoading();
 
   return (
     <WithdrawsContainer>
@@ -45,14 +60,14 @@ const WithdrawRequestAdmin = (): JSX.Element => {
       ) : (
         <Table
           headers={tableHeaders}
-          columnsNumber={7}
+          columnsNumber={8}
           title="Solicitudes de retiro"
         >
           {!retreats ? (
             <Empty message="¡No hay solicitudes de retiro!" />
           ) : (
             records.map((retreat) => (
-              <Table.Row key={retreat.id} columnsNumber={7}>
+              <Table.Row key={retreat.id} columnsNumber={8}>
                 <Table.Item
                   value={retreat.wallet}
                   Icon={HiWallet}
@@ -88,6 +103,46 @@ const WithdrawRequestAdmin = (): JSX.Element => {
                   Icon={BsFillCalendarDateFill}
                   label="Fecha retiro"
                 />
+                <Table.Options>
+                  <DefaultButton
+                    style={{
+                      bg: "var(--success)",
+                      fontColor: "var(--white)",
+                      width: "3rem",
+                      padding: "0.3rem 0.2rem",
+                    }}
+                    title={"Validar transacción"}
+                    onClick={() =>
+                      validateTransaction(retreat, {
+                        activeLoading,
+                        inactiveLoading,
+                        setMessage,
+                      })
+                    }
+                  >
+                    <AiOutlineCheck
+                      style={{ color: "var(--white)", fontSize: 20 }}
+                    />
+                  </DefaultButton>
+                  <DefaultButton
+                    style={{
+                      bg: "var(--error)",
+                      fontColor: "var(--white)",
+                      width: "3rem",
+                      padding: "0.3rem 0.2rem",
+                    }}
+                    title={"Invalidar transacción"}
+                    onClick={() =>
+                      invalidateTransaction(retreat, {
+                        activeLoading,
+                        inactiveLoading,
+                        setMessage,
+                      })
+                    }
+                  >
+                    <HiXMark style={{ color: "var(--white)", fontSize: 20 }} />
+                  </DefaultButton>
+                </Table.Options>
               </Table.Row>
             ))
           )}

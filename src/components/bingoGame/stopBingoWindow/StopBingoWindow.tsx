@@ -19,7 +19,7 @@ const StopBingoWindow = ({
 }: StopBingoWindowProps): JSX.Element => {
   // const lotteryKey = location.pathname.split("/")[4];
   const navigate = useNavigate();
-  const { bingoRound, showedBalls } = useGame();
+  const { bingoRound } = useGame();
 
   // const { data: lotteryDetail } = useRealTimeFecher(
   //   "/lottery/awards",
@@ -27,11 +27,14 @@ const StopBingoWindow = ({
   //   null
   // );
   const { data: userWinner } = useRealTimeFecher("/users/winner", (token) =>
-    usersService.getWinnerUser(bingoRound ? bingoRound.userWinner : 0, token)
+    usersService.getWinnerUser(
+      bingoRound?.userWinner ? bingoRound.userWinner : 1,
+      token
+    )
   );
   const { userAuth } = useAuthContext();
 
-  const isGameFinished = userWinner && showedBalls.length >= 75;
+  const isGameFinished = userWinner !== undefined;
 
   return (
     <>

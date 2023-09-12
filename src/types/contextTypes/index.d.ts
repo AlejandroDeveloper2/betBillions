@@ -12,6 +12,7 @@ import {
   LotteryListItem,
   RecoverPassFormValues,
   RegisterFormValues,
+  Retreat,
   SupportAnswerFormValues,
   SupportFormValues,
   ToastType,
@@ -197,6 +198,14 @@ interface BingoContextType {
 interface WithdrawContextType {
   sendWithdrawRequest: (
     withdrawData: WithdrawFormValues,
+    config: LoadingConfig
+  ) => Promise<void>;
+  validateTransaction: (
+    retreatData: Retreat,
+    config: LoadingConfig
+  ) => Promise<void>;
+  invalidateTransaction: (
+    retreatData: Retreat,
     config: LoadingConfig
   ) => Promise<void>;
 }

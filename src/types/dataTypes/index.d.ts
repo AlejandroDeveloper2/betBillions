@@ -205,6 +205,7 @@ interface Retreat {
   currency: string;
   stateRetreats: string;
   createdAt: string;
+  transaction: string;
 }
 
 export type {
