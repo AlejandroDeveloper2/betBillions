@@ -4,6 +4,7 @@ import getAxiosClient from "@config/axiosClient";
 import {
   BingoBoard,
   LotteryDetail,
+  LotteryFormValues,
   LotteryListItem,
   ServerResponse,
 } from "types";
@@ -33,7 +34,7 @@ class LotteryService {
   }
 
   public async getBingoReffel(
-    lotteryId: number,
+    lotteryKey: string,
     token: string
   ): Promise<LotteryDetail> {
     let response: LotteryDetail | null = null;
@@ -46,7 +47,7 @@ class LotteryService {
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
       const { data } = await axiosClient.get<LotteryDetail>(
-        `/lottery/awards/${lotteryId}`,
+        `/lottery/awards/${lotteryKey}`,
         config
       );
       response = data;
@@ -83,7 +84,7 @@ class LotteryService {
 
   public async buyBingoBoards(
     purchaseData: BingoBoard[],
-    idLottery: number,
+    lotteryKey: string,
     token: string
   ): Promise<ServerResponse> {
     let response: ServerResponse | null = null;
@@ -96,7 +97,7 @@ class LotteryService {
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
       const { data } = await axiosClient.post<ServerResponse>(
-        `/cardBingo/save/${idLottery}`,
+        `/cardBingo/save/${lotteryKey}`,
         purchaseData,
         config
       );
@@ -111,7 +112,7 @@ class LotteryService {
 
   public async getPurchasedUserBingoBoards(
     token: string,
-    idLottery: number
+    lotteryKey: string
   ): Promise<BingoBoard[]> {
     let response: BingoBoard[] | null = null;
     const config = {
@@ -123,7 +124,84 @@ class LotteryService {
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
       const { data } = await axiosClient.get<BingoBoard[]>(
-        `/cardBingo/lottery/${idLottery}/users`,
+        `/cardBingo/lottery/${lotteryKey}/users`,
+        config
+      );
+      response = data;
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+    return response;
+  }
+
+  public async getAdminLotteries(token: string): Promise<LotteryDetail[]> {
+    let response: LotteryDetail[] | null = null;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      const { data } = await axiosClient.get<LotteryDetail[]>(
+        "/lottery/available/admin",
+        config
+      );
+      response = data;
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+    return response;
+  }
+
+  public async createLottery(
+    lotteryData: LotteryFormValues,
+    token: string
+  ): Promise<ServerResponse> {
+    let response: ServerResponse | null = null;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      const { data } = await axiosClient.post<ServerResponse>(
+        "/lottery/save",
+        { ...lotteryData, state: Boolean(lotteryData.state) },
+        config
+      );
+      response = data;
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+    return response;
+  }
+
+  public async inactiveLottery(
+    lotteryKey: string,
+    token: string
+  ): Promise<ServerResponse> {
+    let response: ServerResponse | null = null;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      const { data } = await axiosClient.patch<ServerResponse>(
+        `/lottery/inactive/${lotteryKey}`,
+        {},
         config
       );
       response = data;

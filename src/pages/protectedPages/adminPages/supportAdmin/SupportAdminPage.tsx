@@ -31,10 +31,13 @@ const SupportAdminPage = (): JSX.Element => {
     "/support/list",
     supportService.getSupportAdminRequests
   );
+
+  const sortedRequests = sortListPerDate(requests, "createdAt");
+
   const { records, PaginationComponent } = useListPagination(
-    requests ? requests : []
+    sortedRequests ? sortedRequests : []
   );
-  const sortedRequests = sortListPerDate(records, "createdAt");
+
   const {
     data: requestData,
     isModalVisible,
@@ -67,10 +70,10 @@ const SupportAdminPage = (): JSX.Element => {
             columnsNumber={7}
             title="Listado de solicitudes"
           >
-            {requests?.length === 0 ? (
+            {!requests ? (
               <Empty message="¡No hay solicitudes de soporte aún!" />
             ) : (
-              sortedRequests.map((request) => (
+              records.map((request) => (
                 <Table.Row key={request.id} columnsNumber={7}>
                   <Table.Item
                     value={request.ticket}

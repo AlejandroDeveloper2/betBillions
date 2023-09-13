@@ -16,7 +16,7 @@ import { Content } from "@styles/GlobalStyles.style";
 
 const GamePreview = (): JSX.Element => {
   const navigate = useNavigate();
-  const lotteryId = window.parseInt(location.pathname.split("/")[4]);
+  const lotteryKey = window.location.pathname.split("/")[4];
 
   return (
     <GamePreviewContainer>
@@ -41,7 +41,7 @@ const GamePreview = (): JSX.Element => {
             }}
             title={"Volver al detalle del sorteo"}
             label="Volver"
-            onClick={() => navigate(`/userPanel/lottery/details/${lotteryId}`)}
+            onClick={() => navigate(`/userPanel/lottery/details/${lotteryKey}`)}
           >
             <BiArrowBack
               style={{
@@ -62,7 +62,7 @@ const GamePreview = (): JSX.Element => {
           }}
           title={"Jugar bingo"}
           label="Empezar a jugar"
-          disabled
+          onClick={() => navigate(`/userPanel/lottery/bingoGame/${lotteryKey}`)}
         >
           <AiFillPlayCircle
             style={{

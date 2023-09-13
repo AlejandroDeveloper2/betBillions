@@ -25,15 +25,16 @@ const UsersAdmin = (): JSX.Element => {
     "/users/list",
     usersService.getAllUsers
   );
-  const { records, PaginationComponent } = useListPagination(
-    users ? users : []
-  );
 
-  const filteredUsers = filterDiferenceList(records, {
+  const filteredUsers = filterDiferenceList(users, {
     a: "username",
     b: userAuth?.sub,
   });
   const sortedUsers = sortListPerDate(filteredUsers, "createdAt");
+
+  const { records, PaginationComponent } = useListPagination(
+    sortedUsers ? sortedUsers : []
+  );
 
   return (
     <>
@@ -58,7 +59,7 @@ const UsersAdmin = (): JSX.Element => {
             {users?.length === 0 ? (
               <Empty message="¡No hay usuarios registrados!" />
             ) : (
-              sortedUsers?.map((user) => (
+              records.map((user) => (
                 <Table.Row key={user.id} columnsNumber={9}>
                   <Table.Item
                     value={user.username}

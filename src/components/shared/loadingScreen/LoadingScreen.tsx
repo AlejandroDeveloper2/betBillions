@@ -1,6 +1,6 @@
-import { useAuthContext, useToastContext } from "@hooks/index";
+import { useAuthContext, useUserSession } from "@hooks/index";
 
-import { Loading, SpinnerScreen, Image, Toast } from "@components/index";
+import { Loading, SpinnerScreen, Image } from "@components/index";
 
 import {
   LoadingBox,
@@ -12,8 +12,8 @@ import "./animation.css";
 import { LogoTap } from "@assets/index";
 
 const LoadingScreen = (): JSX.Element => {
+  useUserSession(0);
   const { authStatus } = useAuthContext();
-  const { toast, isToastVisible, getToastColor, hideToast } = useToastContext();
 
   return (
     <LoadingScreenContainer>
@@ -36,15 +36,6 @@ const LoadingScreen = (): JSX.Element => {
           </p>
         </LoadingBox>
       </Layer>
-      <Toast
-        message={toast.toastMessage}
-        type={toast.toastType}
-        toastConfig={{
-          isToastVisible,
-          getToastColor,
-          hideToast,
-        }}
-      />
     </LoadingScreenContainer>
   );
 };

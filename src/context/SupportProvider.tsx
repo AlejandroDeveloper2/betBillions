@@ -24,7 +24,7 @@ const supportService = new SupportService();
 
 const SupportProvider = ({ children }: ProviderProps) => {
   const [supportImage, setSupportImage] = useState<string>("");
-  const { showToast, hideToast, configToast } = useToastContext();
+  const { openToast } = useToastContext();
 
   const sendUserSupportRequest = useCallback(
     async (
@@ -41,16 +41,19 @@ const SupportProvider = ({ children }: ProviderProps) => {
             requestData,
             token
           );
-          configToast(res.typeStatus, res.message);
-          showToast();
+          openToast({
+            message: res.message,
+            type: res.typeStatus,
+          });
           reset();
           setSupportImage("");
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          showToast();
-          configToast(ToastTypes.error, errorMessage);
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+          });
         } finally {
-          hideToast(3000);
           config.inactiveLoading();
         }
       }
@@ -74,14 +77,17 @@ const SupportProvider = ({ children }: ProviderProps) => {
         config.activeLoading();
         const res = await supportService.uploadSupportImage(formData);
         setSupportImage(res);
-        configToast(ToastTypes.success, "Imagen subida correctamente!");
-        showToast();
+        openToast({
+          message: "Imagen subida correctamente!",
+          type: ToastTypes.success,
+        });
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        showToast();
-        configToast(ToastTypes.error, errorMessage);
+        openToast({
+          message: errorMessage,
+          type: ToastTypes.error,
+        });
       } finally {
-        hideToast(3000);
         config.inactiveLoading();
       }
     },
@@ -103,15 +109,18 @@ const SupportProvider = ({ children }: ProviderProps) => {
             answerData,
             token
           );
-          configToast(res.typeStatus, res.message);
-          showToast();
+          openToast({
+            message: res.message,
+            type: res.typeStatus,
+          });
           reset();
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          showToast();
-          configToast(ToastTypes.error, errorMessage);
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+          });
         } finally {
-          hideToast(3000);
           config.inactiveLoading();
         }
       }

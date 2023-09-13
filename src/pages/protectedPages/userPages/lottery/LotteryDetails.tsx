@@ -1,10 +1,9 @@
-import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { TbCardboards } from "react-icons/tb";
 import { IoGiftSharp } from "react-icons/io5";
 import { AiFillPlayCircle } from "react-icons/ai";
 
-import { useLoading, useLotteryContext } from "@hooks/index";
+import { useRealTimeFecher } from "@hooks/index";
 import { formatDate } from "@utils/index";
 
 import {
@@ -15,8 +14,10 @@ import {
   SidebarBalance,
   Loading,
   DefaultButton,
+  GameMode,
 } from "@components/index";
 import { TrophyIcon } from "@assets/index";
+import { LotteryService } from "@services/lottery.service";
 
 import { Datetext } from "../userPanel/UserPanel.style";
 import {
@@ -31,40 +32,21 @@ import {
   IndicatorTitle,
 } from "@styles/GlobalStyles.style";
 
+const lotteryService = new LotteryService();
+
 const LotteryDetails = (): JSX.Element => {
-  const location = useLocation();
+  const lotteryKey = window.location.pathname.split("/")[4];
   const navigate = useNavigate();
-  const {
-    lotteryDetail,
-    userBingoBoards,
-    getBingoReffel,
-    getPurchasedUserBingoBoards,
-  } = useLotteryContext();
-  const lotteryId = window.parseInt(location.pathname.split("/")[4]);
-
-  const {
-    isLoading,
-    loadingMessage,
-    activeLoading,
-    inactiveLoading,
-    setMessage,
-  } = useLoading();
-
-  useEffect(() => {
-    getBingoReffel(lotteryId, {
-      activeLoading,
-      inactiveLoading,
-      setMessage,
-    });
-  }, []);
-
-  useEffect(() => {
-    getPurchasedUserBingoBoards(lotteryId, {
-      activeLoading,
-      inactiveLoading,
-      setMessage,
-    });
-  }, []);
+  const { data: lotteryDetail, isLoading } = useRealTimeFecher(
+    "/lottery/awards",
+    (token) => lotteryService.getBingoReffel(lotteryKey, token),
+    null
+  );
+  const { data: userBingoBoards } = useRealTimeFecher(
+    "/cardBingo/lottery/users",
+    (token) => lotteryService.getPurchasedUserBingoBoards(token, lotteryKey),
+    null
+  );
 
   return (
     <LotteryContainer>
@@ -73,12 +55,12 @@ const LotteryDetails = (): JSX.Element => {
         <h1>Sorteos</h1>
         {isLoading ? (
           <Loading
-            message={loadingMessage}
+            message="Cargando detalles del sorteo..."
             textColor="var(--bg-secondary-color)"
           />
         ) : (
           <>
-            <AdCard lotteryId={lotteryDetail ? lotteryDetail.id : 0}>
+            <AdCard lotteryKey={lotteryDetail ? lotteryDetail.key : ""}>
               <CardAdTitle>Juega y gana </CardAdTitle>
               <Datetext>
                 {formatDate(lotteryDetail ? lotteryDetail.startDate : "")}
@@ -91,9 +73,9 @@ const LotteryDetails = (): JSX.Element => {
                 <Image
                   source={TrophyIcon}
                   alt={"Bet billions wallet"}
-                  size={{ lg: 10, md: 10, sm: 20 }}
+                  size={{ lg: 5, md: 8, sm: 20 }}
                 />
-                {userBingoBoards.length === 0 ? (
+                {userBingoBoards?.length === 0 ? (
                   <DefaultButton
                     style={{
                       bg: "var(--black)",
@@ -104,7 +86,7 @@ const LotteryDetails = (): JSX.Element => {
                     label="Seleccionar tablas"
                     onClick={() =>
                       navigate(
-                        `/userPanel/lottery/purchaseBingoBoard/${lotteryId}`
+                        `/userPanel/lottery/purchaseBingoBoard/${lotteryKey}`
                       )
                     }
                   >
@@ -126,7 +108,7 @@ const LotteryDetails = (): JSX.Element => {
                     title={"Ver mis cartones de bingo"}
                     label="Ir al juego"
                     onClick={() =>
-                      navigate(`/userPanel/lottery/gamePreview/${lotteryId}`)
+                      navigate(`/userPanel/lottery/gamePreview/${lotteryKey}`)
                     }
                   >
                     <AiFillPlayCircle
@@ -152,7 +134,7 @@ const LotteryDetails = (): JSX.Element => {
                       Se sorteará un premio de <small>{round.award} USD</small>
                     </span>
                     <p>Tipo de juego:</p>
-                    <span>{round.typeGame}</span>
+                    <GameMode mode={round.typeGame} />
                   </RoundDatails>
                 ))}
               </IndicatorList>

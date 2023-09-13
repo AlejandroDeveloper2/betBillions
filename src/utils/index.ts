@@ -7,9 +7,10 @@ import {
   BingoBall,
   BingoBoard,
   FormType,
+  LotteryRound,
   MenuItemStyleProps,
-  ToastConfig,
   ToastTypes,
+  ToastsConfig,
 } from "types";
 
 class ValuesForm {
@@ -101,12 +102,15 @@ const getActiveItem = (location: Location, to: string): MenuItemStyleProps => {
   };
 };
 
-const copyToClipBoard = (textToCopy: string, config: ToastConfig): void => {
-  const { showToast, hideToast, configToast } = config;
-  navigator.clipboard.writeText(textToCopy);
-  configToast(ToastTypes.success, "Texto copiado con exito!");
-  showToast();
-  hideToast(3000);
+const copyToClipBoard = (
+  textToCopy: string,
+  openToast: (config: ToastsConfig, timeout?: number) => void
+): void => {
+  window.navigator.clipboard.writeText(textToCopy);
+  openToast({
+    message: "Texto copiado con exito!",
+    type: ToastTypes.success,
+  });
 };
 
 const formatDate = (
@@ -150,23 +154,37 @@ const setFormValues = <T>(values: T, setValue: UseFormSetValue<any>) => {
 };
 
 const filterDiferenceList = <T>(
-  list: T[],
+  list: T,
   comparisonKeys: { a: string; b: unknown }
-): T[] => {
+): T => {
   const { a, b } = comparisonKeys;
   const formattedList = list as any[];
-  const filteredList = formattedList.filter((item) => item[a] !== b);
-  return filteredList as T[];
+  const filteredList = formattedList?.filter((item) => item[a] !== b);
+  return filteredList as T;
 };
 
 const sortListPerDate = <T>(list: T, comparisonKey: string): T => {
   const formattedList = list as any[];
-  const filteredList = formattedList.sort(
+  const filteredList = formattedList?.sort(
     (a, b) =>
       new Date(b[comparisonKey]).getTime() -
       new Date(a[comparisonKey]).getTime()
   );
   return filteredList as T;
+};
+
+const activeRoundButton = (index: number, rounds: LotteryRound[]): boolean => {
+  const condition = index > 0 && index < rounds.length;
+  const active = condition
+    ? rounds[index - 1].userWinner === null || !rounds[index - 1].completed
+      ? true
+      : false
+    : false;
+  return active;
+};
+
+const calculateWithdrawAmount = (price: number): number => {
+  return price - price * 0.03;
 };
 
 export {
@@ -181,4 +199,6 @@ export {
   setFormValues,
   filterDiferenceList,
   sortListPerDate,
+  activeRoundButton,
+  calculateWithdrawAmount,
 };

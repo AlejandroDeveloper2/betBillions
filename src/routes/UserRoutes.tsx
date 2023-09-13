@@ -5,12 +5,14 @@ import { ProtectedLayout } from "@layouts/index";
 
 /* Pages */
 import {
+  BingoGame,
   GamePreview,
   LotteryDetails,
   LotteryPage,
   MyWallet,
   MyWalletDeposit,
   MyWalletWithdraw,
+  Notifications,
   Page404,
   PurchaseBingoBoard,
   PurchaseBingoDetails,
@@ -20,6 +22,7 @@ import {
   Transactions,
   UserPanel,
   UserProfile,
+  Withdraws,
 } from "@pages/index";
 
 const UserRoutes = (): JSX.Element => {
@@ -68,6 +71,12 @@ const UserRoutes = (): JSX.Element => {
           path="/userPanel/support/sendRequest"
           element={<SupportRequest />}
         />
+        <Route
+          path="/userPanel/lottery/bingoGame/:lotteryId"
+          element={<BingoGame />}
+        />
+        <Route path="/userPanel/notifications" element={<Notifications />} />
+        <Route path="/userPanel/myWallet/withdraws" element={<Withdraws />} />
         <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>

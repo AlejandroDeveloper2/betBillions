@@ -27,5 +27,28 @@ class UsersService {
     }
     return response;
   }
+
+  public async getWinnerUser(userId: number, token: string): Promise<string> {
+    let response: string | null = null;
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    try {
+      const axiosClient = getAxiosClient("betBillionsAPI");
+      const { data } = await axiosClient.get<string>(
+        `/users/winner/${userId}`,
+        config
+      );
+      response = data;
+    } catch (_e: unknown) {
+      const errorMessage = (_e as AxiosError<ServerResponse>).response?.data
+        .message;
+      throw new Error(errorMessage);
+    }
+    return response;
+  }
 }
 export { UsersService };

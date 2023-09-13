@@ -61,6 +61,24 @@ interface SupportAnswerFormValues {
   answer: string;
 }
 
+interface WithdrawFormValues {
+  wallet: string;
+  price: number;
+}
+
+interface RoundFormValues {
+  typeGame: string;
+  award: number;
+}
+
+interface LotteryFormValues {
+  startDate: string;
+  numberOfRounds: number;
+  rounds: RoundFormValues[];
+  state: string;
+  price: number;
+}
+
 export type {
   LoginFormValues,
   RegisterFormValues,
@@ -72,4 +90,7 @@ export type {
   UserProfileFormValues,
   SupportFormValues,
   SupportAnswerFormValues,
+  WithdrawFormValues,
+  RoundFormValues,
+  LotteryFormValues,
 };

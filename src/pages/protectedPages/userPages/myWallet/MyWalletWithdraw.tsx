@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { MdModeEditOutline, MdOutlinePersonOutline } from "react-icons/md";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { IoMdAdd } from "react-icons/io";
@@ -56,6 +58,7 @@ const MyWalletWithdraw = (): JSX.Element => {
     "/userWallet/wallet",
     userWalletService.getUserWalletData
   );
+  const navigate = useNavigate();
 
   const {
     register,
@@ -202,8 +205,8 @@ const MyWalletWithdraw = (): JSX.Element => {
             }}
             title={"Retirar fondos"}
             label="Retirar"
-            onClick={() => console.log("Retirado")}
-            disabled={true}
+            onClick={() => navigate("/userPanel/myWallet/withdraws")}
+            disabled={wallet?.wallet ? false : true}
           >
             <BiMoneyWithdraw
               color="var(--white)"

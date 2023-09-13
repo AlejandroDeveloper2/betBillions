@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { IconType } from "react-icons";
 import {
-  RefCallBack,
   UseFormHandleSubmit,
   UseFormRegister,
   UseFormReset,
@@ -12,28 +11,10 @@ import {
   BingoBoard,
   HeaderType,
   LoadingConfig,
+  LotteryDetail,
   SupportRequest,
 } from "..";
-
-type InputName =
-  | "password"
-  | "username"
-  | "fullName"
-  | "invitationLink"
-  | "email"
-  | "confirmPassword"
-  | "confirmEmail"
-  | "transaction"
-  | "wallet"
-  | "price"
-  | "confirmPrice"
-  | "phone"
-  | "sponsorName"
-  | "country"
-  | "city"
-  | "category"
-  | "question"
-  | "answer";
+import React, { ReactNode } from "react";
 
 type ImageProps = {
   source: string;
@@ -54,7 +35,8 @@ type FormType =
   | "walletWithdraw"
   | "TransactionValidation"
   | "ProfileForm"
-  | "SupportRequestForm";
+  | "SupportRequestForm"
+  | "LotteryForm";
 
 type CustomFormProps = {
   children: JSX.Element | JSX.Element[] | any[];
@@ -71,12 +53,12 @@ type CustomFormProps = {
 };
 
 type CustomInputProps = {
-  type: "text" | "password" | "number";
+  type: "text" | "password" | "number" | "date" | "datetime-local";
   placeholder: string;
   label: string | null;
   Icon: IconType;
   register: UseFormRegister<any>;
-  name: InputName;
+  name: string;
   disabled?: boolean;
 };
 
@@ -84,9 +66,8 @@ type SelectProps = {
   defaultValue: string;
   label: string | null;
   Icon: IconType;
-  name: InputName;
+  name: string;
   value: string;
-  ref: RefCallBack;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   children: JSX.Element | JSX.Element[] | any[];
 };
@@ -122,13 +103,14 @@ enum ToastTypes {
 }
 
 type ToastProps = {
+  id: string;
   message: string | null;
-  type: ToastTypes | null;
-  toastConfig: {
-    isToastVisible: boolean | string;
-    getToastColor: () => string;
-    hideToast: () => void;
-  };
+  type: ToastTypes;
+};
+
+type ToastsConfig = {
+  message: string | null;
+  type: ToastTypes;
 };
 
 type LoadingProps = {
@@ -152,7 +134,7 @@ type MenuProps = {
 type AdCardProps = {
   children: JSX.Element | JSX.Element[];
   play?: boolean;
-  lotteryId: number;
+  lotteryKey: string;
 };
 
 type IndicatorProps = {
@@ -270,6 +252,58 @@ type AnswerRequestModalProps = {
   requestData: SupportRequest | undefined;
 };
 
+type GameModeProps = {
+  mode: string | null;
+};
+
+type DropdownProps = {
+  style: {
+    direction: "column" | "row";
+    wrap: boolean;
+  };
+  children: JSX.Element | JSX.Element[] | React.ReactNode;
+};
+
+type SearchInputProps = {
+  name: string;
+  value: string;
+  Icon: IconType;
+  placeholder: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+type NormalInputProps = {
+  name: string;
+  value: string | number;
+  id: string;
+  type: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
+};
+
+type NormalSelectProps = {
+  name: string;
+  value: string | number;
+  id: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  label: string;
+  defaultValue: string;
+  children: ReactNode;
+};
+
+interface LotteryDetailsProps {
+  lotteryDetails: LotteryDetail | undefined;
+}
+
+interface WinnerWindowProps {
+  userWinner: string | undefined;
+  hideModal: (delay?: number) => void;
+}
+
+interface StopBingoWindowProps {
+  hideGameInfoModal: (delay?: number) => void;
+}
+
 export type {
   ImageProps,
   CustomFormProps,
@@ -280,6 +314,7 @@ export type {
   CustomButtonProps,
   ErrorMessageProps,
   ToastProps,
+  ToastsConfig,
   LoadingProps,
   LoadingButtonProps,
   MenuProps,
@@ -304,6 +339,14 @@ export type {
   PaginationProps,
   SeeAnswerModalProps,
   AnswerRequestModalProps,
+  GameModeProps,
+  DropdownProps,
+  SearchInputProps,
+  NormalInputProps,
+  NormalSelectProps,
+  LotteryDetailsProps,
+  WinnerWindowProps,
+  StopBingoWindowProps,
 };
 
 export { ToastTypes };

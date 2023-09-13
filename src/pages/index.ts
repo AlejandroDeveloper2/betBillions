@@ -20,11 +20,16 @@ export { default as GamePreview } from "./protectedPages/userPages/gamePreview/G
 export { default as UserProfile } from "./protectedPages/userPages/userProfile/UserProfile";
 export { default as SupportHistory } from "./protectedPages/userPages/supportPage/SupportHistory";
 export { default as SupportRequest } from "./protectedPages/userPages/supportPage/SupportRequest";
+export { default as BingoGame } from "./protectedPages/userPages/bingoGame/BingoGame";
+export { default as Notifications } from "./protectedPages/userPages/notifications/Notifications";
+export { default as Withdraws } from "./protectedPages/userPages/withdraws/Withdraws";
 
 /* Protected admin pages*/
 export { default as TransactionsAdmin } from "./protectedPages/adminPages/transactionsAdmin/TransactionsAdmin";
 export { default as UsersAdmin } from "./protectedPages/adminPages/usersAdmin/UsersAdmin";
 export { default as SupportAdminPage } from "./protectedPages/adminPages/supportAdmin/SupportAdminPage";
+export { default as LotteryAdmin } from "./protectedPages/adminPages/lotteryAdmin/LotteryAdmin";
+export { default as WithdrawRequestAdmin } from "./protectedPages/adminPages/withdrawRequestsAdmin/WithdrawRequestAdmin";
 
 /*Error page */
 export { default as Page404 } from "./404Page/Page404";

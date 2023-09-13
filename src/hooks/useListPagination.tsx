@@ -11,7 +11,6 @@ function useListPagination<T>(list: T[]) {
   const [totalPages] = useState<number>(
     Math.ceil(list.length / totalRecordsPerPage)
   );
-
   const indexOfLastRecord = currentPage * totalRecordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - totalRecordsPerPage;
 
@@ -59,14 +58,21 @@ function useListPagination<T>(list: T[]) {
   };
 
   useEffect(() => {
+    let active = true;
     const setRecordsPerPage = (): void => {
       const recordsPerPage = list.slice(indexOfFirstRecord, indexOfLastRecord);
       setRecords(recordsPerPage);
       paginate();
       window.scrollTo({ top: 1800, behavior: "smooth" });
     };
-    setRecordsPerPage();
-  }, [currentPage, indexOfFirstRecord, indexOfLastRecord, list]);
+    if (active) {
+      setRecordsPerPage();
+    }
+
+    return () => {
+      active = false;
+    };
+  }, [currentPage, indexOfFirstRecord, indexOfLastRecord, list, totalPages]);
 
   return {
     records,

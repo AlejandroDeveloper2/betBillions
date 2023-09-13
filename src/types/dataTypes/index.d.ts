@@ -18,12 +18,6 @@ interface LoginServerResponse extends ServerResponse {
   token: string | null;
 }
 
-interface ToastConfig {
-  showToast: () => void;
-  hideToast: (delay?: number) => void;
-  configToast: (type: ToastTypes, message: string) => void;
-}
-
 interface LoadingConfig {
   activeLoading: () => void;
   inactiveLoading: (delay?: number) => void;
@@ -58,6 +52,7 @@ interface UserPanelData {
 interface WalletData {
   red: string;
   balance: number;
+  bingoWinnings: number;
   wallet: string | null;
   state: boolean;
   currency: string;
@@ -69,6 +64,7 @@ interface LotteryListItem {
   startDate: string;
   numberOfRounds: number;
   state: boolean;
+  price: number;
 }
 
 interface LotteryDetail extends LotteryListItem {
@@ -77,11 +73,11 @@ interface LotteryDetail extends LotteryListItem {
 
 interface LotteryRound {
   id: number;
-  idLottery: number | null;
+  idLottery: string | null;
   typeGame: string;
   numberRound: number;
   award: number;
-  userWinner: string | null;
+  userWinner: number;
   completed: boolean;
 }
 
@@ -125,7 +121,7 @@ interface BingoBoard {
   id: string;
   key: string;
   userId: number;
-  lotteryId: number;
+  lotteryId: string;
   card: BingoBall[];
   round: number;
   state: number;
@@ -184,13 +180,40 @@ interface SupportRequest {
   email: string;
 }
 
+interface BingoRound {
+  id: number;
+  idLottery: string;
+  typeGame: string;
+  numberRound: number;
+  award: number;
+  balls: string[];
+  userWinner: number;
+  completed: boolean;
+}
+
+interface ToastType {
+  Component: () => JSX.Element;
+  id: string;
+}
+
+interface Retreat {
+  id: number;
+  wallet: string;
+  userWalletId: number;
+  price: number;
+  commissionPercentage: number;
+  currency: string;
+  stateRetreats: string;
+  createdAt: string;
+  transaction: string;
+}
+
 export type {
   AuthStatus,
   ApiName,
   ServerResponse,
   LoginServerResponse,
   LoadingConfig,
-  ToastConfig,
   UserAuth,
   MenuItem,
   UserPanelData,
@@ -209,4 +232,7 @@ export type {
   Country,
   City,
   SupportRequest,
+  BingoRound,
+  ToastType,
+  Retreat,
 };

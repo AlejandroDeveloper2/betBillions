@@ -27,7 +27,7 @@ const PurchaseBingoDetails = (): JSX.Element => {
   const { totalToPay, bingoBoards, clearShoppingCart } =
     useShoppingCartContext();
   const navigate = useNavigate();
-  const lotteryId = window.parseInt(location.pathname.split("/")[4]);
+  const lotteryKey = location.pathname.split("/")[4];
 
   return (
     <PurchaseContainer>
@@ -88,7 +88,7 @@ const PurchaseBingoDetails = (): JSX.Element => {
               title={"Volver a la compra"}
               label="Volver"
               onClick={() =>
-                navigate(`/userPanel/lottery/purchaseBingoBoard/${lotteryId}`)
+                navigate(`/userPanel/lottery/purchaseBingoBoard/${lotteryKey}`)
               }
             >
               <IoCaretBackOutline

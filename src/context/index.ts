@@ -7,3 +7,5 @@ export { ShoppingCartProvider } from "./ShoppingCartContext";
 export { ToastProvider } from "./ToastProvider";
 export { LocationProvider } from "./LocationProvider";
 export { SupportProvider } from "./SupportProvider";
+export { BingoProvider } from "./BingoProvider";
+export { WithdrawProvider } from "./WithdrawProvider";

@@ -2,7 +2,11 @@ import { IoMdNotifications, IoMdSettings } from "react-icons/io";
 import { MdDashboard, MdGames } from "react-icons/md";
 import { IoLogOutSharp } from "react-icons/io5";
 import { GiWallet } from "react-icons/gi";
-import { BiSolidMessageDetail, BiSolidHelpCircle } from "react-icons/bi";
+import {
+  BiSolidMessageDetail,
+  BiSolidHelpCircle,
+  BiMoneyWithdraw,
+} from "react-icons/bi";
 import { AiOutlineTeam, AiOutlineTransaction } from "react-icons/ai";
 import { PiUsersFourFill } from "react-icons/pi";
 
@@ -54,7 +58,7 @@ const getMenuItems = (
         label: "Notificaciones",
         icon: IoMdNotifications,
         title: "Notificaciones del sistema",
-        to: "#",
+        to: "/userPanel/notifications",
       },
       {
         label: "Soporte",
@@ -100,6 +104,18 @@ const getMenuItems = (
       icon: IoMdSettings,
       title: "Configuración de cuenta",
       to: "/admin/settings/myProfile",
+    },
+    {
+      label: "Sorteos",
+      icon: MdGames,
+      title: "Ver sorteos programados",
+      to: "/admin/lottery",
+    },
+    {
+      label: "Solicitudes de retiro",
+      icon: BiMoneyWithdraw,
+      title: "Ver solicitudes de retiro",
+      to: "/admin/withdraws/requests",
     },
     {
       label: "Notificaciones",

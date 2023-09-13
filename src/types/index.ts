@@ -7,6 +7,7 @@ export type {
   CustomFileInputProps,
   ErrorMessageProps,
   ToastProps,
+  ToastsConfig,
   LoadingProps,
   LoadingButtonProps,
   MenuProps,
@@ -32,9 +33,17 @@ export type {
   PaginationProps,
   SeeAnswerModalProps,
   AnswerRequestModalProps,
+  GameModeProps,
+  DropdownProps,
+  SearchInputProps,
+  NormalInputProps,
+  NormalSelectProps,
+  LotteryDetailsProps,
+  WinnerWindowProps,
+  StopBingoWindowProps,
 } from "./componentTypes";
 
-export { ToastTypes } from "./componentTypes";
+export { ToastTypes } from "./componentTypes/index.d";
 
 export type {
   LoginFormValues,
@@ -47,6 +56,9 @@ export type {
   UserProfileFormValues,
   SupportFormValues,
   SupportAnswerFormValues,
+  WithdrawFormValues,
+  RoundFormValues,
+  LotteryFormValues,
 } from "./formTypes";
 
 export type {
@@ -60,6 +72,8 @@ export type {
   RoundStyledProps,
   ModalStyledProps,
   BallStyledProps,
+  DropdownStyledProps,
+  DynamicBallStyleProps,
 } from "./styledComponentsTypes";
 
 export type {
@@ -68,7 +82,6 @@ export type {
   ServerResponse,
   LoginServerResponse,
   LoadingConfig,
-  ToastConfig,
   UserAuth,
   MenuItem,
   UserPanelData,
@@ -87,6 +100,9 @@ export type {
   Country,
   City,
   SupportRequest,
+  BingoRound,
+  ToastType,
+  Retreat,
 } from "./dataTypes";
 
 export type {
@@ -100,4 +116,6 @@ export type {
   ToastContextType,
   LocationContextType,
   SupportContextType,
+  BingoContextType,
+  WithdrawContextType,
 } from "./contextTypes";

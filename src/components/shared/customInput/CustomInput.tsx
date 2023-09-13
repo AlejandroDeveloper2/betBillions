@@ -1,4 +1,11 @@
-import { CustomFileInputProps, CustomInputProps, SelectProps } from "types";
+import {
+  CustomFileInputProps,
+  CustomInputProps,
+  NormalInputProps,
+  NormalSelectProps,
+  SearchInputProps,
+  SelectProps,
+} from "types";
 import { usePasswordInput } from "@hooks/index";
 
 /*Styles */
@@ -70,14 +77,13 @@ const InputFile = (props: CustomFileInputProps): JSX.Element => {
 };
 
 const SelectWithLabel = (props: SelectProps): JSX.Element => {
-  const { defaultValue, label, Icon, name, value, ref, onChange, children } =
-    props;
+  const { defaultValue, label, Icon, name, value, onChange, children } = props;
   return (
     <InputContainerLabel>
       <Label>{label}</Label>
       <InputContainer>
         <Icon color="var(--dark-gray)" style={{ fontSize: "1.3rem" }} />
-        <Select name={name} value={value} ref={ref} onChange={onChange}>
+        <Select name={name} value={value} onChange={onChange}>
           <option value="">{defaultValue}</option>
           {children}
         </Select>
@@ -100,6 +106,49 @@ const TextareaInput = (props: CustomInputProps): JSX.Element => {
   );
 };
 
+const SearchInput = (props: SearchInputProps): JSX.Element => {
+  const { name, value, Icon, placeholder, onChange } = props;
+  return (
+    <InputContainer>
+      <Icon color="var(--dark-gray)" style={{ fontSize: "1.3rem" }} />
+      <Input
+        type="text"
+        value={value}
+        placeholder={placeholder}
+        name={name}
+        onChange={onChange}
+      />
+    </InputContainer>
+  );
+};
+
+const NormalInput = (props: NormalInputProps): JSX.Element => {
+  return (
+    <InputContainerLabel>
+      <Label>{props.placeholder}</Label>
+      <InputContainer>
+        <Input {...props} />
+      </InputContainer>
+    </InputContainerLabel>
+  );
+};
+
+const NormalSelect = (props: NormalSelectProps): JSX.Element => {
+  const { defaultValue, label, name, value, id, onChange, children } = props;
+
+  return (
+    <InputContainerLabel>
+      <Label>{label}</Label>
+      <InputContainer>
+        <Select id={id} name={name} value={value} onChange={onChange}>
+          <option value="">{defaultValue}</option>
+          {children}
+        </Select>
+      </InputContainer>
+    </InputContainerLabel>
+  );
+};
+
 export {
   DefaultInput,
   InputWithLabel,
@@ -107,4 +156,7 @@ export {
   InputFile,
   SelectWithLabel,
   TextareaInput,
+  SearchInput,
+  NormalInput,
+  NormalSelect,
 };

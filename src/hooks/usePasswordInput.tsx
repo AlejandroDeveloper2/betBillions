@@ -1,14 +1,21 @@
 import { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
-const usePasswordInput = (type: "text" | "password" | "number") => {
+const usePasswordInput = (
+  type: "text" | "password" | "number" | "date" | "datetime-local"
+) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 
   const togglePassVisibility = (): void => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
-  const getPasswordVisibility = (): "password" | "text" | "number" => {
+  const getPasswordVisibility = ():
+    | "password"
+    | "text"
+    | "number"
+    | "date"
+    | "datetime-local" => {
     if (type === "password") {
       const inputType = isPasswordVisible ? "text" : "password";
       return inputType;

@@ -6,6 +6,9 @@ export {
   InputFile,
   SelectWithLabel,
   TextareaInput,
+  SearchInput,
+  NormalInput,
+  NormalSelect,
 } from "./shared/customInput/CustomInput";
 export { default as CustomForm } from "./shared/customForm/CustomForm";
 export {
@@ -24,7 +27,7 @@ export { default as Footer } from "./shared/footer/Footer";
 export { default as AdCard } from "./shared/adCard/AdCard";
 export { default as Indicator } from "./shared/indicator/Indicator";
 export { default as Table } from "./shared/table/Table";
-export { default as Modal } from "./shared/modal/Modal";
+export { Modal, ModalVariant } from "./shared/modal/Modal";
 export {
   Carousel,
   ShoppingCartCarousel,
@@ -47,3 +50,17 @@ export { default as TransactionDetails } from "./transactionsAdmin/transactionDe
 /*See ansawer modal components */
 export { default as SeeAnswerModal } from "./support/seeAnswerModal/SeeAnswerModal";
 export { default as AnswerRequestModal } from "./support/answerRequestModal/AnswerRequestModal";
+
+/*Bingo game */
+export { default as GameHead } from "./bingoGame/gameHead/GameHead";
+export { default as LastBallsList } from "./bingoGame/lastBallsList/LastBallsList";
+export { default as GameMode } from "./bingoGame/gameMode/GameMode";
+export { default as Counter } from "./bingoGame/counter/Counter";
+export { default as Dropdown } from "./bingoGame/dropdown/Dropdown";
+export { default as DynamicBingoBoard } from "./shared/bingoBoard/DynamicBingoBoard";
+export { default as WinnerWindow } from "./bingoGame/winnerWindow/WinnerWindow";
+export { default as StopBingoWindow } from "./bingoGame/stopBingoWindow/StopBingoWindow";
+
+/*LotteryAdmin */
+export { default as LotteryAdminForm } from "./lotteryAdminForm/LotteryAdminForm";
+export { default as LotteryDetailsAdmin } from "./lotteryDetailsAdmin/LotteryDetailsAdmin";

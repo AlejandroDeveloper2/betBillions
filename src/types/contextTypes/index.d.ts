@@ -2,24 +2,31 @@ import { UseFormReset } from "react-hook-form";
 import {
   AuthStatus,
   BingoBoard,
+  BingoRound,
   City,
   Country,
   LoadingConfig,
   LoginFormValues,
   LotteryDetail,
+  LotteryFormValues,
   LotteryListItem,
   RecoverPassFormValues,
   RegisterFormValues,
+  Retreat,
   SupportAnswerFormValues,
   SupportFormValues,
+  ToastType,
   ToastTypes,
+  ToastsConfig,
   UpdatePassFormValues,
   UserAuth,
   UserProfileFormValues,
   ValidTransactionFormValues,
   WalletDepositFormValues,
   WalletWithdrawFormValues,
+  WithdrawFormValues,
 } from "..";
+import { IconType } from "react-icons";
 
 interface ProviderProps {
   children: JSX.Element | JSX.Element[];
@@ -88,22 +95,17 @@ interface WalletContextType {
 }
 
 interface LotteryContextType {
-  reffels: LotteryListItem[];
-  lotteryDetail: LotteryDetail | null;
-  randomBingoBoards: BingoBoard[];
-  userBingoBoards: BingoBoard[];
-  getAllBingoReffels: (config: LoadingConfig) => Promise<void>;
-  getBingoReffel: (lotteryId: number, config: LoadingConfig) => Promise<void>;
-  getRandomBingoBoards: () => Promise<void>;
   buyBingoBoards: (
     purchaseData: BingoBoard[],
-    idLottery: number,
+    lotteryKey: string,
     config: LoadingConfig
   ) => Promise<void>;
-  getPurchasedUserBingoBoards: (
-    idLottery: number,
-    config: LoadingConfig
+  createLottery: (
+    lotteryData: LotteryFormValues,
+    config: LoadingConfig,
+    reset: UseFormReset<LotteryFormValues>
   ) => Promise<void>;
+  inactiveLottery: (lotteryKey: string, config: LoadingConfig) => Promise<void>;
 }
 
 interface TransactionContextType {
@@ -125,21 +127,21 @@ interface TransactionContextType {
 interface ShoppingCartContextType {
   bingoBoards: BingoBoard[];
   totalToPay: number;
-  addBingoBoardToCart: (bingoBoard: BingoBoard) => void;
-  removeBingoBoardFromCart: (bingoBoardId: string) => void;
+  addBingoBoardToCart: (
+    bingoBoard: BingoBoard,
+    numberOfRounds: number,
+    price: number
+  ) => void;
+  removeBingoBoardFromCart: (bingoBoardId: string, price: number) => void;
   clearShoppingCart: () => void;
 }
 
 interface ToastContextType {
-  isToastVisible: boolean | string;
-  toast: {
-    toastMessage: string | null;
-    toastType: ToastTypes | null;
-  };
-  showToast: () => void;
-  hideToast: (delay?: number) => void;
-  getToastColor: () => string;
-  configToast: (type: ToastTypes, message: string) => void;
+  toasts: ToastType[];
+  openToast: (config: ToastsConfig, timeout?: number) => void;
+  closeToast: (id: string) => void;
+  getToastColor: (type: ToastTypes) => string;
+  getToastIcon: (type: ToastTypes) => IconType;
 }
 
 interface LocationContextType {
@@ -167,6 +169,47 @@ interface SupportContextType {
   ) => Promise<void>;
 }
 
+interface BingoContextType {
+  bingoRound: BingoRound | null;
+  playerBoard: BingoBoard | null;
+  requestsCounter: number;
+  startGame: (lotteryKey: string) => Promise<void>;
+  getPlayerBoard: (lotteryKey: string, roundId: number) => Promise<void>;
+  activeBingoLottery: (
+    lotteryKey: string,
+    roundId: number,
+    config: LoadingConfig
+  ) => Promise<void>;
+  validateBingoBalls: (
+    lotteryKey: string,
+    roundId: number,
+    ball: string,
+    shownBall: string[],
+    config: LoadingConfig
+  ) => Promise<void>;
+  setBingoWinner: (
+    lotteryKey: string,
+    roundId: number,
+    config: LoadingConfig
+  ) => Promise<void>;
+  stopGame: (roundId: number, config: LoadingConfig) => Promise<void>;
+}
+
+interface WithdrawContextType {
+  sendWithdrawRequest: (
+    withdrawData: WithdrawFormValues,
+    config: LoadingConfig
+  ) => Promise<void>;
+  validateTransaction: (
+    retreatData: Retreat,
+    config: LoadingConfig
+  ) => Promise<void>;
+  invalidateTransaction: (
+    retreatData: Retreat,
+    config: LoadingConfig
+  ) => Promise<void>;
+}
+
 export type {
   AuthContextType,
   ProviderProps,
@@ -178,4 +221,6 @@ export type {
   ToastContextType,
   LocationContextType,
   SupportContextType,
+  BingoContextType,
+  WithdrawContextType,
 };

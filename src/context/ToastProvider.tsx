@@ -1,57 +1,91 @@
 import { useState, createContext, useMemo } from "react";
+import { IconType } from "react-icons";
 
-import { ProviderProps, ToastTypes, ToastContextType } from "types";
+import { BiSolidErrorAlt } from "react-icons/bi";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { IoIosWarning } from "react-icons/io";
+
+import {
+  ProviderProps,
+  ToastTypes,
+  ToastContextType,
+  ToastType,
+  ToastsConfig,
+} from "types";
+
+import { Toast } from "@components/index";
+
+import { ToastsContainer } from "@styles/GlobalStyles.style";
 
 const ToastContext = createContext<ToastContextType>({} as ToastContextType);
 
 const ToastProvider = ({ children }: ProviderProps) => {
-  const [isToastVisible, setIsToastVisible] = useState<boolean | string>(false);
-  const [toast, setToast] = useState<{
-    toastMessage: string | null;
-    toastType: ToastTypes | null;
-  }>({
-    toastMessage: null,
-    toastType: null,
-  });
+  const [toasts, setToasts] = useState<ToastType[]>([]);
 
-  const showToast = (): void => {
-    setIsToastVisible(true);
+  const openToast = (config: ToastsConfig, timeout = 4000) => {
+    const id = window.Date.now().toString();
+    setToasts((prevState) => {
+      const newState = [
+        ...prevState,
+        {
+          Component: () => <Toast id={id} {...config} />,
+          id,
+        },
+      ];
+      return newState;
+    });
+    window.setTimeout(() => {
+      setToasts((prevState) => prevState.slice(1));
+    }, timeout);
   };
 
-  const hideToast = (delay = 0): void => {
-    setTimeout(() => {
-      setIsToastVisible(false);
-    }, delay);
+  const closeToast = (id: string): void => {
+    const filteredToasts = toasts.filter(
+      (toastElement) => toastElement.id !== id
+    );
+    setToasts(filteredToasts);
   };
 
-  const getToastColor = (): string => {
+  const getToastColor = (type: ToastTypes): string => {
     const style =
-      toast.toastType === "Error"
+      type === "Error"
         ? "var(--error)"
-        : toast.toastType === "Success"
+        : type === "Success"
         ? "var(--success)"
         : "var(--orange)";
     return style;
   };
 
-  const configToast = (type: ToastTypes, message: string): void => {
-    setToast({ toastMessage: message, toastType: type });
+  const getToastIcon = (type: ToastTypes): IconType => {
+    const Icon =
+      type === "Error"
+        ? BiSolidErrorAlt
+        : type === "Success"
+        ? AiFillCheckCircle
+        : IoIosWarning;
+    return Icon;
   };
 
   const value = useMemo(
     () => ({
-      isToastVisible,
-      toast,
-      showToast,
-      hideToast,
+      toasts,
+      openToast,
+      closeToast,
       getToastColor,
-      configToast,
+      getToastIcon,
     }),
-    [isToastVisible, toast, showToast, hideToast, getToastColor, configToast]
+    [toasts, openToast, closeToast, getToastColor, getToastIcon]
   );
 
   return (
-    <ToastContext.Provider value={value}>{children}</ToastContext.Provider>
+    <ToastContext.Provider value={value}>
+      {children}
+      <ToastsContainer>
+        {toasts.map((toast) => (
+          <toast.Component key={toast.id} />
+        ))}
+      </ToastsContainer>
+    </ToastContext.Provider>
   );
 };
 

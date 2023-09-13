@@ -11,6 +11,8 @@ import {
   ToastProvider,
   LocationProvider,
   SupportProvider,
+  BingoProvider,
+  WithdrawProvider,
 } from "@context/index";
 
 /* Routers */
@@ -21,21 +23,25 @@ function App(): JSX.Element {
     <BrowserRouter>
       <ToastProvider>
         <LocationProvider>
-          <AuthProvider>
-            <SupportProvider>
-              <ShoppingCartProvider>
-                <TransactionProvider>
-                  <LotteryProvider>
-                    <WalletProvider>
-                      <UserProfileProvider>
-                        <AppRouter />
-                      </UserProfileProvider>
-                    </WalletProvider>
-                  </LotteryProvider>
-                </TransactionProvider>
-              </ShoppingCartProvider>
-            </SupportProvider>
-          </AuthProvider>
+          <ShoppingCartProvider>
+            <AuthProvider>
+              <WithdrawProvider>
+                <SupportProvider>
+                  <TransactionProvider>
+                    <LotteryProvider>
+                      <WalletProvider>
+                        <UserProfileProvider>
+                          <BingoProvider>
+                            <AppRouter />
+                          </BingoProvider>
+                        </UserProfileProvider>
+                      </WalletProvider>
+                    </LotteryProvider>
+                  </TransactionProvider>
+                </SupportProvider>
+              </WithdrawProvider>
+            </AuthProvider>
+          </ShoppingCartProvider>
         </LocationProvider>
       </ToastProvider>
     </BrowserRouter>

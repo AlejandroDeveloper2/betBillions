@@ -169,7 +169,7 @@ const UserProfile = (): JSX.Element => {
             <Controller
               control={control}
               name="country"
-              render={({ field: { onChange, value, name, ref } }) => (
+              render={({ field: { onChange, value, name } }) => (
                 <FormRow>
                   <SelectWithLabel
                     defaultValue="Selecciona tu país"
@@ -177,7 +177,6 @@ const UserProfile = (): JSX.Element => {
                     Icon={FaLocationArrow}
                     name={name}
                     value={value}
-                    ref={ref}
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       onChange(e);
                       getCitiesPerCountry(e.target.value);
@@ -199,7 +198,7 @@ const UserProfile = (): JSX.Element => {
             <Controller
               control={control}
               name="city"
-              render={({ field: { onChange, value, name, ref } }) => (
+              render={({ field: { onChange, value, name } }) => (
                 <FormRow>
                   <SelectWithLabel
                     defaultValue="Selecciona tu ciudad | provincia | municipio"
@@ -207,7 +206,6 @@ const UserProfile = (): JSX.Element => {
                     Icon={FaLocationDot}
                     name={name}
                     value={value}
-                    ref={ref}
                     onChange={onChange}
                   >
                     {cities.map((option) => (

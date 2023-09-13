@@ -9,6 +9,7 @@ export { default as WalletQr } from "./images/wallet-qr.png";
 export { default as Logo2 } from "./images/betBillions-logo-2.png";
 export { default as EmptyCart } from "./images/cart-empty.png";
 export { default as NoDataEmpty } from "./images/no-data-empty.png";
+export { default as NoNotifications } from "./images/no-notifications.png";
 
 /* Custom Icons  */
 export { default as Notification3DICon } from "./icons/notification3d-icon.png";
@@ -20,3 +21,6 @@ export { default as Gift3dIcon } from "./icons/gift3d-icon.png";
 export { default as TrophyIcon } from "./icons/trophy-icon.png";
 export { default as Team3dIcon } from "./icons/team-3d-icon.png";
 export { default as BingoBallsFigure } from "./icons/bingo-balls-figure.png";
+
+/*Gifts */
+export { default as PartyGift } from "./gifts/party.gif";

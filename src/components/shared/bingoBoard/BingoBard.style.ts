@@ -1,5 +1,5 @@
 import { DesktopBg } from "@assets/index";
-import { BallStyledProps } from "types";
+import { BallStyledProps, DynamicBallStyleProps } from "types";
 
 import styled from "styled-components";
 
@@ -44,6 +44,11 @@ const BoardBody = styled.div`
   border: 2px solid var(--bg-secondary-color);
 `;
 
+const BoardBodyVariant = styled(BoardBody)`
+  background-color: rgba(255, 255, 255, 0.6);
+  grid-gap: 0.2rem;
+`;
+
 const BoardColumn = styled.div`
   width: 100%;
   display: grid;
@@ -67,6 +72,15 @@ const Ball = styled.div<BallStyledProps>`
     font-style: oblique 0.5;
     color: ${(props: BallStyledProps) => props.color};
     filter: drop-shadow(2px 0 0 rgba(0, 0, 0, 1));
+  }
+`;
+
+const DynamicBall = styled(Ball)<DynamicBallStyleProps>`
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+  background-color: ${(props: DynamicBallStyleProps) => props.background};
+  &:hover {
+    opacity: 0.5;
   }
 `;
 
@@ -111,4 +125,6 @@ export {
   BoardColumn,
   Ball,
   NumberIndicator,
+  DynamicBall,
+  BoardBodyVariant,
 };

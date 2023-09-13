@@ -13,10 +13,15 @@ const ModalContainer = styled.div<ModalStyledProps>`
     props.ismodalvisible === "false" ? "-50" : "50"};
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   opacity: ${(props: ModalStyledProps) =>
     props.ismodalvisible === "false" ? "0" : "1"};
   transition: all 0.5s ease;
+  overflow-y: scroll;
+`;
+
+const ModalContainerVariant = styled(ModalContainer)`
+  background-color: rgba(0, 0, 0, 0.8);
 `;
 
 const ModalWindow = styled.div`
@@ -29,8 +34,9 @@ const ModalWindow = styled.div`
   border-radius: 1.5rem;
   overflow: hidden;
   transform: scale(0.8);
+  margin-top: 1rem;
   @media (min-width: 768px) {
-    width: 30rem;
+    width: auto;
     transform: scale(1);
   }
 `;
@@ -44,6 +50,7 @@ const ModalHeader = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  gap: 1rem;
   h1 {
     font-size: 1.2rem;
     color: var(--white);
@@ -55,11 +62,6 @@ const ModalHeader = styled.div`
     fill: var(--white);
     font-size: 1.4rem;
     cursor: pointer;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    right: 1rem;
   }
 `;
 
@@ -71,10 +73,16 @@ const ModalBodyContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
-  padding-top: 0;
+  padding-top: 1rem;
   padding-bottom: 2rem;
   padding-left: 2rem;
   padding-right: 2rem;
 `;
 
-export { ModalContainer, ModalWindow, ModalHeader, ModalBodyContainer };
+export {
+  ModalContainer,
+  ModalWindow,
+  ModalHeader,
+  ModalBodyContainer,
+  ModalContainerVariant,
+};

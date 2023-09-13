@@ -175,6 +175,20 @@ const Content = styled.div`
   }
 `;
 
+const ToastsContainer = styled.div`
+  width: auto;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+`;
+
 export {
   FormContainer,
   Links,
@@ -188,4 +202,5 @@ export {
   PromIndicator,
   DialogMessage,
   Content,
+  ToastsContainer,
 };

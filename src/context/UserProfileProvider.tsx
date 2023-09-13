@@ -22,7 +22,7 @@ const userProfileService = new UserProfileService();
 
 const UserProfileProvider = ({ children }: ProviderProps) => {
   const [userPhotoUrl, setUserPhotoUrl] = useState<string>("");
-  const { showToast, hideToast, configToast } = useToastContext();
+  const { openToast } = useToastContext();
 
   const updateUserProfile = useCallback(
     async (
@@ -38,14 +38,17 @@ const UserProfileProvider = ({ children }: ProviderProps) => {
             userData,
             token
           );
-          configToast(res.typeStatus, res.message);
-          showToast();
+          openToast({
+            message: res.message,
+            type: res.typeStatus,
+          });
         } catch (error: unknown) {
           const errorMessage = (error as Error).message;
-          showToast();
-          configToast(ToastTypes.error, errorMessage);
+          openToast({
+            message: errorMessage,
+            type: ToastTypes.error,
+          });
         } finally {
-          hideToast(3000);
           config.inactiveLoading();
         }
       }
@@ -69,14 +72,17 @@ const UserProfileProvider = ({ children }: ProviderProps) => {
         config.activeLoading();
         const res = await userProfileService.uploadUserProfilePhoto(formData);
         setUserPhotoUrl(res);
-        configToast(ToastTypes.success, "Foto subida correctamente!");
-        showToast();
+        openToast({
+          message: "Foto subida correctamente!",
+          type: ToastTypes.success,
+        });
       } catch (error: unknown) {
         const errorMessage = (error as Error).message;
-        showToast();
-        configToast(ToastTypes.error, errorMessage);
+        openToast({
+          message: errorMessage,
+          type: ToastTypes.error,
+        });
       } finally {
-        hideToast(3000);
         config.inactiveLoading();
       }
     },

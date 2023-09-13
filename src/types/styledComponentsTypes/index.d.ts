@@ -5,8 +5,9 @@ interface ButtonStyleProps {
   padding?: string;
 }
 
-interface ToastStyleProps extends ButtonStyleProps {
-  istoastvisible: boolean | string;
+interface ToastStyleProps {
+  background: string;
+  color: string;
 }
 
 interface LoadingStyleProps {
@@ -53,6 +54,16 @@ interface BallStyledProps {
   color: string;
 }
 
+interface DynamicBallStyleProps extends BallStyledProps {
+  background: string;
+}
+
+interface DropdownStyledProps {
+  direction: "row" | "column";
+  visible: string;
+  wrap: string;
+}
+
 export type {
   ButtonStyleProps,
   ToastStyleProps,
@@ -64,4 +75,6 @@ export type {
   RoundStyledProps,
   ModalStyledProps,
   BallStyledProps,
+  DropdownStyledProps,
+  DynamicBallStyleProps,
 };

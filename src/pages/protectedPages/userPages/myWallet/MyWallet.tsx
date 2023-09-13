@@ -31,7 +31,7 @@ const MyWallet = (): JSX.Element => {
   const isLoyaltyPlan = window.location.pathname.split("/")[3];
   const paymentWalletAddress = "TBpHGP33y66r74FqKypYY33nTqaxePEGRn";
   const navigate = useNavigate();
-  const { showToast, hideToast, configToast } = useToastContext();
+  const { openToast } = useToastContext();
 
   return (
     <MyWalletContainer>
@@ -60,13 +60,7 @@ const MyWallet = (): JSX.Element => {
                 width: "auto",
               }}
               title={"Copiar direccion de billetera"}
-              onClick={() =>
-                copyToClipBoard(paymentWalletAddress, {
-                  showToast,
-                  hideToast,
-                  configToast,
-                })
-              }
+              onClick={() => copyToClipBoard(paymentWalletAddress, openToast)}
             >
               <Image
                 source={CopyLinkIcon}
