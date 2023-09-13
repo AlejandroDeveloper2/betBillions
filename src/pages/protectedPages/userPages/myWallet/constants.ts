@@ -12,7 +12,7 @@ const getWalletInfo = (): WalletWithdrawFormValues => ({
   wallet: "",
 });
 
-const transactionHashRules = /^[a-fA-F0-9]{64}$/;
+//const transactionHashRules = /^[a-fA-F0-9]{64}$/;
 
 const schema = yup
   .object()
@@ -20,10 +20,10 @@ const schema = yup
     walletType: yup.string().required(),
     transaction: yup
       .string()
-      .required("El hash de transacción es obligatorio!")
-      .matches(transactionHashRules, {
-        message: "El hash de transacción ingresado no es valido!",
-      }),
+      .required("El hash de transacción es obligatorio!"),
+    // .matches(transactionHashRules, {
+    //   message: "El hash de transacción ingresado no es valido!",
+    // }),
     urlTransaction: yup
       .string()
       .required("Adjunta el comprobante de deposito!"),
