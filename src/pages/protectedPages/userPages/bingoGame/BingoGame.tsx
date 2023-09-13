@@ -55,8 +55,7 @@ const BingoGame = (): JSX.Element => {
   const { isModalVisible: isGameModalVisible, hideModal: hideGameInfoModal } =
     useModal();
 
-  const isGameStopped =
-    showedBalls.length === 0 || userWinner !== undefined ? true : false;
+  const isGameStopped = showedBalls.length === 0 ? true : false;
 
   return (
     <>
