@@ -66,9 +66,7 @@ const StopBingoWindow = ({
           </DefaultButton>
         </>
       ) : (
-        <ModalMessage>
-          La ronda aun no se ha iniciado espera un momento!
-        </ModalMessage>
+        <ModalMessage>Juega y gana!</ModalMessage>
       )}
     </>
   );
