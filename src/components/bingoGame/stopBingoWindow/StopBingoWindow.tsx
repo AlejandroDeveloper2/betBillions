@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { VscDebugContinue } from "react-icons/vsc";
 
-import { useGame, useRealTimeFecher } from "@hooks/index";
-import { UsersService } from "@services/users.service";
+import { useGame } from "@hooks/index";
+// import { UsersService } from "@services/users.service";
 // import { LotteryService } from "@services/lottery.service";
 import { StopBingoWindowProps } from "types";
 
@@ -11,7 +11,7 @@ import { DefaultButton, Image } from "@components/index";
 import { BingoFigure } from "@assets/index";
 import { ModalMessage } from "@pages/protectedPages/userPages/bingoGame/BingoGame.style";
 
-const usersService = new UsersService();
+// const usersService = new UsersService();
 // const lotteryService = new LotteryService();
 
 const StopBingoWindow = ({
@@ -19,20 +19,20 @@ const StopBingoWindow = ({
 }: StopBingoWindowProps): JSX.Element => {
   // const lotteryKey = location.pathname.split("/")[4];
   const navigate = useNavigate();
-  const { showedBalls, bingoRound } = useGame();
+  const { showedBalls } = useGame();
   // const { data: lotteryDetail } = useRealTimeFecher(
   //   "/lottery/awards",
   //   (token) => lotteryService.getBingoReffel(lotteryKey, token),
   //   null
   // );
-  const { data: userWinner } = useRealTimeFecher("/users/winner", (token) =>
-    usersService.getWinnerUser(
-      bingoRound?.userWinner ? bingoRound.userWinner : 1,
-      token
-    )
-  );
+  // const { data: userWinner } = useRealTimeFecher("/users/winner", (token) =>
+  //   usersService.getWinnerUser(
+  //     bingoRound?.userWinner ? bingoRound.userWinner : 1,
+  //     token
+  //   )
+  // );
 
-  const isGameFinished = showedBalls.length === 75 || userWinner !== undefined;
+  const isGameFinished = showedBalls.length === 75;
 
   return (
     <>
