@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { VscDebugContinue } from "react-icons/vsc";
 
-import { useAuthContext, useGame, useRealTimeFecher } from "@hooks/index";
+import { useGame, useRealTimeFecher } from "@hooks/index";
 import { UsersService } from "@services/users.service";
 // import { LotteryService } from "@services/lottery.service";
 import { StopBingoWindowProps } from "types";
@@ -19,8 +19,7 @@ const StopBingoWindow = ({
 }: StopBingoWindowProps): JSX.Element => {
   // const lotteryKey = location.pathname.split("/")[4];
   const navigate = useNavigate();
-  const { bingoRound } = useGame();
-
+  const { showedBalls, bingoRound } = useGame();
   // const { data: lotteryDetail } = useRealTimeFecher(
   //   "/lottery/awards",
   //   (token) => lotteryService.getBingoReffel(lotteryKey, token),
@@ -32,9 +31,8 @@ const StopBingoWindow = ({
       token
     )
   );
-  const { userAuth } = useAuthContext();
 
-  const isGameFinished = userWinner !== undefined;
+  const isGameFinished = showedBalls.length === 75 || userWinner !== undefined;
 
   return (
     <>
@@ -47,42 +45,31 @@ const StopBingoWindow = ({
           sm: 60,
         }}
       />
-      <ModalMessage>
-        {isGameFinished
-          ? "El juego ha finalizado!"
-          : "La ronda aun no se ha iniciado espera un momento!"}
-      </ModalMessage>
-      <ModalMessage>
-        {userWinner && userWinner !== userAuth?.sub
-          ? "El ganador de la ronda anterior es: " + userWinner
-          : null}
-      </ModalMessage>
-      {isGameFinished && (
-        <>
-          <ModalMessage>El ganador de la última ronda ha sido:</ModalMessage>
-          <h2 style={{ fontSize: 30, fontWeight: 900 }}>
-            {bingoRound?.userWinner}
-          </h2>
-        </>
-      )}
       {isGameFinished ? (
-        <DefaultButton
-          style={{
-            bg: "var(--bg-secondary-color)",
-            fontColor: "var(--white)",
-          }}
-          title="Regresar al inicio"
-          label="Volver al inicio"
-          onClick={() => {
-            hideGameInfoModal();
-            navigate("/userPanel");
-          }}
-        >
-          <VscDebugContinue
-            style={{ color: "var(--white)", fontSize: 30, marginRight: 10 }}
-          />
-        </DefaultButton>
-      ) : null}
+        <>
+          <ModalMessage>El juego ha finalizado!</ModalMessage>
+          <DefaultButton
+            style={{
+              bg: "var(--bg-secondary-color)",
+              fontColor: "var(--white)",
+            }}
+            title="Regresar al inicio"
+            label="Volver al inicio"
+            onClick={() => {
+              hideGameInfoModal();
+              navigate("/userPanel");
+            }}
+          >
+            <VscDebugContinue
+              style={{ color: "var(--white)", fontSize: 30, marginRight: 10 }}
+            />
+          </DefaultButton>
+        </>
+      ) : (
+        <ModalMessage>
+          La ronda aun no se ha iniciado espera un momento!
+        </ModalMessage>
+      )}
     </>
   );
 };

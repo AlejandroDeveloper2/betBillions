@@ -12,7 +12,7 @@ import { RoundCard, RoundsContainer } from "./LotteryDetails.style";
 const LotteryDetailsAdmin = ({
   lotteryDetails,
 }: LotteryDetailsProps): JSX.Element => {
-  const { activeBingoLottery, stopGame } = useBingoContext();
+  const { activeBingoLottery, stopGame, requestsCounter } = useBingoContext();
   const { inactiveLottery } = useLotteryContext();
   const {
     isLoading,
@@ -68,7 +68,8 @@ const LotteryDetailsAdmin = ({
                   />
                 </DefaultButton>
                 {!activeRoundButton(i, lotteryDetails.rounds) &&
-                stoppingRoundLoading.isLoading ? (
+                stoppingRoundLoading.isLoading &&
+                requestsCounter < 75 ? (
                   <LoadingButton
                     message={stoppingRoundLoading.loadingMessage}
                     style={{
@@ -101,7 +102,7 @@ const LotteryDetailsAdmin = ({
           </RoundCard>
         ))}
       </RoundsContainer>
-      {loadingConfig.isLoading ? (
+      {loadingConfig.isLoading && requestsCounter < 75 ? (
         <LoadingButton
           message={loadingConfig.loadingMessage}
           style={{
