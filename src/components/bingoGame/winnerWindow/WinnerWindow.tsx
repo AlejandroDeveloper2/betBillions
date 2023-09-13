@@ -7,10 +7,7 @@ import { DefaultButton, Image } from "@components/index";
 import { ModalMessage } from "@pages/protectedPages/userPages/bingoGame/BingoGame.style";
 import { PartyGift } from "@assets/index";
 
-const WinnerWindow = ({
-  userWinner,
-  hideModal,
-}: WinnerWindowProps): JSX.Element => {
+const WinnerWindow = ({ hideModal }: WinnerWindowProps): JSX.Element => {
   return (
     <>
       <Image
@@ -23,8 +20,7 @@ const WinnerWindow = ({
         }}
       />
       <ModalMessage>
-        ¡Felicitaciones <span>{userWinner}</span> has sido el primero en decir
-        BINGO!
+        ¡Felicitaciones <span></span> has sido el primero en decir BINGO!
       </ModalMessage>
       <DefaultButton
         style={{

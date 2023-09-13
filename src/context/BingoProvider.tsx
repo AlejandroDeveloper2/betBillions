@@ -20,12 +20,15 @@ const BingoContext = createContext<BingoContextType>({} as BingoContextType);
 const tokenAuth = new TokenAuth();
 const bingoService = new BingoService();
 
-//const requestCounterLS = parseInt(window.localStorage.getItem("requestCounter")?? "0");
+const requestCounterLS = parseInt(
+  window.localStorage.getItem("requestCounter") ?? "0"
+);
 
 const BingoProvider = ({ children }: ProviderProps) => {
   const [bingoRound, setBingoRound] = useState<BingoRound | null>(null);
   const [playerBoard, setPlayerBoard] = useState<BingoBoard | null>(null);
-  const [requestsCounter, setRequestsCounter] = useState<number>(0);
+  let [requestsCounter, setRequestsCounter] =
+    useState<number>(requestCounterLS);
 
   const { openToast } = useToastContext();
 
@@ -74,8 +77,13 @@ const BingoProvider = ({ children }: ProviderProps) => {
     config: LoadingConfig
   ) => {
     const token = tokenAuth.getToken();
-    if (token && requestsCounter < 75) {
+    if (token && requestsCounter <= 75) {
       setRequestsCounter((prevCounter) => prevCounter + 1);
+
+      window.localStorage.setItem(
+        "requestCounter",
+        JSON.stringify(requestsCounter++)
+      );
       try {
         config.setMessage("Activando....");
         config.activeLoading();
@@ -207,6 +215,7 @@ const BingoProvider = ({ children }: ProviderProps) => {
       const token = tokenAuth.getToken();
       if (token) {
         setRequestsCounter(0);
+        window.localStorage.removeItem("requestCounter");
         try {
           config.setMessage("Finalizando ronda....");
           config.activeLoading();

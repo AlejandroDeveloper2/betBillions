@@ -88,7 +88,7 @@ class WithdrawService {
     token: string
   ): Promise<ServerResponse> {
     let response: ServerResponse | null = null;
-    const { wallet, id, price } = retreatData;
+    const { id } = retreatData;
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -98,8 +98,8 @@ class WithdrawService {
     try {
       const axiosClient = getAxiosClient("betBillionsAPI");
       const { data } = await axiosClient.patch<ServerResponse>(
-        `/retreats/invalid/${wallet}`,
-        { id, price },
+        `/retreats/invalid/${id}`,
+        {},
         config
       );
       response = data;
